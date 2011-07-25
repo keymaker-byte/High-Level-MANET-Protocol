@@ -1,0 +1,187 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+OpenNETCF.VisualBasic
+</name>
+</assembly>
+<members>
+<member name="M:OpenNETCF.VisualBasic.Interaction.GetSetting(System.String,System.String,System.String,System.String)">
+	<summary>
+ Returns a key setting value from an application's entry in the Windows registry.
+ </summary>
+	<param name="AppName">Required. <see cref="T:System.String"/> expression containing the name of the application or project whose key setting is requested.</param>
+	<param name="Section">Required. <see cref="T:System.String"/> expression containing the name of the section in which the key setting is found.</param>
+	<param name="Key">Required. <see cref="T:System.String"/> expression containing the name of the key setting to return.</param>
+	<param name="Default">Optional. Expression containing the value to return if no value is set in the Key setting. If omitted, Default is assumed to be a zero-length string ("").</param>
+	<returns></returns>
+	<remarks>If any of the items named in the <b>GetSetting</b> arguments do not exist, <b>GetSetting</b> returns a value of <paramref name="Default"/>.
+ <para><b>GetSetting</b> requires that a user be logged on since it operates under the HKEY_LOCAL_USER registry key, which is not active until a user logs on interactively.</para>
+		<para>Registry settings that are to be accessed from a non-interactive process (such as mtx.exe) should be stored under either the HKEY_LOCAL_MACHINE\Software\ or the HKEY_USER\DEFAULT\Software registry keys.</para>
+	</remarks>
+</member><member name="M:OpenNETCF.VisualBasic.Interaction.SaveSetting(System.String,System.String,System.String,System.String)">
+	<summary>
+ Saves or creates an application entry in the Windows registry.
+ </summary>
+	<param name="AppName">Required. String expression containing the name of the application or project to which the setting applies.</param>
+	<param name="Section">Required. String expression containing the name of the section in which the key setting is being saved.</param>
+	<param name="Key">Required. String expression containing the name of the key setting being saved.</param>
+	<param name="Setting">Required. Expression containing the value to which Key is being set.</param>
+	<remarks>
+ The SaveSetting function adds the key to HKEY_CURRENT_USER\Software\VB and VBA Program Settings.
+ <para>If the key setting can't be saved for any reason, an error occurs.</para>
+		<para>SaveSetting requires that a user be logged on since it operates under the HKEY_LOCAL_USER registry key, which is not active until a user logs on interactively.</para>
+	</remarks>
+</member><member name="M:OpenNETCF.VisualBasic.Interaction.DeleteSetting(System.String,System.String,System.String)">
+	<summary>
+ Deletes a section or key setting from an application's entry in the Windows registry.
+ </summary>
+	<param name="AppName">Required. String expression containing the name of the application or project to which the section or key setting applies.</param>
+	<param name="Section">Required. String expression containing the name of the section from which the key setting is being deleted. If only AppName and Section are provided, the specified section is deleted along with all related key settings.</param>
+	<param name="Key">Optional. String expression containing the name of the key setting being deleted.</param>
+	<remarks>
+ If all arguments are provided, the specified setting is deleted. A run-time error occurs if you attempt to use DeleteSetting on a nonexistent section or key setting.
+ <para>DeleteSetting requires that a user be logged on since it operates under the HKEY_LOCAL_USER registry key, which is not active until a user logs on interactively.</para>
+		<para>Registry settings that are to be accessed from a non-interactive process (such as mtx.exe) should be stored under either the HKEY_LOCAL_MACHINE\Software\ or the HKEY_USER\DEFAULT\Software registry keys.</para>
+	</remarks>
+	<example>The following example first uses the <see cref="M:OpenNETCF.VisualBasic.Interaction.SaveSetting"/> procedure to make entries in the Windows registry for the MyApp application, and then uses the <b>DeleteSetting</b> function to remove them.
+ Because no Key argument is specified, the whole Startup section is deleted, including the section name and all of its keys.
+ <code>[VB]
+ ' Place some settings in the registry.
+ SaveSetting("MyApp", "Startup", "Top", "75")
+ SaveSetting("MyApp","Startup", "Left", "50")
+ 
+ ' Remove section and all its settings from registry.
+ DeleteSetting ("MyApp", "Startup")
+ ' Remove MyApp from the registry.
+ DeleteSetting ("MyApp")
+ </code></example>
+</member><member name="M:OpenNETCF.VisualBasic.FileSystem.FileCopy(System.String,System.String)">
+	<summary>
+ Copies a file.
+ </summary>
+	<param name="Source">Required. String expression that specifies the name of the file to be copied. Source may include the directory or folder, and drive, of the source file.</param>
+	<param name="Destination">Required. String expression that specifies the target file name. Destination may include the directory or folder, and drive, of the destination file.</param>
+	<remarks>
+ If you try to use the FileCopy function on a currently open file, an error occurs.
+ </remarks>
+	<history>
+ 	[Peter]	13/04/2004	Created
+ </history>
+	<example>This example uses the <b>FileCopy</b> function to copy one file to another.
+ For purposes of this example, assume that SRCFILE is a file containing some data.
+ <code>[VB]
+ Dim SourceFile, DestinationFile As String
+ SourceFile = "SRCFILE"   ' Define source file name.
+ DestinationFile = "DESTFILE"   ' Define target file name.
+ FileCopy(SourceFile, DestinationFile)   ' Copy source to target.
+ </code></example>
+</member><member name="M:OpenNETCF.VisualBasic.FileSystem.Kill(System.String)">
+	<summary>
+ Deletes files from a disk.
+ </summary>
+	<param name="PathName">Required. String expression that specifies a file name to be deleted.</param>
+	<history>
+ 	[Peter]	13/04/2004	Created
+ </history>
+	<example>This example uses the <b>Kill</b> function to delete a file from a disk.
+ <code>[VB]
+ ' Assume TESTFILE is a file containing some data.
+ Kill("TestFile")   ' Delete file.
+ </code>
+	</example>
+</member><member name="M:OpenNETCF.VisualBasic.FileSystem.FileDateTime(System.String)">
+	<summary>
+ Returns a Date value that indicates the date and time when a file was created or last modified.
+ </summary>
+	<param name="PathName">Required. String expression that specifies a file name. PathName may include the directory or folder, and the drive.</param>
+	<returns>The date and time when a file was created or last modified.</returns>
+	<history>
+ 	[Peter]	13/04/2004	Created
+ </history>
+	<example>This example uses the FileDateTime function to determine the date and time a file was created or last modified.
+ The format of the date and time displayed is based on the locale settings of your system.
+ <code>[VB]
+ Dim MyStamp As Date
+ ' Assume TESTFILE was last modified on October 12, 2001 at 4:35:47 PM.
+ ' Assume English/U.S. locale settings.
+ ' Returns "10/12/2001 4:35:47 PM".
+ MyStamp = FileDateTime("\TESTFILE.txt")
+ </code>
+	</example>
+</member><member name="M:OpenNETCF.VisualBasic.FileSystem.FileLen(System.String)">
+	<summary>
+ Returns a Long value specifying the length of a file in bytes.
+ </summary>
+	<param name="PathName">String expression that specifies a file. Pathname may include the directory or folder, and the drive.</param>
+	<returns>The length of a file in bytes.</returns>
+	<remarks>
+ If the specified file is open when the FileLen function is called, the value returned represents the size of the file at the time it was opened.
+ </remarks>
+	<history>
+ 	[Peter]	13/04/2004	Created
+ </history>
+	<example>This example uses the FileLen function to return the length of a file in bytes.
+ For purposes of this example, assume that test.txt is a file containing some data.
+ <code>[VB]
+ Dim MySize As Long
+ MySize = FileLen("\test.txt")   ' Returns file length (bytes).
+ </code>
+	</example>
+</member><member name="M:OpenNETCF.VisualBasic.FileSystem.Rename(System.String,System.String)">
+	<summary>
+ Renames a disk file, directory, or folder.
+ </summary>
+	<param name="OldPath">Required. String expression that specifies the existing file name and location. OldPath may include the directory or folder, and drive, of the file.</param>
+	<param name="NewPath">Required. String expression that specifies the new file name and location. NewPath may include directory or folder, and drive of the destination location. The file name specified by NewPath can't already exist.</param>
+	<remarks>
+ The Rename function renames a file and moves it to a different directory or folder, if necessary.
+ The Rename function can move a file across drives, but it can only rename an existing directory or folder when both NewPath and OldPath are located on the same drive.
+ Name cannot create a new file, directory, or folder.
+ </remarks>
+	<history>
+ 	[Peter]	13/04/2004	Created
+ </history>
+	<example>This example uses the Rename function to rename a file.
+ For purposes of this example, assume that the directories or folders that are specified already exist.
+ <code>[VB]
+ Dim OldName, NewName As String
+ OldName = "OLDFILE"
+ NewName = "NEWFILE" ' Define file names.
+ Rename(OldName, NewName)   ' Rename file.
+ 
+ OldName = "\MYDIR\OLDFILE"
+ NewName = "\YOURDIR\NEWFILE"
+ Rename(OldName, NewName)   ' Move and rename file.
+ </code>
+	</example>
+</member><member name="M:OpenNETCF.VisualBasic.FileSystem.RmDir(System.String)">
+	<summary>
+ Removes an existing directory or folder.
+ </summary>
+	<param name="Path">Required.
+ <see cref="T:System.String"/> expression that identifies the directory or folder to be removed.</param>
+	<remarks>
+ An error occurs if you try to use RmDir on a directory or folder containing files.
+ Delete all files before attempting to remove a directory or folder.
+ </remarks>
+	<history>
+ 	[Peter]	03/05/2004	Created
+ </history>
+	<example>
+ This example uses the RmDir function to remove an existing directory or folder.
+ <code>[VB]
+ ' Assume that MYDIR is an empty directory or folder.
+ RmDir ("\MYDIR")   ' Remove MYDIR
+ </code>
+	</example>
+</member><member name="T:OpenNETCF.VisualBasic.FileSystem">
+	<summary>
+ The FileSystem module contains the procedures used to perform file, directory or folder, and system operations.
+ </summary>
+	<history>
+ 	[Peter]	13/04/2004	Created
+ </history>
+</member>
+</members>
+</doc>

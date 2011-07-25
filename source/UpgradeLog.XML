@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="CommLayer">
+</Property><Property Name="Archivo de la solución" Value="C:\Documents and Settings\tyr\Escritorio\HLMP\CommLayer.sln">
+</Property><Property Name="Date" Value="Martes, 17 de Noviembre de 2009">
+</Property><Property Name="Time" Value="13:25 p.m.">
+</Property></Properties><Event ErrorLevel="0" Project="CommLayer" Source="CommLayer\CommLayer.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="CommLayer" Source="CommLayer\CommLayer.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="NetLayer" Source="NetLayer\NetLayer.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="NetLayer" Source="NetLayer\NetLayer.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CommControl" Source="CommControl\CommControl.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="CommControl" Source="CommControl\CommControl.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="NetLayerCompact" Source="NetLayerCompact\NetLayerCompact.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="NetLayerCompact" Source="NetLayerCompact\NetLayerCompact.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SystemInteropCompact" Source="SystemInteropCompact\SystemInteropCompact.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="SystemInteropCompact" Source="SystemInteropCompact\SystemInteropCompact.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CommLayerCompact" Source="CommLayerCompact\CommLayerCompact.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="CommLayerCompact" Source="CommLayerCompact\CommLayerCompact.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CommControlCompact" Source="CommControlCompact\CommControlCompact.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="CommControlCompact" Source="CommControlCompact\CommControlCompact.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SystemInterop" Source="SystemInterop\SystemInterop.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="SystemInterop" Source="SystemInterop\SystemInterop.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SubProtocol" Source="SubProtocol\SubProtocol.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="SubProtocol" Source="SubProtocol\SubProtocol.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SubProtocolCompact" Source="SubProtocolCompact\SubProtocolCompact.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="SubProtocolCompact" Source="SubProtocolCompact\SubProtocolCompact.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="CommLayer.sln" Description="La solución se convirtió correctamente">
+</Event><Event ErrorLevel="3" Project="" Source="CommLayer.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="NetLayerCompact" Source="NetLayerCompact\NetLayerCompact.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="SystemInteropCompact" Source="SystemInteropCompact\SystemInteropCompact.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="CommLayerCompact" Source="CommLayerCompact\CommLayerCompact.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="CommControlCompact" Source="CommControlCompact\ChatControlCompact.resx" Description="Archivo convertido correctamente">
+</Event><Event ErrorLevel="3" Project="CommControlCompact" Source="CommControlCompact\ChatControlCompact.resx" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CommControlCompact" Source="CommControlCompact\ConfigurationControlCompact.resx" Description="Archivo convertido correctamente">
+</Event><Event ErrorLevel="3" Project="CommControlCompact" Source="CommControlCompact\ConfigurationControlCompact.resx" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CommControlCompact" Source="CommControlCompact\FileControlCompact.resx" Description="Archivo convertido correctamente">
+</Event><Event ErrorLevel="3" Project="CommControlCompact" Source="CommControlCompact\FileControlCompact.resx" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CommControlCompact" Source="CommControlCompact\FileListControlCompact.resx" Description="Archivo convertido correctamente">
+</Event><Event ErrorLevel="3" Project="CommControlCompact" Source="CommControlCompact\FileListControlCompact.resx" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CommControlCompact" Source="CommControlCompact\NetUserControlCompact.resx" Description="Archivo convertido correctamente">
+</Event><Event ErrorLevel="3" Project="CommControlCompact" Source="CommControlCompact\NetUserControlCompact.resx" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CommControlCompact" Source="CommControlCompact\Properties\Resources.resx" Description="Archivo convertido correctamente">
+</Event><Event ErrorLevel="3" Project="CommControlCompact" Source="CommControlCompact\Properties\Resources.resx" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CommControlCompact" Source="CommControlCompact\StatusControlCompact.resx" Description="Archivo convertido correctamente">
+</Event><Event ErrorLevel="3" Project="CommControlCompact" Source="CommControlCompact\StatusControlCompact.resx" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CommControlCompact" Source="CommControlCompact\CommControlCompact.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="SubProtocolCompact" Source="SubProtocolCompact\SubProtocolCompact.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="CommLayer" Source="CommLayer\CommLayer.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="NetLayer" Source="NetLayer\NetLayer.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="CommControl" Source="CommControl\CommControl.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="SystemInterop" Source="SystemInterop\SystemInterop.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="SubProtocol" Source="SubProtocol\SubProtocol.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event></UpgradeLog>

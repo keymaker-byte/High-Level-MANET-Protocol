@@ -1,0 +1,2124 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.WindowsMobile.Status</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.WindowsMobile.Status.SafeNativeMethods.#ctor">
+            <summary>
+            The constructor exists so that the default constructor is not created (since all methods are static).
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.RegistryState">
+            <summary>
+            Defines the state of a registry key (that is, the key name, the names of its values, and the data contained in its values).
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.StateBase">
+            <summary>
+            The abstract base of a <b>State</b> class.  You can use <b>State</b> classes to query system state values, and then be notified when changes occur.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.StateBase.#ctor">
+            <summary>
+            Initializes a new instance of the <b>StateBase</b> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.StateBase.EnableApplicationLauncher(System.String,System.String,System.String)">
+            <summary>
+            Enables the Application Launcher for this object, using it’s unique ID, the fully qualified path-name of the application to launch, and any arguments it requires.
+            </summary>
+            <param name="applicationLaunchId">The ID of the Application Launcher.</param>
+            <param name="applicationFileName">The fully qualified path-name of the application to launch.</param>
+            <param name="arguments">A string containing the arguments to pass to the application.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.StateBase.EnableApplicationLauncher(System.String,System.String)">
+            <summary>
+            Enables the Application Launcher for this object, using it’s unique ID, and the fully qualified path-name of the application to launch.
+            </summary>
+            <param name="applicationLaunchId">The ID of the Application Launcher.</param>
+            <param name="applicationFileName">The fully qualified path-name of the application to launch.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.StateBase.EnableApplicationLauncher(System.String)">
+            <summary>
+            Enables the Application Launcher for this object, using it’s unique ID.
+            </summary>
+            <param name="applicationLaunchId">The ID of the Application Launcher.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.StateBase.DisableApplicationLauncher">
+            <summary>
+            Disables the Application Launcher for this instance.  It will no longer launch the application that it was associated with.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.StateBase.CurrentValue">
+            <summary>
+            Gets and sets the current value of the system state.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.StateBase.ComparisonType">
+            <summary>
+            Gets and sets the type of comparison operation used to generate state condition notifications.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.StateBase.ComparisonValue">
+            <summary>
+            Gets and sets the comparion value that is used in the generation of Status events. The event occurs when the result of the comparison is <b>true</b>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.StateBase.BitMask">
+            <summary>
+            Gets and sets the optional bitmask used in Integer comparisons.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsMobile.Status.StateBase.Changed">
+            <summary>
+            Occurs when the system state changes.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.StateBase.ApplicationArguments">
+            <summary>
+            Gets the arguments passed to the application. <b>Note</b>: The Application Launcher must be enabled.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.StateBase.ApplicationToLaunch">
+            <summary>
+            The string name of the application to launch. <b>Note</b>: The Application Launcher must be enabled.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.StateBase.ApplicationLaunchId">
+            <summary>
+            Unique id for the SystemState
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.RegistryState.NotificationRegistryLocation">
+            <summary>
+            The location in the registry where statstor registration is maintained.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <b>RegistryState</b> class, using an existing <b>RegistryState</b> object that has the Application Launcher enabled.
+            </summary>
+            <param name="applicationLaunchId">The unique ID of the <b>RegistryState</b> to load.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.#ctor(System.String,System.Boolean)">
+            <summary>
+            Creates a new instance of the <b>RegistryState</b> class, using persisted (saved) state values of a previous instance. This persisted <b>RegistryState</b> object is uniquely identified by the <b>applicationLaunchId</b>.
+            </summary>
+            <remarks>
+            Use the application’s form thread if you want to manipulate the user interface using an event.
+            </remarks>
+            <param name="applicationLaunchId">The unique ID of the <b>RegistryState</b> to load.</param>
+            <param name="useFormThread">A value indicating whether to use the application's form thread for event processing. If your application does not contain a form, then set this value to <b>false</b>.
+            </param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <b>RegistryState</b> class, using the key name, the names of its values.
+            </summary>
+            <param name="key">The string value of the registry key.</param>
+            <param name="valueName">The string name of the value.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <b>RegistryState</b> class, using the key name, the names of its values, and a value indicating whether to use the application’s form thread to process the events.
+            </summary>
+            <remarks>
+            Use the application’s form thread if you want to manipulate the user interface using an event.
+            </remarks>
+            <param name="key">The string value of the registry key.</param>
+            <param name="valueName">The string name of the value.</param>
+            <param name="useFormThread">A value indicating whether to use the application's form thread for event processing. If your application does not contain a form, then set this value to <b>false</b>.
+            </param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.Finalize">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources, and performs other cleanup operations before garbage collection is performed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.CreateConditionPointers(System.IntPtr@,System.IntPtr@)">
+            <summary>
+            Creates the pointer for conditionals. Used on the native side.
+            </summary>
+            <param name="condition">pointer to the condition on the native side</param>
+            <param name="allocatedString">pointer to the string allocated in the condition.  
+            This is so we can free this later</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.CleanupConditionPointers(System.IntPtr@,System.IntPtr@)">
+            <summary>
+            Cleans up the pointers received from <b>CreateConditionPointers</b>.
+            </summary>
+            <param name="condition">the pointer to the native condition</param>
+            <param name="allocatedString">the pointer to the native allocated string.  this can be NULL</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.RegisterTransient">
+            <summary>
+            Enable the event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.UnregisterTransient">
+            <summary>
+            Disable the event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.RegisterPersistent(System.String,System.String,System.String)">
+            <summary>
+            Enable the event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.UnregisterPersistent(System.String)">
+            <summary>
+            Disable the event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.GetRootAndSubkey(System.IntPtr@,System.String@)">
+            <summary>
+            Given the current Key and ValueName, gets the pointer to the root Key and the string of the subkey underneath.
+            </summary>
+            <param name="rootKey">Pointer to the root key</param>
+            <param name="subKey">the subkey under that root key</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.GetRegistryValue">
+            <summary>
+            Returns the value from the registry represented by the key and value name of this instance.
+            </summary>
+            <returns>value of the registry</returns>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.ValidateChangeableComparisonState">
+            <summary>
+            This method should be called whenever the comparison condition changes.
+            It will throw an exception if the registry state is already persistent or 
+            transient. 
+            </summary>
+            <exception cref="T:Microsoft.WindowsMobile.Status.StateException">
+            Thrown if ValidateChangeableComparisonState is called after calling 
+            EnableApplicationLauncher or after
+            registering an event handler with the Changed event.
+            </exception> 
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.Dispose">
+            <summary>
+            Disposes a <b>RegistryState</b>.
+            </summary>
+            <remarks>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. Disables finalization by the garbage collector by a calling <b>GC.SuppressFinalize(this)</b>.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.IsApplicationLauncherEnabled(System.String)">
+            <summary>
+            Gets a value indicating whether the Application Launcher has been enabled for the specified Application Launch ID.
+            </summary>
+            <param name="applicationLaunchId">id of the ApplicationLauncher to enquire about.</param>
+            <returns>True: enabled, False: not enabled</returns>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.DisableApplicationLauncher(System.String)">
+            <summary>
+            Disables the Application Launcher with the specified Application Launch ID.
+            </summary>
+            <remarks>
+            It will no longer launch the application that it was associated with.
+            </remarks>
+            <param name="applicationLaunchId">The ID of the ApplicationLauncher.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.EnableApplicationLauncher(System.String,System.String,System.String)">
+            <summary>
+            Enables the Application Launcher with the specified Application Launch ID, file name, and argument list.
+            </summary>
+            <remarks>
+            When the event occurs, the application is launched.
+            </remarks>
+            <param name="applicationLaunchId">The ID of the Application Launcher.</param>
+            <param name="applicationFileName">The fully qualified path-name of the application to launch.</param>
+            <param name="arguments">A string of any arguments to pass to the application.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.EnableApplicationLauncher(System.String,System.String)">
+            <summary>
+            Enables the Application Launcher with the specified Application Launch ID and file name.
+            </summary>
+            <remarks>
+            When the event occurs, the application launches with <i>/notify 'applicationLaunchId'</i> passed as its command-line parameter.
+            </remarks>
+            <param name="applicationLaunchId">The ID of the Application Launcher.</param>
+            <param name="applicationFileName">The fully qualified path-name of the application to launch.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.EnableApplicationLauncher(System.String)">
+            <summary>
+            Enables the Application Launcher with the specified Application Launch ID.
+            </summary>
+            <remarks>
+            When the event occurs, the application launches with <i>/notify 'applicationLaunchId'</i> passed as its command-line parameter.
+            </remarks>
+            <param name="applicationLaunchId">The ID of the Application Launcher.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.RegistryState.DisableApplicationLauncher">
+            <summary>
+            Disables the Application Launcher for this instance.
+            </summary>
+            <remarks>
+            The Application Launcher will no longer launch the application that it was associated with.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.RegistryState.Key">
+            <summary>
+            Gets the string value of the registry key (for example, <b>HKEY_LOCAL_MACHINE\SOFTWARE</b>).
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.RegistryState.ValueName">
+            <summary>
+            Gets the string name of the value under the key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.RegistryState.CurrentValue">
+            <summary>
+            Gets or sets the current value of the registry key and value pair.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.RegistryState.ComparisonType">
+            <summary>
+            Gets or sets the type of comparison operation.
+            </summary>
+            <exception cref="T:Microsoft.WindowsMobile.Status.StateException">
+            The exception that is thrown when <b>ComparisonType</b> is set after calling <b>EnableApplicationLauncher</b>, or after
+            registering an event handler with the <b>Changed</b> event.
+            </exception>             
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.RegistryState.ComparisonValue">
+            <summary>
+            Gets or sets the comparison value.
+            </summary>
+            <exception cref="T:Microsoft.WindowsMobile.Status.StateException">
+            The exception that is thrown when <b>ComparisonValue</b> is set after calling <b>EnableApplicationLauncher</b>, or after
+            registering an event handler with the <b>Changed</b> event.
+            </exception> 
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.RegistryState.BitMask">
+            <summary>
+            Gets or sets the optional bitmask to use for an integer comparison.
+            </summary>
+            <exception cref="T:Microsoft.WindowsMobile.Status.StateException">
+            Thrown if BitMask is set after calling EnableApplicationLauncher or after
+            registering an event handler with the Changed event.
+            </exception> 
+        </member>
+        <member name="E:Microsoft.WindowsMobile.Status.RegistryState.Changed">
+            <summary>
+            Occurs when a value changes.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.RegistryState.ApplicationArguments">
+            <summary>
+            Gets the arguments passed to the application if the Application Launcher is enabled.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.RegistryState.ApplicationToLaunch">
+            <summary>
+            Gets the name of the application to launch if the Application Launcher is enabled.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.RegistryState.ApplicationLaunchId">
+            <summary>
+            Gets the unique ID for the <b>RegistryState</b>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.RegistryState.RegistrationResult">
+            <summary>
+            Specifies the error codes returned from the <b>RegExt</b> functions.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.RegistryValuePath">
+            <summary>
+             Represents a key and value name
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.SystemProperty">
+            <summary>
+             Specifies the device-wide system properties
+            </summary>  
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ActiveApplication">
+            <summary>
+             Gets the name of the application that was previously active and the name of the application that is currently active, separated by the 'Escape' character ('\e').
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.DisplayRotation">
+            <summary>
+             Gets the orientation of the display, specified as the number of degrees, ranging from 0 to 360. Portrait = 0. Landscape = 90 or -90. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.KeyboardPresent">
+            <summary>
+             Gets a value indicating whether a keyboard is attached and enabled. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CradlePresent">
+            <summary>
+             Gets a value indicating whether the device is connected to a cradle. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CameraPresent">
+            <summary>
+             Gets a value indicating whether a camera is attached and enabled. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingSmsUnread">
+            <summary>
+             Gets the number of unread SMS messages. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingMmsUnread">
+            <summary>
+             Gets the number of unread MMS messages 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingVoiceMailTotalUnread">
+            <summary>
+             Gets the number of unplayed voice mail messages. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingVoiceMail1Unread">
+            <summary>
+             Gets the number of unplayed voice mail messages for line 1. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingVoiceMail2Unread">
+            <summary>
+             Gets the number of unplayed voice mail messages for line 2 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingActiveSyncEmailUnread">
+            <summary>
+             Gets the number of unread ActiveSync e-mail messages. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingTotalEmailUnread">
+            <summary>
+             Gets the total number of unread e-mail messages from all POP3/IMAP accounts. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingOtherEmailUnread">
+            <summary>
+             Gets the number of unread e-mail messages from all non-ActiveSync messaging accounts. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingLastEmailAccountName">
+            <summary>
+             Gets the name of the e-mail account that was last active. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingSmsAccountName">
+            <summary>
+             Gets the name of the SMS messaging account. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingMmsAccountName">
+            <summary>
+             Gets the name of the MMS messaging account. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MessagingActiveSyncAccountName">
+            <summary>
+             Get the name of the Outlook e-mail messaging account. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.TasksActive">
+            <summary>
+             Gets the number of active tasks.  
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.TasksHighPriority">
+            <summary>
+             Gets the number of high priority tasks that are currently active. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.TasksDueToday">
+            <summary>
+             Gets the number of active tasks that are due today.  
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.TasksOverdue">
+            <summary>
+             Gets the number of overdue tasks.  
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarNextAppointmentSubject">
+            <summary>
+             Gets the subject of the next Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarNextAppointmentLocation">
+            <summary>
+             Gets the location of the next Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarNextAppointmentStart">
+            <summary>
+             Gets the starting time of the next Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarNextAppointmentEnd">
+            <summary>
+             Gets the ending time of the next Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MediaPlayerAlbumArtist">
+            <summary>
+             Gets the album artist's name of the currently playing track in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MediaPlayerTrackBitrate">
+            <summary>
+             Gets the title of the track currently playing in Windows Media Player. For example, "128Kbps" 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MediaPlayerTrackTitle">
+            <summary>
+             Gets the title of the track currently playing in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MediaPlayerAlbumTitle">
+            <summary>
+             Gets the album title of the currently playing track in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MediaPlayerTrackArtist">
+            <summary>
+             Gets the artist's name of the currently playing track in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MediaPlayerTrackNumber">
+            <summary>
+             Gets the number of the current track playing in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MediaPlayerTrackGenre">
+            <summary>
+             Gets the genre of the currently playing track in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.MediaPlayerTrackTimeElapsed">
+            <summary>
+             Gets the elapsed time (in milliseconds) of the currently playing track in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PowerBatteryStrength">
+            <summary>
+             Gets the remaining battery power level, expressed as a percentage of <i>fully charged</i>. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PowerBatteryState">
+            <summary>
+             Gets the current battery state (for example, it is low, and charging). This enumeration allows a bitwise combination of its member values. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PowerBatteryBackupStrength">
+            <summary>
+             Gets the remaining backup battery power level, expressed as a percentage of <i>fully charged</i>. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PowerBatteryBackupState">
+            <summary>
+             Gets the current backup battery state (for example, it is low, and charging). This enumeration allows a bitwise combination of its member values. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.Time">
+            <summary>
+             Gets the current time. This Date/Time value updates once per minute. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.Date">
+            <summary>
+             Gets the current date. This Date/Time value changes once per day. Monitor this property to perform actions on a daily basis. <b>Note</b>: Do not use <b>Date</b> to get an accurate clock time; instead, use <b>Time</b>. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneSignalStrength">
+            <summary>
+             Get the phone signal strength, expressed as a percentage of full strength. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneOperatorName">
+            <summary>
+              Gets the name of the mobile operator (i.e., the mobile phone company, or carrier). 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneTalkingCallerName">
+            <summary>
+             Gets the name of the person you are talking to on the phone. This value is not set when you are talking on a conference call. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneActiveCallCount">
+            <summary>
+              Gets the number of active phone calls. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneProfileName">
+            <summary>
+             Gets the localized name of the current sound profile. (Smartphone only) 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneProfile">
+            <summary>
+             Gets the non-localized name of the current sound profile. For example, "Normal", "Silent", "Car", "Headset", "Loud", "Meeting", or "Speakerphone". (Smartphone only) 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneCellBroadcast">
+            <summary>
+             Gets the cell broadcast message 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarNextAppointmentHasConflict">
+            <summary>
+             Gets a value indicating whether there is a conflict with the next Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.OwnerName">
+            <summary>
+              Gets the mobile device owner's name. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.OwnerPhoneNumber">
+            <summary>
+              Gets the mobile device owner's phone number. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.OwnerEmail">
+            <summary>
+             Gets the mobile device owner's e-mail address. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.OwnerNotes">
+            <summary>
+              Gets the text notes entered by the owner of the mobile device. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ActiveSyncStatus">
+            <summary>
+             Gets ActiveSync's current synchronization state. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneMissedCalls">
+            <summary>
+             Gets the number of missed phone calls. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.HeadsetPresent">
+            <summary>
+              Gets a value indicating whether a headset is present 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CarKitPresent">
+            <summary>
+              Gets a value indicating whether a car kit is present 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.SpeakerPhoneActive">
+            <summary>
+              Gets a value indicating whether the speakerphone is active 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneMultiLine">
+            <summary>
+             Gets a value indicating whether the phone supports multiple lines. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneSimFull">
+            <summary>
+              Gets a value indicating whether the Subscriber Identity Module (SIM) memory is full. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneNoSim">
+            <summary>
+              Gets a value indicating whether the Subscriber Identity Module (SIM) is installed in the mobile device. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneInvalidSim">
+            <summary>
+              Gets a value indicating whether the Subscriber Identity Module (SIM) is invalid. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneBlockedSim">
+            <summary>
+              Gets a value indicating whether the Subscriber Identity Module (SIM) is blocked. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneRadioOff">
+            <summary>
+             Gets a value indicating whether the phone's radio is turned off. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneRadioPresent">
+            <summary>
+              Gets a value indicating whether the mobile device has a phone. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneRingerOff">
+            <summary>
+             Gets a value indicating whether the phone's ringer is off (i.e., if it rings and/or vibrates). 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneLine1Selected">
+            <summary>
+              Gets a value indicating whether line 1 is selected. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneLine2Selected">
+            <summary>
+              Gets a value indicating whether line 2 is selected. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneRoaming">
+            <summary>
+              Gets a value indicating whether the phone is currently in roaming mode. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneCallForwardingOnLine1">
+            <summary>
+              Gets a value indicating whether call forwarding is enabled on line 1. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneMissedCall">
+            <summary>
+              Gets a value indicating whether there was a new missed call. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneActiveDataCall">
+            <summary>
+              Gets a value indicating whether the phone has an active cellular data connection. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneCallBarring">
+            <summary>
+              Gets a value indicating whether the call barring feature is enabled. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneCallOnHold">
+            <summary>
+             Gets a value indicating whether a phone call is currently on hold. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneConferenceCall">
+            <summary>
+              Gets a value indicating whether a conference call is currently in progress. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneIncomingCall">
+            <summary>
+              Gets a value indicating whether there is an incoming (ringing) call. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneCallCalling">
+            <summary>
+             Gets a value indicating whether the phone is currently attempting to connect an outgoing call. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneGprsCoverage">
+            <summary>
+              Gets a value indicating whether the phone currently has GPRS coverage. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneNoService">
+            <summary>
+              Gets a value indicating whether the phone is not currently connected to a network. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneSearchingForService">
+            <summary>
+              Gets a value indicating whether the phone is currently searching for service on a network. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneHomeService">
+            <summary>
+              Gets a value indicating whether the phone is currently registered on its home network. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.Phone1xRttCoverage">
+            <summary>
+              Gets a value indicating whether the phone currently has 1xRTT coverage. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneCallTalking">
+            <summary>
+              Gets a value indicating whether there is currently a phone call in the talking state. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneCallForwardingOnLine2">
+            <summary>
+              Gets a value indicating whether call forwarding is currently active on line 2. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarNextAppointment">
+            <summary>
+             Gets the next Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarNextAppointmentBusyStatus">
+            <summary>
+             Gets the user's availability (e.g., Free, Busy, Tenative, Out of Office) status for the next Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarNextAppointmentCategories">
+            <summary>
+             Gets the next Appointment's categories. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarAppointment">
+            <summary>
+             Gets the current Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarAppointmentSubject">
+            <summary>
+             Gets the current Appointment's subject. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarAppointmentLocation">
+            <summary>
+             Gets the current Appointment's location. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarAppointmentStartTime">
+            <summary>
+             Gets the current Appointment's starting time. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarAppointmentEndTime">
+            <summary>
+             Gets the current Appointment's ending time. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarAppointmentHasConflict">
+            <summary>
+             Gets a value indicating whether the current Appointment has a scheduling conflict with an existing Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarAppointmentBusyStatus">
+            <summary>
+             Gets the user's availability (free/busy status) for the time-slot taken by the current Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarAppointmentCategories">
+            <summary>
+             Gets the current Appointment's categories. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarHomeScreenAppointment">
+            <summary>
+             Gets the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarHomeScreenAppointmentSubject">
+            <summary>
+             Gets the subject of the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarHomeScreenAppointmentLocation">
+            <summary>
+             Gets the location of the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarHomeScreenAppointmentStartTime">
+            <summary>
+             Gets the starting time of the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarHomeScreenAppointmentEndTime">
+            <summary>
+             Gets the ending time of the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarHomeScreenAppointmentHasConflict">
+            <summary>
+             Gets a value indicating whether the Appointment that is currently displayed on the Home Screen has a scheduling conflict. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarHomeScreenAppointmentBusyStatus">
+            <summary>
+             Gets the user's availability (free/busy status) for the Appointment displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarHomeScreenAppointmentCategories">
+            <summary>
+             Gets the categories of the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneIncomingCallerName">
+            <summary>
+             Gets the name of the person who is currently placing the incoming call. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneLastIncomingCallerName">
+            <summary>
+             Gets the name of the last caller to place an incoming call. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneIncomingCallerNumber">
+            <summary>
+             Gets the incoming call's phone number (Caller ID). 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneLastIncomingCallerNumber">
+            <summary>
+             Gets the last incoming call's phone number (Caller ID). 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneIncomingCallerContactPropertyName">
+            <summary>
+             Gets the name of the property that matches the Caller ID, e.g. "h" for "Home Telephone". 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneLastIncomingCallerContactPropertyName">
+            <summary>
+             Gets the name of the property that matches the last Caller ID, e.g. "h" for "Home Telephone". 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneIncomingCallerContactPropertyID">
+            <summary>
+             Gets the CEPROPID of the property that matches the Caller ID, for example, PIMPR_HOME_TELEPHONE_NUMBER. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneLastIncomingCallerContactPropertyID">
+            <summary>
+             Gets the CEPROPID of the property that matches the last Caller ID, for example, PIMPR_HOME_TELEPHONE_NUMBER. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneIncomingCallerContact">
+            <summary>
+             Gets the Contact that matches the Caller ID. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneLastIncomingCallerContact">
+            <summary>
+             Gets the Contact that matches the last Caller ID. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneTalkingCallerNumber">
+            <summary>
+             Gets the currently connected caller's phone number. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneTalkingCallerContactPropertyName">
+            <summary>
+             Gets the name of the property of the contact who is on the active phone call, e.g. "h" for "Home Telephone". 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneTalkingCallerContactPropertyID">
+            <summary>
+             Gets the CEPROPID of the property of the contact who is on the active phone call, for example, PIMPR_HOME_TELEPHONE_NUMBER. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.PhoneTalkingCallerContact">
+            <summary>
+             Gets the contact who is on the active phone call. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsCount">
+            <summary>
+             Gets a value indicating the number of connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsBluetoothCount">
+            <summary>
+             Gets a value indicating the number of Bluetooth connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsBluetoothDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each of the Bluetooth connections. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsCellularCount">
+            <summary>
+             Gets a value indicating the number of cellular connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsCellularDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each cellular connection. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsNetworkCount">
+            <summary>
+             Gets a value indicating the number of network connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsNetworkDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each network connection. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsNetworkAdapters">
+            <summary>
+             Gets a semicolon delimited string containing the adapter name of each network connection. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsDesktopCount">
+            <summary>
+             Gets a value indicating the number of desktop connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsDesktopDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each desktop connection. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsProxyCount">
+            <summary>
+             Gets a value indicating the number of network connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsProxyDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each proxy connection. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsModemCount">
+            <summary>
+             Gets a value indicating the number of modem connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsModemDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each modem connection. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsUnknownCount">
+            <summary>
+             Gets a value indicating the number of connections of unknown type that are currently connected. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsUnknownDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each connections of unknown type. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsVpnCount">
+            <summary>
+             Gets a value indicating the number of virtual private network connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.ConnectionsVpnDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each virtual private network connection. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarEvent">
+            <summary>
+             Gets the current "All Day Event" Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarEventSubject">
+            <summary>
+             Gets the subject of the current "All Day Event" Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarEventLocation">
+            <summary>
+             Gets the location of the current "All Day Event" Appointment. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarEventStartTime">
+            <summary>
+             Gets the starting time of the current "All Day Event" Appointment. This will be the starting day of an Appointment Event that spans multiple days. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarEventEndTime">
+            <summary>
+             Gets the ending time of the current "All Day Event" Appointment. This will be the starting day of an Appointment Event that spans multiple days. 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarEventHasConflict">
+            <summary>
+             Gets a value indicating whether the user's availability (free/busy) status conflicts with the current "All Day Event". 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarEventBusyStatus">
+            <summary>
+             Gets the user's availability (free/busy status) for the current "All Day Event". 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.SystemProperty.CalendarEventCategories">
+            <summary>
+             Gets the categories for the current "All Day Event". 
+            </summary>    
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.BatteryLevel">
+            <summary>
+             This enum is used with SystemProperty.PowerBatteryStrength 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.BatteryLevel.VeryLow">
+            <summary>
+            0-20%
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.BatteryLevel.Low">
+            <summary>
+            21-40%
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.BatteryLevel.Medium">
+            <summary>
+            41-60%
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.BatteryLevel.High">
+            <summary>
+            61-80%
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.BatteryLevel.VeryHigh">
+            <summary>
+            81-100%
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.BatteryState">
+            <summary>
+             This enum is used with SystemProperty.PowerBatteryState 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.BatteryState.Normal">
+            <summary>
+            Normal
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.BatteryState.NotPresent">
+            <summary>
+            NotPresent
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.BatteryState.Charging">
+            <summary>
+            Charging
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.BatteryState.Low">
+            <summary>
+            Low
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.BatteryState.Critical">
+            <summary>
+            Critical
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.ActiveSyncStatus">
+            <summary>
+             This enum is used with SystemProperty.ActiveSyncStatus 
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.ActiveSyncStatus.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.ActiveSyncStatus.Synchronizing">
+            <summary>
+            Synchronizing
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.ActiveSyncStatus.Error">
+            <summary>
+            Error
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.SystemState">
+            <summary>
+             Gives the ability to get the current value of a system state as well
+             as the ability to be notified when that state changes
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.InitSystemTable">
+            <summary>
+             Initializes all the property enums with the actual registry keys and values that represent them
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.#ctor(Microsoft.WindowsMobile.Status.SystemProperty)">
+            <summary>
+             Constructs a SystemState object that gives read-only access to the 
+             property.
+            </summary>
+            <param name="property">property of interest</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.#ctor(System.String)">
+            <summary>
+            Load the settings for a SystemState that has had the Application Launcher enabled
+            </summary>
+            <param name="applicationLaunchId">id for the SystemState to load</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.#ctor(System.String,System.Boolean)">
+            <summary>
+            Load the settings for a SystemState that has had the Application Launcher enabled
+            </summary>
+            <param name="applicationLaunchId">id for the SystemState to load</param>
+            <param name="useFormThread">Use the application's Form thread to process events. You need to use 
+            the application's Form thread to be able to manipulate UI from within an event. If your application
+            does not contain a form, then this should be set to false. </param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.#ctor(Microsoft.WindowsMobile.Status.SystemProperty,System.Boolean)">
+            <summary>
+             Constructs a SystemState object that gives read-only access to the 
+             property.
+            </summary>
+            <param name="property">property of interest</param>
+            <param name="useFormThread">Use the application's Form thread to process events. You need to use 
+             the application's Form thread to be able to manipulate UI from within an event. If your application
+             does not contain a form, then this should be set to false. </param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.Finalize">
+            <summary>
+             Call dispose on the object when we are destructed.
+             The client should have called Dispose on this instance, but
+             we do here just incase since it doesn't hurt.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.GetValue(Microsoft.WindowsMobile.Status.SystemProperty)">
+            <summary>
+             Get's the value of a system property
+            </summary>
+            <param name="property">System Property to retrieve the value for</param>
+            <returns>either an int, string, or byte[] representing the value of the property. 
+             You can use the 'is' operator to determine which type it is.
+            <code>
+             obj = GetValue(SystemProperty.PhoneSignalStrength)
+             if (obj is int)
+             {
+             int phoneStrength = (int)obj;
+             }
+            </code>
+            </returns>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.ApplyBitMask(System.Object,System.Int32)">
+            <summary>
+             Applies a bit mask to an int
+            </summary>
+            <param name="val">the object to be masked, must be an int</param>
+            <param name="bitMask">the bit mask</param>
+            <returns>(val &amp; bitMask), right-shifted</returns>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.Dispose">
+            <summary>
+             Disposes resources used by the SystemState
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.IsApplicationLauncherEnabled(System.String)">
+            <summary>
+            Tests to see if the Application Launcher has been enabled for the given id.
+            </summary>
+            <param name="applicationLaunchId">id of the SystemState to enquire about.</param>
+            <returns>True: enabled, False: not enabled</returns>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.DisableApplicationLauncher(System.String)">
+            <summary>
+            Disables the Application Launcher for the given id.  It will no longer launch the
+            application that it was associated with
+            </summary>
+            <param name="applicationLaunchId">id of the SystemState to enquire about.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.EnableApplicationLauncher(System.String,System.String,System.String)">
+            <summary>
+            Enable the Application Launcher for this object.  When your event is raised,
+            your app will be launched.
+            
+            When your app is launched, "/notify 'applicationLaunchId'" (no quotes) will be passed
+            on the command line.
+            </summary>
+            <param name="applicationLaunchId">id of the SystemState to enable</param>
+            <param name="applicationFileName">full path to the application to launch</param>
+            <param name="arguments">arguments to pass to the application</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.EnableApplicationLauncher(System.String,System.String)">
+            <summary>
+            Enable the Application Launcher for this object.  When your event is raised,
+            your app will be launched.
+            
+            When your app is launched, "/notify 'applicationLaunchId'" (no quotes) will be passed
+            on the command line.
+            </summary>
+            <param name="applicationLaunchId">id of the SystemState to enable</param>
+            <param name="applicationFileName">full path to the application to launch</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.EnableApplicationLauncher(System.String)">
+            <summary>
+            Enable the Application Launcher for this object.  When your event is raised,
+            your app will be launched.
+            
+            When your app is launched, "/notify 'applicationLaunchId'" (no quotes) will be passed
+            on the command line.
+            </summary>
+            <param name="applicationLaunchId">id of the SystemState to enable</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.SystemState.DisableApplicationLauncher">
+            <summary>
+            Disables the Application Launcher for this instance.  It will no longer launch the
+            application that it was associated with
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ActiveApplication">
+            <summary>
+             Gets the name of the application that was previously active and the name of the application that is currently active, separated by a colon 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.DisplayRotation">
+            <summary>
+             Gets the orientation of the display, specified as the number of degrees, ranging from 0 to 360. Portrait = 0. Landscape = 90 or -90. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.KeyboardPresent">
+            <summary>
+             Gets a value indicating whether a keyboard is attached and enabled. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CradlePresent">
+            <summary>
+             Gets a value indicating whether the device is connected to a cradle. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CameraPresent">
+            <summary>
+             Gets a value indicating whether a camera is attached and enabled. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingSmsUnread">
+            <summary>
+             Gets the number of unread SMS messages. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingMmsUnread">
+            <summary>
+             Gets the number of unread MMS messages 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingVoiceMailTotalUnread">
+            <summary>
+             Gets the number of unplayed voice mail messages. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingVoiceMail1Unread">
+            <summary>
+             Gets the number of unplayed voice mail messages for line 1. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingVoiceMail2Unread">
+            <summary>
+             Gets the number of unplayed voice mail messages for line 2 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingActiveSyncEmailUnread">
+            <summary>
+             Gets the number of unread ActiveSync e-mail messages. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingTotalEmailUnread">
+            <summary>
+             Gets the total number of unread e-mail messages from all POP3/IMAP accounts. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingOtherEmailUnread">
+            <summary>
+             Gets the number of unread e-mail messages from all non-ActiveSync messaging accounts. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingLastEmailAccountName">
+            <summary>
+             Gets the name of the e-mail account that was last active. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingSmsAccountName">
+            <summary>
+             Gets the name of the SMS messaging account. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingMmsAccountName">
+            <summary>
+             Gets the name of the MMS messaging account. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MessagingActiveSyncAccountName">
+            <summary>
+             Get the name of the Outlook e-mail messaging account. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.TasksActive">
+            <summary>
+             Gets the number of active tasks.  
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.TasksHighPriority">
+            <summary>
+             Gets the number of high priority tasks that are currently active. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.TasksDueToday">
+            <summary>
+             Gets the number of active tasks that are due today.  
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.TasksOverdue">
+            <summary>
+             Gets the number of overdue tasks.  
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarNextAppointmentSubject">
+            <summary>
+             Gets the subject of the next Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarNextAppointmentLocation">
+            <summary>
+             Gets the location of the next Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarNextAppointmentStart">
+            <summary>
+             Gets the starting time of the next Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarNextAppointmentEnd">
+            <summary>
+             Gets the ending time of the next Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MediaPlayerAlbumArtist">
+            <summary>
+             Gets the album artist's name of the currently playing track in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MediaPlayerTrackBitrate">
+            <summary>
+             Gets the title of the track currently playing in Windows Media Player. For example, "128Kbps" 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MediaPlayerTrackTitle">
+            <summary>
+             Gets the title of the track currently playing in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MediaPlayerAlbumTitle">
+            <summary>
+             Gets the album title of the currently playing track in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MediaPlayerTrackArtist">
+            <summary>
+             Gets the artist's name of the currently playing track in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MediaPlayerTrackNumber">
+            <summary>
+             Gets the number of the current track playing in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MediaPlayerTrackGenre">
+            <summary>
+             Gets the genre of the currently playing track in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.MediaPlayerTrackTimeElapsed">
+            <summary>
+             Gets the elapsed time (in milliseconds) of the currently playing track in Windows Media Player. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PowerBatteryStrength">
+            <summary>
+             Gets the remaining battery power level, expressed as a percentage of <i>fully charged</i>. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PowerBatteryState">
+            <summary>
+             Gets the current battery state (for example, it is low, and charging). This enumeration allows a bitwise combination of its member values. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PowerBatteryBackupStrength">
+            <summary>
+             Gets the remaining backup battery power level, expressed as a percentage of <i>fully charged</i>. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PowerBatteryBackupState">
+            <summary>
+             Gets the current backup battery state (for example, it is low, and charging). This enumeration allows a bitwise combination of its member values. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.Time">
+            <summary>
+             Gets the current time. This Date/Time value updates once per minute. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.Date">
+            <summary>
+             Gets the current date. This Date/Time value changes once per day. Monitor this property to perform actions on a daily basis. <b>Note</b>: Do not use <b>Date</b> to get an accurate clock time; instead, use <b>Time</b>. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneSignalStrength">
+            <summary>
+             Get the phone signal strength, expressed as a percentage of full strength. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneOperatorName">
+            <summary>
+              Gets the name of the mobile operator (i.e., the mobile phone company, or carrier). 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneTalkingCallerName">
+            <summary>
+             Gets the name of the person you are talking to on the phone. This value is not set when you are talking on a conference call. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneActiveCallCount">
+            <summary>
+              Gets the number of active phone calls. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneProfileName">
+            <summary>
+             Gets the localized name of the current sound profile. (Smartphone only) 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneProfile">
+            <summary>
+             Gets the non-localized name of the current sound profile. For example, "Normal", "Silent", "Car", "Headset", "Loud", "Meeting", or "Speakerphone". (Smartphone only) 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneCellBroadcast">
+            <summary>
+             Gets the cell broadcast message 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarNextAppointmentHasConflict">
+            <summary>
+             Gets a value indicating whether there is a conflict with the next Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.OwnerName">
+            <summary>
+              Gets the mobile device owner's name. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.OwnerPhoneNumber">
+            <summary>
+              Gets the mobile device owner's phone number. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.OwnerEmail">
+            <summary>
+             Gets the mobile device owner's e-mail address. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.OwnerNotes">
+            <summary>
+              Gets the text notes entered by the owner of the mobile device. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ActiveSyncStatus">
+            <summary>
+             Gets ActiveSync's current synchronization state. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneMissedCalls">
+            <summary>
+             Gets the number of missed phone calls. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.HeadsetPresent">
+            <summary>
+              Gets a value indicating whether a headset is present 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CarKitPresent">
+            <summary>
+              Gets a value indicating whether a car kit is present 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.SpeakerPhoneActive">
+            <summary>
+              Gets a value indicating whether the speakerphone is active 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneMultiLine">
+            <summary>
+             Gets a value indicating whether the phone supports multiple lines. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneSimFull">
+            <summary>
+              Gets a value indicating whether the Subscriber Identity Module (SIM) memory is full. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneNoSim">
+            <summary>
+              Gets a value indicating whether the Subscriber Identity Module (SIM) is installed in the mobile device. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneInvalidSim">
+            <summary>
+              Gets a value indicating whether the Subscriber Identity Module (SIM) is invalid. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneBlockedSim">
+            <summary>
+              Gets a value indicating whether the Subscriber Identity Module (SIM) is blocked. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneRadioOff">
+            <summary>
+             Gets a value indicating whether the phone's radio is turned off. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneRadioPresent">
+            <summary>
+              Gets a value indicating whether the mobile device has a phone. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneRingerOff">
+            <summary>
+             Gets a value indicating whether the phone's ringer is off (i.e., if it rings and/or vibrates). 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneLine1Selected">
+            <summary>
+              Gets a value indicating whether line 1 is selected. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneLine2Selected">
+            <summary>
+              Gets a value indicating whether line 2 is selected. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneRoaming">
+            <summary>
+              Gets a value indicating whether the phone is currently in roaming mode. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneCallForwardingOnLine1">
+            <summary>
+              Gets a value indicating whether call forwarding is enabled on line 1. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneMissedCall">
+            <summary>
+              Gets a value indicating whether there was a new missed call. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneActiveDataCall">
+            <summary>
+              Gets a value indicating whether the phone has an active cellular data connection. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneCallBarring">
+            <summary>
+              Gets a value indicating whether the call barring feature is enabled. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneCallOnHold">
+            <summary>
+             Gets a value indicating whether a phone call is currently on hold. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneConferenceCall">
+            <summary>
+              Gets a value indicating whether a conference call is currently in progress. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneIncomingCall">
+            <summary>
+              Gets a value indicating whether there is an incoming (ringing) call. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneCallCalling">
+            <summary>
+             Gets a value indicating whether the phone is currently attempting to connect an outgoing call. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneGprsCoverage">
+            <summary>
+              Gets a value indicating whether the phone currently has GPRS coverage. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneNoService">
+            <summary>
+              Gets a value indicating whether the phone is not currently connected to a network. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneSearchingForService">
+            <summary>
+              Gets a value indicating whether the phone is currently searching for service on a network. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneHomeService">
+            <summary>
+              Gets a value indicating whether the phone is currently registered on its home network. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.Phone1xRttCoverage">
+            <summary>
+              Gets a value indicating whether the phone currently has 1xRTT coverage. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneCallTalking">
+            <summary>
+              Gets a value indicating whether there is currently a phone call in the talking state. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneCallForwardingOnLine2">
+            <summary>
+              Gets a value indicating whether call forwarding is currently active on line 2. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarNextAppointment">
+            <summary>
+             Gets the next Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarNextAppointmentBusyStatus">
+            <summary>
+             Gets the user's availability (e.g., Free, Busy, Tenative, Out of Office) status for the next Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarNextAppointmentCategories">
+            <summary>
+             Gets the next Appointment's categories. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarAppointment">
+            <summary>
+             Gets the current Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarAppointmentSubject">
+            <summary>
+             Gets the current Appointment's subject. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarAppointmentLocation">
+            <summary>
+             Gets the current Appointment's location. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarAppointmentStartTime">
+            <summary>
+             Gets the current Appointment's starting time. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarAppointmentEndTime">
+            <summary>
+             Gets the current Appointment's ending time. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarAppointmentHasConflict">
+            <summary>
+             Gets a value indicating whether the current Appointment has a scheduling conflict with an existing Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarAppointmentBusyStatus">
+            <summary>
+             Gets the user's availability (free/busy status) for the time-slot taken by the current Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarAppointmentCategories">
+            <summary>
+             Gets the current Appointment's categories. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarHomeScreenAppointment">
+            <summary>
+             Gets the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarHomeScreenAppointmentSubject">
+            <summary>
+             Gets the subject of the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarHomeScreenAppointmentLocation">
+            <summary>
+             Gets the location of the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarHomeScreenAppointmentStartTime">
+            <summary>
+             Gets the starting time of the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarHomeScreenAppointmentEndTime">
+            <summary>
+             Gets the ending time of the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarHomeScreenAppointmentHasConflict">
+            <summary>
+             Gets a value indicating whether the Appointment that is currently displayed on the Home Screen has a scheduling conflict. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarHomeScreenAppointmentBusyStatus">
+            <summary>
+             Gets the user's availability (free/busy status) for the Appointment displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarHomeScreenAppointmentCategories">
+            <summary>
+             Gets the categories of the Appointment that is currently displayed on the Home Screen. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneIncomingCallerName">
+            <summary>
+             Gets the name of the person who is currently placing the incoming call. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneLastIncomingCallerName">
+            <summary>
+             Gets the name of the last caller to place an incoming call. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneIncomingCallerNumber">
+            <summary>
+             Gets the incoming call's phone number (Caller ID). 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneLastIncomingCallerNumber">
+            <summary>
+             Gets the last incoming call's phone number (Caller ID). 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneIncomingCallerContactPropertyName">
+            <summary>
+             Gets the name of the property that matches the Caller ID, e.g. "h" for "Home Telephone". 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneLastIncomingCallerContactPropertyName">
+            <summary>
+             Gets the name of the property that matches the last Caller ID, e.g. "h" for "Home Telephone". 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneIncomingCallerContactPropertyID">
+            <summary>
+             Gets the CEPROPID of the property that matches the Caller ID, for example, PIMPR_HOME_TELEPHONE_NUMBER. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneLastIncomingCallerContactPropertyID">
+            <summary>
+             Gets the CEPROPID of the property that matches the last Caller ID, for example, PIMPR_HOME_TELEPHONE_NUMBER. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneIncomingCallerContact">
+            <summary>
+             Gets the Contact that matches the Caller ID. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneLastIncomingCallerContact">
+            <summary>
+             Gets the Contact that matches the last Caller ID. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneTalkingCallerNumber">
+            <summary>
+             Gets the currently connected caller's phone number. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneTalkingCallerContactPropertyName">
+            <summary>
+             Gets the name of the property of the contact who is on the active phone call, e.g. "h" for "Home Telephone". 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneTalkingCallerContactPropertyID">
+            <summary>
+             Gets the CEPROPID of the property of the contact who is on the active phone call, for example, PIMPR_HOME_TELEPHONE_NUMBER. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.PhoneTalkingCallerContact">
+            <summary>
+             Gets the contact who is on the active phone call. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsCount">
+            <summary>
+             Gets a value indicating the number of connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsBluetoothCount">
+            <summary>
+             Gets a value indicating the number of Bluetooth connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsBluetoothDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each of the Bluetooth connections. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsCellularCount">
+            <summary>
+             Gets a value indicating the number of cellular connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsCellularDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each cellular connection. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsNetworkCount">
+            <summary>
+             Gets a value indicating the number of network connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsNetworkDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each network connection. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsNetworkAdapters">
+            <summary>
+             Gets a semicolon delimited string containing the adapter name of each network connection. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsDesktopCount">
+            <summary>
+             Gets a value indicating the number of desktop connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsDesktopDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each desktop connection. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsProxyCount">
+            <summary>
+             Gets a value indicating the number of network connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsProxyDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each proxy connection. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsModemCount">
+            <summary>
+             Gets a value indicating the number of modem connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsModemDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each modem connection. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsUnknownCount">
+            <summary>
+             Gets a value indicating the number of connections of unknown type that are currently connected. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsUnknownDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each connections of unknown type. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsVpnCount">
+            <summary>
+             Gets a value indicating the number of virtual private network connections that are currently connected. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ConnectionsVpnDescriptions">
+            <summary>
+             Gets a semicolon delimited string containing the description of each virtual private network connection. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarEvent">
+            <summary>
+             Gets the current "All Day Event" Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarEventSubject">
+            <summary>
+             Gets the subject of the current "All Day Event" Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarEventLocation">
+            <summary>
+             Gets the location of the current "All Day Event" Appointment. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarEventStartTime">
+            <summary>
+             Gets the starting time of the current "All Day Event" Appointment. This will be the starting day of an Appointment Event that spans multiple days. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarEventEndTime">
+            <summary>
+             Gets the ending time of the current "All Day Event" Appointment. This will be the starting day of an Appointment Event that spans multiple days. 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarEventHasConflict">
+            <summary>
+             Gets a value indicating whether the user's availability (free/busy) status conflicts with the current "All Day Event". 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarEventBusyStatus">
+            <summary>
+             Gets the user's availability (free/busy status) for the current "All Day Event". 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CalendarEventCategories">
+            <summary>
+             Gets the categories for the current "All Day Event". 
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.Property">
+            <summary>
+             system property to monitor
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.CurrentValue">
+            <summary>
+             current value of this system property
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsMobile.Status.SystemState.Changed">
+            <summary>
+             Event that is raised when the state changes.
+            </summary>
+            <remarks>This event will be raised only during the lifetime of the SystemState object. </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ApplicationArguments">
+            <summary>
+            Arguments passed to the application if application launcher is enabled
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ApplicationToLaunch">
+            <summary>
+            Application to launch if application launcher is enabled
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ApplicationLaunchId">
+            <summary>
+            Unique id for the SystemState
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.BitMask">
+            <summary>
+            Not Supported
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ComparisonType">
+            <summary>
+            Type of comparison operation to perform if you want your event to be raised
+            only under a specific condition
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.SystemState.ComparisonValue">
+            <summary>
+            The value to compare against
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.StatusComparisonType">
+            <summary>
+            Specifies the types of comparison operations used in status events.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.StatusComparisonType.AnyChange">
+            <summary>
+            Any state change. This is the default value.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.StatusComparisonType.Equal">
+            <summary>
+            The state values are equal.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.StatusComparisonType.NotEqual">
+            <summary>
+            The state values are not equal.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.StatusComparisonType.Greater">
+            <summary>
+            The comparison value is <i>greater than</i> the state value.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.StatusComparisonType.GreaterOrEqual">
+            <summary>
+            The comparison value is <i>greater than</i> or <i>equal to</i> the state value.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.StatusComparisonType.Less">
+            <summary>
+            The comparison value is <i>less than</i> the state value.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.StatusComparisonType.LessOrEqual">
+            <summary>
+            The comparison value is <i>less than</i> or <i>equal to</i> the state value.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.StatusComparisonType.Contains">
+            <summary>
+            The state value contains the comparison value (strings only).
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.StatusComparisonType.StartsWith">
+            <summary>
+            The state value begins with the comparison value (strings only).
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Status.StatusComparisonType.EndsWith">
+            <summary>
+            The state value ends with the comparison value (strings only).
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.ChangeEventHandler">
+            <summary>
+            Represents the method that will handle the <b>Change</b> event.
+            </summary>
+            <remarks>
+            When you create a <b>ChangeEventHandler</b> delegate, you identify the method that will handle the event. To associate the event with your event handler, add an instance of the delegate to the event. The event handler is called whenever the event occurs, unless you remove the delegate.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.ChangeEventArgs">
+            <summary>
+            Arguments used when a <b>Change</b> event occurs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Status.ChangeEventArgs.NewValue">
+            <summary>
+            Gets the new value when a state value changes.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.StateException">
+            <summary>
+            The exception that is thrown when an attempt to change a registry value fails (that is, when <b>Change Registration</b> fails).
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.StateException.#ctor">
+            <summary>
+            Initializes a new instance of the <b>StateException</b> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.StateException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <b>StateException</b> class, using the specified exception text message.
+            </summary>
+            <param name="message">The text message in the exception.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.StateException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <b>StateException</b> class, using the specified exception text message and inner exception.
+            </summary>
+            <param name="message">The text message in the exception.</param>
+            <param name="inner">The exception’s inner exception.</param>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Status.NotificationWindow">
+            <summary>
+            Represents the Window CE message window.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.NotificationWindow.Create(System.Boolean)">
+            <summary>
+            Creates a message window, and sets up a message pump for it. Called as a separate thread.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.NotificationWindow.Finalize">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources, and performs other cleanup operations before garbage collection is performed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Status.NotificationWindow.MessagePump">
+            <summary>
+            Creates a message window and sets up a message pump for it. Called as a separate thread.
+            </summary>
+        </member>
+    </members>
+</doc>
