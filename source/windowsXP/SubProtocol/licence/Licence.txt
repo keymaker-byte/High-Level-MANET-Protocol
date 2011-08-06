@@ -1,27 +1,7 @@
-Bicubic Research Licence
-HLMP API
+The MIT License (MIT) Copyright (c) 2009-2011 Juan Rodriguez-Covili
 
-NOTICE
-This license governs use of the accompanying Software ("Software"), and your use of the Software constitutes acceptance of this license.
-Subject to the restrictions below, you may use the Software for non-commercial purpose, including distributing derivative works.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-SECTION 1: DEFINITIONS
-A. "Bicubic" refers to Bicubic Research, division of Bicubic Technology Media Group, an IT organization operating under the laws of Chile.
-B. "Software" refers to the source code, compiled binaries, installation files documentation and any other materials provided by Bicubic.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-SECTION 2: LICENSE
-You agree that:
-A. You are NOT allowed to combine or distribute the Software with other Software that is licensed under terms that seek to require that the Software (or any intellectual property in it) be provided in source code form, licensed to others to allow the creation or distribution of derivative works, or distributed without charge.
-B. You may NOT distribute the Software in source code form to any other person, company, government, group or entity.
-C. You may NOT decompile, disassemble, reverse engineer or otherwise attempt to extract, generate or retrieve source code from any compiled binary provided in the Software.
-D. You will (a) NOT use Bicubic's name, logo, or trademarks in association with distribution of the Software or derivative works unless otherwise permitted in writing; and (b) you WILL indemnify, hold harmless, and defend Bicubic from and against any claims or lawsuits, including attorneys fees, that arise or result from the use or distribution of your modifications to the Software and any additional Software you distribute along with the Software.
-E. The Software comes "as is", with no warranties. None whatsoever. This means no express, implied or statutory warranty, including without limitation, warranties of merchantability or fitness for a particular purpose or any warranty of title or non-infringement.
-F. Neither Bicubic nor its suppliers will be liable for any of those types of damages known as indirect, special, consequential, or incidental related to the Software or this license, to the maximum extent the law permits, no matter what legal theory its based on. Also, you must pass this limitation of liability on whenever you distribute the Software or derivative works.
-G. If you sue anyone over patents that you think may apply to the Software for a person's use of the Software, your license to the Software ends automatically.
-H. The patent rights, if any, granted in this license only apply to the Software, not to any derivative works you make.
-I. The Software is subject to Chile export jurisdiction at the time it is licensed to you, and it may be subject to additional export or import laws in other places. You agree to comply with all such laws and regulations that may apply to the Software after delivery of the Software to you.
-J. Your rights under this license end automatically if you breach it in any way.
-L. This license contains the only rights associated with the Software and Bicubic reserves all rights not expressly granted to you in this license.
-
-© 2009-2010 Bicubic TMG. All rights reserved.
-Visit us online at www.bicubic.cl
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
