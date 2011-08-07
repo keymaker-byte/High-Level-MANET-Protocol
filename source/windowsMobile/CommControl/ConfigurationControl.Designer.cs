@@ -61,18 +61,18 @@
             this.label1.Location = new System.Drawing.Point(7, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 20);
-            this.label1.Text = "Nombre:";
+            this.label1.Text = "Name:";
             // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
-            // ConfigurationControlCompact
+            // ConfigurationControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.panel1);
-            this.Name = "ConfigurationControlCompact";
+            this.Name = "ConfigurationControl";
             this.Size = new System.Drawing.Size(220, 269);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

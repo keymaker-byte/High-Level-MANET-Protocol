@@ -52,7 +52,7 @@
             this.groupBox4.Size = new System.Drawing.Size(310, 59);
             this.groupBox4.TabIndex = 9;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Usuario";
+            this.groupBox4.Text = "User";
             // 
             // textBoxName
             // 
@@ -68,9 +68,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(10, 30);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.Size = new System.Drawing.Size(38, 13);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Nombre:";
+            this.label8.Text = "Name:";
             // 
             // groupBox5
             // 
@@ -86,7 +86,7 @@
             this.groupBox5.Size = new System.Drawing.Size(310, 82);
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Conexión Inalámbrica";
+            this.groupBox5.Text = "Wireless Connection";
             // 
             // radioButtonVista
             // 
@@ -117,7 +117,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 13);
             this.label9.TabIndex = 5;
-            this.label9.Text = "Modo:";
+            this.label9.Text = "Mode:";
             // 
             // comboBoxAdapter
             // 
@@ -134,9 +134,9 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(10, 30);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 13);
+            this.label11.Size = new System.Drawing.Size(47, 13);
             this.label11.TabIndex = 0;
-            this.label11.Text = "Adaptador:";
+            this.label11.Text = "Adapter:";
             // 
             // ConfigurationControl
             // 

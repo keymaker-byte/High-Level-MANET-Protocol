@@ -54,7 +54,7 @@
             this.labelStatus.Location = new System.Drawing.Point(56, 106);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(143, 15);
-            this.labelStatus.Text = "Desconectado";
+            this.labelStatus.Text = "Disconnected";
             this.labelStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // buttonConnect
@@ -83,7 +83,7 @@
             this.imageList.Images.Add(((System.Drawing.Image)(resources.GetObject("resource1"))));
             this.imageList.Images.Add(((System.Drawing.Image)(resources.GetObject("resource2"))));
             // 
-            // StatusControlCompact
+            // StatusControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -92,7 +92,7 @@
             this.Controls.Add(this.buttonDisconnect);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.buttonConnect);
-            this.Name = "StatusControlCompact";
+            this.Name = "StatusControl";
             this.Size = new System.Drawing.Size(256, 217);
             this.ResumeLayout(false);
 

@@ -55,37 +55,37 @@ namespace HLMP
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.chatControl = new CommControl.ChatControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.netUserControl = new CommControl.NetUserControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.statusControl = new CommControl.StatusControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.textBoxPing = new System.Windows.Forms.TextBox();
-            this.buttonPing = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.groupBoxMyFiles = new System.Windows.Forms.GroupBox();
             this.buttonAddFile = new System.Windows.Forms.Button();
             this.treeViewMyFiles = new System.Windows.Forms.TreeView();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.statusControl = new CommControl.StatusControl();
-            this.netUserControl = new CommControl.NetUserControl();
-            this.chatControl = new CommControl.ChatControl();
-            this.fileListControl = new CommControl.FileListControl();
-            this.fileControl = new CommControl.FileControl();
-            this.networkGraphControl = new CommControl.NetworkGraphControl();
             this.iconList = new System.Windows.Forms.ImageList(this.components);
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.fileListControl = new CommControl.FileListControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.fileControl = new CommControl.FileControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.networkGraphControl = new CommControl.NetworkGraphControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.textBoxPing = new System.Windows.Forms.TextBox();
+            this.buttonPing = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabPage4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.groupBoxMyFiles.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.tabPage8.SuspendLayout();
-            this.groupBoxMyFiles.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage4
@@ -99,6 +99,16 @@ namespace HLMP
             this.tabPage4.Text = "Chat";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // chatControl
+            // 
+            this.chatControl.ChatProtocol = null;
+            this.chatControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatControl.Location = new System.Drawing.Point(3, 3);
+            this.chatControl.Name = "chatControl";
+            this.chatControl.NetUser = null;
+            this.chatControl.Size = new System.Drawing.Size(656, 478);
+            this.chatControl.TabIndex = 0;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.netUserControl);
@@ -110,6 +120,15 @@ namespace HLMP
             this.tabPage3.Text = "User List";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // netUserControl
+            // 
+            this.netUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.netUserControl.ImageSize = new System.Drawing.Size(32, 32);
+            this.netUserControl.Location = new System.Drawing.Point(3, 3);
+            this.netUserControl.Name = "netUserControl";
+            this.netUserControl.Size = new System.Drawing.Size(656, 478);
+            this.netUserControl.TabIndex = 0;
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.statusControl);
@@ -120,6 +139,14 @@ namespace HLMP
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Connection";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // statusControl
+            // 
+            this.statusControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.statusControl.Location = new System.Drawing.Point(3, 3);
+            this.statusControl.Name = "statusControl";
+            this.statusControl.Size = new System.Drawing.Size(656, 478);
+            this.statusControl.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -137,73 +164,6 @@ namespace HLMP
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(670, 510);
             this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.fileListControl);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(662, 484);
-            this.tabPage6.TabIndex = 6;
-            this.tabPage6.Text = "Community Files";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.fileControl);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(662, 484);
-            this.tabPage7.TabIndex = 7;
-            this.tabPage7.Text = "File Transfer List";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.networkGraphControl);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(662, 484);
-            this.tabPage2.TabIndex = 8;
-            this.tabPage2.Text = "MANET Graph";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.textBoxPing);
-            this.tabPage5.Controls.Add(this.buttonPing);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(662, 484);
-            this.tabPage5.TabIndex = 9;
-            this.tabPage5.Text = "Ping";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // textBoxPing
-            // 
-            this.textBoxPing.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPing.Location = new System.Drawing.Point(8, 35);
-            this.textBoxPing.Multiline = true;
-            this.textBoxPing.Name = "textBoxPing";
-            this.textBoxPing.Size = new System.Drawing.Size(699, 388);
-            this.textBoxPing.TabIndex = 1;
-            // 
-            // buttonPing
-            // 
-            this.buttonPing.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buttonPing.Location = new System.Drawing.Point(284, 6);
-            this.buttonPing.Name = "buttonPing";
-            this.buttonPing.Size = new System.Drawing.Size(147, 23);
-            this.buttonPing.TabIndex = 0;
-            this.buttonPing.Text = "Ping a Todos los Usuarios ";
-            this.buttonPing.UseVisualStyleBackColor = true;
-            this.buttonPing.Click += new System.EventHandler(this.buttonPing_Click);
             // 
             // tabPage8
             // 
@@ -252,32 +212,22 @@ namespace HLMP
             this.treeViewMyFiles.Size = new System.Drawing.Size(644, 421);
             this.treeViewMyFiles.TabIndex = 0;
             // 
-            // statusControl
+            // iconList
             // 
-            this.statusControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.statusControl.Location = new System.Drawing.Point(3, 3);
-            this.statusControl.Name = "statusControl";
-            this.statusControl.Size = new System.Drawing.Size(656, 478);
-            this.statusControl.TabIndex = 0;
+            this.iconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iconList.ImageStream")));
+            this.iconList.TransparentColor = System.Drawing.Color.Transparent;
+            this.iconList.Images.SetKeyName(0, "file_icon.gif");
             // 
-            // netUserControl
+            // tabPage6
             // 
-            this.netUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.netUserControl.ImageSize = new System.Drawing.Size(32, 32);
-            this.netUserControl.Location = new System.Drawing.Point(3, 3);
-            this.netUserControl.Name = "netUserControl";
-            this.netUserControl.Size = new System.Drawing.Size(656, 478);
-            this.netUserControl.TabIndex = 0;
-            // 
-            // chatControl
-            // 
-            this.chatControl.ChatProtocol = null;
-            this.chatControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatControl.Location = new System.Drawing.Point(3, 3);
-            this.chatControl.Name = "chatControl";
-            this.chatControl.NetUser = null;
-            this.chatControl.Size = new System.Drawing.Size(656, 478);
-            this.chatControl.TabIndex = 0;
+            this.tabPage6.Controls.Add(this.fileListControl);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(662, 484);
+            this.tabPage6.TabIndex = 6;
+            this.tabPage6.Text = "Community Files";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // fileListControl
             // 
@@ -288,6 +238,17 @@ namespace HLMP
             this.fileListControl.Size = new System.Drawing.Size(656, 478);
             this.fileListControl.TabIndex = 0;
             // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.fileControl);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(662, 484);
+            this.tabPage7.TabIndex = 7;
+            this.tabPage7.Text = "File Transfer List";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
             // fileControl
             // 
             this.fileControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -295,6 +256,17 @@ namespace HLMP
             this.fileControl.Name = "fileControl";
             this.fileControl.Size = new System.Drawing.Size(656, 478);
             this.fileControl.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.networkGraphControl);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(662, 484);
+            this.tabPage2.TabIndex = 8;
+            this.tabPage2.Text = "MANET Graph";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // networkGraphControl
             // 
@@ -304,11 +276,39 @@ namespace HLMP
             this.networkGraphControl.Size = new System.Drawing.Size(656, 478);
             this.networkGraphControl.TabIndex = 0;
             // 
-            // iconList
+            // tabPage5
             // 
-            this.iconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iconList.ImageStream")));
-            this.iconList.TransparentColor = System.Drawing.Color.Transparent;
-            this.iconList.Images.SetKeyName(0, "file_icon.gif");
+            this.tabPage5.Controls.Add(this.textBoxPing);
+            this.tabPage5.Controls.Add(this.buttonPing);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(662, 484);
+            this.tabPage5.TabIndex = 9;
+            this.tabPage5.Text = "Ping";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // textBoxPing
+            // 
+            this.textBoxPing.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPing.Location = new System.Drawing.Point(8, 35);
+            this.textBoxPing.Multiline = true;
+            this.textBoxPing.Name = "textBoxPing";
+            this.textBoxPing.Size = new System.Drawing.Size(699, 388);
+            this.textBoxPing.TabIndex = 1;
+            // 
+            // buttonPing
+            // 
+            this.buttonPing.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.buttonPing.Location = new System.Drawing.Point(284, 6);
+            this.buttonPing.Name = "buttonPing";
+            this.buttonPing.Size = new System.Drawing.Size(147, 23);
+            this.buttonPing.TabIndex = 0;
+            this.buttonPing.Text = "Ping a Todos los Usuarios ";
+            this.buttonPing.UseVisualStyleBackColor = true;
+            this.buttonPing.Click += new System.EventHandler(this.buttonPing_Click);
             // 
             // MainWindow
             // 
@@ -318,18 +318,18 @@ namespace HLMP
             this.Controls.Add(this.tabControl1);
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HLMP API Example";
+            this.Text = "HLMP";
             this.tabPage4.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
+            this.groupBoxMyFiles.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            this.tabPage8.ResumeLayout(false);
-            this.groupBoxMyFiles.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

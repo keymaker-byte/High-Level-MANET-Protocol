@@ -149,7 +149,7 @@ namespace HLMP
             this.tabPage6.Controls.Add(this.fileListControl);
             this.tabPage6.Location = new System.Drawing.Point(0, 0);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(232, 242);
+            this.tabPage6.Size = new System.Drawing.Size(240, 245);
             this.tabPage6.Text = "Shared Files";
             // 
             // fileListControl
@@ -160,7 +160,7 @@ namespace HLMP
             this.fileListControl.Indent = 5;
             this.fileListControl.Location = new System.Drawing.Point(0, 0);
             this.fileListControl.Name = "fileListControl";
-            this.fileListControl.Size = new System.Drawing.Size(232, 242);
+            this.fileListControl.Size = new System.Drawing.Size(240, 245);
             this.fileListControl.TabIndex = 0;
             // 
             // tabPage5
@@ -202,7 +202,7 @@ namespace HLMP
             this.tabPage4.Controls.Add(this.panelPing);
             this.tabPage4.Location = new System.Drawing.Point(0, 0);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(240, 245);
+            this.tabPage4.Size = new System.Drawing.Size(232, 242);
             this.tabPage4.Text = "Ping";
             // 
             // panelPing
@@ -212,7 +212,7 @@ namespace HLMP
             this.panelPing.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPing.Location = new System.Drawing.Point(0, 0);
             this.panelPing.Name = "panelPing";
-            this.panelPing.Size = new System.Drawing.Size(240, 245);
+            this.panelPing.Size = new System.Drawing.Size(232, 242);
             // 
             // textBoxPing
             // 
@@ -225,13 +225,13 @@ namespace HLMP
             this.textBoxPing.Name = "textBoxPing";
             this.textBoxPing.ReadOnly = true;
             this.textBoxPing.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxPing.Size = new System.Drawing.Size(226, 194);
+            this.textBoxPing.Size = new System.Drawing.Size(218, 191);
             this.textBoxPing.TabIndex = 2;
             // 
             // buttonPing
             // 
             this.buttonPing.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buttonPing.Location = new System.Drawing.Point(59, 11);
+            this.buttonPing.Location = new System.Drawing.Point(55, 11);
             this.buttonPing.Name = "buttonPing";
             this.buttonPing.Size = new System.Drawing.Size(122, 23);
             this.buttonPing.TabIndex = 0;
@@ -243,7 +243,7 @@ namespace HLMP
             this.tabPage7.Controls.Add(this.textBoxLog);
             this.tabPage7.Location = new System.Drawing.Point(0, 0);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(240, 245);
+            this.tabPage7.Size = new System.Drawing.Size(232, 242);
             this.tabPage7.Text = "Log";
             // 
             // textBoxLog
@@ -254,7 +254,7 @@ namespace HLMP
             this.textBoxLog.Name = "textBoxLog";
             this.textBoxLog.ReadOnly = true;
             this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxLog.Size = new System.Drawing.Size(240, 245);
+            this.textBoxLog.Size = new System.Drawing.Size(232, 242);
             this.textBoxLog.TabIndex = 0;
             // 
             // MainForm
@@ -267,7 +267,7 @@ namespace HLMP
             this.Menu = this.mainMenu1;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "HLMP";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
