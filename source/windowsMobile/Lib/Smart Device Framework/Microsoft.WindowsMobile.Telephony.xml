@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.WindowsMobile.Telephony</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.WindowsMobile.Telephony.PhoneMakeCallInfo">
+            <summary>
+            This structure mimics the <b>PhoneMakeCallInfo</b> structure on the native side. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Telephony.PhoneMakeCallInfo.cbSize">
+            <summary>
+            The size of the structure.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Telephony.PhoneMakeCallInfo.dwFlags">
+            <summary>
+            A set of flags indication whether to show the dialog.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Telephony.PhoneMakeCallInfo.ToNativePointer">
+            <summary>
+            Extracts the contents of the managed structure, and allocates memory for it on the native side. 
+            </summary>
+            <returns>Pointer to the allocated struct on the native side. This must be freed.</returns>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Telephony.PhoneMakeCallInfo.Address">
+            <summary>
+            The phone number to dial.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Telephony.Phone">
+            <summary>
+            Defines methods for placing phone calls.
+            </summary>
+            <remarks>
+            If the mobile device is a Pocket PC, then to use this class, it must be the Phone Edition.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Telephony.Phone.#ctor">
+            <summary>
+            Initializes a new instance of the <b>Phone</b> class. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Telephony.Phone.Talk(System.String)">
+            <summary>
+            Places the phone call, using the specified string phone number.
+            </summary>
+            <param name="number">The phone number to dial</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Telephony.Phone.Talk(System.String,System.Boolean)">
+            <summary>
+            Places the phone call, using the specified phone number, with a precautionary prompt for verification to proceed (a last chance to make sure you’ve got the right number).
+            </summary>
+            <param name="number">The phone number to dial</param>
+            <param name="showPrompt">A bolean value indicating whether to prompt the user, asking for permission to proceed with placing the call.</param>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Telephony.Phone.Call(System.String,System.Boolean)">
+            <summary>
+            Places the phone call, using the specified phone number, with a precautionary prompt for verification to proceed (a last chance to make sure you’ve got the right number).
+            </summary>
+            <param name="number">The number to dial.</param>
+            <param name="showPrompt">A bolean value indicating whether to prompt the user, asking for permission to proceed with placing the call.</param>
+        </member>
+    </members>
+</doc>

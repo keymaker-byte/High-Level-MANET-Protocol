@@ -1,0 +1,1549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.VisualStudio.SmartDevice.UnitTestFramework</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute">
+      <summary>
+                    Identifies a method that contains code to be used after all the tests in the test class have run and to free resources obtained by the test class. This class cannot be inherited. 
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute.#ctor">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute" /> class.
+                </summary>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert">
+      <summary>
+                    Verifies true/false propositions associated with collections in unit tests.
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AllItemsAreInstancesOfType(System.Collections.ICollection,System.Type)">
+      <summary>
+                    Verifies that all elements in the specified collection are instances of the specified type. The assertion fails if for any element the type is not found in its inheritance hierarchy.
+                </summary>
+      <param name="collection">
+                    The collection to verify.
+                </param>
+      <param name="expectedType">
+                    The type expected to be found in the inheritance hierarchy of every element in <paramref name="collection" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element in <paramref name="collection" /> is null or <paramref name="expectedType" /> is not found in the inheritance hierarchy of all elements  in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AllItemsAreInstancesOfType(System.Collections.ICollection,System.Type,System.String)">
+      <summary>
+                    Verifies that all elements in the specified collection are instances of the specified type. The assertion fails if there exists one element in the collection for which the specified type is not found in its inheritance hierarchy. Displays a message if the assertion fails.
+                </summary>
+      <param name="collection">
+                    The collection to verify.
+                </param>
+      <param name="expectedType">
+                    The type expected to be found in the inheritance hierarchy of every element in <paramref name="collection" />.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element in <paramref name="collection" /> is null or <paramref name="expectedType" /> is not found in the inheritance hierarchy of all elements in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AllItemsAreInstancesOfType(System.Collections.ICollection,System.Type,System.String,System.Object[])">
+      <summary>
+                    Verifies that all elements in the specified collection are instances of the specified type. The assertion fails if there exists one element in the collection for which the specified type is not found in its inheritance hierarchy. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="collection">
+                    The collection to verify.
+                </param>
+      <param name="expectedType">
+                    The type expected to be found in the inheritance hierarchy of every element in <paramref name="collection" />.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element in <paramref name="collection" /> is null or <paramref name="expectedType" /> is not found in the inheritance hierarchy of all elements in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AllItemsAreNotNull(System.Collections.ICollection)">
+      <summary>
+                    Verifies that all items in the specified collection are not null. The assertion fails if any element is null.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for elements that are null.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element which is null is found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AllItemsAreNotNull(System.Collections.ICollection,System.String)">
+      <summary>
+                    Verifies that all items in the specified collection are not null. The assertion fails if any element is null. Displays a message if the assertion fails.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for elements that are null.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element which is null is found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AllItemsAreNotNull(System.Collections.ICollection,System.String,System.Object[])">
+      <summary>
+                    Verifies that all items in the specified collection are not null. The assertion fails if any element is null. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for elements that are null.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element which is null is found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AllItemsAreUnique(System.Collections.ICollection)">
+      <summary>
+                    Verifies that all items in the specified collection are unique. The assertion fails if any two elements in the collection are equal.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for duplicate elements.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    Two or more equal elements are found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AllItemsAreUnique(System.Collections.ICollection,System.String)">
+      <summary>
+                    Verifies that all items in the specified collection are unique. The assertion fails if any two elements in the collection are equal. Displays a message if the assertion fails.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for duplicate elements.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    Two or more equal elements are found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AllItemsAreUnique(System.Collections.ICollection,System.String,System.Object[])">
+      <summary>
+                    Verifies that all items in the specified collection are unique. The assertion fails if any two elements in the collection are equal. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for duplicate elements.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    Two or more equal elements are found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreEqual(System.Collections.ICollection,System.Collections.ICollection)">
+      <summary>
+                    Verifies that two specified collections are equal. The assertion fails if the collections are not equal.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This is the collection the unit test expects.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is not equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreEqual(System.Collections.ICollection,System.Collections.ICollection,System.Collections.IComparer)">
+      <summary>
+                    Verifies that two specified collections are equal, using the specified method to compare the values of elements. The assertion fails if the collections are not equal.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This is the collection the unit test expects.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="comparer">
+                    The compare implementation to use when comparing elements of the collection.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is not equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreEqual(System.Collections.ICollection,System.Collections.ICollection,System.Collections.IComparer,System.String)">
+      <summary>
+                    Verifies that two specified collections are equal, using the specified method to compare the values of elements. The assertion fails if the collections are not equal. Displays a message if the assertion fails.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This is the collection the unit test expects.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="comparer">
+                    The compare implementation to use when comparing elements of the collection.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is not equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreEqual(System.Collections.ICollection,System.Collections.ICollection,System.Collections.IComparer,System.String,System.Object[])">
+      <summary>
+                    Verifies that two specified collections are equal, using the specified method to compare the values of elements. The assertion fails if the collections are not equal. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This is the collection the unit test expects.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="comparer">
+                    The compare implementation to use when comparing elements of the collection.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is not equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreEqual(System.Collections.ICollection,System.Collections.ICollection,System.String)">
+      <summary>
+                    Verifies that two specified collections are equal. The assertion fails if the collections are not equal. Displays a message if the assertion fails.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This is the collection the unit test expects.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is not equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreEqual(System.Collections.ICollection,System.Collections.ICollection,System.String,System.Object[])">
+      <summary>
+                    Verifies that two specified collections are equal. The assertion fails if the collections are not equal. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This is the collection the unit test expects.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is not equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreEquivalent(System.Collections.ICollection,System.Collections.ICollection)">
+      <summary>
+                    Verifies that two specified collections are equivalent. The assertion fails if the collections are not equivalent.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This contains the elements the unit test expects.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element was found in one of the collections but not in the other.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreEquivalent(System.Collections.ICollection,System.Collections.ICollection,System.String)">
+      <summary>
+                    Verifies that two specified collections are equivalent. The assertion fails if the collections are not equivalent. Displays a message if the assertion fails.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This contains the elements the unit test expects.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element was found in one of the collections but not in the other.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreEquivalent(System.Collections.ICollection,System.Collections.ICollection,System.String,System.Object[])">
+      <summary>
+                    Verifies that two specified collections are equivalent. The assertion fails if the collections are not equivalent. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This contains the elements the unit test expects.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element was found in one of the collections but not the other.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreNotEqual(System.Collections.ICollection,System.Collections.ICollection)">
+      <summary>
+                    Verifies that two specified collections are not equal. The assertion fails if the collections are equal.
+                </summary>
+      <param name="notExpected">
+                    The first collection to compare. This is the collection that the unit test does not expect to match <paramref name="actual" />.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreNotEqual(System.Collections.ICollection,System.Collections.ICollection,System.Collections.IComparer)">
+      <summary>
+                    Verifies that two specified collections are not equal, using the specified method to compare the values of elements. The assertion fails if the collections are equal.
+                </summary>
+      <param name="notExpected">
+                    The first collection to compare. This is the collection that the unit test does not expect to match <paramref name="actual" />.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="comparer">
+                    The compare implementation to use when comparing elements of the collection.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreNotEqual(System.Collections.ICollection,System.Collections.ICollection,System.Collections.IComparer,System.String)">
+      <summary>
+                    Verifies that two specified collections are not equal, using the specified method to compare the values of elements. The assertion fails if the collections are equal. Displays a message if the assertion fails.
+                </summary>
+      <param name="notExpected">
+                    The first collection to compare. This is the collection that the unit test does not expect to match <paramref name="actual" />.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="comparer">
+                    The compare implementation to use when comparing elements of the collection.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreNotEqual(System.Collections.ICollection,System.Collections.ICollection,System.Collections.IComparer,System.String,System.Object[])">
+      <summary>
+                    Verifies that two specified collections are not equal, using the specified method to compare the values of elements. The assertion fails if the collections are equal. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="notExpected">
+                    The first collection to compare. This is the collection that the unit test does not expect to match <paramref name="actual" />.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="comparer">
+                    The compare implementation to use when comparing elements of the collection.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreNotEqual(System.Collections.ICollection,System.Collections.ICollection,System.String)">
+      <summary>
+                    Verifies that two specified collections are not equal. The assertion fails if the collections are equal. Displays a message if the assertion fails.
+                </summary>
+      <param name="notExpected">
+                    The first collection to compare. This is the collection that the unit test does not expect to match <paramref name="actual" />.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreNotEqual(System.Collections.ICollection,System.Collections.ICollection,System.String,System.Object[])">
+      <summary>
+                    Verifies that two specified collections are not equal. The assertion fails if the collections are equal. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="notExpected">
+                    The first collection to compare. This is the collection that the unit test does not expect to match <paramref name="actual" />.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="expected" /> is equal to <paramref name="actual" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreNotEquivalent(System.Collections.ICollection,System.Collections.ICollection)">
+      <summary>
+                    Verifies that two specified collections are not equivalent. The assertion fails if the collections are equivalent.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This contains the elements the unit test expects to be different from the actual collection.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    The two collections contain the same elements, including the same number of duplicate occurrences of each element.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreNotEquivalent(System.Collections.ICollection,System.Collections.ICollection,System.String)">
+      <summary>
+                    Verifies that two specified collections are not equivalent. The assertion fails if the collections are equivalent. Displays a message if the assertion fails.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This contains the elements the unit test expects to be different from the actual collection.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    The two collections contain the same elements, including the same number of duplicate occurrences of each element.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.AreNotEquivalent(System.Collections.ICollection,System.Collections.ICollection,System.String,System.Object[])">
+      <summary>
+                    Verifies that two specified collections are not equivalent. The assertion fails if the collections are equivalent. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="expected">
+                    The first collection to compare. This contains the elements the unit test expects to be different from the actual collection.
+                </param>
+      <param name="actual">
+                    The second collection to compare. This is the collection the unit test produced.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    The two collections contain the same elements, including the same number of duplicate occurrences of each element.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.Contains(System.Collections.ICollection,System.Object)">
+      <summary>
+                    Verifies that the specified collection contains the specified element. The assertion fails if the element is not found in the collection.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for the element.
+                </param>
+      <param name="element">
+                    The element that is expected to be in the collection.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="element" /> is not found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.Contains(System.Collections.ICollection,System.Object,System.String)">
+      <summary>
+                    Verifies that the specified collection contains the specified element. The assertion fails if the element is not found in the collection. Displays a message if the assertion fails.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for the element.
+                </param>
+      <param name="element">
+                    The element that is expected to be in the collection.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="element" /> is not found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.Contains(System.Collections.ICollection,System.Object,System.String,System.Object[])">
+      <summary>
+                    Verifies that the specified collection contains the specified element. The assertion fails if the element is not found in the collection. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for the element.
+                </param>
+      <param name="element">
+                    The element that is expected to be in the collection.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="element" /> is not found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.DoesNotContain(System.Collections.ICollection,System.Object)">
+      <summary>
+                    Verifies that the specified collection does not contain the specified element. The assertion fails if the element is found in the collection.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for the element.
+                </param>
+      <param name="element">
+                    The element that is not expected to be in the collection.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="element" /> is found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.DoesNotContain(System.Collections.ICollection,System.Object,System.String)">
+      <summary>
+                    Verifies that the specified collection does not contain the specified element. The assertion fails if the element is found in the collection. Displays a message if the assertion fails.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for the element.
+                </param>
+      <param name="element">
+                    The element that is not expected to be in the collection.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="element" /> is found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.DoesNotContain(System.Collections.ICollection,System.Object,System.String,System.Object[])">
+      <summary>
+                    Verifies that the specified collection does not contain the specified element. The assertion fails if the element is found in the collection. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="collection">
+                    The collection in which to search for the element.
+                </param>
+      <param name="element">
+                    The element that is not expected to be in the collection.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        <paramref name="element" /> is found in <paramref name="collection" />.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.IsNotSubsetOf(System.Collections.ICollection,System.Collections.ICollection)">
+      <summary>
+                    Verifies that the first collection is not a subset of the second collection.
+                </summary>
+      <param name="subset">
+                    The collection not expected to be a subset of <paramref name="superset" />.
+                </param>
+      <param name="superset">
+                    The collection not expected to be a superset of <paramref name="subset" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    All elements in <paramref name="subset" /> are found in <paramref name="superset" /> and are found in sufficient quantity.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.IsNotSubsetOf(System.Collections.ICollection,System.Collections.ICollection,System.String)">
+      <summary>
+                    Verifies that the first collection is not a subset of the second collection. Displays a message if the assertion fails.
+                </summary>
+      <param name="subset">
+                    The collection not expected to be a subset of <paramref name="superset" />.
+                </param>
+      <param name="superset">
+                    The collection not expected to be a superset of <paramref name="subset" />.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    All elements in <paramref name="subset" /> are found in <paramref name="superset" /> and are found in sufficient quantity.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.IsNotSubsetOf(System.Collections.ICollection,System.Collections.ICollection,System.String,System.Object[])">
+      <summary>
+                    Verifies that the first collection is not a subset of the second collection. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="subset">
+                    The collection not expected to be a subset of <paramref name="superset" />.
+                </param>
+      <param name="superset">
+                    The collection not expected to be a superset of <paramref name="subset" />.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    All elements in <paramref name="subset" /> are found in <paramref name="superset" /> and are found in sufficient quantity.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.IsSubsetOf(System.Collections.ICollection,System.Collections.ICollection)">
+      <summary>
+                    Verifies that the first collection is a subset of the second collection.
+                </summary>
+      <param name="subset">
+                    The collection expected to be a subset of <paramref name="superset" />.
+                </param>
+      <param name="superset">
+                    The collection expected to be a superset of <paramref name="subset" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element in <paramref name="subset" /> is not found in <paramref name="superset" /> or an element in <paramref name="subset" /> is not found in <paramref name="superset" /> in sufficient quantity.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.IsSubsetOf(System.Collections.ICollection,System.Collections.ICollection,System.String)">
+      <summary>
+                    Verifies that the first collection is a subset of the second collection. Displays a message if the assertion fails.
+                </summary>
+      <param name="subset">
+                    The collection expected to be a subset of <paramref name="superset" />.
+                </param>
+      <param name="superset">
+                    The collection expected to be a superset of <paramref name="subset" />.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element in <paramref name="subset" /> is not found in <paramref name="superset" /> or an element in <paramref name="subset" /> is not found in <paramref name="superset" /> in sufficient quantity.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert.IsSubsetOf(System.Collections.ICollection,System.Collections.ICollection,System.String,System.Object[])">
+      <summary>
+                    Verifies that the first collection is a subset of the second collection. Displays a message if the assertion fails, and applies the specified formatting to it.
+                </summary>
+      <param name="subset">
+                    The collection expected to be a subset of <paramref name="superset" />.
+                </param>
+      <param name="superset">
+                    The collection expected to be a superset of <paramref name="subset" />.
+                </param>
+      <param name="message">
+                    A message to display if the assertion fails. This message can be seen in the unit test results.
+                </param>
+      <param name="parameters">
+                    An array of parameters to use when formatting <paramref name="message" />.
+                </param>
+      <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+                    An element in <paramref name="subset" /> is not found in <paramref name="superset" /> or an element in <paramref name="subset" /> is not found in <paramref name="superset" /> in sufficient quantity.
+                </exception>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.CssProjectStructureAttribute">
+      <summary>
+                    Represents the node in the team project hierarchy to which this test corresponds. 
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.CssProjectStructureAttribute.#ctor(System.String)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.CssProjectStructureAttribute" /> class. 
+                </summary>
+      <param name="cssProjectStructure">
+                    A string that identifies the corresponding project feature.
+                </param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.CssProjectStructureAttribute.CssProjectStructure">
+      <summary>
+                    Gets the project feature identifier for the test.
+                </summary>
+      <returns>
+                    A project feature identifier.
+                </returns>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute">
+      <summary>
+                    Used to specify deployment items such as files or directories for per-test deployment. This class cannot be inherited. 
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.#ctor(System.String)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute" /> class. An object that is created with this constructor will be initialized with a path to a deployment item or directory.
+                </summary>
+      <param name="path">
+                    The relative or absolute path to the deployment item or directory to deploy. All items or directories will be deployed to the directory where the deployed test assemblies reside.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.#ctor(System.String,System.String)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute" /> class. An object that is created with this constructor will be initialized with a path to a deployment item and an output directory.
+                </summary>
+      <param name="path">
+                    The relative or absolute path to the deployment item or directory to deploy.
+                </param>
+      <param name="outputDirectory">
+                    The path to the output directory. This contains all items and directories identified by <paramref name="path" />. This directory will be relative to the directory that contains the deployed test assemblies.
+                </param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.OutputDirectory">
+      <summary>
+                    Gets a value that represents the path to the output directory.
+                </summary>
+      <returns>
+                    A value that represents the directory under the deployment directory that will contain the deployed files and directories.
+                </returns>
+    </member>
+    <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute.Path">
+      <summary>
+                    Gets a value that represents the path to the deployment item.
+                </summary>
+      <returns>
+                    The path to the file or directory to deploy.
+                </returns>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute">
+      <summary>
+                    Used to specify the description of the test. This class cannot be inherited.  
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute.#ctor(System.String)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute" /> class.
+                </summary>
+      <param name="description">
+                    A short explanation of the test.
+                </param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute.Description">
+      <summary>
+                    Gets the description of the test.
+                </summary>
+      <returns>
+                    The test description.
+                </returns>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.IgnoreAttribute">
+      <summary>
+                    Indicates that a specific test should not be run.  This class cannot be inherited.
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.IgnoreAttribute.#ctor">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.IgnoreAttribute" /> class. 
+                </summary>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.OwnerAttribute">
+      <summary>
+                    Used to specify the person responsible for maintaining, running, and/or debugging the test. This class cannot be inherited.  
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.OwnerAttribute.#ctor(System.String)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.OwnerAttribute" /> class that uses an owner name.
+                </summary>
+      <param name="owner">
+                    The owner of the test.
+                </param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.OwnerAttribute.Owner">
+      <summary>
+                    Gets the owner of the test.
+                </summary>
+      <returns>
+                    The owner of the test.
+                </returns>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.PriorityAttribute">
+      <summary>
+                    Used to specify the priority of a unit test.  This class cannot be inherited.
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PriorityAttribute.#ctor(System.Int32)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PriorityAttribute" /> class that has a priority value. 
+                </summary>
+      <param name="priority">
+                    An integer that represents the priority value for the test.
+                </param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.PriorityAttribute.Priority">
+      <summary>
+                    Gets the priority value.
+                </summary>
+      <returns>
+                    An integer that represents the priority value for the test.
+                </returns>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType">
+      <summary>
+                    Represents the type of a private class that gives access to private static implementations.
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.#ctor(System.String,System.String)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" /> class. 
+                </summary>
+      <param name="assemblyName">
+                    assembly name
+                </param>
+      <param name="typeName">
+                    fully qualified name of the type
+                </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="assemblyName" /> or <paramref name="typeName" /> is null or empty.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.#ctor(System.Type)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" /> class with the type information.
+                </summary>
+      <param name="type">
+                    The wrapped <see cref="T:System.Type" /> to create.
+                </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> is null.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticArrayElement(System.String,System.Int32[])">
+      <summary>
+                    Gets a static array element contained in the wrapped type.
+                </summary>
+      <returns>
+                    An object that represents an element of <paramref name="name" /> at the location specified with <paramref name="indices" />.
+                </returns>
+      <param name="name">
+                    The name of the array
+                </param>
+      <param name="indices">
+                    An array of subscripts for identifying the element to get.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticArrayElement(System.String,System.Reflection.BindingFlags,System.Int32[])">
+      <summary>
+                    Gets a static array element contained in the wrapped type.
+                </summary>
+      <returns>
+                    An object that represents an element of <paramref name="name" /> at the location specified with <paramref name="indices" />.
+                </returns>
+      <param name="name">
+                    The name of the array
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the element is conducted.
+                </param>
+      <param name="indices">
+                    An array of subscripts for identifying the element to get.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticField(System.String)">
+      <summary>
+                    Gets a static field contained in the wrapped type.
+                </summary>
+      <returns>
+                    An object that represents the value of the static field.
+                </returns>
+      <param name="name">
+                    The name of the static field.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticField(System.String,System.Reflection.BindingFlags)">
+      <summary>
+                    Gets a static field contained in the wrapped type.
+                </summary>
+      <returns>
+                    An object that represents the value of the static field.
+                </returns>
+      <param name="name">
+                    The name of the static field.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the element is conducted.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticFieldOrProperty(System.String)">
+      <summary>
+                    Gets a value of a static field or property in a wrapped type based on the name.
+                </summary>
+      <returns>
+                    The value set for the <paramref name="name" /> field or property.
+                </returns>
+      <param name="name">
+                    The name of the static field or property to get.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticFieldOrProperty(System.String,System.Reflection.BindingFlags)">
+      <summary>
+                    Gets a value of a static field or property in a wrapped type based on the name.
+                </summary>
+      <returns>
+                    The value set for the <paramref name="name" /> field or property.
+                </returns>
+      <param name="name">
+                    The name of the static field or property to get.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the static field or property is conducted. The type of lookup need not be specified.
+                
+                    The default values are <see cref="F:System.Reflection.BindingFlags.GetField" />, <see cref="F:System.Reflection.BindingFlags.GetProperty" />, and <see cref="F:System.Reflection.BindingFlags.Static" />.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticProperty(System.String,System.Object[])">
+      <summary>
+                    Gets a static property contained in the wrapped type.
+                </summary>
+      <returns>
+                    An object that represents the value of the static property.
+                </returns>
+      <param name="name">
+                    The name of the static property.
+                </param>
+      <param name="args">
+                    An array that contains the arguments to pass to the member to invoke.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticProperty(System.String,System.Reflection.BindingFlags,System.Object[])">
+      <summary>
+                    Gets a static property contained in the wrapped type.
+                </summary>
+      <returns>
+                    An object that represents the value of the static property.
+                </returns>
+      <param name="name">
+                    The name of the static property.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the property is conducted.
+                </param>
+      <param name="args">
+                    An array that contains the arguments to pass to the member to invoke.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.GetStaticProperty(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[])">
+      <summary>
+                    Gets a static indexed property contained in the wrapped type.
+                </summary>
+      <returns>
+                    An object that represents the value of the static indexed property.
+                </returns>
+      <param name="name">
+                    The name of the static property.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the element is conducted.
+                </param>
+      <param name="parameterTypes">
+                    An array of <see cref="T:System.Type" /> objects that represents the number, order, and type of the parameters for the indexed property to get.
+                
+                    -or- 
+                
+                    An empty array of the type <see cref="T:System.Type" /> (that is, Type[] types = new Type[0]) to get a property that is not indexed.
+                </param>
+      <param name="args">
+                    An array that contains the arguments to pass to the member to invoke.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Object[])">
+      <summary>
+                    Invokes static methods on the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" />.
+                </summary>
+      <returns>
+                    An object that represents the invoked static method's return value, if any.
+                </returns>
+      <param name="name">
+                    The name of the method to invoke.
+                </param>
+      <param name="args">
+                    Any array of arguments to pass
+                </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> is null.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Object[],System.Globalization.CultureInfo)">
+      <summary>
+                    Invokes static methods on the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" />.
+                </summary>
+      <returns>
+                    An object that represents the invoked static method's return value, if any.
+                </returns>
+      <param name="name">
+                    The name of the method to invoke.
+                </param>
+      <param name="args">
+                    Any array of arguments to pass
+                </param>
+      <param name="culture">
+                    The <see cref="T:System.Globalization.CultureInfo" /> object that represents the globalization locale to use, which might be necessary for locale-specific conversions, such as converting a numeric String to a Double.
+                
+                    -or-
+                null to use the current thread's <see cref="T:System.Globalization.CultureInfo" />.
+                </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> is null.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Reflection.BindingFlags,System.Object[])">
+      <summary>
+                    Invokes static methods on the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" />.
+                </summary>
+      <returns>
+                    An object that represents the invoked static method's return value, if any.
+                </returns>
+      <param name="name">
+                    The name of the method to invoke.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the method is conducted.
+                </param>
+      <param name="args">
+                    Any array of arguments to pass
+                </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> is null.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Reflection.BindingFlags,System.Object[],System.Globalization.CultureInfo)">
+      <summary>
+                    Invokes static methods on the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" />.
+                </summary>
+      <returns>
+                    An object representing the invoked static method's return value, if any.
+                </returns>
+      <param name="name">
+                    The name of the method to invoke.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the method is conducted.
+                </param>
+      <param name="args">
+                    An array of arguments to pass.
+                </param>
+      <param name="culture">
+                    The <see cref="T:System.Globalization.CultureInfo" /> object that represents the globalization locale to use, which might be necessary for locale-specific conversions, such as converting a numeric String to a Double.
+                
+                    -or-
+                null to use the current thread's <see cref="T:System.Globalization.CultureInfo" />.
+                </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> is null.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[])">
+      <summary>
+                    Invokes static methods on the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" />.
+                </summary>
+      <returns>
+                    An object that represents the invoked static method's return value, if any.
+                </returns>
+      <param name="name">
+                    The name of the method to invoke.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the method is conducted.
+                </param>
+      <param name="parameterTypes">
+                    An array of <see cref="T:System.Type" /> objects that represents the number, order, and type of the parameters for the method.
+                
+                    -or- 
+                
+                    An empty array of the type Type, that is, Type[] types = new Type[0] to get a method that takes no parameters.
+                </param>
+      <param name="args">
+                    An array of arguments to pass.
+                </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> is null.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[],System.Globalization.CultureInfo)">
+      <summary>
+                    Invokes static methods on the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" />.
+                </summary>
+      <returns>
+                    An object representing the invoked static method's return value, if any.
+                </returns>
+      <param name="name">
+                    The name of the method to invoke.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the method is conducted.
+                </param>
+      <param name="parameterTypes">
+                    An array of <see cref="T:System.Type" /> objects that represents the number, order, and type of the parameters for the method.
+                
+                    -or- 
+                
+                    An empty array of the type Type, that is, Type[] types = new Type[0] to get a method that takes no parameters.
+                </param>
+      <param name="args">
+                    An array of arguments to pass.
+                </param>
+      <param name="culture">
+                    The <see cref="T:System.Globalization.CultureInfo" /> object that represents the globalization locale to use, which might be necessary for locale-specific conversions, such as converting a numeric String to a Double.
+                
+                    -or-
+                null to use the current thread's <see cref="T:System.Globalization.CultureInfo" />.
+                </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> is null.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Reflection.BindingFlags,System.Type[],System.Object[],System.Globalization.CultureInfo,System.Type[])">
+      <summary>
+                    Invokes static methods on the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" />.
+                </summary>
+      <param name="name">
+                    The name of the method to invoke.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the element is conducted.
+                </param>
+      <param name="parameterTypes">
+                    An array of <see cref="T:System.Type" /> objects that represents the number, order, and type of the parameters for the method.
+                
+                    -or- 
+                
+                    An empty array of the type Type, that is, Type[] types = new Type[0] to get a method that takes no parameters.
+                </param>
+      <param name="args">
+                    An array of arguments to pass.
+                </param>
+      <param name="culture">
+                    The <see cref="T:System.Globalization.CultureInfo" /> object that represents the globalization locale to use, which might be necessary for locale-specific conversions, such as converting a numeric String to a Double.
+                
+                    -or-
+                null to use the current thread's <see cref="T:System.Globalization.CultureInfo" />.
+                </param>
+      <param name="typeArguments">
+                    An array of type arguments to use when invoking a generic method.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Type[],System.Object[])">
+      <summary>
+                    Invokes static methods on the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" />.
+                </summary>
+      <returns>
+                    An object that represents the invoked static method's return value, if any.
+                </returns>
+      <param name="name">
+                    The name of the method to invoke.
+                </param>
+      <param name="parameterTypes">
+                    An array of <see cref="T:System.Type" /> objects that represents the number, order, and type of the parameters for the method.
+                
+                    -or- 
+                
+                    An empty array of the type Type, that is, Type[] types = new Type[0] to get a method that takes no parameters.
+                </param>
+      <param name="args">
+                    An array of arguments to pass
+                </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> is null.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Type[],System.Object[],System.Globalization.CultureInfo)">
+      <summary>
+                    Invokes static methods on the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" />.
+                </summary>
+      <returns>
+                    An object that represents the invoked static method's return value, if any.
+                </returns>
+      <param name="name">
+                    The name of the method to invoke.
+                </param>
+      <param name="parameterTypes">
+                    An array of <see cref="T:System.Type" /> objects that represents the number, order, and type of the parameters for the method.
+                
+                    -or- 
+                
+                    An empty array of the type Type, that is, Type[] types = new Type[0] to get a method that takes no parameters.
+                </param>
+      <param name="args">
+                    An array of arguments to pass.
+                </param>
+      <param name="culture">
+                    The <see cref="T:System.Globalization.CultureInfo" /> object that represents the globalization locale to use, which might be necessary for locale-specific conversions, such as converting a numeric String to a Double.
+                
+                    -or-
+                null to use the current thread's <see cref="T:System.Globalization.CultureInfo" />.
+                </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> is null.
+                </exception>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.InvokeStatic(System.String,System.Type[],System.Object[],System.Type[])">
+      <summary>
+                    Invokes static methods on the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" />.
+                </summary>
+      <param name="name">
+                    The name of the method to invoke.
+                </param>
+      <param name="parameterTypes">
+                    An array of <see cref="T:System.Type" /> objects that represents the number, order, and type of the parameters for the method.
+                
+                    -or- 
+                
+                    An empty array of the type Type, that is, Type[] types = new Type[0] to get a method that takes no parameters.
+                </param>
+      <param name="args">
+                    An array of arguments to pass.
+                </param>
+      <param name="typeArguments">
+                    An array of type arguments to use when invoking a generic method.
+                </param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.ReferencedType">
+      <summary>
+                    Gets the <see cref="T:System.Type" /> representing the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType" />.
+                </summary>
+      <returns>
+                    A <see cref="T:System.Type" /> object.
+                </returns>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticArrayElement(System.String,System.Object,System.Int32[])">
+      <summary>
+                    Sets a static array element contained in the wrapped type.
+                </summary>
+      <param name="name">
+                    The name of the array
+                </param>
+      <param name="value">
+                    The value to set the element identified by <paramref name="indices" />.
+                </param>
+      <param name="indices">
+                    An array of subscripts for identifying the element to set.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticArrayElement(System.String,System.Reflection.BindingFlags,System.Object,System.Int32[])">
+      <summary>
+                    Sets a static array element contained in the wrapped type.
+                </summary>
+      <param name="name">
+                    The name of the array
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the element is conducted.
+                </param>
+      <param name="value">
+                    The value to set the element identified by <paramref name="indices" />.
+                </param>
+      <param name="indices">
+                    An array of subscripts for identifying the element to set.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticField(System.String,System.Object)">
+      <summary>
+                    Sets a static field contained in the wrapped type.
+                </summary>
+      <param name="name">
+                    The name of the static field.
+                </param>
+      <param name="value">
+                    The value to set to the static field.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticField(System.String,System.Reflection.BindingFlags,System.Object)">
+      <summary>
+                    Sets a static field contained in the wrapped type.
+                </summary>
+      <param name="name">
+                    The name of the static field.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the field is conducted.
+                </param>
+      <param name="value">
+                    The value to set to the static field.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticFieldOrProperty(System.String,System.Object)">
+      <summary>
+                    Sets a static field or property contained in the wrapped type.
+                </summary>
+      <param name="name">
+                    The name of the static field or property.
+                </param>
+      <param name="value">
+                    The value to set to the static field or property.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticFieldOrProperty(System.String,System.Reflection.BindingFlags,System.Object)">
+      <summary>
+                    Sets a static field or property contained in the wrapped type.
+                </summary>
+      <param name="name">
+                    The name of the static field or property.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the static field or property is conducted. The type of lookup need not be specified.
+                
+                    The default values are <see cref="F:System.Reflection.BindingFlags.SetField" />, <see cref="F:System.Reflection.BindingFlags.SetProperty" />, and <see cref="F:System.Reflection.BindingFlags.Static" />.
+                </param>
+      <param name="value">
+                    The value to set to the static field or property.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticProperty(System.String,System.Object,System.Object[])">
+      <summary>
+                    Sets a static property contained in the wrapped type.
+                </summary>
+      <param name="name">
+                    The name of the static property.
+                </param>
+      <param name="value">
+                    The value to set the static property.
+                </param>
+      <param name="args">
+                    An array that contains the arguments to pass to the member to invoke.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticProperty(System.String,System.Object,System.Type[],System.Object[])">
+      <summary>
+                    Sets a static property contained in the wrapped type.
+                </summary>
+      <param name="name">
+                    The name of the static property.
+                </param>
+      <param name="value">
+                    The value to set the static property.
+                </param>
+      <param name="parameterTypes">
+                    An array of <see cref="T:System.Type" /> objects that represents the number, order, and type of the parameters for the indexed property to set.
+                
+                    -or-
+                
+                    An empty array of the type <see cref="T:System.Type" />, that is, Type[] types = new Type[0] to set a property that is not indexed.
+                </param>
+      <param name="args">
+                    An array that contains the arguments to pass to the member to invoke.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticProperty(System.String,System.Reflection.BindingFlags,System.Object,System.Object[])">
+      <summary>
+                    Sets a static property contained in the wrapped type.
+                </summary>
+      <param name="name">
+                    The name of the static property.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the property is conducted.
+                </param>
+      <param name="value">
+                    The value to set the static property.
+                </param>
+      <param name="args">
+                    An array that contains the arguments to pass to the member to invoke.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType.SetStaticProperty(System.String,System.Reflection.BindingFlags,System.Object,System.Type[],System.Object[])">
+      <summary>
+                    Sets a static property contained in the wrapped type.
+                </summary>
+      <param name="name">
+                    The name of the static property.
+                </param>
+      <param name="invokeAttr">
+                    A bitmask comprised of one or more <see cref="T:System.Reflection.BindingFlags" /> that specifies how the search for the property is conducted.
+                </param>
+      <param name="value">
+                    The value to set the static property.
+                </param>
+      <param name="parameterTypes">
+                    An array of <see cref="T:System.Type" /> objects that represents the number, order, and type of the parameters for the indexed property to set.
+                
+                    -or- 
+                
+                    An empty array of the type <see cref="T:System.Type" />, that is, Type[] types = new Type[0] to set a property that is not indexed.
+                </param>
+      <param name="args">
+                    An array that contains the arguments to pass to the member to invoke.
+                </param>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute">
+      <summary>
+                    Used to identify classes that contain test methods. This class cannot be inherited. 
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute.#ctor">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute" /> class.
+                </summary>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute">
+      <summary>
+                    Identifies the method to run before the test to allocate and configure resources needed by all tests in the test class. This class cannot be inherited.  
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute.#ctor">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute" /> class.
+                </summary>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute">
+      <summary>
+                    Establishes a test specific property on a method. This class cannot be inherited. 
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute.#ctor(System.String,System.String)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute" /> class with values for the <see cref="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute.Name" /> and <see cref="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute.Value" /> properties. 
+                </summary>
+      <param name="name">
+                    The name of the test property.
+                </param>
+      <param name="value">
+                    The value of the test property.
+                </param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute.Name">
+      <summary>
+                    Gets the name of the test property.
+                </summary>
+      <returns>
+                    The name of the test property.
+                </returns>
+    </member>
+    <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute.Value">
+      <summary>
+                    Gets the value of the test property.
+                </summary>
+      <returns>
+                    The value of the test property.
+                </returns>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestAssertException">
+      <summary>
+                    This is the base class for unit test exceptions.
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestAssertException.#ctor">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestAssertException" /> class. 
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestAssertException.#ctor(System.String)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestAssertException" /> class with a specified error. 
+                </summary>
+      <param name="msg">
+                    The error message that explains the reason for the exception.
+                </param>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestAssertException.#ctor(System.String,System.Exception)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestAssertException" /> class with a specified error message and a reference to the inner exception that caused this exception. 
+                </summary>
+      <param name="msg">
+                    The error message that explains the reason for the exception.
+                </param>
+      <param name="ex">
+                    The exception that is the cause of the current exception. If the <paramref name="ex" /> parameter is not null, the current exception is raised in a catch block that handles the inner exception.
+                </param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestAssertException.Message">
+      <summary>
+                    Gets a message that describes the current exception.
+                </summary>
+      <returns>
+                    A message describing the exception.
+                </returns>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestOutcome">
+      <summary>
+                    Use UnitTestOutcome to programmatically determine the outcome of a test that has run or is currently running. 
+                </summary>
+    </member>
+    <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestOutcome.Failed">
+      <summary>
+                    The test failed.
+                </summary>
+    </member>
+    <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestOutcome.Inconclusive">
+      <summary>
+                    An Assert.<see cref="M:Microsoft.VisualStudio.TestTools.UnitTesting.Assert.Inconclusive" /> was raised. 
+                </summary>
+    </member>
+    <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestOutcome.Passed">
+      <summary>
+                    The test passed.
+                </summary>
+    </member>
+    <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestOutcome.InProgress">
+      <summary>
+                    The test is currently running.
+                </summary>
+    </member>
+    <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestOutcome.Error"></member>
+    <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestOutcome.Timeout"></member>
+    <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestOutcome.Aborted"></member>
+    <member name="F:Microsoft.VisualStudio.TestTools.UnitTesting.UnitTestOutcome.Unknown">
+      <summary>
+                    The outcome of the test is unknown. 
+                </summary>
+    </member>
+    <member name="T:Microsoft.VisualStudio.TestTools.UnitTesting.WorkItemAttribute">
+      <summary>
+                    Used to specify a work item associated with a test.
+                </summary>
+    </member>
+    <member name="M:Microsoft.VisualStudio.TestTools.UnitTesting.WorkItemAttribute.#ctor(System.Int32)">
+      <summary>
+                    Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.WorkItemAttribute" /> class with an identification number.
+                </summary>
+      <param name="id">
+                    The ID of the work item.
+                </param>
+    </member>
+    <member name="P:Microsoft.VisualStudio.TestTools.UnitTesting.WorkItemAttribute.Id">
+      <summary>
+                    Gets the ID of the work item.
+                </summary>
+      <returns>
+                    The work item ID.
+                </returns>
+    </member>
+  </members>
+</doc>

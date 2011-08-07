@@ -1,0 +1,455 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.WindowsMobile.Forms</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.WindowsMobile.Forms.SortOrder">
+            <summary>
+            Specifies the sort order for files appearing in the form.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.SortOrder.DateAscending">
+            <summary>
+            Picture files are sorted by date, in ascending order.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.SortOrder.DateDescending">
+            <summary>
+            Picture files are sorted by date, in decending order.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.SortOrder.NameAscending">
+            <summary>
+            Picture files are sorted by name, in ascending order.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.SortOrder.NameDescending">
+            <summary>
+            Picture files are sorted by name, in decending order.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.SortOrder.SizeAscending">
+            <summary>
+            Picture files are sorted by size, in ascending order.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.SortOrder.SizeDescending">
+            <summary>
+            Picture files are sorted by size, in decending order.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Forms.SelectPictureDialog">
+            <summary>
+            Defines attributes and behaviors of a custom dialog box for selecting pictures.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Forms.SelectPictureDialog.ShowDialog">
+            <summary>
+            Displays the "Select Picture" dialog box.
+            </summary>
+            <remarks>
+            This is a modal dialog box.
+            </remarks>
+            <returns>A <b>DialogResult</b> value.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Forms.SelectPictureDialog.#ctor">
+            <summary>
+            Initializes a new instance of the <b>SelectPictureDialog</b> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.FileName">
+            <summary>
+            Gets the name of the selected picture file.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.Filter">
+            <summary>
+            Gets or sets the file types displayed in the Select Picture dialog box.  
+            </summary>
+            <value>A description of each
+            filtering option, followed by the vertical Bar (|), followed by the filter pattern.
+            Multiple filtering options are also separated by the vertical bar.  For example, "Bitmap Files|*.BMP|JPG Files|*.JPG"</value>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.FilterIndex">
+            <summary>
+            Gets or sets the index of the currently selected filtering option.
+            <seealso cref="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.Filter"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.InitialDirectory">
+            <summary>
+            Gets or sets the directory displayed in the Select Picture dialog box.
+            </summary>
+            <remarks>
+            If <b>null</b>, a default directory is used.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.LockDirectory">
+            <summary>
+            Gets or sets a value indicating whether the user can browse to directories other than the <b>InitialDirectory</b>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.ShowDrmContent">
+            <summary>
+            Gets or sets a value indicating whether Digital Rights Management (DRM) protected files are displayed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.ShowForwardLockedContent">
+            <summary>
+            Gets or sets a value indicating whether Digital Rights Management (DRM) protected files that are protected such that they cannot be forwarded, are displayed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.Title">
+            <summary>
+            Gets or sets the title of the Select Picture dialog box.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.SortOrder">
+            <summary>
+            Gets or sets the order in which files are sorted in the Select Picture dialog box.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.CameraAccess">
+            <summary>
+            Gets or sets a value indicating whether the user is given access to the camera, from the Select Picture dialog box.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.SelectPictureDialog.Owner">
+            <summary>
+            Gets or sets this control’s owner control.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Forms.ChooseContactDialog">
+            <summary>
+            Defines the attributes and behaviors of a custom dialog box for choosing Contacts.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Forms.ChooseContactDialog.ShowDialog">
+            <summary>
+            Displays the Contact Chooser dialog box.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Forms.ChooseContactDialog.#ctor">
+            <summary>
+            Initializes a new instance of the <b>ChooseContactDialog</b> class.
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.Title">
+            <summary>
+            Gets or sets the title of the Contact Chooser dialog box.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.ChoosePropertyText">
+            <summary>
+            Gets or sets the text label of the Property Chooser control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.RestrictContacts">
+            <summary>
+            Gets or sets the restriction string used to generate a filtered Contact list.
+            </summary>
+            <seealso cref="M:Microsoft.WindowsMobile.PocketOutlook.ContactCollection.Restrict(System.String)"/>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.IncrementalFilter">
+            <summary>
+            Gets or sets the text of the incremental filter box.
+            </summary>
+            <remarks>
+            The Incremental Filter box appears at the top of the Contact Chooser dialog box. The list of contacts in the dialog will be restricted to those matching this text.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.HideNew">
+            <summary>
+            Gets or sets a value indicating whether the user can create a new Contact.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.ChooseContactOnly">
+            <summary>
+            Gets or sets a value indicating whether the user is limited to choosing just a Contact, or choosing a property of a specified Contact.
+            </summary>
+            <remarks>
+            If <b>true</b>, the returned property is the first non-blank property in <b>RequiredProperties</b>.
+            ChoosePropertyOnly and ChooseContactOnly cannot both be set to <b>true</b>.  In the event that both are
+            set to <b>true</b>, setting ChooseContactOnly to <b>true</b> will automatically set 
+            ChoosePropertyOnly to <b>false</b>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.ChoosePropertyOnly">
+            <summary>
+            Gets or sets a value indicating whether the user is limited to choosing just a property of a specified Contact, or choosing the Contact.
+            </summary>
+            <remarks>
+            If <b>true</b>, <b>SelectedContact</b> must be set before calling <b>ShowDialog</b>.
+            ChoosePropertyOnly and ChooseContactOnly cannot both be set to <b>true</b>.  In the event that both are
+            set to <b>true</b>, setting ChoosePropertyOnly to <b>true </b>will automatically set 
+            ChooseContactOnly to <b>false</b>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.RequiredProperties">
+            <summary>
+            Gets or sets the <b>ContactProperty</b> array values that specify which properties a Contact must have in order to be shown in the Contact Chooser dialog box.
+            </summary>      
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.SelectedContactName">
+            <summary>
+            Gets the selected Contact’s name.
+            </summary>  
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.SelectedPropertyValue">
+            <summary>
+            Gets the selected property value.
+            </summary>       
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.SelectedContact">
+            <summary>
+            Gets or sets the Contact.
+            </summary>
+            <remarks>
+            If <b>ChoosePropertyOnly</b> is <b>true</b>, then <b>SelectedContact</b> sets the Contact from which the user selects a property.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.SelectedProperty">
+            <summary>
+            Gets the selected property.
+            </summary>     
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.ChooseContactDialog.Owner">
+            <summary>
+            Gets or sets the owner control.
+            </summary>  
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Forms.CameraCaptureMode">
+            <summary>
+            The capture mode of CameraCaptureDialog.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.CameraCaptureMode.Still">
+            <summary>
+            Dialog takes a still picture.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.CameraCaptureMode.VideoOnly">
+            <summary>
+            Dialog takes a video without audio.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.CameraCaptureMode.VideoWithAudio">
+            <summary>
+            Dialog takes a video with audio.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Forms.CameraCaptureStillQuality">
+            <summary>
+            The still quality of CameraCaptureDialog.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.CameraCaptureStillQuality.Default">
+            <summary>
+            Default quality, user last selected in options dialog.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.CameraCaptureStillQuality.Low">
+            <summary>
+            Low quality.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.CameraCaptureStillQuality.Normal">
+            <summary>
+            Normal quality.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.CameraCaptureStillQuality.High">
+            <summary>
+            High quality.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Forms.CameraCaptureVideoTypes">
+            <summary>
+            The video types of CameraCaptureDialog.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.CameraCaptureVideoTypes.All">
+            <summary>
+            When used, only consider resolution when matching video profiles.
+            If either width or height of resolution is 0, the one user last selected will be used.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.CameraCaptureVideoTypes.Standard">
+            <summary>
+            Used for generic purpose with high quality video output, such as produced by WMV encoder.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsMobile.Forms.CameraCaptureVideoTypes.Messaging">
+            <summary>
+            Used for messaging service, such as MMS that need 3GPP conformance encoder.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsMobile.Forms.CameraCaptureDialog">
+            <summary>
+            CameraCaptureDialog class that wrap <b>SHCameraCapture</b> to launch camera capture dialog.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.#ctor">
+            <summary>
+            Initializes a new instance of <b>CameraCaptureDialog</b> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.AllocUnmanagedBuffer(System.Int32)">
+            <summary>
+            Allocates unmanaged buffer of the specified number of bytes.
+            </summary>
+            <param name="bytes">Number of bytes to allocate.</param>
+            <returns>Unmanaged buffer allocated with specified length.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.ToUnmanagedString(System.String)">
+            <summary>
+            Allocates unmanaged buffer for the specified managed string.
+            </summary>
+            <param name="str">Managed string.</param>
+            <returns>Unmanaged buffer allocated for the specified managed string.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.LaunchCameraCaptureDialog(System.IntPtr)">
+            <summary>
+            Call SHCameraCapture to launch camera capture dialog.
+            </summary>
+            <param name="ptrStruct">Struct parameter for unmanaged camera capture API.</param>
+            <returns>One of the DialogResult values.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.ShowDialog">
+            <summary>
+            Displays the "Camera Capture" dialog box.
+            </summary>
+            <returns>One of the <b>DialogResult</b> values.</returns>
+            <exception cref="T:System.OutOfMemoryException">Thrown when operation ran out of memory.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when an invalid argument was specified.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when an unknown error occurred.</exception>
+            <remarks>
+            This is a modal dialog box.
+            </remarks>
+            <example>
+            This example shows how to call and display a dialog box for taking a picture or video.
+            <code>
+            CameraCaptureDialog cameraCapture = new CameraCaptureDialog();
+            
+            cameraCapture.Owner = null;
+            cameraCapture.InitialDirectory = @"\My Documents";
+            cameraCapture.DefaultFileName = @"test.3gp";
+            cameraCapture.Title = "Camera Demo";
+            cameraCapture.VideoTypes = CameraCaptureVideoTypes.Messaging;
+            cameraCapture.Resolution = new Size(176, 144);
+            cameraCapture.VideoTimeLimit = new TimeSpan(0, 0, 15);
+            cameraCapture.Mode = CameraCaptureMode.VideoWithAudio;
+            
+            if (DialogResult.OK == cameraCapture.ShowDialog())
+            {
+                Console.WriteLine("The picture or video has been successfully captured to:\n{0}", cameraCapture.FileName);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.Owner">
+            <summary>
+            Gets or sets the control that owns this component.
+            </summary>
+            <value>A control object that owns this component.</value>
+            <remarks>
+            This property value can be <b>null</b>.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.FileName">
+            <summary>
+            Gets the full path filename of the picture or video captured.
+            </summary>
+            <value>The full path filename of the picture or video captured.</value>
+            <remarks>
+            If dialog returns <b>DialogResult.OK</b>, this is set to the full path filename of the picture or video captured.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.InitialDirectory">
+            <summary>
+            Gets or sets the directory to store new picture or video.
+            </summary>
+            <value>The directory to store new picture or video.</value>
+            <remarks>
+            If <b>null</b>, we store the picture the directory defined in the Pictures application options.
+            <p>If the directory doesn't exist, <b>System.ArgumentException</b> will be thrown out.</p>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.DefaultFileName">
+            <summary>
+            Gets or sets the filename to store new picture or video.
+            </summary>
+            <value>The filename to store new picture or video.</value>
+            <remarks>
+            If <b>null</b>, we use the file name defined in the picture application options.
+            <p>If the file already exists, we will overwrite it.</p>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.Title">
+            <summary>
+            Gets or sets dialog title.
+            </summary>
+            <value>The dialog title.</value>
+            <remarks>
+            If <b>null</b>, a default title is displayed. The default title is "Camera".
+            <p>On Smartphone, the first time the user enters the Camera View, the title bar displays the text specified with the <b>CameraCaptureDialog.Title</b> property (by default: "Camera").</p>
+            <p>On Pocket PC, the title bar should be the name of the calling application. However, the settings header text displays the text specified with the <b>CameraCaptureDialog.Title</b> property (by default: "Camera").</p>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.StillQuality">
+            <summary>
+            Gets or sets the still quality.
+            </summary>
+            <value>The still quality.</value>
+            <remarks>
+            The default is the quality the user selected last in the options dialog.
+            <p>If the value is not defined in <b>CameraCaptureStillQuality</b> enumeration, <b>System.ArgumentException</b> will be thrown out.</p>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.VideoTypes">
+            <summary>
+            Gets or sets the video types.
+            </summary>
+            <value>The video types.</value>
+            <remarks>
+            The default is All type.
+            <p>If the value is not defined in <b>CameraCaptureVideoTypes</b> enumeration, <b>System.ArgumentException</b> will be thrown out.</p>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.Resolution">
+            <summary>
+            Gets or sets the resolution of the image to be taken.
+            </summary>
+            <value>The resolution of the image to be taken.</value>
+            <remarks>
+            The default is (0, 0).
+            <p>For video mode, if either Width or Height is 0, only <b>VideoTypes</b> will be considered when selecting video profile.</p>
+            <p>For still mode, this value is reserved for future use.</p>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.VideoTimeLimit">
+            <summary>
+            Gets or sets time limit when taking video.
+            </summary>
+            <value>The time limit when taking video.</value>
+            <remarks>
+            0 means no limit. Default is no limit.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.WindowsMobile.Forms.CameraCaptureDialog.Mode">
+            <summary>
+            Gets or sets capture mode.
+            </summary>
+            <value>The capture mode.</value>
+            <remarks>
+            The default is still picture capture.
+            <p>If the value is not defined in <b>CameraCaptureMode</b> enumeration, <b>System.ArgumentException</b> will be thrown out.</p>
+            </remarks>
+        </member>
+    </members>
+</doc>
