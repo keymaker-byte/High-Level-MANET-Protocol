@@ -4,3 +4,9 @@ source/windowsMobile/CommLayer/bin/
 source/windowsMobile/NetLayer/bin/
 source/windowsMobile/SubProtocol/bin/
 source/windowsMobile/SystemInterop/bin/
+source/windowsMobile/Application/obj/
+source/windowsMobile/CommControl/obj/
+source/windowsMobile/CommLayer/obj/
+source/windowsMobile/NetLayer/obj/
+source/windowsMobile/SubProtocol/obj/
+source/windowsMobile/SystemInterop/obj/
