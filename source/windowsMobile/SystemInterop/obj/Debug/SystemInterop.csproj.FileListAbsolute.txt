@@ -1,7 +1,0 @@
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\SystemInterop\bin\Debug\licence\Licence.txt
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\SystemInterop\bin\Debug\licence\OpenNetCF Licence.txt
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\SystemInterop\bin\Debug\SystemInterop.dll
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\SystemInterop\bin\Debug\SystemInterop.pdb
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\SystemInterop\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\SystemInterop\obj\Debug\SystemInterop.dll
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\SystemInterop\obj\Debug\SystemInterop.pdb
