@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SystemInterop")]
 [assembly: AssemblyDescription("HLMP API")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Bicubic Research")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SystemInterop")]
-[assembly: AssemblyCopyright("© Bicubic TMG 2009-2010")]
+[assembly: AssemblyCopyright("© Juan Rodriguez 2009-2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("2.4.*")]
-[assembly: AssemblyFileVersion("2.4.0.0")]
+[assembly: AssemblyVersion("2.5.*")]
+[assembly: AssemblyFileVersion("2.5.0.0")]

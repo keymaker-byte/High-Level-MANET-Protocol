@@ -6,7 +6,6 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Diagnostics;
 using System.IO;
-using System.Windows.Forms;
 
 
 namespace NetLayer

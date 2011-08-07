@@ -55,21 +55,24 @@
     <Reference Include="OpenNETCF, Version=2.3.0.39, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Smart Device Framework\OpenNETCF.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="OpenNETCF.Core, Version=2.3.0.39, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Smart Device Framework\OpenNETCF.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="OpenNETCF.Net, Version=2.3.0.39, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Smart Device Framework\OpenNETCF.Net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="OpenNETCF.WindowsMobile, Version=2.3.0.39, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Smart Device Framework\OpenNETCF.WindowsMobile.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +102,7 @@
     <ProjectReference Include="..\SystemInterop\SystemInterop.csproj">
       <Project>{70519EBF-09E6-4DE1-85FE-D67F4249571E}</Project>
       <Name>SystemInterop</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />

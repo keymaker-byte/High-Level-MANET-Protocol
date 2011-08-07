@@ -8,11 +8,11 @@
     <ProjectGuid>{EC1E6D40-A34A-4F60-B71E-232C1F9FFA41}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HLMPFileSharing</RootNamespace>
-    <AssemblyName>HLMPFileSharing</AssemblyName>
+    <RootNamespace>HLMP</RootNamespace>
+    <AssemblyName>HLMP</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <StartupObject>HLMPFileSharing.Program</StartupObject>
+    <StartupObject>HLMP.Program</StartupObject>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -51,50 +51,70 @@
   <ItemGroup>
     <Reference Include="CommControl, Version=1.0.3608.37655, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\HLMP\CommControl\bin\Release\CommControl.dll</HintPath>
+      <HintPath>..\CommControl\bin\Debug\CommControl.dll</HintPath>
     </Reference>
     <Reference Include="CommLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\HLMP\CommLayer\bin\Release\CommLayer.dll</HintPath>
+      <HintPath>..\CommLayer\bin\Debug\CommLayer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.GLEE, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f84f738e1fc245c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\HLMP\Library\GLEE\Microsoft.GLEE.dll</HintPath>
+      <HintPath>..\Lib\GLEE\Microsoft.GLEE.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.GLEE.Drawing, Version=1.2.0.0, Culture=neutral, PublicKeyToken=8a3d7c21d5fa1306, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\HLMP\Library\GLEE\Microsoft.GLEE.Drawing.dll</HintPath>
+      <HintPath>..\Lib\GLEE\Microsoft.GLEE.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.GLEE.GraphViewerGDI, Version=1.2.0.0, Culture=neutral, PublicKeyToken=fffc27ea4058b3a1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\HLMP\Library\GLEE\Microsoft.GLEE.GraphViewerGDI.dll</HintPath>
+      <HintPath>..\Lib\GLEE\Microsoft.GLEE.GraphViewerGDI.dll</HintPath>
     </Reference>
     <Reference Include="NetLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\HLMP\NetLayer\bin\Release\NetLayer.dll</HintPath>
+      <HintPath>..\NetLayer\bin\Debug\NetLayer.dll</HintPath>
     </Reference>
     <Reference Include="SubProtocol, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\HLMP\SubProtocol\bin\Release\SubProtocol.dll</HintPath>
+      <HintPath>..\SubProtocol\bin\Debug\SubProtocol.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Reference Include="System.Management">
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Messaging">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceProcess">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SystemInterop, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\HLMP\SystemInterop\bin\Release\SystemInterop.dll</HintPath>
+      <HintPath>..\SystemInterop\bin\Debug\SystemInterop.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

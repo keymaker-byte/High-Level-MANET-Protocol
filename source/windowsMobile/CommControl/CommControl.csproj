@@ -51,18 +51,15 @@
     <DocumentationFile>bin\Release\CommControl.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.WindowsCE.Forms" />
     <Reference Include="mscorlib" />
     <Reference Include="OpenNETCF, Version=2.3.0.39, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Smart Device Framework\OpenNETCF.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.DataGrid" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatControl.cs">
@@ -146,14 +143,17 @@
     <ProjectReference Include="..\CommLayer\CommLayer.csproj">
       <Project>{45F731E1-B16E-445C-ADF6-7BD4AAAF66D4}</Project>
       <Name>CommLayer</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\NetLayer\NetLayer.csproj">
       <Project>{81130B05-F29E-40DE-8253-A433047194F2}</Project>
       <Name>NetLayer</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SubProtocol\SubProtocol.csproj">
       <Project>{E531C63C-CE31-4796-90C0-7835F31C6DF2}</Project>
       <Name>SubProtocol</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

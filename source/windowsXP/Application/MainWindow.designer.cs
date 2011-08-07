@@ -22,7 +22,7 @@
 ****************************************************************************/
 
 
-namespace HLMPFileSharing
+namespace HLMP
 {
     partial class MainWindow
     {

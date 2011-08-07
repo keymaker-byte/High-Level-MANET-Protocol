@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // La información general sobre un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos atributos para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("HLMP File Sharing Sample Application")]
+[assembly: AssemblyTitle("High Level MANET Protocol")]
 [assembly: AssemblyDescription("High Level MANET Protocol")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Bicubic Research")]
-[assembly: AssemblyProduct("HLMP File Sharing Sample Application")]
-[assembly: AssemblyCopyright("© Bicubic TMG 2009-2010")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("High Level MANET Protocol")]
+[assembly: AssemblyCopyright("© Juan Rodriguez 2009-2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Puede especificar todos los valores o establecer como predeterminados los números de versión de compilación y de revisión 
 // mediante el asterisco ('*'), como se muestra a continuación:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.4.*")]
-[assembly: AssemblyFileVersion("2.4.0.0")]
+[assembly: AssemblyVersion("2.5.*")]
+[assembly: AssemblyFileVersion("2.5.0.0")]

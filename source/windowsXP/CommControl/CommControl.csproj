@@ -37,26 +37,27 @@
   <ItemGroup>
     <Reference Include="Microsoft.GLEE, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f84f738e1fc245c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\GLEE\Microsoft.GLEE.dll</HintPath>
+      <HintPath>..\Lib\GLEE\Microsoft.GLEE.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.GLEE.Drawing, Version=1.2.0.0, Culture=neutral, PublicKeyToken=8a3d7c21d5fa1306, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\GLEE\Microsoft.GLEE.Drawing.dll</HintPath>
+      <HintPath>..\Lib\GLEE\Microsoft.GLEE.Drawing.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.GLEE.GraphViewerGDI, Version=1.2.0.0, Culture=neutral, PublicKeyToken=fffc27ea4058b3a1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Library\GLEE\Microsoft.GLEE.GraphViewerGDI.dll</HintPath>
+      <HintPath>..\Lib\GLEE\Microsoft.GLEE.GraphViewerGDI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatControl.cs">
@@ -150,14 +151,17 @@
     <ProjectReference Include="..\CommLayer\CommLayer.csproj">
       <Project>{7E930074-F5B0-4A28-9AF6-7968EA1FF3B7}</Project>
       <Name>CommLayer</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\NetLayer\NetLayer.csproj">
       <Project>{A958B135-17FE-48AA-9BD3-018800540982}</Project>
       <Name>NetLayer</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SubProtocol\SubProtocol.csproj">
       <Project>{E78E466E-1026-4BD0-8998-B9F32D605264}</Project>
-      <Name>SubProtocol %28WindowsXP\SubProtocol%29</Name>
+      <Name>SubProtocol</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

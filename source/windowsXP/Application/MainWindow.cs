@@ -37,7 +37,7 @@ using SubProtocol.Chat;
 using SubProtocol.FileTransfer;
 using SubProtocol.Ping;
 
-namespace HLMPFileSharing
+namespace HLMP
 {
     /// <summary>
     /// Programa de Ejemplo de transferencia de archivos
