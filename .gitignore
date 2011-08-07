@@ -10,3 +10,15 @@ source/windowsMobile/CommLayer/obj/
 source/windowsMobile/NetLayer/obj/
 source/windowsMobile/SubProtocol/obj/
 source/windowsMobile/SystemInterop/obj/
+source/windowsXP/Application/bin/
+source/windowsXP/CommControl/bin/
+source/windowsXP/CommLayer/bin/
+source/windowsXP/NetLayer/bin/
+source/windowsXP/SubProtocol/bin/
+source/windowsXP/SystemInterop/bin/
+source/windowsXP/Application/obj/
+source/windowsXP/CommControl/obj/
+source/windowsXP/CommLayer/obj/
+source/windowsXP/NetLayer/obj/
+source/windowsXP/SubProtocol/obj/
+source/windowsXP/SystemInterop/obj/
