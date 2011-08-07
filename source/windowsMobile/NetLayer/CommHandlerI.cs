@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NetLayerCompact
+namespace NetLayer
 {
     /// <summary>
     /// Interfaz para eventos de comunicación generados en NetHandler

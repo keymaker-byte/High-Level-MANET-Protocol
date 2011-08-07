@@ -28,13 +28,13 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
-using SubProtocolCompact.FileTransfer.Messages;
-using SubProtocolCompact.FileTransfer.ControlI;
-using CommControlCompact.Util;
+using CommLayer;
+using CommLayer.Messages;
+using SubProtocol.FileTransfer.Messages;
+using SubProtocol.FileTransfer.ControlI;
+using CommControl.Util;
 
-namespace CommControlCompact
+namespace CommControl
 {
     /// <summary>
     /// Control gráfico para la transferencia de archivos

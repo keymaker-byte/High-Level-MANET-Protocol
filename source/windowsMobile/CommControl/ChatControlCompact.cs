@@ -28,13 +28,13 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
+using CommLayer;
+using CommLayer.Messages;
 using OpenNETCF;
-using SubProtocolCompact.Chat.ControlI;
-using SubProtocolCompact.Chat;
+using SubProtocol.Chat.ControlI;
+using SubProtocol.Chat;
 
-namespace CommControlCompact
+namespace CommControl
 {
     /// <summary>
     /// Control gráfico para envío y recepción de mensajes de texto globales

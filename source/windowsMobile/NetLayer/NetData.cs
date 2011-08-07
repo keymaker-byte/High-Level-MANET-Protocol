@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 
-namespace NetLayerCompact
+namespace NetLayer
 {
     /// <summary>
     /// Clase que enumero los sistemas operativos soportados y que establece el modo de funcionamiento de la conexión de red inalámbrica

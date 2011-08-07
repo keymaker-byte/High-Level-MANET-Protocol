@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections;
 
-namespace SubProtocolCompact.FileTransfer
+namespace SubProtocol.FileTransfer
 {
     /// <summary>
     /// Cola de manejadores de archivos

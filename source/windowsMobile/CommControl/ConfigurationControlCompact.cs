@@ -28,12 +28,12 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using NetLayerCompact;
-using CommLayerCompact;
+using NetLayer;
+using CommLayer;
 using System.Net;
 using System.IO;
 
-namespace CommControlCompact
+namespace CommControl
 {
     /// <summary>
     /// Control gráfico para el ingreso de datos de configuración (formulario)

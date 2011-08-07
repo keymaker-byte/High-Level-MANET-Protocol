@@ -29,12 +29,12 @@ using System.Data;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using CommLayerCompact;
-using SubProtocolCompact.FileTransfer.ControlI;
-using SubProtocolCompact.FileTransfer;
-using CommControlCompact.Util;
+using CommLayer;
+using SubProtocol.FileTransfer.ControlI;
+using SubProtocol.FileTransfer;
+using CommControl.Util;
 
-namespace CommControlCompact
+namespace CommControl
 {
     /// <summary>
     /// Control gráfico para la lista de archivos compartidos en la red que se pueden descargar

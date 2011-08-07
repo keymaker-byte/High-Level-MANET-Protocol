@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact.Messages;
+using CommLayer.Messages;
 using System.Threading;
 using OpenNETCF.Threading;
 
-namespace CommLayerCompact
+namespace CommLayer
 {
     /// <summary>
     /// Cola de mensajes

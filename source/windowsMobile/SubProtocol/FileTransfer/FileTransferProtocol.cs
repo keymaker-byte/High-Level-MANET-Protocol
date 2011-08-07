@@ -25,13 +25,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
+using CommLayer;
+using CommLayer.Messages;
 using System.Collections;
-using SubProtocolCompact.FileTransfer.Messages;
-using SubProtocolCompact.FileTransfer.ControlI;
+using SubProtocol.FileTransfer.Messages;
+using SubProtocol.FileTransfer.ControlI;
 
-namespace SubProtocolCompact.FileTransfer
+namespace SubProtocol.FileTransfer
 {
     /// <summary>
     /// Clase que enumera los tipos de mensajes usados en el protocolo
@@ -200,7 +200,7 @@ namespace SubProtocolCompact.FileTransfer
         {
             switch (message.Type)
             {
-                case SubProtocolCompact.FileTransfer.Types.FILEREQUESTMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILEREQUESTMESSAGE:
                     {
                         FileRequestMessage fileRequestMessage = (FileRequestMessage)message;
                         FileInformation fileInformation = fileData.FileList.getFileInformation(fileRequestMessage.FileId);
@@ -225,7 +225,7 @@ namespace SubProtocolCompact.FileTransfer
                         }
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILEERRORMESSAGES:
+                case SubProtocol.FileTransfer.Types.FILEERRORMESSAGES:
                     {
                         FileErrorMessage fileErrorMessage = (FileErrorMessage)message;
                         lock (fileMessageHandlerLock)
@@ -247,7 +247,7 @@ namespace SubProtocolCompact.FileTransfer
                         }
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILEPARTMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILEPARTMESSAGE:
                     {
                         FilePartMessage filePartMessage = (FilePartMessage)message;
                         lock (fileMessageHandlerLock)
@@ -266,7 +266,7 @@ namespace SubProtocolCompact.FileTransfer
                         }
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILEWAITMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILEWAITMESSAGE:
                     {
                         FileWaitMessage fileWaitMessage = (FileWaitMessage)message;
                         lock (fileMessageHandlerLock)
@@ -292,7 +292,7 @@ namespace SubProtocolCompact.FileTransfer
                         }
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILECOMPLETEMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILECOMPLETEMESSAGE:
                     {
                         FileCompleteMessage fileCompleteMessage = (FileCompleteMessage)message;
                         lock (fileMessageHandlerLock)
@@ -305,14 +305,14 @@ namespace SubProtocolCompact.FileTransfer
                         }
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILELISTREQUESTMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILELISTREQUESTMESSAGE:
                     {
                         FileListRequestMessage fileListRequestMessage = (FileListRequestMessage)message;
                         FileListMessage fileListMessage = new FileListMessage(fileListRequestMessage.SenderNetUser, fileData.FileList);
                         sendMessageEvent(fileListMessage);
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILELISTMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILELISTMESSAGE:
                     {
                         FileListMessage fileListMessage = (FileListMessage)message;
                         controlFileListHandler.addFileList(fileListMessage.SenderNetUser, fileListMessage.FileList);
@@ -329,7 +329,7 @@ namespace SubProtocolCompact.FileTransfer
         {
             switch (message.Type)
             {
-                case SubProtocolCompact.FileTransfer.Types.FILEREQUESTMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILEREQUESTMESSAGE:
                     {
                         FileRequestMessage fileRequestMessage = (FileRequestMessage)message;
                         lock (fileMessageHandlerLock)
@@ -344,11 +344,11 @@ namespace SubProtocolCompact.FileTransfer
                         }
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILEERRORMESSAGES:
+                case SubProtocol.FileTransfer.Types.FILEERRORMESSAGES:
                     {
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILEPARTMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILEPARTMESSAGE:
                     {
                         FilePartMessage filePartMessage = (FilePartMessage)message;
                         lock (fileMessageHandlerLock)
@@ -363,7 +363,7 @@ namespace SubProtocolCompact.FileTransfer
                         }
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILEWAITMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILEWAITMESSAGE:
                     {
                         FileWaitMessage fileWaitMessage = (FileWaitMessage)message;
                         lock (fileMessageHandlerLock)
@@ -385,15 +385,15 @@ namespace SubProtocolCompact.FileTransfer
                         }
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILECOMPLETEMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILECOMPLETEMESSAGE:
                     {
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILELISTREQUESTMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILELISTREQUESTMESSAGE:
                     {
                         break;
                     }
-                case SubProtocolCompact.FileTransfer.Types.FILELISTMESSAGE:
+                case SubProtocol.FileTransfer.Types.FILELISTMESSAGE:
                     {
                         break;
                     }
@@ -483,13 +483,13 @@ namespace SubProtocolCompact.FileTransfer
         public MessageTypeList getMessageTypes()
         {
             MessageTypeList typeCollection = new MessageTypeList();
-            typeCollection.add(SubProtocolCompact.FileTransfer.Types.FILECOMPLETEMESSAGE, typeof(FileCompleteMessage));
-            typeCollection.add(SubProtocolCompact.FileTransfer.Types.FILEERRORMESSAGES, typeof(FileErrorMessage));
-            typeCollection.add(SubProtocolCompact.FileTransfer.Types.FILEPARTMESSAGE, typeof(FilePartMessage));
-            typeCollection.add(SubProtocolCompact.FileTransfer.Types.FILEREQUESTMESSAGE, typeof(FileRequestMessage));
-            typeCollection.add(SubProtocolCompact.FileTransfer.Types.FILEWAITMESSAGE, typeof(FileWaitMessage));
-            typeCollection.add(SubProtocolCompact.FileTransfer.Types.FILELISTREQUESTMESSAGE, typeof(FileListRequestMessage));
-            typeCollection.add(SubProtocolCompact.FileTransfer.Types.FILELISTMESSAGE, typeof(FileListMessage));
+            typeCollection.add(SubProtocol.FileTransfer.Types.FILECOMPLETEMESSAGE, typeof(FileCompleteMessage));
+            typeCollection.add(SubProtocol.FileTransfer.Types.FILEERRORMESSAGES, typeof(FileErrorMessage));
+            typeCollection.add(SubProtocol.FileTransfer.Types.FILEPARTMESSAGE, typeof(FilePartMessage));
+            typeCollection.add(SubProtocol.FileTransfer.Types.FILEREQUESTMESSAGE, typeof(FileRequestMessage));
+            typeCollection.add(SubProtocol.FileTransfer.Types.FILEWAITMESSAGE, typeof(FileWaitMessage));
+            typeCollection.add(SubProtocol.FileTransfer.Types.FILELISTREQUESTMESSAGE, typeof(FileListRequestMessage));
+            typeCollection.add(SubProtocol.FileTransfer.Types.FILELISTMESSAGE, typeof(FileListMessage));
             return typeCollection;
         }
 

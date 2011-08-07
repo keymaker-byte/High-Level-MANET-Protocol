@@ -1,4 +1,4 @@
-﻿namespace CommControlCompact
+﻿namespace CommControl
 {
     partial class StatusControlCompact
     {

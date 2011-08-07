@@ -24,10 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact.Messages;
-using CommLayerCompact;
+using CommLayer.Messages;
+using CommLayer;
 
-namespace SubProtocolCompact.Ping.Messages
+namespace SubProtocol.Ping.Messages
 {
     /// <summary>
     /// Envía un mensaje de Ping a la maquina remota destino para medir tiempo de envio + respuesta
@@ -44,8 +44,8 @@ namespace SubProtocolCompact.Ping.Messages
         /// </summary>
         public PingMessage() : base()
         {
-            this.Type = SubProtocolCompact.Ping.Types.PINGMESSAGE;
-            this.ProtocolType = SubProtocolCompact.Ping.Types.PINGPROTOCOL;
+            this.Type = SubProtocol.Ping.Types.PINGMESSAGE;
+            this.ProtocolType = SubProtocol.Ping.Types.PINGPROTOCOL;
             data = new byte[16];
             this.Timestamp = DateTime.Now.Ticks;
         }

@@ -24,13 +24,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
-using SubProtocolCompact.Chat.Messages;
-using SubProtocolCompact.Chat.ControlI;
+using CommLayer;
+using CommLayer.Messages;
+using SubProtocol.Chat.Messages;
+using SubProtocol.Chat.ControlI;
 using System.Collections;
 
-namespace SubProtocolCompact.Chat
+namespace SubProtocol.Chat
 {
 
     /// <summary>
@@ -85,8 +85,8 @@ namespace SubProtocolCompact.Chat
         public MessageTypeList getMessageTypes()
         {
             MessageTypeList typeCollection = new MessageTypeList();
-            typeCollection.add(SubProtocolCompact.Chat.Types.CHATMESSAGE, typeof(ChatMessage));
-            typeCollection.add(SubProtocolCompact.Chat.Types.GROUPCHATMESSAGE, typeof(GroupChatMessage));
+            typeCollection.add(SubProtocol.Chat.Types.CHATMESSAGE, typeof(ChatMessage));
+            typeCollection.add(SubProtocol.Chat.Types.GROUPCHATMESSAGE, typeof(GroupChatMessage));
             return typeCollection;
         }
 
@@ -98,13 +98,13 @@ namespace SubProtocolCompact.Chat
         {
             switch (message.Type)
             {
-                case SubProtocolCompact.Chat.Types.CHATMESSAGE:
+                case SubProtocol.Chat.Types.CHATMESSAGE:
                     {
                         ChatMessage textMessage = (ChatMessage)message;
                         controlChatHandler.chatMessageReceived(textMessage.SenderNetUser, textMessage.Text);
                         break;
                     }
-                case SubProtocolCompact.Chat.Types.GROUPCHATMESSAGE:
+                case SubProtocol.Chat.Types.GROUPCHATMESSAGE:
                     {
                         GroupChatMessage textMessage = (GroupChatMessage)message;
                         controlChatHandler.groupChatMessageReceived(textMessage.SenderNetUser, textMessage.Text);
@@ -121,13 +121,13 @@ namespace SubProtocolCompact.Chat
         {
             switch (message.Type)
             {
-                case SubProtocolCompact.Chat.Types.CHATMESSAGE:
+                case SubProtocol.Chat.Types.CHATMESSAGE:
                     {
                         ChatMessage textMessage = (ChatMessage)message;
                         controlChatHandler.chatWarninglInformation("no se ha podido entregar el mensage: " + textMessage.ToString());
                         break;
                     }
-                case SubProtocolCompact.Chat.Types.GROUPCHATMESSAGE:
+                case SubProtocol.Chat.Types.GROUPCHATMESSAGE:
                     {
                         GroupChatMessage textMessage = (GroupChatMessage)message;
                         controlChatHandler.chatWarninglInformation("no se ha podido entregar el mensage: " + textMessage.ToString());

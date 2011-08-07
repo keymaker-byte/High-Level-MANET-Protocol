@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace NetLayerCompact
+namespace NetLayer
 {
     /// <summary>
     /// Clase que representa un mensaje recibido o enviado por la RED

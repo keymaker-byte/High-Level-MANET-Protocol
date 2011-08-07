@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
 
-namespace NetLayerCompact
+namespace NetLayer
 {
     /// <summary>
     /// Clase para serializar objetos y hacerlos eviables por la red

@@ -28,7 +28,7 @@ using System.Collections;
 using System.IO;
 using System.Threading;
 
-namespace SubProtocolCompact.FileTransfer
+namespace SubProtocol.FileTransfer
 {
     /// <summary>
     /// Datos de un archivo

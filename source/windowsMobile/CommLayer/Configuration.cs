@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 using System.IO;
-using NetLayerCompact;
+using NetLayer;
 using System.Threading;
 
-namespace CommLayerCompact
+namespace CommLayer
 {
     /// <summary>
     /// Datos de configuración necesarios para establecer la estructura de comunicación

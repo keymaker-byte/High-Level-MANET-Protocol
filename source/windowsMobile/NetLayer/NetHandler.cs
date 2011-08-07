@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.IO;
 
 
-namespace NetLayerCompact
+namespace NetLayer
 {
     /// <summary>
     /// Clase que enumera los estados posibles del NetHandler

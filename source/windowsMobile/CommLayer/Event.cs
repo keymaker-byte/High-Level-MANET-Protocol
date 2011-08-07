@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using OpenNETCF.Reflection;
 
-namespace CommLayerCompact
+namespace CommLayer
 {
     /// <summary>
     /// Representa un evento

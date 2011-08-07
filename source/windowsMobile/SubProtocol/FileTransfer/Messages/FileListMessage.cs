@@ -24,10 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
+using CommLayer;
+using CommLayer.Messages;
 
-namespace SubProtocolCompact.FileTransfer.Messages
+namespace SubProtocol.FileTransfer.Messages
 {
     /// <summary>
     /// Representa un mensaje que contiene la lista de archivos que comparte un usuario
@@ -45,8 +45,8 @@ namespace SubProtocolCompact.FileTransfer.Messages
         /// </summary>
         public FileListMessage() : base()
         {
-            this.Type = SubProtocolCompact.FileTransfer.Types.FILELISTMESSAGE;
-            this.ProtocolType = SubProtocolCompact.FileTransfer.Types.FILETRANSFERPROTOCOL;
+            this.Type = SubProtocol.FileTransfer.Types.FILELISTMESSAGE;
+            this.ProtocolType = SubProtocol.FileTransfer.Types.FILETRANSFERPROTOCOL;
         }
 
         /// <summary>

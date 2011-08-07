@@ -27,7 +27,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace HLMPFileSharing
+namespace HLMP
 {
     static class Program
     {

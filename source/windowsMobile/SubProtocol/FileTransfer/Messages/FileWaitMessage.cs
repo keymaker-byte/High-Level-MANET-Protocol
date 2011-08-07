@@ -24,10 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
+using CommLayer;
+using CommLayer.Messages;
 
-namespace SubProtocolCompact.FileTransfer.Messages
+namespace SubProtocol.FileTransfer.Messages
 {
     /// <summary>
     /// Representa un mensaje de espera para descargar un archivo
@@ -45,8 +45,8 @@ namespace SubProtocolCompact.FileTransfer.Messages
         /// </summary>
         public FileWaitMessage() : base()
         {
-            this.Type = SubProtocolCompact.FileTransfer.Types.FILEWAITMESSAGE;
-            this.ProtocolType = SubProtocolCompact.FileTransfer.Types.FILETRANSFERPROTOCOL;
+            this.Type = SubProtocol.FileTransfer.Types.FILEWAITMESSAGE;
+            this.ProtocolType = SubProtocol.FileTransfer.Types.FILETRANSFERPROTOCOL;
         }
 
         /// <summary>

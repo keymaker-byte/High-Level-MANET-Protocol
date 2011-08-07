@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Net;
 
-namespace NetLayerCompact
+namespace NetLayer
 {
     /// <summary>
     /// Clase que enumera los estados posibles de IP 

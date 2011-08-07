@@ -25,10 +25,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using CommLayerCompact.Messages;
-using CommLayerCompact;
+using CommLayer.Messages;
+using CommLayer;
 
-namespace SubProtocolCompact.FileTransfer
+namespace SubProtocol.FileTransfer
 {
 
     /// <summary>

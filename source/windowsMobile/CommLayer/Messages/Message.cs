@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections;
 
-namespace CommLayerCompact.Messages
+namespace CommLayer.Messages
 {
     /// <summary>
     /// Clase que enumera las acciones y errores posibles al tratar de enviar un mensaje

@@ -24,10 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
+using CommLayer;
+using CommLayer.Messages;
 
-namespace SubProtocolCompact.FileTransfer.ControlI
+namespace SubProtocol.FileTransfer.ControlI
 {
     /// <summary>
     /// Interfaz para eventos relacionados con descarga y transferencia de archivos en la red

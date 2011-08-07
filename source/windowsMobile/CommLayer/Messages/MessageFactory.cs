@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
+using CommLayer;
 using System.Threading;
 using System.Reflection;
 using System.Net;
 
-namespace CommLayerCompact.Messages
+namespace CommLayer.Messages
 {
     /// <summary>
     /// Fabricador de mensajes provenientes de la red

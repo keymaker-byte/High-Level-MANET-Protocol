@@ -24,10 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
+using CommLayer;
+using CommLayer.Messages;
 
-namespace SubProtocolCompact.Ping.ControlI
+namespace SubProtocol.Ping.ControlI
 {
     /// <summary>
     /// Interfaz para eventos de mensajes de ping

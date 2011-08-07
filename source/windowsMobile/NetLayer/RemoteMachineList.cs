@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Net;
 
-namespace NetLayerCompact
+namespace NetLayer
 {
     /// <summary>
     /// Lista de maquinas remotas conectadas directamente por TCP

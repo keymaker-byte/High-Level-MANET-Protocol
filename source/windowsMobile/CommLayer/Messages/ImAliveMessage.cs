@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CommLayerCompact.Messages
+namespace CommLayer.Messages
 {
     /// <summary>
     /// Representa un mensaje para informar a los demas usuarios la existencia y la información de este

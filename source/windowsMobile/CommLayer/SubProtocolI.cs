@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact.Messages;
+using CommLayer.Messages;
 
-namespace CommLayerCompact
+namespace CommLayer
 {
     /// <summary>
     /// Interfaz que representa las funcionalidades de un sub protocolo

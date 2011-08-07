@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CommLayerCompact.Messages
+namespace CommLayer.Messages
 {
     /// <summary>
     /// Representa un mensaje de confirmación para los mensajes de tipo Safe

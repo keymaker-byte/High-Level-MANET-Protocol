@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // La información general sobre un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos atributos para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("SystemInterop Compact")]
+[assembly: AssemblyTitle("SystemInterop")]
 [assembly: AssemblyDescription("HLMP API")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Bicubic Research")]
-[assembly: AssemblyProduct("SystemInterop Compact")]
-[assembly: AssemblyCopyright("© Bicubic TMG 2009-2010")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SystemInterop")]
+[assembly: AssemblyCopyright("© Juan Rodriguez-Covili 2009-2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

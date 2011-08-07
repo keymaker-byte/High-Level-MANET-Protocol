@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.InteropServices;
-using SystemInteropCompact;
+using SystemInterop;
 using System.Threading;
 using OpenNETCF.Net.NetworkInformation;
 using OpenNETCF.Net;
@@ -11,7 +11,7 @@ using OpenNETCF;
 using System.IO;
 using OpenNETCF.WindowsMobile;
 
-namespace NetLayerCompact
+namespace NetLayer
 {
 
     /// <summary>

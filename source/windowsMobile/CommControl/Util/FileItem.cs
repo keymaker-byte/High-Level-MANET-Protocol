@@ -24,9 +24,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
+using CommLayer;
 
-namespace CommControlCompact.Util
+namespace CommControl.Util
 {
     internal class FileItem
     {

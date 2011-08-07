@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CommLayerCompact
+namespace CommLayer
 {
     /// <summary> 
     /// Implements a generalized Dijkstra's algorithm to calculate 
@@ -71,9 +71,9 @@ namespace CommLayerCompact
 
         //ESTO ES IMPLEMENTACION CAMBIADA
         private List<NetUser> netUserList;
-        private NetLayerCompact.NetData netData;
+        private NetLayer.NetData netData;
 
-        public Dijkstra(List<NetUser> netUserList, NetLayerCompact.NetData _netData)
+        public Dijkstra(List<NetUser> netUserList, NetLayer.NetData _netData)
         {
             if (netUserList.Count < 3) throw new ArgumentOutOfRangeException("totalNodeCount " + netUserList.Count + "Expected a minimum of 3.");
             this.netUserList = netUserList;

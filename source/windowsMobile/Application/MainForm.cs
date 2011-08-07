@@ -27,22 +27,22 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using CommControlCompact;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
-using SubProtocolCompact;
-using SubProtocolCompact.Chat;
-using SubProtocolCompact.FileTransfer;
-using SubProtocolCompact.Ping;
+using CommControl;
+using CommLayer;
+using CommLayer.Messages;
+using SubProtocol;
+using SubProtocol.Chat;
+using SubProtocol.FileTransfer;
+using SubProtocol.Ping;
 using OpenNETCF;
 using System.IO;
 
-namespace HLMPFileSharing
+namespace HLMP
 {
     /// <summary>
     /// Programa de ejemplo de transferencia de archivos
     /// </summary>
-    public partial class MainForm : Form, SubProtocolCompact.Ping.ControlI.PingHandlerI
+    public partial class MainForm : Form, SubProtocol.Ping.ControlI.PingHandlerI
     {
         /// <summary>
         /// CallBack para llamadas a funciones de controles graficos en .NET
@@ -105,7 +105,7 @@ namespace HLMPFileSharing
             {
                 //se inicializa la configuración
                 configuration = new Configuration();
-                configuration.NetData.OpSystem = NetLayerCompact.OpSystemType.SAMSUNGOMNIAII;
+                configuration.NetData.OpSystem = NetLayer.OpSystemType.SAMSUNGOMNIAII;
 
                 //Configuración de controles
                 statusControl.connectNotification += connect;
@@ -115,11 +115,11 @@ namespace HLMPFileSharing
                 //Configuración de subprotocolos
                 SubProtocolList subProtocols = new SubProtocolList();
                 chatProtocol = new ChatProtocol(chatControl);
-                subProtocols.add(SubProtocolCompact.Chat.Types.CHATPROTOCOL, chatProtocol);
+                subProtocols.add(SubProtocol.Chat.Types.CHATPROTOCOL, chatProtocol);
                 fileTransferProtocol = new FileTransferProtocol(fileControl, fileListControl, createFileData());
-                subProtocols.add(SubProtocolCompact.FileTransfer.Types.FILETRANSFERPROTOCOL, fileTransferProtocol);
+                subProtocols.add(SubProtocol.FileTransfer.Types.FILETRANSFERPROTOCOL, fileTransferProtocol);
                 pingProtocol = new PingProtocol(this);
-                subProtocols.add(SubProtocolCompact.Ping.Types.PINGPROTOCOL, pingProtocol);
+                subProtocols.add(SubProtocol.Ping.Types.PINGPROTOCOL, pingProtocol);
 
                 chatControl.ChatProtocol = chatProtocol;
                 fileListControl.FileTransferProtocol = fileTransferProtocol;

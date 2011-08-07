@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using NetLayerCompact;
-using CommLayerCompact.Messages;
+using NetLayer;
+using CommLayer.Messages;
 using System.Net;
 using System.Collections;
 
-namespace CommLayerCompact
+namespace CommLayer
 {
     /// <summary>
     /// Clase que se encarga de la logica de entrega y recepción de mensajes

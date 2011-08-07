@@ -24,10 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
-using SubProtocolCompact.FileTransfer;
+using CommLayer;
+using SubProtocol.FileTransfer;
 
-namespace CommControlCompact.Util
+namespace CommControl.Util
 {
     internal class NetUserFile
     {

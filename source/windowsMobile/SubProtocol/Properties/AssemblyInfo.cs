@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SubProtocol Compact")]
+[assembly: AssemblyTitle("SubProtocol")]
 [assembly: AssemblyDescription("HLMP API")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Bicubic Research")]
-[assembly: AssemblyProduct("SubProtocol Compact")]
-[assembly: AssemblyCopyright("© Bicubic TMG 2009-2010")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SubProtocol")]
+[assembly: AssemblyCopyright("© Juan Rodriguez-Covili 2009-2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using NetLayerCompact;
+using NetLayer;
 using System.Net;
 
-namespace CommLayerCompact.Messages
+namespace CommLayer.Messages
 {
     /// <summary>
     /// Representa un Mensaje Multicast TCP con protocolo de seguridad en la entrega

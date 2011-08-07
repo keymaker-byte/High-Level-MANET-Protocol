@@ -24,10 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact.Messages;
-using CommLayerCompact;
+using CommLayer.Messages;
+using CommLayer;
 
-namespace SubProtocolCompact.Chat.Messages
+namespace SubProtocol.Chat.Messages
 {
     /// <summary>
     /// Representa un mensaje de texto global
@@ -45,8 +45,8 @@ namespace SubProtocolCompact.Chat.Messages
         /// </summary>
         public ChatMessage() : base()
         {
-            this.Type = SubProtocolCompact.Chat.Types.CHATMESSAGE;
-            this.ProtocolType = SubProtocolCompact.Chat.Types.CHATPROTOCOL;
+            this.Type = SubProtocol.Chat.Types.CHATMESSAGE;
+            this.ProtocolType = SubProtocol.Chat.Types.CHATPROTOCOL;
         }
 
         /// <summary>

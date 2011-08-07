@@ -24,11 +24,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
-using SubProtocolCompact;
+using CommLayer;
+using CommLayer.Messages;
+using SubProtocol;
 
-namespace SubProtocolCompact.FileTransfer.Messages
+namespace SubProtocol.FileTransfer.Messages
 {
     /// <summary>
     /// Representa un mensaje de solicitud de archivo
@@ -51,8 +51,8 @@ namespace SubProtocolCompact.FileTransfer.Messages
         /// </summary>
         public FileRequestMessage() : base()
         {
-            this.Type = SubProtocolCompact.FileTransfer.Types.FILEREQUESTMESSAGE;
-            this.ProtocolType = SubProtocolCompact.FileTransfer.Types.FILETRANSFERPROTOCOL;
+            this.Type = SubProtocol.FileTransfer.Types.FILEREQUESTMESSAGE;
+            this.ProtocolType = SubProtocol.FileTransfer.Types.FILETRANSFERPROTOCOL;
         }
 
         /// <summary>

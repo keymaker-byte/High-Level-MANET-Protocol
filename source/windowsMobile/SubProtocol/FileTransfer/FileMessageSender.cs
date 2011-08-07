@@ -25,12 +25,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using SubProtocolCompact.FileTransfer.Messages;
+using SubProtocol.FileTransfer.Messages;
 using System.Threading;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
+using CommLayer;
+using CommLayer.Messages;
 
-namespace SubProtocolCompact.FileTransfer
+namespace SubProtocol.FileTransfer
 {
     /// <summary>
     /// Esta clase implementa funciones para enviar un archivo particionado mediante mensajes de texto
@@ -71,7 +71,7 @@ namespace SubProtocolCompact.FileTransfer
         /// </summary>
         public override void attendMessage(Message message)
         {
-            if (message.Type == SubProtocolCompact.FileTransfer.Types.FILECOMPLETEMESSAGE)
+            if (message.Type == SubProtocol.FileTransfer.Types.FILECOMPLETEMESSAGE)
             {
                 State = FileMessageHandlerState.COMPLETED;
                 close();

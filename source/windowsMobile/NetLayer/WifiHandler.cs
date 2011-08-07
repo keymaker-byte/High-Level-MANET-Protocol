@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using SystemInteropCompact;
+using SystemInterop;
 using System.Threading;
 using OpenNETCF.Net.NetworkInformation;
 using OpenNETCF.Net;
 
-namespace NetLayerCompact
+namespace NetLayer
 {
 
     /// <summary>

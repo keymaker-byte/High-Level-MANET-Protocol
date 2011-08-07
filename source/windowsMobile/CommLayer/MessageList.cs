@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Collections;
-using CommLayerCompact.Messages;
+using CommLayer.Messages;
 
-namespace CommLayerCompact
+namespace CommLayer
 {
     /// <summary>
     /// Lista de mensajes que asegura busqueda en orden constante

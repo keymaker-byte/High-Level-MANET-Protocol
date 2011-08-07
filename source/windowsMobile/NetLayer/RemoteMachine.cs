@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Net;
 
-namespace NetLayerCompact
+namespace NetLayer
 {
     /// <summary>
     /// Clase que representa una máquina remota (usuario vecino de bajo nivel) conectada a la RED

@@ -24,10 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
+using CommLayer;
+using CommLayer.Messages;
 
-namespace SubProtocolCompact.FileTransfer.Messages
+namespace SubProtocol.FileTransfer.Messages
 {
     /// <summary>
     /// Representa un mensaje de error al escribir un archivo
@@ -45,8 +45,8 @@ namespace SubProtocolCompact.FileTransfer.Messages
         /// </summary>
         public FileErrorMessage() : base()
         {
-            this.Type = SubProtocolCompact.FileTransfer.Types.FILEERRORMESSAGES;
-            this.ProtocolType = SubProtocolCompact.FileTransfer.Types.FILETRANSFERPROTOCOL;
+            this.Type = SubProtocol.FileTransfer.Types.FILEERRORMESSAGES;
+            this.ProtocolType = SubProtocol.FileTransfer.Types.FILETRANSFERPROTOCOL;
         }
 
         /// <summary>

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // La información general sobre un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos atributos para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("CommLayer Compact")]
+[assembly: AssemblyTitle("CommLayer")]
 [assembly: AssemblyDescription("HLMP API")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Bicubic Research")]
-[assembly: AssemblyProduct("CommLayer Compact")]
-[assembly: AssemblyCopyright("© Bicubic TMG 2009-2010")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("CommLayer")]
+[assembly: AssemblyCopyright("© Juan Rodriguez-Covili 2009-2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

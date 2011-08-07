@@ -24,10 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
+using CommLayer;
+using CommLayer.Messages;
 
-namespace SubProtocolCompact.Chat.ControlI
+namespace SubProtocol.Chat.ControlI
 {
     /// <summary>
     /// Interfaz para eventos de mensajes de texto globales

@@ -4,11 +4,10 @@ using System.Text;
 using System.Net.Sockets;
 using System.Collections;
 using System.Threading;
-using NetLayerCompact;
-using CommLayerCompact.Messages;
-using CommLayerCompact.data;
+using NetLayer;
+using CommLayer.Messages;
 
-namespace CommLayerCompact 
+namespace CommLayer 
 {
     /// <summary>
     /// Clase que enumera los estados posibles del Communication

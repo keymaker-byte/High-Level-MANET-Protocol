@@ -24,10 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
+using CommLayer;
+using CommLayer.Messages;
 
-namespace SubProtocolCompact.FileTransfer.Messages
+namespace SubProtocol.FileTransfer.Messages
 {
     /// <summary>
     /// Representa un mensaje que contiene la parte de un archivo
@@ -55,8 +55,8 @@ namespace SubProtocolCompact.FileTransfer.Messages
         /// </summary>
         public FilePartMessage() : base()
         {
-            this.Type = SubProtocolCompact.FileTransfer.Types.FILEPARTMESSAGE;
-            this.ProtocolType = SubProtocolCompact.FileTransfer.Types.FILETRANSFERPROTOCOL;
+            this.Type = SubProtocol.FileTransfer.Types.FILEPARTMESSAGE;
+            this.ProtocolType = SubProtocol.FileTransfer.Types.FILETRANSFERPROTOCOL;
         }
 
         /// <summary>

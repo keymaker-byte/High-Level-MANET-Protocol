@@ -1,8 +1,6 @@
-source/windowsMobile/CommControlCompact/bin/
-source/windowsMobile/CommLayerCompact/bin/
-source/windowsMobile/CommControlCompact/bin/
-source/windowsMobile/CommControlCompact/bin/
-source/windowsMobile/CommControlCompact/bin/
-source/windowsMobile/CommControlCompact/bin/
-source/windowsMobile/CommControlCompact/bin/
-source/windowsMobile/CommControlCompact/bin/
+source/windowsMobile/Application/bin/
+source/windowsMobile/CommControl/bin/
+source/windowsMobile/CommLayer/bin/
+source/windowsMobile/NetLayer/bin/
+source/windowsMobile/SubProtocol/bin/
+source/windowsMobile/SystemInterop/bin/

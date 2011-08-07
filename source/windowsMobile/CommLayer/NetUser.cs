@@ -4,10 +4,10 @@ using System.Text;
 using System.Collections;
 using System.Net;
 using System.Net.Sockets;
-using NetLayerCompact;
+using NetLayer;
 using OpenNETCF;
 
-namespace CommLayerCompact
+namespace CommLayer
 {
     /// <summary>
     /// Clase para enumeración de posibles calidades de señal de los usuarios remotos

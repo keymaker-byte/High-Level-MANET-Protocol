@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace SystemInteropCompact
+namespace SystemInterop
 {
     /// <summary>
     /// Clase que maneja las notificaciones del sistema operativo para cuando la máquina pasa a estados alterados de energía

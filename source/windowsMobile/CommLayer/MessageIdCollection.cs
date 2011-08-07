@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections;
 
-namespace CommLayerCompact
+namespace CommLayer
 {
     /// <summary>
     /// Colección de fileID's de mensajes. Estructura usada por el Router

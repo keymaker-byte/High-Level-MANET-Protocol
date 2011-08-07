@@ -22,7 +22,7 @@
 ****************************************************************************/
 
 
-namespace HLMPFileSharing
+namespace HLMP
 {
     partial class MainForm
     {
@@ -57,15 +57,15 @@ namespace HLMPFileSharing
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.statusControl = new CommControlCompact.StatusControlCompact();
+            this.statusControl = new CommControl.StatusControlCompact();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.netUserControl = new CommControlCompact.NetUserControlCompact();
+            this.netUserControl = new CommControl.NetUserControlCompact();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.fileListControl = new CommControlCompact.FileListControlCompact();
+            this.fileListControl = new CommControl.FileListControlCompact();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.fileControl = new CommControlCompact.FileControlCompact();
+            this.fileControl = new CommControl.FileControlCompact();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.chatControl = new CommControlCompact.ChatControlCompact();
+            this.chatControl = new CommControl.ChatControlCompact();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panelPing = new System.Windows.Forms.Panel();
             this.textBoxPing = new System.Windows.Forms.TextBox();
@@ -285,15 +285,15 @@ namespace HLMPFileSharing
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private CommControlCompact.StatusControlCompact statusControl;
+        private CommControl.StatusControlCompact statusControl;
         private System.Windows.Forms.TabPage tabPage2;
-        private CommControlCompact.NetUserControlCompact netUserControl;
+        private CommControl.NetUserControlCompact netUserControl;
         private System.Windows.Forms.TabPage tabPage6;
-        private CommControlCompact.FileListControlCompact fileListControl;
+        private CommControl.FileListControlCompact fileListControl;
         private System.Windows.Forms.TabPage tabPage5;
-        private CommControlCompact.FileControlCompact fileControl;
+        private CommControl.FileControlCompact fileControl;
         private System.Windows.Forms.TabPage tabPage3;
-        private CommControlCompact.ChatControlCompact chatControl;
+        private CommControl.ChatControlCompact chatControl;
         private System.Windows.Forms.MenuItem menuItem1;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Panel panelPing;

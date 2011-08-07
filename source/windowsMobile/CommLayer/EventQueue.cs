@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using OpenNETCF.Threading;
 
-namespace CommLayerCompact
+namespace CommLayer
 {
     /// <summary>
     /// Cola de objetos de eventos

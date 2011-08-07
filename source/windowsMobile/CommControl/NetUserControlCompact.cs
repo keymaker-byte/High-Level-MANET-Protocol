@@ -29,10 +29,10 @@ using System.Data;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using CommLayerCompact;
-using CommControlCompact.Util;
+using CommLayer;
+using CommControl.Util;
 
-namespace CommControlCompact
+namespace CommControl
 {
     /// <summary>
     /// Control gráfico para la lista de usuarios de la red

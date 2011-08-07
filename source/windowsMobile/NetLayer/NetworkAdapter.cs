@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using OpenNETCF.Net.NetworkInformation;
 using OpenNETCF.Net;
 
-namespace NetLayerCompact
+namespace NetLayer
 {
     /// <summary>
     /// Clase que representa un dispositivo de red del sistema

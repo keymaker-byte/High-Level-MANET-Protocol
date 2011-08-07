@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using OpenNETCF.Threading;
 
-namespace NetLayerCompact
+namespace NetLayer
 {
     /// <summary>
     /// Clase para la cola de mensajes que llegan por la RED

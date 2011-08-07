@@ -27,7 +27,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-namespace SystemInteropCompact
+namespace SystemInterop
 {
     #region Registry
     /// <summary>

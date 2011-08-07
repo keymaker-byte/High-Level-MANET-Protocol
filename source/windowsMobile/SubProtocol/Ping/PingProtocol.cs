@@ -24,13 +24,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CommLayerCompact;
-using CommLayerCompact.Messages;
-using SubProtocolCompact.Ping.Messages;
-using SubProtocolCompact.Ping.ControlI;
+using CommLayer;
+using CommLayer.Messages;
+using SubProtocol.Ping.Messages;
+using SubProtocol.Ping.ControlI;
 using System.Collections;
 
-namespace SubProtocolCompact.Ping
+namespace SubProtocol.Ping
 {
 
     /// <summary>
@@ -85,8 +85,8 @@ namespace SubProtocolCompact.Ping
         public MessageTypeList getMessageTypes()
         {
             MessageTypeList typeCollection = new MessageTypeList();
-            typeCollection.add(SubProtocolCompact.Ping.Types.PINGMESSAGE, typeof(PingMessage));
-            typeCollection.add(SubProtocolCompact.Ping.Types.PINGRESPONSEMESSAGE, typeof(PingResponseMessage));
+            typeCollection.add(SubProtocol.Ping.Types.PINGMESSAGE, typeof(PingMessage));
+            typeCollection.add(SubProtocol.Ping.Types.PINGRESPONSEMESSAGE, typeof(PingResponseMessage));
             return typeCollection;
         }
 
@@ -98,14 +98,14 @@ namespace SubProtocolCompact.Ping
         {
             switch (message.Type)
             {
-                case SubProtocolCompact.Ping.Types.PINGMESSAGE:
+                case SubProtocol.Ping.Types.PINGMESSAGE:
                     {
                         PingMessage pingMessage = (PingMessage)message;
                         PingResponseMessage pingResponseMessage = new PingResponseMessage(pingMessage.Timestamp, message.SenderNetUser);
                         sendMessageEvent(pingResponseMessage);
                         break;
                     }
-                case SubProtocolCompact.Ping.Types.PINGRESPONSEMESSAGE:
+                case SubProtocol.Ping.Types.PINGRESPONSEMESSAGE:
                     {
                         PingResponseMessage pingResponseMessage = (PingResponseMessage)message;
                         controlPingHandler.pingResponseMessageReceived(pingResponseMessage.SenderNetUser, (new TimeSpan(DateTime.Now.Ticks - pingResponseMessage.Timestamp)).TotalMilliseconds);
