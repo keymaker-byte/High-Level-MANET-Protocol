@@ -1,0 +1,679 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CommControl</name>
+    </assembly>
+    <members>
+        <member name="T:CommControl.FileListControl">
+            <summary>
+            Control gráfico para la lista de archivos compartidos en la red que se pueden descargar
+            Eventos que gatilla:
+            fileDownloadNotification cuando el usuario quiere descargar un archivo de la red (clic sobre el la opcion descargar de un archivo)
+            </summary>
+        </member>
+        <member name="F:CommControl.FileListControl._fileTransferProtocol">
+            <summary>
+            Protocol
+            </summary>
+        </member>
+        <member name="F:CommControl.FileListControl.thisLock">
+            <summary>
+            Lock
+            </summary>
+        </member>
+        <member name="M:CommControl.FileListControl.#ctor">
+            <summary>
+            Dafault Constructor
+            </summary>
+        </member>
+        <member name="M:CommControl.FileListControl.clear">
+            <summary>
+            Limpia la lista de archivos (elimina todos los archivos de la lista)
+            </summary>
+        </member>
+        <member name="M:CommControl.FileListControl.addFileList(CommLayer.NetUser,SubProtocol.FileTransfer.FileInformationList)">
+            <summary>
+            Agrega una lista de archivos de un usuario de la red a la ventana 
+            </summary>
+            <param name="netUser">El usuario dueño de la lista de archivo</param>
+            <param name="fileList">La lista de archivos</param>
+        </member>
+        <member name="M:CommControl.FileListControl.removeFileList(CommLayer.NetUser)">
+            <summary>
+            Elimina la lista de archivos de un usuario de la red de la ventana
+            </summary>
+            <param name="netUser">El usuario de la red</param>
+        </member>
+        <member name="M:CommControl.FileListControl.menuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Acción para el evento de clic sobre el menu de cada nodo
+            </summary>
+            <param name="sender">El sender</param>
+            <param name="e">Los parametros del evento</param>
+        </member>
+        <member name="F:CommControl.FileListControl.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:CommControl.FileListControl.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:CommControl.FileListControl.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="P:CommControl.FileListControl.FileTransferProtocol">
+            <summary>
+            Protocolo que maneja este handler
+            </summary>
+        </member>
+        <member name="P:CommControl.FileListControl.ImageSize">
+            <summary>
+            Tamaño de los íconos de los nodos de cada archivo
+            </summary>
+        </member>
+        <member name="P:CommControl.FileListControl.Indent">
+            <summary>
+            Tamaño de la indentación de los nodos en el arbol
+            </summary>
+        </member>
+        <member name="T:CommControl.FileListControl.NetUserCallback">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+            <param name="netUser">un usuario de la red</param>
+        </member>
+        <member name="T:CommControl.FileListControl.NetUserFilesCallback">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+            <param name="netUser">Un usuario de la red</param>
+            <param name="fileList">Una lista de archivos</param>
+        </member>
+        <member name="T:CommControl.FileListControl.VoidArgumentCallBak">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+        </member>
+        <member name="F:CommControl.Util.NetUserFile._netUser">
+            <summary>
+            El usuario de red
+            </summary>
+        </member>
+        <member name="F:CommControl.Util.NetUserFile._fileInformation">
+            <summary>
+            El nombre del archivo
+            </summary>
+        </member>
+        <member name="M:CommControl.Util.NetUserFile.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="P:CommControl.Util.NetUserFile.NetUser">
+            <summary>
+            El usuario de red
+            </summary>
+        </member>
+        <member name="P:CommControl.Util.NetUserFile.FileInformation">
+            <summary>
+            El nombre del archivo
+            </summary>
+        </member>
+        <member name="T:CommControl.ChatControl">
+            <summary>
+            Control gráfico para envío y recepción de mensajes de texto globales
+            Eventos que gatilla:
+            messageNotification cuando el usuario quiere enviar un mensaje de texto (clic sobre el boton envíar)
+            </summary>
+        </member>
+        <member name="F:CommControl.ChatControl.netUser">
+            <summary>
+            El usuario local 
+            </summary>
+        </member>
+        <member name="M:CommControl.ChatControl.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommControl.ChatControl.chatMessageReceived(CommLayer.NetUser,System.String)">
+            <summary>
+            Agrega un mensaje de texto a la ventana
+            </summary>
+            <param name="netUser">El usuario autor del mensaje</param>
+            <param name="message">El mensaje de texto</param>
+        </member>
+        <member name="M:CommControl.ChatControl.groupChatMessageReceived(CommLayer.NetUser,System.String)">
+            <summary>
+            Agrega un mensaje de texto a la ventana grupal
+            </summary>
+            <param name="netUser">El usuario autor del mensaje</param>
+            <param name="message">El mensaje de texto</param>
+        </member>
+        <member name="M:CommControl.ChatControl.chatWarninglInformation(System.String)">
+            <summary>
+            Agrega un mensaje del sistema a la ventana
+            <param name="text">el texto de información</param>
+            </summary>
+        </member>
+        <member name="M:CommControl.ChatControl.clear">
+            <summary>
+            Borra todo el texto de la ventana de chat
+            </summary>
+        </member>
+        <member name="M:CommControl.ChatControl.buttonSend_Click(System.Object,System.EventArgs)">
+            <summary>
+            Método gatillado al hacer clic en el boton enviar
+            </summary>
+            <param name="sender">El sender del evento</param>
+            <param name="e">Los parametros del evento</param>
+        </member>
+        <member name="M:CommControl.ChatControl.textBoxMessage_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Método gatillado al presionar una tecla teniendo foco del textBox mensaje
+            </summary>
+            <param name="sender">quien envia el evento</param>
+            <param name="e">los parametros del evento</param>
+        </member>
+        <member name="F:CommControl.ChatControl.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:CommControl.ChatControl.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:CommControl.ChatControl.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="P:CommControl.ChatControl.ChatProtocol">
+            <summary>
+            Protocolo que maneja este handler
+            </summary>
+        </member>
+        <member name="P:CommControl.ChatControl.NetUser">
+            <summary>
+            El usuario dueño de esta ventana de Chat, su nombre se muestra al escribir un mensaje
+            </summary>
+        </member>
+        <member name="T:CommControl.ChatControl.NetUserStringCallback">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+            <param name="netUser">Un usuario de red</param>
+            <param name="s">Un string</param>
+        </member>
+        <member name="T:CommControl.ChatControl.StringCallback">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+            <param name="s">Un string</param>
+        </member>
+        <member name="T:CommControl.ChatControl.VoidArgumentCallBak">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+        </member>
+        <member name="T:CommControl.ConfigurationControl">
+            <summary>
+            Control gráfico para el ingreso de datos de configuración (formulario)
+            </summary>
+        </member>
+        <member name="F:CommControl.ConfigurationControl._configurationData">
+            <summary>
+            Los datos de configuración
+            </summary>
+        </member>
+        <member name="M:CommControl.ConfigurationControl.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommControl.ConfigurationControl.init">
+            <summary>
+            Inicializa los datos del formulario con la información de la propiedad ConfigurationData
+            </summary>
+        </member>
+        <member name="M:CommControl.ConfigurationControl.aceptar">
+            <summary>
+            Guarda la información actual del formulario en la propiedad ConfigurationData
+            </summary>
+            <returns>true si el formulario ha sido llenado correctamente y ha sido guardado, false si no
+            Si no ha sido bien llenado, se emite una ventana modal con el mensaje correspondiente</returns>
+        </member>
+        <member name="M:CommControl.ConfigurationControl.cancelar">
+            <summary>
+            Cancela los cambios hechos a la configuración, la propiedad ConfigurationData se vuelve null
+            </summary>
+        </member>
+        <member name="F:CommControl.ConfigurationControl.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:CommControl.ConfigurationControl.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:CommControl.ConfigurationControl.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="P:CommControl.ConfigurationControl.ConfigurationData">
+            <summary>
+            Los datos de configuración editados en el formulario (null si se ha cancelado).
+            </summary>
+        </member>
+        <member name="T:CommControl.Properties.Resources">
+            <summary>
+              Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
+            </summary>
+        </member>
+        <member name="P:CommControl.Properties.Resources.ResourceManager">
+            <summary>
+              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+            </summary>
+        </member>
+        <member name="P:CommControl.Properties.Resources.Culture">
+            <summary>
+              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+              búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
+            </summary>
+        </member>
+        <member name="T:CommControl.StatusControl">
+            <summary>
+            Control grafico que permite administrar el estado de conexion a la red
+            Eventos que gatilla:
+            - connectNotification cuando el usuario quiere conectarse a la red (clic sobre el boton conectar)
+            - disConnectNotification cuando el usuario quiere desconectarse d ela red (clic sobre el boton desconectar)
+            - clearNotification cuando el sistema ha reseteado todos los datos relacionados con la MANET
+            </summary>
+        </member>
+        <member name="F:CommControl.StatusControl.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:CommControl.StatusControl.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:CommControl.StatusControl.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:CommControl.StatusControl.state">
+            <summary>
+            Guarda el estado actual de la conexion
+            </summary>
+        </member>
+        <member name="M:CommControl.StatusControl.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:CommControl.StatusControl.connectHandler">
+            <summary>
+            Cambia el estado a conectado
+            </summary>
+        </member>
+        <member name="M:CommControl.StatusControl.disconnectHandler">
+            <summary>
+            Cambia el estado a desconectado
+            </summary>
+        </member>
+        <member name="M:CommControl.StatusControl.connectingHandler">
+            <summary>
+            Cambia el estado a conectando
+            </summary>
+        </member>
+        <member name="M:CommControl.StatusControl.disconnectingHandler">
+            <summary>
+            Cambia el estado a desconectando
+            </summary>
+        </member>
+        <member name="M:CommControl.StatusControl.reconnectingHandler">
+            <summary>
+            Cambia el estado a reconectando
+            </summary>
+        </member>
+        <member name="M:CommControl.StatusControl.buttonConnect_Click(System.Object,System.EventArgs)">
+            <summary>
+            Evento para el botón de conección
+            </summary>
+            <param name="sender">El sender del evento</param>
+            <param name="e">Los argumentos del evento</param>
+        </member>
+        <member name="M:CommControl.StatusControl.buttonDisconnect_Click(System.Object,System.EventArgs)">
+            <summary>
+            Evento para el botón de desconección
+            </summary>
+            <param name="sender">El sender del evento</param>
+            <param name="e">Los argumentos del evento</param>
+        </member>
+        <member name="E:CommControl.StatusControl.connectNotification">
+            <summary>
+            Se gatilla cuando el usuario quiere conectarse a la red
+            </summary>
+        </member>
+        <member name="E:CommControl.StatusControl.disConnectNotification">
+            <summary>
+            Se gatilla cuando el usuario quiere desconectarse de la red
+            </summary>
+        </member>
+        <member name="P:CommControl.StatusControl.ImageSize">
+            <summary>
+            El tamaño de los íconos que muestran el estado de la conexión
+            </summary>
+        </member>
+        <member name="P:CommControl.StatusControl.State">
+            <summary>
+            El estado actual de conexión a la MANET (un valor de CommunicationState)
+            </summary>
+        </member>
+        <member name="T:CommControl.StatusControl.VoidArgumentCallBak">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+        </member>
+        <member name="T:CommControl.StatusControl.ConnectNotificationHandler">
+            <summary>
+            Modelo de evento de conexion
+            </summary>
+        </member>
+        <member name="T:CommControl.StatusControl.DisConnectNotificationHandler">
+            <summary>
+            Modelo de Evento de desconección
+            </summary>
+        </member>
+        <member name="T:CommControl.FileControl">
+            <summary>
+            Control gráfico para la transferencia de archivos
+            </summary>
+        </member>
+        <member name="F:CommControl.FileControl.fileList">
+            <summary>
+            Lista de archivos encolados o procesados
+            </summary>
+        </member>
+        <member name="M:CommControl.FileControl.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommControl.FileControl.clear">
+            <summary>
+            Borra la información de la ventana de transferencia, a excepción del historial de archivos
+            </summary>
+        </member>
+        <member name="M:CommControl.FileControl.downloadFileQueued(CommLayer.NetUser,System.String,System.String)">
+            <summary>
+            Agrega un archivo para descarga a la cola
+            </summary>
+            <param name="netUser">El usuario de la red dueño del archivo</param>
+            <param name="fileHandlerId">El id de la transferencia</param>
+            <param name="fileName">El nombre del archivo</param>
+        </member>
+        <member name="M:CommControl.FileControl.downloadFileOpened(System.String)">
+            <summary>
+            Marca como atendido a un archivo previamente encolado para descarga
+            </summary>
+            <param name="fileHandlerId">El id de la transferencia</param>
+        </member>
+        <member name="M:CommControl.FileControl.downloadFileTransfer(System.String,System.Int32)">
+            <summary>
+            Aumenta la barra de porcentaje del archivo en proceso de descarga
+            </summary>
+            <param name="fileHandlerId">El id de la transferencia</param>
+            <param name="percent">el porcentaje total que se ha transferido</param>
+        </member>
+        <member name="M:CommControl.FileControl.downloadFileComplete(System.String,System.String)">
+            <summary>
+            Marca como completado al archivo en proceso de descarga
+            </summary>
+            <param name="fileHandlerId">El id de la transferencia</param>
+        </member>
+        <member name="M:CommControl.FileControl.downloadFileFailed(System.String)">
+            <summary>
+            Marca como fallido al archivo en proceso de descarga
+            </summary>
+            <param name="fileHandlerId">El id de la transferencia</param>
+        </member>
+        <member name="M:CommControl.FileControl.uploadFileQueued(CommLayer.NetUser,System.String,System.String)">
+            <summary>
+            Encola a un archivo para transferencia (upload)
+            </summary>
+            <param name="netUser">El usuario de la red al cual se le debe transferir el archivo</param>
+            <param name="fileHandlerId">El id de la transferencia</param>
+            <param name="fileName">El nombre del archivo</param>
+        </member>
+        <member name="M:CommControl.FileControl.uploadFileOpened(System.String)">
+            <summary>
+            Marca como atendido a un archivo previamente encolado para transferencia
+            </summary>
+            <param name="fileHandlerId">El id de la transferencia</param>
+        </member>
+        <member name="M:CommControl.FileControl.uploadFileTransfer(System.String,System.Int32)">
+            <summary>
+            Aumenta la barra de progreso del archivo en proceso de transferencia
+            </summary>
+            <param name="fileHandlerId">El id de la transferencia</param>
+            <param name="percent">porcentaje total que se ha enviado del archivo</param>
+        </member>
+        <member name="M:CommControl.FileControl.uploadFileComplete(System.String)">
+            <summary>
+            Marca como completado al archivo en proceso de transferencia
+            </summary>
+            <param name="fileHandlerId">El id de la transferencia</param>
+        </member>
+        <member name="M:CommControl.FileControl.uploadFileFailed(System.String)">
+            <summary>
+            Marca como fallido al archivo en proceso de transferencia.
+            </summary>
+            <param name="fileHandlerId">El id de la transferencia</param>
+        </member>
+        <member name="M:CommControl.FileControl.refreshList(CommControl.Util.FileItem)">
+            <summary>
+            Recarga el historial de archivos encolados para transferencias y/o descargas
+            </summary>
+        </member>
+        <member name="F:CommControl.FileControl.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:CommControl.FileControl.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:CommControl.FileControl.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="P:CommControl.FileControl.ImageSize">
+            <summary>
+            El tamaño de la imágen de los íconos de los usuarios
+            </summary>
+        </member>
+        <member name="P:CommControl.FileControl.Indent">
+            <summary>
+            Tamaño de la indentación de los nodos en el arbol
+            </summary>
+        </member>
+        <member name="T:CommControl.FileControl.NetUserCallback">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+            <param name="netUser">Un usuario de red</param>
+            <param name="s1">Un string</param>
+            <param name="s2">Un string</param>
+        </member>
+        <member name="T:CommControl.FileControl.StringCallback">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+            <param name="s">Un string</param>
+        </member>
+        <member name="T:CommControl.FileControl.StringValueCallback">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+            <param name="s">Un string</param>
+            <param name="number">Un número entero</param>
+        </member>
+        <member name="T:CommControl.FileControl.StringStringCallback">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+            <param name="s">Un string</param>
+            <param name="number">Un número entero</param>
+        </member>
+        <member name="T:CommControl.FileControlState">
+            <summary>
+            Clase que enumero los posibles estados del control gráfico de archivos
+            </summary>
+        </member>
+        <member name="F:CommControl.FileControlState.WAITING">
+            <summary>
+            Constante para el estado esperando
+            </summary>
+        </member>
+        <member name="F:CommControl.FileControlState.LOADINGDATA">
+            <summary>
+            Constante para el estado activo
+            </summary>
+        </member>
+        <member name="F:CommControl.FileControlState.FILECOMPLETE">
+            <summary>
+            Constante para el estado en transferencia
+            </summary>
+        </member>
+        <member name="F:CommControl.FileControlState.FILEFAIL">
+            <summary>
+            Constante para el estado fallido
+            </summary>
+        </member>
+        <member name="F:CommControl.FileControlState.QUEUED">
+            <summary>
+            Constante para el estado en cola de espera
+            </summary>
+        </member>
+        <member name="T:CommControl.FileControlStateType">
+            <summary>
+            Clase que enumero los posibles tipos de transferencia en el control gráfico de archivos
+            </summary>
+        </member>
+        <member name="F:CommControl.FileControlStateType.UPLOAD">
+            <summary>
+            Constante para el tipo transferencia  - upload
+            </summary>
+        </member>
+        <member name="F:CommControl.FileControlStateType.DOWNLOAD">
+            <summary>
+            Constante para el tipo descarga
+            </summary>
+        </member>
+        <member name="T:CommControl.NetUserControl">
+            <summary>
+            Control gráfico para la lista de usuarios de la red
+            </summary>
+        </member>
+        <member name="F:CommControl.NetUserControl.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:CommControl.NetUserControl.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:CommControl.NetUserControl.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:CommControl.NetUserControl.#ctor">
+            <summary>
+            Default Constructor
+            </summary>>
+        </member>
+        <member name="M:CommControl.NetUserControl.addUserHandler(CommLayer.NetUser)">
+            <summary>
+            Agrega a un usuario de la red al árbol de usuarios
+            </summary>
+            <param name="netUser">El nuevo usuario que ha ingresado a la red</param>
+        </member>
+        <member name="M:CommControl.NetUserControl.removeUserHandler(CommLayer.NetUser)">
+            <summary>
+            Elimina a un usuario de la red del arbol de usuarios
+            </summary>
+            <param name="netUser">El usuario que salido de la red</param>
+        </member>
+        <member name="M:CommControl.NetUserControl.refreshUserHandler(CommLayer.NetUser)">
+            <summary>
+            Actualiza los datos de un usuario en el Árbol de usuarios
+            </summary>
+            <param name="netUser">El usuario que ha actualizado sus datos o estado</param>
+        </member>
+        <member name="M:CommControl.NetUserControl.refreshLocalUserHandler(CommLayer.NetUser)">
+            <summary>
+            Ingresa o actualiza los datos del usuario local en el Árbol de usuarios
+            </summary>
+            <param name="netUser">El usario local</param>
+        </member>
+        <member name="M:CommControl.NetUserControl.clear">
+            <summary>
+            Remueve a todos los usuarios de la red del árbol de usuarios
+            </summary>
+        </member>
+        <member name="P:CommControl.NetUserControl.ImageSize">
+            <summary>
+            El tamaño de la imágen de los íconos de los usuarios
+            </summary>
+        </member>
+        <member name="P:CommControl.NetUserControl.Indent">
+            <summary>
+            El tamaño de la indentación de los nodos en el arbol
+            </summary>
+        </member>
+        <member name="T:CommControl.NetUserControl.NetUserCallback">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+            <param name="netUser">Un usuario de la red</param>
+        </member>
+        <member name="T:CommControl.NetUserControl.VoidArgumentCallBak">
+            <summary>
+            CallBack para llamadas a funciones de controles graficos en .NET
+            </summary>
+        </member>
+    </members>
+</doc>

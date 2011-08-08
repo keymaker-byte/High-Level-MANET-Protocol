@@ -1,0 +1,8 @@
+C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\CommLayer\bin\Release\licence\Licence.txt
+C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\CommLayer\bin\Release\licence\OpenNetCF Licence.txt
+C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\CommLayer\bin\Release\CommLayer.xml
+C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\CommLayer\bin\Release\CommLayer.dll
+C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\CommLayer\bin\Release\CommLayer.pdb
+C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\CommLayer\obj\Release\ResolveAssemblyReference.cache
+C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\CommLayer\obj\Release\CommLayer.dll
+C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsMobile\CommLayer\obj\Release\CommLayer.pdb

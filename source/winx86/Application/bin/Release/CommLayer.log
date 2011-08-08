@@ -1,0 +1,621 @@
+08-08-2011 1:25:12 - NETHANDLER: start netHandler...
+08-08-2011 1:25:12 - NETHANDLER: nerwork adapter is... Atheros AR9002WB-1NG Wireless Network Adapter
+08-08-2011 1:25:12 - NETHANDLER: enable adapter...
+08-08-2011 1:25:16 - NETHANDLER: enable adapter... ok!
+08-08-2011 1:25:16 - NETHANDLER: start wifi...
+08-08-2011 1:25:16 - NETHANDLER: waiting for other devices
+08-08-2011 1:25:17 - WIFI: connection request
+08-08-2011 1:25:17 - WIFI: disconenction
+08-08-2011 1:25:20 - NETHANDLER: waiting for other devices
+08-08-2011 1:25:24 - NETHANDLER: waiting for other devices
+08-08-2011 1:25:28 - NETHANDLER: waiting for other devices
+08-08-2011 1:25:32 - WIFI: connection request
+08-08-2011 1:25:32 - NETHANDLER: waiting for other devices
+08-08-2011 1:25:32 - WIFI: disconenction
+08-08-2011 1:25:36 - NETHANDLER: waiting for other devices
+08-08-2011 1:25:40 - NETHANDLER: waiting for other devices
+08-08-2011 1:25:40 - WIFI: connection
+08-08-2011 1:25:44 - NETHANDLER: start wifi... ok!
+08-08-2011 1:25:44 - NETHANDLER: set IP... 170.160.189.144
+08-08-2011 1:25:47 - NETHANDLER: set IP... ok!
+08-08-2011 1:25:47 - NETHANDLER: start strong DAD
+08-08-2011 1:25:47 - NETHANDLER: start TCP...
+08-08-2011 1:25:47 - NETHANDLER: start TCP listener... 170.160.189.144:30001
+08-08-2011 1:25:47 - NETHANDLER: start TCP listener... failed! La dirección solicitada no es válida en este contexto
+08-08-2011 1:25:51 - NETHANDLER: start TCP listener... 170.160.189.144:30001
+08-08-2011 1:25:51 - NETHANDLER: start TCP listener... ok!
+08-08-2011 1:25:51 - NETHANDLER: start TCP... ok!
+08-08-2011 1:25:51 - NETHANDLER: start UDP... 224.0.0.2:30002
+08-08-2011 1:25:51 - NETHANDLER: start UDP... ok!
+08-08-2011 1:25:51 - NETHANDLER: start weak DAD
+08-08-2011 1:25:51 - COMMUNICATION: start communication...
+08-08-2011 1:25:51 - COMMUNICATION: set IP
+08-08-2011 1:25:51 - COMMUNICATION: set user ID
+08-08-2011 1:25:51 - COMMUNICATION: router config
+08-08-2011 1:25:51 - ROUTER: max list size: 100 used: 0
+08-08-2011 1:25:51 - COMMUNICATION: timer on
+08-08-2011 1:25:51 - COMMUNICATION: detection on
+08-08-2011 1:25:51 - COMMUNICATION: process on
+08-08-2011 1:25:51 - COMMUNICATION: messages on
+08-08-2011 1:25:51 - COMMUNICATION: bag on
+08-08-2011 1:25:51 - COMMUNICATION: start communication... ok!
+08-08-2011 1:25:51 - NETHANDLER: start netHandler... ok!
+08-08-2011 1:25:51 - NETHANDLER: we are so connected!!! welcome to HLMP
+08-08-2011 1:25:52 - ROUTER: max list size: 100 used: 0
+08-08-2011 1:25:53 - ROUTER: max list size: 100 used: 1
+08-08-2011 1:25:54 - ROUTER: max list size: 100 used: 2
+08-08-2011 1:25:55 - ROUTER: max list size: 100 used: 3
+08-08-2011 1:25:56 - ROUTER: max list size: 100 used: 4
+08-08-2011 1:25:57 - ROUTER: max list size: 100 used: 5
+08-08-2011 1:25:58 - ROUTER: max list size: 100 used: 6
+08-08-2011 1:25:59 - ROUTER: max list size: 100 used: 7
+08-08-2011 1:26:00 - ROUTER: max list size: 100 used: 8
+08-08-2011 1:26:01 - ROUTER: max list size: 100 used: 9
+08-08-2011 1:26:02 - ROUTER: max list size: 100 used: 10
+08-08-2011 1:26:03 - ROUTER: max list size: 100 used: 11
+08-08-2011 1:26:04 - ROUTER: max list size: 100 used: 12
+08-08-2011 1:26:05 - ROUTER: max list size: 100 used: 13
+08-08-2011 1:26:06 - ROUTER: max list size: 100 used: 14
+08-08-2011 1:26:07 - ROUTER: max list size: 100 used: 15
+08-08-2011 1:26:08 - WIFI: alone connection
+08-08-2011 1:26:08 - ROUTER: max list size: 100 used: 16
+08-08-2011 1:26:09 - WIFI: connection
+08-08-2011 1:26:09 - NETHANDLER: resetIP...
+08-08-2011 1:26:10 - NETHANDLER: stop netHandler...
+08-08-2011 1:26:10 - NETHANDLER: stop DAD...
+08-08-2011 1:26:10 - NETHANDLER: stop DAD... ok!
+08-08-2011 1:26:10 - NETHANDLER: stop communication...
+08-08-2011 1:26:10 - COMMUNICATION: stop Communication...
+08-08-2011 1:26:10 - COMMUNICATION: timer off
+08-08-2011 1:26:10 - COMMUNICATION: messages off
+08-08-2011 1:26:10 - COMMUNICATION: detection off
+08-08-2011 1:26:10 - COMMUNICATION: process off
+08-08-2011 1:26:10 - COMMUNICATION: bag off
+08-08-2011 1:26:31 - COMMUNUCATION WARNING: impossible to wait for bag
+08-08-2011 1:26:31 - COMMUNICATION: messages stats  send: 0 confirmed: 0 destroy: 0 warnings: 0 failed: 0 received: 0 resent: 0 routed: 0
+08-08-2011 1:26:31 - COMMUNICATION: re init
+08-08-2011 1:26:31 - COMMUNICATION: stop communication... ok!
+08-08-2011 1:26:31 - NETHANDLER: stop communication... ok!
+08-08-2011 1:26:31 - NETHANDLER: drop multicast suscription...
+08-08-2011 1:26:31 - NETHANDLER: drop multicast suscription... ok!
+08-08-2011 1:26:31 - NETHANDLER: shudown UDP client...
+08-08-2011 1:26:31 - NETHANDLER: shudown UDP client... ok!
+08-08-2011 1:26:31 - NETHANDLER: close UDP socket...
+08-08-2011 1:26:31 - NETHANDLER: close UDP socket... ok!
+08-08-2011 1:26:31 - NETHANDLER: close UDP client...
+08-08-2011 1:26:31 - NETHANDLER: close UDP client... ok!
+08-08-2011 1:26:31 - NETHANDLER: stop UDP thread...
+08-08-2011 1:26:31 - NETHANDLER: stop UDP thread... ok!
+08-08-2011 1:26:31 - NETHANDLER: stop TCP listener...
+08-08-2011 1:26:31 - NETHANDLER: stop TCP listener... ok!
+08-08-2011 1:26:31 - NETHANDLER: stop TCP thread...
+08-08-2011 1:26:31 - NETHANDLER: stop TCP thread... ok!
+08-08-2011 1:26:31 - NETHANDLER: dhcp on...
+08-08-2011 1:26:31 - NETHANDLER: dhcp on... ok!
+08-08-2011 1:26:31 - NETHANDLER: stop wifi...
+08-08-2011 1:26:32 - WIFI: disconnection request
+08-08-2011 1:26:32 - NETHANDLER: stop wifi... ok!
+08-08-2011 1:26:32 - NETHANDLER: kill TCP links...
+08-08-2011 1:26:32 - NETHANDLER: kill TCP links... ok!
+08-08-2011 1:26:32 - NETHANDLER: initialation of objects...
+08-08-2011 1:26:32 - NETHANDLER: initialation of objects... ok!
+08-08-2011 1:26:32 - NETHANDLER: stop netHandler... ok!
+08-08-2011 1:26:32 - NETHANDLER: bye bye!
+08-08-2011 1:26:32 - NETHANDLER: start netHandler...
+08-08-2011 1:26:32 - NETHANDLER: nerwork adapter is... Atheros AR9002WB-1NG Wireless Network Adapter
+08-08-2011 1:26:32 - NETHANDLER: enable adapter...
+08-08-2011 1:26:32 - NETHANDLER: resetIP... ok!
+08-08-2011 1:26:38 - NETHANDLER: enable adapter... ok!
+08-08-2011 1:26:38 - NETHANDLER: start wifi...
+08-08-2011 1:26:38 - NETHANDLER: waiting for other devices
+08-08-2011 1:26:38 - WIFI: connection request
+08-08-2011 1:26:38 - WIFI: disconenction
+08-08-2011 1:26:39 - WIFI: connection
+08-08-2011 1:26:42 - NETHANDLER: start wifi... ok!
+08-08-2011 1:26:42 - NETHANDLER: set IP... 170.160.24.90
+08-08-2011 1:26:45 - NETHANDLER: set IP... ok!
+08-08-2011 1:26:45 - NETHANDLER: start strong DAD
+08-08-2011 1:26:45 - NETHANDLER: start TCP...
+08-08-2011 1:26:45 - NETHANDLER: start TCP listener... 170.160.24.90:30001
+08-08-2011 1:26:45 - NETHANDLER: start TCP listener... failed! La dirección solicitada no es válida en este contexto
+08-08-2011 1:26:49 - NETHANDLER: start TCP listener... 170.160.24.90:30001
+08-08-2011 1:26:49 - NETHANDLER: start TCP listener... ok!
+08-08-2011 1:26:49 - NETHANDLER: start TCP... ok!
+08-08-2011 1:26:49 - NETHANDLER: start UDP... 224.0.0.2:30002
+08-08-2011 1:26:49 - NETHANDLER: start UDP... ok!
+08-08-2011 1:26:49 - NETHANDLER: start weak DAD
+08-08-2011 1:26:49 - COMMUNICATION: start communication...
+08-08-2011 1:26:49 - COMMUNICATION: set IP
+08-08-2011 1:26:49 - COMMUNICATION: set user ID
+08-08-2011 1:26:49 - COMMUNICATION: router config
+08-08-2011 1:26:49 - ROUTER: max list size: 100 used: 0
+08-08-2011 1:26:49 - COMMUNICATION: timer on
+08-08-2011 1:26:49 - COMMUNICATION: detection on
+08-08-2011 1:26:49 - COMMUNICATION: process on
+08-08-2011 1:26:49 - COMMUNICATION: messages on
+08-08-2011 1:26:49 - COMMUNICATION: bag on
+08-08-2011 1:26:49 - COMMUNICATION: start communication... ok!
+08-08-2011 1:26:49 - NETHANDLER: start netHandler... ok!
+08-08-2011 1:26:49 - NETHANDLER: we are so connected!!! welcome to HLMP
+08-08-2011 1:26:50 - ROUTER: max list size: 100 used: 0
+08-08-2011 1:26:51 - ROUTER: max list size: 100 used: 1
+08-08-2011 1:26:52 - ROUTER: max list size: 100 used: 2
+08-08-2011 1:26:53 - ROUTER: max list size: 100 used: 3
+08-08-2011 1:26:54 - ROUTER: max list size: 100 used: 4
+08-08-2011 1:26:55 - ROUTER: max list size: 100 used: 5
+08-08-2011 1:26:56 - ROUTER: max list size: 100 used: 6
+08-08-2011 1:26:57 - ROUTER: max list size: 100 used: 7
+08-08-2011 1:26:58 - ROUTER: max list size: 100 used: 8
+08-08-2011 1:26:59 - ROUTER: max list size: 100 used: 9
+08-08-2011 1:27:00 - ROUTER: max list size: 100 used: 10
+08-08-2011 1:27:01 - ROUTER: max list size: 100 used: 11
+08-08-2011 1:27:02 - ROUTER: max list size: 100 used: 12
+08-08-2011 1:27:03 - ROUTER: max list size: 100 used: 13
+08-08-2011 1:27:04 - ROUTER: max list size: 100 used: 14
+08-08-2011 1:27:05 - ROUTER: max list size: 100 used: 15
+08-08-2011 1:27:06 - ROUTER: max list size: 100 used: 16
+08-08-2011 1:27:07 - ROUTER: max list size: 100 used: 17
+08-08-2011 1:27:08 - ROUTER: max list size: 100 used: 18
+08-08-2011 1:27:09 - ROUTER: max list size: 100 used: 19
+08-08-2011 1:27:11 - ROUTER: max list size: 100 used: 20
+08-08-2011 1:27:12 - ROUTER: max list size: 100 used: 21
+08-08-2011 1:27:13 - ROUTER: max list size: 100 used: 22
+08-08-2011 1:27:14 - ROUTER: max list size: 100 used: 23
+08-08-2011 1:27:15 - ROUTER: max list size: 100 used: 24
+08-08-2011 1:27:16 - ROUTER: max list size: 100 used: 25
+08-08-2011 1:27:17 - ROUTER: max list size: 100 used: 26
+08-08-2011 1:27:18 - ROUTER: max list size: 100 used: 27
+08-08-2011 1:27:19 - ROUTER: max list size: 100 used: 28
+08-08-2011 1:27:20 - ROUTER: max list size: 100 used: 29
+08-08-2011 1:27:21 - ROUTER: max list size: 100 used: 30
+08-08-2011 1:27:22 - ROUTER: max list size: 100 used: 31
+08-08-2011 1:27:23 - ROUTER: max list size: 100 used: 32
+08-08-2011 1:27:24 - ROUTER: max list size: 100 used: 33
+08-08-2011 1:27:25 - ROUTER: max list size: 100 used: 34
+08-08-2011 1:27:26 - ROUTER: max list size: 100 used: 35
+08-08-2011 1:27:27 - ROUTER: max list size: 100 used: 36
+08-08-2011 1:27:28 - ROUTER: max list size: 100 used: 37
+08-08-2011 1:27:29 - ROUTER: max list size: 100 used: 38
+08-08-2011 1:27:30 - ROUTER: max list size: 100 used: 39
+08-08-2011 1:27:31 - ROUTER: max list size: 100 used: 40
+08-08-2011 1:27:32 - ROUTER: max list size: 100 used: 41
+08-08-2011 1:27:33 - ROUTER: max list size: 100 used: 42
+08-08-2011 1:27:34 - ROUTER: max list size: 100 used: 43
+08-08-2011 1:27:35 - ROUTER: max list size: 100 used: 44
+08-08-2011 1:27:36 - ROUTER: max list size: 100 used: 45
+08-08-2011 1:27:37 - ROUTER: max list size: 100 used: 46
+08-08-2011 1:27:38 - ROUTER: max list size: 100 used: 47
+08-08-2011 1:27:39 - ROUTER: max list size: 100 used: 48
+08-08-2011 1:27:40 - ROUTER: max list size: 100 used: 49
+08-08-2011 1:27:41 - ROUTER: max list size: 100 used: 50
+08-08-2011 1:27:42 - ROUTER: max list size: 100 used: 51
+08-08-2011 1:27:43 - ROUTER: max list size: 100 used: 52
+08-08-2011 1:27:44 - ROUTER: max list size: 100 used: 53
+08-08-2011 1:27:45 - ROUTER: max list size: 100 used: 54
+08-08-2011 1:27:46 - ROUTER: max list size: 100 used: 55
+08-08-2011 1:27:47 - ROUTER: max list size: 100 used: 56
+08-08-2011 1:27:48 - ROUTER: max list size: 100 used: 57
+08-08-2011 1:27:49 - ROUTER: max list size: 100 used: 58
+08-08-2011 1:27:50 - ROUTER: max list size: 100 used: 59
+08-08-2011 1:27:51 - ROUTER: max list size: 100 used: 60
+08-08-2011 1:27:52 - ROUTER: max list size: 100 used: 61
+08-08-2011 1:27:53 - ROUTER: max list size: 100 used: 62
+08-08-2011 1:27:54 - ROUTER: max list size: 100 used: 63
+08-08-2011 1:27:55 - ROUTER: max list size: 100 used: 64
+08-08-2011 1:27:56 - NETHANDLER: resetIP...
+08-08-2011 1:27:56 - NETHANDLER: stop netHandler...
+08-08-2011 1:27:56 - NETHANDLER: stop DAD...
+08-08-2011 1:27:56 - NETHANDLER: stop DAD... ok!
+08-08-2011 1:27:56 - NETHANDLER: stop communication...
+08-08-2011 1:27:56 - COMMUNICATION: stop Communication...
+08-08-2011 1:27:56 - COMMUNICATION: timer off
+08-08-2011 1:27:56 - COMMUNICATION: messages off
+08-08-2011 1:27:56 - COMMUNICATION: detection off
+08-08-2011 1:27:56 - COMMUNICATION: process off
+08-08-2011 1:27:56 - COMMUNICATION: bag off
+08-08-2011 1:27:56 - COMMUNICATION: messages stats  send: 0 confirmed: 0 destroy: 0 warnings: 0 failed: 0 received: 0 resent: 0 routed: 0
+08-08-2011 1:27:56 - COMMUNICATION: re init
+08-08-2011 1:27:56 - COMMUNICATION: stop communication... ok!
+08-08-2011 1:27:56 - NETHANDLER: stop communication... ok!
+08-08-2011 1:27:56 - NETHANDLER: drop multicast suscription...
+08-08-2011 1:27:56 - NETHANDLER: drop multicast suscription... ok!
+08-08-2011 1:27:56 - NETHANDLER: shudown UDP client...
+08-08-2011 1:27:56 - NETHANDLER: shudown UDP client... ok!
+08-08-2011 1:27:56 - NETHANDLER: close UDP socket...
+08-08-2011 1:27:56 - NETHANDLER: close UDP socket... ok!
+08-08-2011 1:27:56 - NETHANDLER: close UDP client...
+08-08-2011 1:27:56 - NETHANDLER: close UDP client... ok!
+08-08-2011 1:27:56 - NETHANDLER: stop UDP thread...
+08-08-2011 1:27:56 - NETHANDLER: stop UDP thread... ok!
+08-08-2011 1:27:56 - NETHANDLER: stop TCP listener...
+08-08-2011 1:27:56 - TCP WARNING: TCP listener has stopped!! Una operación de bloqueo fue interrumpida por una llamada a WSACancelBlockingCall
+08-08-2011 1:27:56 - NETHANDLER: stop TCP listener... ok!
+08-08-2011 1:27:56 - NETHANDLER: stop TCP thread...
+08-08-2011 1:27:56 - NETHANDLER: stop TCP thread... ok!
+08-08-2011 1:27:56 - NETHANDLER: dhcp on...
+08-08-2011 1:27:56 - NETHANDLER: dhcp on... ok!
+08-08-2011 1:27:56 - NETHANDLER: stop wifi...
+08-08-2011 1:27:57 - WIFI: disconnection request
+08-08-2011 1:27:57 - NETHANDLER: stop wifi... ok!
+08-08-2011 1:27:57 - NETHANDLER: kill TCP links...
+08-08-2011 1:27:57 - NETHANDLER: kill TCP links... ok!
+08-08-2011 1:27:57 - NETHANDLER: initialation of objects...
+08-08-2011 1:27:57 - NETHANDLER: initialation of objects... ok!
+08-08-2011 1:27:57 - NETHANDLER: stop netHandler... ok!
+08-08-2011 1:27:57 - NETHANDLER: bye bye!
+08-08-2011 1:27:57 - NETHANDLER: start netHandler...
+08-08-2011 1:27:57 - NETHANDLER: nerwork adapter is... Atheros AR9002WB-1NG Wireless Network Adapter
+08-08-2011 1:27:57 - NETHANDLER: resetIP... ok!
+08-08-2011 1:27:57 - NETHANDLER: enable adapter...
+08-08-2011 1:28:06 - NETHANDLER: enable adapter... ok!
+08-08-2011 1:28:06 - NETHANDLER: start wifi...
+08-08-2011 1:28:06 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:06 - WIFI: connection request
+08-08-2011 1:28:07 - WIFI: disconenction
+08-08-2011 1:28:10 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:14 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:18 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:20 - WIFI: unknown connection (Goesh)
+08-08-2011 1:28:20 - WIFI: disconnection request
+08-08-2011 1:28:20 - WIFI: connection request
+08-08-2011 1:28:20 - WIFI: disconenction
+08-08-2011 1:28:22 - WIFI: connection request
+08-08-2011 1:28:22 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:26 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:30 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:34 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:37 - WIFI: connection request
+08-08-2011 1:28:37 - WIFI: disconenction
+08-08-2011 1:28:38 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:42 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:46 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:50 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:52 - WIFI: WIFI: disable adapter...
+08-08-2011 1:28:54 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:55 - WIFI: WIFI: disable adapter... ok!
+08-08-2011 1:28:55 - WIFI: WIFI: enable adapter...
+08-08-2011 1:28:58 - NETHANDLER: waiting for other devices
+08-08-2011 1:28:59 - WIFI: WIFI: enable adapter... ok!
+08-08-2011 1:28:59 - WIFI: disconenction
+08-08-2011 1:29:01 - WIFI: unknown connection (Goesh)
+08-08-2011 1:29:01 - WIFI: disconnection request
+08-08-2011 1:29:02 - WIFI: connection request
+08-08-2011 1:29:02 - WIFI: disconenction
+08-08-2011 1:29:02 - NETHANDLER: waiting for other devices
+08-08-2011 1:29:06 - NETHANDLER: waiting for other devices
+08-08-2011 1:29:10 - NETHANDLER: waiting for other devices
+08-08-2011 1:29:14 - WIFI: connection request
+08-08-2011 1:29:14 - NETHANDLER: waiting for other devices
+08-08-2011 1:29:14 - WIFI: disconenction
+08-08-2011 1:29:18 - NETHANDLER: waiting for other devices
+08-08-2011 1:29:19 - WIFI: connection
+08-08-2011 1:29:22 - NETHANDLER: start wifi... ok!
+08-08-2011 1:29:22 - NETHANDLER: set IP... 170.160.3.75
+08-08-2011 1:29:25 - NETHANDLER: set IP... ok!
+08-08-2011 1:29:25 - NETHANDLER: start strong DAD
+08-08-2011 1:29:25 - NETHANDLER: start TCP...
+08-08-2011 1:29:25 - NETHANDLER: start TCP listener... 170.160.3.75:30001
+08-08-2011 1:29:25 - NETHANDLER: start TCP listener... failed! La dirección solicitada no es válida en este contexto
+08-08-2011 1:29:29 - NETHANDLER: start TCP listener... 170.160.3.75:30001
+08-08-2011 1:29:29 - NETHANDLER: start TCP listener... ok!
+08-08-2011 1:29:29 - NETHANDLER: start TCP... ok!
+08-08-2011 1:29:29 - NETHANDLER: start UDP... 224.0.0.2:30002
+08-08-2011 1:29:29 - NETHANDLER: start UDP... ok!
+08-08-2011 1:29:29 - NETHANDLER: start weak DAD
+08-08-2011 1:29:29 - COMMUNICATION: start communication...
+08-08-2011 1:29:29 - COMMUNICATION: set IP
+08-08-2011 1:29:29 - COMMUNICATION: set user ID
+08-08-2011 1:29:29 - COMMUNICATION: router config
+08-08-2011 1:29:29 - ROUTER: max list size: 100 used: 0
+08-08-2011 1:29:29 - COMMUNICATION: timer on
+08-08-2011 1:29:29 - COMMUNICATION: detection on
+08-08-2011 1:29:29 - COMMUNICATION: process on
+08-08-2011 1:29:29 - COMMUNICATION: messages on
+08-08-2011 1:29:29 - COMMUNICATION: bag on
+08-08-2011 1:29:29 - COMMUNICATION: start communication... ok!
+08-08-2011 1:29:29 - NETHANDLER: start netHandler... ok!
+08-08-2011 1:29:29 - NETHANDLER: we are so connected!!! welcome to HLMP
+08-08-2011 1:29:30 - WIFI: alone connection
+08-08-2011 1:29:30 - ROUTER: max list size: 100 used: 0
+08-08-2011 1:29:31 - ROUTER: max list size: 100 used: 1
+08-08-2011 1:29:32 - ROUTER: max list size: 100 used: 2
+08-08-2011 1:29:33 - ROUTER: max list size: 100 used: 3
+08-08-2011 1:29:33 - NETHANDLER: resetIP...
+08-08-2011 1:29:33 - NETHANDLER: stop netHandler...
+08-08-2011 1:29:33 - NETHANDLER: stop DAD...
+08-08-2011 1:29:33 - NETHANDLER: stop DAD... ok!
+08-08-2011 1:29:33 - NETHANDLER: stop communication...
+08-08-2011 1:29:33 - COMMUNICATION: stop Communication...
+08-08-2011 1:29:33 - COMMUNICATION: timer off
+08-08-2011 1:29:33 - COMMUNICATION: messages off
+08-08-2011 1:29:34 - COMMUNICATION: detection off
+08-08-2011 1:29:34 - COMMUNICATION: process off
+08-08-2011 1:29:34 - WIFI: connection
+08-08-2011 1:29:34 - COMMUNICATION: bag off
+08-08-2011 1:29:34 - COMMUNICATION: messages stats  send: 0 confirmed: 0 destroy: 0 warnings: 0 failed: 0 received: 0 resent: 0 routed: 0
+08-08-2011 1:29:34 - COMMUNICATION: re init
+08-08-2011 1:29:34 - COMMUNICATION: stop communication... ok!
+08-08-2011 1:29:34 - NETHANDLER: stop communication... ok!
+08-08-2011 1:29:34 - NETHANDLER: drop multicast suscription...
+08-08-2011 1:29:34 - NETHANDLER: drop multicast suscription... ok!
+08-08-2011 1:29:34 - NETHANDLER: shudown UDP client...
+08-08-2011 1:29:34 - NETHANDLER: shudown UDP client... ok!
+08-08-2011 1:29:34 - NETHANDLER: close UDP socket...
+08-08-2011 1:29:34 - NETHANDLER: close UDP socket... ok!
+08-08-2011 1:29:34 - NETHANDLER: close UDP client...
+08-08-2011 1:29:34 - NETHANDLER: close UDP client... ok!
+08-08-2011 1:29:34 - NETHANDLER: stop UDP thread...
+08-08-2011 1:29:34 - NETHANDLER: stop UDP thread... ok!
+08-08-2011 1:29:34 - NETHANDLER: stop TCP listener...
+08-08-2011 1:29:34 - NETHANDLER: stop TCP listener... ok!
+08-08-2011 1:29:34 - NETHANDLER: stop TCP thread...
+08-08-2011 1:29:34 - NETHANDLER: stop TCP thread... ok!
+08-08-2011 1:29:34 - NETHANDLER: dhcp on...
+08-08-2011 1:29:34 - NETHANDLER: dhcp on... ok!
+08-08-2011 1:29:34 - NETHANDLER: stop wifi...
+08-08-2011 1:29:34 - WIFI: disconnection request
+08-08-2011 1:29:34 - NETHANDLER: stop wifi... ok!
+08-08-2011 1:29:34 - NETHANDLER: kill TCP links...
+08-08-2011 1:29:34 - NETHANDLER: kill TCP links... ok!
+08-08-2011 1:29:34 - NETHANDLER: initialation of objects...
+08-08-2011 1:29:34 - NETHANDLER: initialation of objects... ok!
+08-08-2011 1:29:34 - NETHANDLER: stop netHandler... ok!
+08-08-2011 1:29:34 - NETHANDLER: bye bye!
+08-08-2011 1:29:34 - NETHANDLER: start netHandler...
+08-08-2011 1:29:34 - NETHANDLER: nerwork adapter is... Atheros AR9002WB-1NG Wireless Network Adapter
+08-08-2011 1:29:34 - NETHANDLER: enable adapter...
+08-08-2011 1:29:34 - NETHANDLER: resetIP... ok!
+08-08-2011 1:29:37 - NETHANDLER: enable adapter... ok!
+08-08-2011 1:29:37 - NETHANDLER: start wifi...
+08-08-2011 1:29:37 - NETHANDLER: waiting for other devices
+08-08-2011 1:29:38 - WIFI: connection request
+08-08-2011 1:29:38 - WIFI: connection
+08-08-2011 1:29:41 - NETHANDLER: start wifi... ok!
+08-08-2011 1:29:41 - NETHANDLER: set IP... 170.160.198.202
+08-08-2011 1:29:42 - NETHANDLER: set IP... failed! EnableStatic: Unknown error. Win32Code: 2147786788
+08-08-2011 1:29:46 - NETHANDLER: set IP... 170.160.198.202
+08-08-2011 1:29:47 - NETHANDLER: set IP... ok!
+08-08-2011 1:29:47 - NETHANDLER: start strong DAD
+08-08-2011 1:29:47 - NETHANDLER: start TCP...
+08-08-2011 1:29:47 - NETHANDLER: start TCP listener... 170.160.198.202:30001
+08-08-2011 1:29:47 - NETHANDLER: start TCP listener... failed! La dirección solicitada no es válida en este contexto
+08-08-2011 1:29:51 - NETHANDLER: start TCP listener... 170.160.198.202:30001
+08-08-2011 1:29:51 - NETHANDLER: start TCP listener... ok!
+08-08-2011 1:29:51 - NETHANDLER: start TCP... ok!
+08-08-2011 1:29:51 - NETHANDLER: start UDP... 224.0.0.2:30002
+08-08-2011 1:29:51 - NETHANDLER: start UDP... ok!
+08-08-2011 1:29:51 - NETHANDLER: start weak DAD
+08-08-2011 1:29:51 - COMMUNICATION: start communication...
+08-08-2011 1:29:51 - COMMUNICATION: set IP
+08-08-2011 1:29:51 - COMMUNICATION: set user ID
+08-08-2011 1:29:51 - COMMUNICATION: router config
+08-08-2011 1:29:51 - ROUTER: max list size: 100 used: 0
+08-08-2011 1:29:51 - COMMUNICATION: timer on
+08-08-2011 1:29:51 - COMMUNICATION: detection on
+08-08-2011 1:29:51 - COMMUNICATION: process on
+08-08-2011 1:29:51 - COMMUNICATION: messages on
+08-08-2011 1:29:51 - COMMUNICATION: bag on
+08-08-2011 1:29:51 - COMMUNICATION: start communication... ok!
+08-08-2011 1:29:51 - NETHANDLER: start netHandler... ok!
+08-08-2011 1:29:51 - NETHANDLER: we are so connected!!! welcome to HLMP
+08-08-2011 1:29:52 - ROUTER: max list size: 100 used: 0
+08-08-2011 1:29:53 - ROUTER: max list size: 100 used: 1
+08-08-2011 1:29:54 - ROUTER: max list size: 100 used: 2
+08-08-2011 1:29:55 - ROUTER: max list size: 100 used: 3
+08-08-2011 1:29:56 - ROUTER: max list size: 100 used: 4
+08-08-2011 1:29:57 - ROUTER: max list size: 100 used: 5
+08-08-2011 1:29:58 - ROUTER: max list size: 100 used: 6
+08-08-2011 1:29:59 - ROUTER: max list size: 100 used: 7
+08-08-2011 1:30:00 - ROUTER: max list size: 100 used: 8
+08-08-2011 1:30:01 - ROUTER: max list size: 100 used: 9
+08-08-2011 1:30:02 - ROUTER: max list size: 100 used: 10
+08-08-2011 1:30:03 - ROUTER: max list size: 100 used: 11
+08-08-2011 1:30:04 - ROUTER: max list size: 100 used: 12
+08-08-2011 1:30:05 - ROUTER: max list size: 100 used: 13
+08-08-2011 1:30:06 - ROUTER: max list size: 100 used: 14
+08-08-2011 1:30:07 - ROUTER: max list size: 100 used: 15
+08-08-2011 1:30:08 - ROUTER: max list size: 100 used: 16
+08-08-2011 1:30:09 - ROUTER: max list size: 100 used: 17
+08-08-2011 1:30:10 - ROUTER: max list size: 100 used: 18
+08-08-2011 1:30:11 - ROUTER: max list size: 100 used: 19
+08-08-2011 1:30:12 - ROUTER: max list size: 100 used: 20
+08-08-2011 1:30:13 - ROUTER: max list size: 100 used: 21
+08-08-2011 1:30:14 - ROUTER: max list size: 100 used: 22
+08-08-2011 1:30:15 - ROUTER: max list size: 100 used: 23
+08-08-2011 1:30:16 - ROUTER: max list size: 100 used: 24
+08-08-2011 1:30:17 - ROUTER: max list size: 100 used: 25
+08-08-2011 1:30:18 - ROUTER: max list size: 100 used: 26
+08-08-2011 1:30:19 - ROUTER: max list size: 100 used: 27
+08-08-2011 1:30:20 - ROUTER: max list size: 100 used: 28
+08-08-2011 1:30:21 - ROUTER: max list size: 100 used: 29
+08-08-2011 1:30:22 - ROUTER: max list size: 100 used: 30
+08-08-2011 1:30:23 - ROUTER: max list size: 100 used: 31
+08-08-2011 1:30:24 - ROUTER: max list size: 100 used: 32
+08-08-2011 1:30:25 - ROUTER: max list size: 100 used: 33
+08-08-2011 1:30:26 - ROUTER: max list size: 100 used: 34
+08-08-2011 1:30:27 - ROUTER: max list size: 100 used: 35
+08-08-2011 1:30:28 - ROUTER: max list size: 100 used: 36
+08-08-2011 1:30:29 - ROUTER: max list size: 100 used: 37
+08-08-2011 1:30:30 - ROUTER: max list size: 100 used: 38
+08-08-2011 1:30:31 - ROUTER: max list size: 100 used: 39
+08-08-2011 1:30:32 - ROUTER: max list size: 100 used: 40
+08-08-2011 1:30:33 - ROUTER: max list size: 100 used: 41
+08-08-2011 1:30:34 - ROUTER: max list size: 100 used: 42
+08-08-2011 1:30:35 - ROUTER: max list size: 100 used: 43
+08-08-2011 1:30:36 - ROUTER: max list size: 100 used: 44
+08-08-2011 1:30:37 - ROUTER: max list size: 100 used: 45
+08-08-2011 1:30:38 - ROUTER: max list size: 100 used: 46
+08-08-2011 1:30:39 - ROUTER: max list size: 100 used: 47
+08-08-2011 1:30:40 - ROUTER: max list size: 100 used: 48
+08-08-2011 1:30:41 - ROUTER: max list size: 100 used: 49
+08-08-2011 1:30:42 - ROUTER: max list size: 100 used: 50
+08-08-2011 1:30:43 - ROUTER: max list size: 100 used: 51
+08-08-2011 1:30:44 - ROUTER: max list size: 100 used: 52
+08-08-2011 1:30:45 - NETHANDLER: disconnetc aborting reset No se ha iniciado el subproceso.
+08-08-2011 1:30:45 - NETHANDLER: stop netHandler...
+08-08-2011 1:30:45 - NETHANDLER: stop DAD...
+08-08-2011 1:30:45 - NETHANDLER: stop DAD... ok!
+08-08-2011 1:30:45 - NETHANDLER: stop communication...
+08-08-2011 1:30:45 - COMMUNICATION: stop Communication...
+08-08-2011 1:30:45 - COMMUNICATION: timer off
+08-08-2011 1:30:45 - COMMUNICATION: messages off
+08-08-2011 1:30:45 - COMMUNICATION: detection off
+08-08-2011 1:30:45 - COMMUNICATION: process off
+08-08-2011 1:30:45 - COMMUNICATION: bag off
+08-08-2011 1:30:45 - COMMUNICATION: messages stats  send: 0 confirmed: 0 destroy: 0 warnings: 0 failed: 0 received: 0 resent: 0 routed: 0
+08-08-2011 1:30:45 - COMMUNICATION: re init
+08-08-2011 1:30:45 - COMMUNICATION: stop communication... ok!
+08-08-2011 1:30:45 - NETHANDLER: stop communication... ok!
+08-08-2011 1:30:45 - NETHANDLER: drop multicast suscription...
+08-08-2011 1:30:45 - NETHANDLER: drop multicast suscription... ok!
+08-08-2011 1:30:45 - NETHANDLER: shudown UDP client...
+08-08-2011 1:30:45 - NETHANDLER: shudown UDP client... ok!
+08-08-2011 1:30:45 - NETHANDLER: close UDP socket...
+08-08-2011 1:30:45 - NETHANDLER: close UDP socket... ok!
+08-08-2011 1:30:45 - NETHANDLER: close UDP client...
+08-08-2011 1:30:45 - NETHANDLER: close UDP client... ok!
+08-08-2011 1:30:45 - NETHANDLER: stop UDP thread...
+08-08-2011 1:30:45 - NETHANDLER: stop UDP thread... ok!
+08-08-2011 1:30:45 - NETHANDLER: stop TCP listener...
+08-08-2011 1:30:45 - NETHANDLER: stop TCP listener... ok!
+08-08-2011 1:30:45 - NETHANDLER: stop TCP thread...
+08-08-2011 1:30:45 - NETHANDLER: stop TCP thread... ok!
+08-08-2011 1:30:45 - NETHANDLER: dhcp on...
+08-08-2011 1:30:46 - NETHANDLER: dhcp on... ok!
+08-08-2011 1:30:46 - NETHANDLER: stop wifi...
+08-08-2011 1:30:46 - WIFI: disconnection request
+08-08-2011 1:30:46 - NETHANDLER: stop wifi... ok!
+08-08-2011 1:30:46 - NETHANDLER: kill TCP links...
+08-08-2011 1:30:46 - NETHANDLER: kill TCP links... ok!
+08-08-2011 1:30:46 - NETHANDLER: initialation of objects...
+08-08-2011 1:30:46 - NETHANDLER: initialation of objects... ok!
+08-08-2011 1:30:46 - NETHANDLER: stop netHandler... ok!
+08-08-2011 1:30:46 - NETHANDLER: bye bye!
+08-08-2011 1:30:56 - NETHANDLER: start netHandler...
+08-08-2011 1:30:56 - NETHANDLER: nerwork adapter is... Atheros AR9002WB-1NG Wireless Network Adapter
+08-08-2011 1:30:56 - NETHANDLER: enable adapter...
+08-08-2011 1:30:59 - NETHANDLER: enable adapter... ok!
+08-08-2011 1:30:59 - NETHANDLER: start wifi...
+08-08-2011 1:30:59 - NETHANDLER: waiting for other devices
+08-08-2011 1:30:59 - WIFI: connection request
+08-08-2011 1:31:03 - NETHANDLER: waiting for other devices
+08-08-2011 1:31:07 - NETHANDLER: waiting for other devices
+08-08-2011 1:31:11 - NETHANDLER: waiting for other devices
+08-08-2011 1:31:14 - WIFI: connection request
+08-08-2011 1:31:15 - NETHANDLER: waiting for other devices
+08-08-2011 1:31:19 - NETHANDLER: waiting for other devices
+08-08-2011 1:31:23 - NETHANDLER: waiting for other devices
+08-08-2011 1:31:27 - NETHANDLER: waiting for other devices
+08-08-2011 1:31:29 - WIFI: connection request
+08-08-2011 1:31:30 - WIFI: disconenction
+08-08-2011 1:31:31 - NETHANDLER: waiting for other devices
+08-08-2011 1:31:35 - NETHANDLER: waiting for other devices
+08-08-2011 1:31:39 - NETHANDLER: waiting for other devices
+08-08-2011 1:31:39 - WIFI: connection
+08-08-2011 1:31:43 - NETHANDLER: start wifi... ok!
+08-08-2011 1:31:43 - NETHANDLER: set IP... 170.160.198.202
+08-08-2011 1:31:43 - NETHANDLER: set IP... failed! EnableStatic: Unknown error. Win32Code: 2147786788
+08-08-2011 1:31:47 - NETHANDLER: set IP... 170.160.198.202
+08-08-2011 1:31:48 - NETHANDLER: set IP... ok!
+08-08-2011 1:31:48 - NETHANDLER: start strong DAD
+08-08-2011 1:31:48 - NETHANDLER: start TCP...
+08-08-2011 1:31:48 - NETHANDLER: start TCP listener... 170.160.198.202:30001
+08-08-2011 1:31:48 - NETHANDLER: start TCP listener... ok!
+08-08-2011 1:31:48 - NETHANDLER: start TCP... ok!
+08-08-2011 1:31:48 - NETHANDLER: start UDP... 224.0.0.2:30002
+08-08-2011 1:31:48 - NETHANDLER: start UDP... ok!
+08-08-2011 1:31:48 - NETHANDLER: start weak DAD
+08-08-2011 1:31:48 - COMMUNICATION: start communication...
+08-08-2011 1:31:48 - COMMUNICATION: set IP
+08-08-2011 1:31:48 - COMMUNICATION: set user ID
+08-08-2011 1:31:48 - COMMUNICATION: router config
+08-08-2011 1:31:48 - ROUTER: max list size: 100 used: 0
+08-08-2011 1:31:48 - COMMUNICATION: timer on
+08-08-2011 1:31:48 - COMMUNICATION: detection on
+08-08-2011 1:31:48 - COMMUNICATION: process on
+08-08-2011 1:31:48 - COMMUNICATION: messages on
+08-08-2011 1:31:48 - COMMUNICATION: bag on
+08-08-2011 1:31:48 - COMMUNICATION: start communication... ok!
+08-08-2011 1:31:48 - NETHANDLER: start netHandler... ok!
+08-08-2011 1:31:48 - NETHANDLER: we are so connected!!! welcome to HLMP
+08-08-2011 1:31:49 - ROUTER: max list size: 100 used: 0
+08-08-2011 1:31:50 - ROUTER: max list size: 100 used: 1
+08-08-2011 1:31:51 - ROUTER: max list size: 100 used: 2
+08-08-2011 1:31:52 - ROUTER: max list size: 100 used: 3
+08-08-2011 1:31:53 - ROUTER: max list size: 100 used: 4
+08-08-2011 1:31:54 - ROUTER: max list size: 100 used: 5
+08-08-2011 1:31:55 - ROUTER: max list size: 100 used: 6
+08-08-2011 1:31:56 - ROUTER: max list size: 100 used: 7
+08-08-2011 1:31:57 - ROUTER: max list size: 100 used: 8
+08-08-2011 1:31:58 - ROUTER: max list size: 100 used: 9
+08-08-2011 1:31:59 - ROUTER: max list size: 100 used: 10
+08-08-2011 1:32:00 - ROUTER: max list size: 100 used: 11
+08-08-2011 1:32:01 - ROUTER: max list size: 100 used: 12
+08-08-2011 1:32:02 - ROUTER: max list size: 100 used: 13
+08-08-2011 1:32:03 - ROUTER: max list size: 100 used: 14
+08-08-2011 1:32:04 - ROUTER: max list size: 100 used: 15
+08-08-2011 1:32:05 - ROUTER: max list size: 100 used: 16
+08-08-2011 1:32:06 - ROUTER: max list size: 100 used: 17
+08-08-2011 1:32:07 - ROUTER: max list size: 100 used: 18
+08-08-2011 1:32:08 - ROUTER: max list size: 100 used: 19
+08-08-2011 1:32:09 - ROUTER: max list size: 100 used: 20
+08-08-2011 1:32:10 - ROUTER: max list size: 100 used: 21
+08-08-2011 1:32:11 - ROUTER: max list size: 100 used: 22
+08-08-2011 1:32:12 - ROUTER: max list size: 100 used: 23
+08-08-2011 1:32:13 - ROUTER: max list size: 100 used: 24
+08-08-2011 1:32:14 - ROUTER: max list size: 100 used: 25
+08-08-2011 1:32:15 - ROUTER: max list size: 100 used: 26
+08-08-2011 1:32:16 - ROUTER: max list size: 100 used: 27
+08-08-2011 1:32:17 - ROUTER: max list size: 100 used: 28
+08-08-2011 1:32:18 - ROUTER: max list size: 100 used: 29
+08-08-2011 1:32:19 - ROUTER: max list size: 100 used: 30
+08-08-2011 1:32:20 - ROUTER: max list size: 100 used: 31
+08-08-2011 1:32:21 - ROUTER: max list size: 100 used: 32
+08-08-2011 1:32:22 - ROUTER: max list size: 100 used: 33
+08-08-2011 1:32:23 - ROUTER: max list size: 100 used: 34
+08-08-2011 1:32:24 - ROUTER: max list size: 100 used: 35
+08-08-2011 1:32:25 - ROUTER: max list size: 100 used: 36
+08-08-2011 1:32:26 - ROUTER: max list size: 100 used: 37
+08-08-2011 1:32:27 - ROUTER: max list size: 100 used: 38
+08-08-2011 1:32:28 - ROUTER: max list size: 100 used: 39
+08-08-2011 1:32:29 - ROUTER: max list size: 100 used: 40
+08-08-2011 1:32:30 - NETHANDLER: disconnetc aborting reset No se ha iniciado el subproceso.
+08-08-2011 1:32:30 - NETHANDLER: stop netHandler...
+08-08-2011 1:32:30 - NETHANDLER: stop DAD...
+08-08-2011 1:32:30 - NETHANDLER: stop DAD... ok!
+08-08-2011 1:32:30 - NETHANDLER: stop communication...
+08-08-2011 1:32:30 - COMMUNICATION: stop Communication...
+08-08-2011 1:32:30 - COMMUNICATION: timer off
+08-08-2011 1:32:30 - COMMUNICATION: messages off
+08-08-2011 1:32:30 - COMMUNICATION: detection off
+08-08-2011 1:32:30 - COMMUNICATION: process off
+08-08-2011 1:32:30 - COMMUNICATION: bag off
+08-08-2011 1:32:30 - COMMUNICATION: messages stats  send: 0 confirmed: 0 destroy: 0 warnings: 0 failed: 0 received: 0 resent: 0 routed: 0
+08-08-2011 1:32:30 - COMMUNICATION: re init
+08-08-2011 1:32:30 - COMMUNICATION: stop communication... ok!
+08-08-2011 1:32:30 - NETHANDLER: stop communication... ok!
+08-08-2011 1:32:30 - NETHANDLER: drop multicast suscription...
+08-08-2011 1:32:30 - NETHANDLER: drop multicast suscription... ok!
+08-08-2011 1:32:30 - NETHANDLER: shudown UDP client...
+08-08-2011 1:32:30 - NETHANDLER: shudown UDP client... ok!
+08-08-2011 1:32:30 - NETHANDLER: close UDP socket...
+08-08-2011 1:32:30 - NETHANDLER: close UDP socket... ok!
+08-08-2011 1:32:30 - NETHANDLER: close UDP client...
+08-08-2011 1:32:30 - NETHANDLER: close UDP client... ok!
+08-08-2011 1:32:30 - NETHANDLER: stop UDP thread...
+08-08-2011 1:32:30 - NETHANDLER: stop UDP thread... ok!
+08-08-2011 1:32:30 - NETHANDLER: stop TCP listener...
+08-08-2011 1:32:30 - NETHANDLER: stop TCP listener... ok!
+08-08-2011 1:32:30 - NETHANDLER: stop TCP thread...
+08-08-2011 1:32:30 - NETHANDLER: stop TCP thread... ok!
+08-08-2011 1:32:30 - NETHANDLER: dhcp on...
+08-08-2011 1:32:30 - NETHANDLER: dhcp on... ok!
+08-08-2011 1:32:30 - NETHANDLER: stop wifi...
+08-08-2011 1:32:30 - WIFI: disconnection request
+08-08-2011 1:32:30 - NETHANDLER: stop wifi... ok!
+08-08-2011 1:32:30 - NETHANDLER: kill TCP links...
+08-08-2011 1:32:30 - NETHANDLER: kill TCP links... ok!
+08-08-2011 1:32:30 - NETHANDLER: initialation of objects...
+08-08-2011 1:32:30 - NETHANDLER: initialation of objects... ok!
+08-08-2011 1:32:30 - NETHANDLER: stop netHandler... ok!
+08-08-2011 1:32:30 - NETHANDLER: bye bye!

@@ -1,0 +1,1043 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NetLayer</name>
+    </assembly>
+    <members>
+        <member name="T:NetLayer.NetHandlerState">
+            <summary>
+            Clase que enumera los estados posibles del NetHandler
+            </summary>
+        </member>
+        <member name="T:NetLayer.NetHandler">
+            <summary>
+            Clase de bajo nivel que se encarga de construir y administrar la red adhoc
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.tcpListenerThread">
+            <summary>
+            thread de escucha para clientes TCP
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.tcpListener">
+            <summary>
+            Servidor de mensajes TCP
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.tcpServerList">
+            <summary>
+            Lista de servidores TCP
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.oldServerList">
+            <summary>
+            Lista de servidores TCP que se deben cerrar al final
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.tcpAddress">
+            <summary>
+            IpAddress de TCP
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.udpClientThread">
+            <summary>
+            thread de escucha de mensajes UDP
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.udpClient">
+            <summary>
+            Serividor de mensajes UDP
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.udpIpEndPoint">
+            <summary>
+            EndPoint UDP
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.udpMulticastAdress">
+            <summary>
+            IpAddress UDP
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.udpMessageQueue">
+            <summary>
+            Cola de mensajes UDP Multicast leidos
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.tcpMessageQueue">
+            <summary>
+            Cola de mensajes TCP leidos
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.netData">
+            <summary>
+            Configuración de red
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.commHandler">
+            <summary>
+            Handler de eventos de comunicación
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.connectLock">
+            <summary>
+            Lock para conectar y desconectar
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.netHandlerState">
+            <summary>
+            estado de este objeto (un valor de NetHandlerState)
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.wifiHandler">
+            <summary>
+            Manejador de la conexion de red inalambrica
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.startThread">
+            <summary>
+            Thread de partida
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.stopPoint">
+            <summary>
+            Control de stop
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.ipHandler">
+            <summary>
+            Control de duplicación de Ip
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.iphandlerPoint">
+            <summary>
+            Variable de control para el cambio de IP
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.resetThread">
+            <summary>
+            Thread de reset
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetHandler.resetLock">
+            <summary>
+            lock para reset
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetHandler.#ctor(NetLayer.NetData,NetLayer.CommHandlerI)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="netData">Los parámetros de configuración</param>
+            <param name="commHandler">El comunicador que maneja los eventos generados en la red</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.init">
+            <summary>
+            Inicializa las propiedades de la clase
+            </summary>
+        </member>
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:NetLayer.NetHandler.connect" -->
+        <member name="M:NetLayer.NetHandler.disconnect">
+            <summary>
+            Termina los servicios, Esta función es Bloqueante hasta que termine
+            esta funcion siempre gatilla stopNetworkingHandler
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetHandler.resetIp">
+            <summary>
+            Funcion para que gatilla IpHandler solamente
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetHandler.reset">
+            <summary>
+            Resetea la red
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetHandler.start">
+            <summary>
+            Se gatilla para levantar los servicios
+            Si ocurre un error se arroja
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetHandler.stop(System.Boolean)">
+            <summary>
+            Se gatilla para terminar los servicios
+            Si ocurre algun error se informa en informationNetworkingHandler, no se detiene ejecución
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetHandler.registerIp(System.Net.IPAddress)">
+            <summary>
+            Registra una ip externa para el chequeo de ip duplicada
+            </summary>
+            <param name="ip">la ip a registrar</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.wifiInformation(System.String)">
+            <summary>
+            Función que gatilla WifiHandler
+            </summary>
+            <param name="message">los mensages recibidos</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.sendTcpMessage(NetLayer.NetMessage)">
+            <summary>
+            Envía un mensaje TCP a todas las máquinas remotas visibles
+            Si ocurre algun error se arroja
+            </summary>
+            <param name="message">el mensaje a envíar</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.sendUdpMessage(NetLayer.NetMessage)">
+            <summary>
+            Envia un mensaje UDP a todas las maquinas remotas visibles
+            Si ocurre un error se informa
+            </summary>
+            <param name="message">El mensaje a envíar</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.sendUdpMessage(NetLayer.NetMessage,System.Net.IPAddress)">
+            <summary>
+            Envia un mensaje UDP a todas las maquinas remotas visibles
+            Si ocurre un error se informa
+            </summary>
+            <param name="message">El mensaje a envíar</param>
+            <param name="ip">la direccion IP a la cual enviar el mensaje</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.sendTcpMessage(NetLayer.NetMessage,System.Net.IPAddress)">
+            <summary>
+            Envía un mensaje TCP a la maquina cuya ip es pasada como parámetro
+            Si ocurre un error se arroja
+            </summary>
+            <param name="netMessage">El mensaje a envíar</param>
+            <param name="ip">la IP de la máquina destino</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.connectTo(System.Net.IPAddress)">
+            <summary>
+            Se conecta a una máquina remota por TCP para enviarle mensajes posteriormente
+            Si ocurre un error se notifica en informationNetworkingHandler
+            </summary>
+            <param name="serverIp">La dirección IP de la máquina remota, debe ser un String</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.connectToAsync(System.Object)">
+            <summary>
+            Se conecta a una máquina remota por TCP para enviarle mensajes posteriormente
+            Si ocurre un error se notifica en informationNetworkingHandler
+            </summary>
+            <param name="o">La dirección IP de la máquina remota, debe ser un String</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.disconnectFrom(System.Net.IPAddress)">
+            <summary>
+            Desconecta los servicios TCP asociados a una maquina remota
+            </summary>
+            <param name="machineIp">la Ip de la maquina a desconectar debe ser un String</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.disconnectFrom(NetLayer.RemoteMachine)">
+            <summary>
+            Desconecta los servicios TCP asociados a una maquina remota
+            </summary>
+            <param name="machine">la maquina a desconectar debe ser un String</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.disconnectFromAsync(System.Object)">
+            <summary>
+            Desconecta los servicios TCP asociados a una maquina remota
+            </summary>
+            <param name="o">La ip de la maquina remota a desconectar en formato de String o la maquina remota</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.killRemoteMachine(System.Object)">
+            <summary>
+            Desconecta los servicios TCP asociados a una maquina remota
+            </summary>
+            <param name="o">La ip de la maquina remota a desconectar en formato de String o la maquina remota</param>
+        </member>
+        <member name="M:NetLayer.NetHandler.listenTCPClients">
+            <summary>
+            Escucha nuevos clientes TCP que quieran establecer comunicación con ésta máquina
+            Si ocurre un error se notifica en errorNetworkingHandler
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetHandler.listenUDPMessages">
+            <summary>
+            Escucha mensajes UDP recibidos
+            Si ocurre un error se notifica en errorNetworkingHandler
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetHandler.listenTCPMessages(System.IAsyncResult)">
+            <summary>
+            Escucha mensajes TCP recibidos
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetHandler.listenTCPMessagesData(System.IAsyncResult)">
+            <summary>
+            Escucha mensajes TCP recibidos
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetHandler.addTCPMessages(NetLayer.NetMessage)">
+            <summary>
+            Agrega mensajes TCP recibidos a la cola
+            </summary>
+            <param name="message">el mensaje recibido</param>
+        </member>
+        <member name="P:NetLayer.NetHandler.TcpServerList">
+            <summary>
+            Lista de maquinas de la red adhoc que son directamente visibles para esta máquina.
+            Se posee una conexión TCP directa con cada una de ellas.
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetHandler.UdpMessageQueue">
+            <summary>
+            Cola de mensajes UDP que ha recibido esta máquina
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetHandler.TcpMessageQueue">
+            <summary>
+            Cola de mensajes TCP que ha recibido esta máquina
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetHandler.NetData">
+            <summary>
+            Los datos de red
+            </summary>
+        </member>
+        <member name="T:NetLayer.IpState">
+            <summary>
+            Clase que enumera los estados posibles de IP 
+            </summary>
+        </member>
+        <member name="T:NetLayer.IphandlerState">
+            <summary>
+            Clase que enumera los estados posibles de la conexión inalambrica
+            </summary>
+        </member>
+        <member name="T:NetLayer.IpHandler">
+            <summary>
+            Clase que se preocupa de que no hayan conflictos con la IP
+            </summary>
+        </member>
+        <member name="F:NetLayer.IpHandler.resetIpDelegate">
+            <summary>
+            Handler para cambio de ip
+            </summary>
+            <returns>vacio</returns>
+        </member>
+        <member name="F:NetLayer.IpHandler.checkIpThread">
+            <summary>
+            Thread que verifica la IP
+            </summary>
+        </member>
+        <member name="F:NetLayer.IpHandler.state">
+            <summary>
+            El estado de este objeto (un parametro de IpHandlerState)
+            </summary>
+        </member>
+        <member name="F:NetLayer.IpHandler.stopLock">
+            <summary>
+            Objeto de lock
+            </summary>
+        </member>
+        <member name="F:NetLayer.IpHandler.queue">
+            <summary>
+            Cola de Ip's de mensajes i'm alive recibidos
+            </summary>
+        </member>
+        <member name="F:NetLayer.IpHandler.queueLock">
+            <summary>
+            Objeto de lock para la cola
+            </summary>
+        </member>
+        <member name="F:NetLayer.IpHandler.netData">
+            <summary>
+            Los datos de red
+            </summary>
+        </member>
+        <member name="F:NetLayer.IpHandler.lolinessTimeOut">
+            <summary>
+            Contador de loliness
+            </summary>
+        </member>
+        <member name="F:NetLayer.IpHandler.aliveValue">
+            <summary>
+            valor que que cambia si el usuario esta correctamente recibiendo la multidifusión
+            </summary>
+        </member>
+        <member name="F:NetLayer.IpHandler.preAliveValue">
+            <summary>
+            valor que que cambia si el usuario esta correctamente recibiendo la multidifusión
+            </summary>
+        </member>
+        <member name="M:NetLayer.IpHandler.#ctor(NetLayer.NetData,NetLayer.IpHandler.ResetIpDelegate)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="netData">Los datos de red</param>
+            <param name="resetIpDelegate">la función que se gatilla cuando la Ip debe ser cambiada</param>
+        </member>
+        <member name="M:NetLayer.IpHandler.startStrongDAD">
+            <summary>
+            Comienza la verificación fuerte
+            </summary>
+        </member>
+        <member name="M:NetLayer.IpHandler.chageToWeakDAD">
+            <summary>
+            Comienza la verificación débil
+            </summary>
+        </member>
+        <member name="M:NetLayer.IpHandler.stop">
+            <summary>
+            Detiene la verificación
+            </summary>
+        </member>
+        <member name="M:NetLayer.IpHandler.checkIp">
+            <summary>
+            Verifica que no exista Ip duplicada en el sistema operativo, si gatilla resetIpDelegate, asegura que el Thread se detendrá
+            </summary>
+        </member>
+        <member name="M:NetLayer.IpHandler.put(System.Net.IPAddress)">
+            <summary>
+            Coloca una ip a la cola de ips para chequear
+            </summary>
+            <param name="outterIp">la ip a encolar</param>
+        </member>
+        <member name="M:NetLayer.IpHandler.putReceibedBytes(System.Int32)">
+            <summary>
+            Agrega Bytes leidos por UDP
+            </summary>
+            <param name="bytesNumber">la cantidad de bytes a agregar</param>
+        </member>
+        <member name="T:NetLayer.IpHandler.ResetIpDelegate">
+            <summary>
+            Declaración de delegado para evento de cambio de ip
+            </summary>
+        </member>
+        <member name="T:NetLayer.SystemHandler">
+            <summary>
+            Clase con métodos de comunicación con el sistema operativo
+            </summary>
+        </member>
+        <member name="M:NetLayer.SystemHandler.resetAdapter(NetLayer.NetData)">
+            <summary>
+            Cambia la IP del sistema operativo al estádo dinámico
+            Si ocurre un error se arroja la excepción
+            </summary>
+        </member>
+        <member name="M:NetLayer.SystemHandler.resetAdapter2(NetLayer.NetData)">
+            <summary>
+            Cambia la IP del sistema operativo al estádo dinámico
+            Si ocurre un error se arroja la excepción
+            </summary>
+        </member>
+        <member name="M:NetLayer.SystemHandler.turnOnAdapter(NetLayer.NetData,System.Boolean)">
+            <summary>
+            Cambia la IP del sistema operativo al estádo dinámico
+            Si ocurre un error se arroja la excepción
+            </summary>
+        </member>
+        <member name="M:NetLayer.SystemHandler.turnOffAdapter(NetLayer.NetData)">
+            <summary>
+            Cambia la IP del sistema operativo al estádo dinámico
+            Si ocurre un error se arroja la excepción
+            </summary>
+        </member>
+        <member name="M:NetLayer.SystemHandler.setRegistryIP(NetLayer.NetData)">
+            <summary>
+            Cambia la Ip del sistema operativo a la configuración de red adhoc
+            Si ocurre un error se arroja la excepción
+            </summary>
+        </member>
+        <member name="M:NetLayer.SystemHandler.setRegistryDHCP(NetLayer.NetData)">
+            <summary>
+            Cambia la IP del sistema operativo al estádo dinámico
+            Si ocurre un error se arroja la excepción
+            </summary>
+        </member>
+        <member name="M:NetLayer.SystemHandler.rebindAdapter(NetLayer.NetData)">
+            <summary>
+            Cambia la IP del sistema operativo al estádo dinámico
+            Si ocurre un error se arroja la excepción
+            </summary>
+        </member>
+        <member name="M:NetLayer.SystemHandler.getIpState(NetLayer.NetworkAdapter,System.Net.IPAddress)">
+            <summary>
+            Obtiene el estado DAD de la Ip asignada a TCP
+            </summary>
+            <returns>un estado de la clase IpState</returns>
+        </member>
+        <member name="M:NetLayer.SystemHandler.getWifiAdapter">
+            <summary>
+            Busca el adaptador de red WIFI
+            </summary>
+            <returns>El adaptador de red Wifi</returns>
+        </member>
+        <member name="M:NetLayer.SystemHandler.getNetworkAdapters">
+            <summary>
+            Retorna una lista de adaptadores de red disponibles en la máquina
+            Si ocurre un error se arroja una Excepción
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NetLayer.RemoteMachine">
+            <summary>
+            Clase que representa una máquina remota (usuario vecino de bajo nivel) conectada a la RED
+            </summary>
+        </member>
+        <member name="F:NetLayer.RemoteMachine.sendTCPLock">
+            <summary>
+            Lock para envio de mensajes TCP
+            </summary>
+        </member>
+        <member name="M:NetLayer.RemoteMachine.#ctor(System.Net.IPAddress,System.Net.Sockets.TcpClient)">
+            <summary>
+            Constructor parametrizado
+            </summary>
+            <param name="_ip">la ip de la maquina remota</param>
+            <param name="_tcpClient">el objeto TcpClient asociado</param>
+        </member>
+        <member name="M:NetLayer.RemoteMachine.sendNetMessage(NetLayer.NetMessage,System.Int32)">
+            <summary>
+            Envia un mensaje a la red mediante esta maquina remota
+            </summary>
+            <param name="netMessage">el mensaje a enviar</param>
+            <param name="timeOutWriteTCP">el tiempo maximo de espera para el envio</param>
+        </member>
+        <member name="M:NetLayer.RemoteMachine.close">
+            <summary>
+            Cierra la conexion a esta mquina remota.. los thread abort exception no detienen la ejecución
+            </summary>
+        </member>
+        <member name="P:NetLayer.RemoteMachine.Ip">
+            <summary>
+            La Ip de la máquina remota
+            </summary>
+        </member>
+        <member name="P:NetLayer.RemoteMachine.TcpClient">
+            <summary>
+            El cliente TCP con el cual se puede enviar/recibir mensajes de la maquina remota
+            </summary>
+        </member>
+        <member name="P:NetLayer.RemoteMachine.Id">
+            <summary>
+            El ID unico de esta maquina remota
+            </summary>
+        </member>
+        <member name="P:NetLayer.RemoteMachine.Fails">
+            <summary>
+            Cantidad de fallas seguidas que se han originado al intentar enviar un mensaje
+            </summary>
+        </member>
+        <member name="P:NetLayer.RemoteMachine.Buffer">
+            <summary>
+            El buffer de lectura datos
+            </summary>
+        </member>
+        <member name="P:NetLayer.RemoteMachine.BufferFilled">
+            <summary>
+            Cantidad ocupada del buffer
+            </summary>
+        </member>
+        <member name="T:NetLayer.NetworkAdapter">
+            <summary>
+            Clase que representa un dispositivo de red del sistema
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetworkAdapter.#ctor">
+            <summary>
+            Constructor vacío
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetworkAdapter.ToString">
+            <summary>
+            Metodo toString sobreescrito
+            </summary>
+            <returns>la representación en String</returns>
+        </member>
+        <member name="M:NetLayer.NetworkAdapter.Equals(System.Object)">
+            <summary>
+            Sobreescribe el metodo para comparar igualdad,
+            </summary>
+            <param name="obj">el objeto con el cual comparar igualdad</param>
+            <returns>true si ambos tienen el mismo nombre, false si no</returns>
+        </member>
+        <member name="M:NetLayer.NetworkAdapter.GetHashCode">
+            <summary>
+            Sobreescribe el hash
+            </summary>
+            <returns>el hash del padre</returns>
+        </member>
+        <member name="P:NetLayer.NetworkAdapter.Name">
+            <summary>
+            El nombre del adaptador
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetworkAdapter.Description">
+            <summary>
+            La descripción o nombre comercial del adaptador
+            </summary>
+        </member>
+        <member name="T:NetLayer.NetMessageQueue">
+            <summary>
+            Clase para la cola de mensajes que llegan por la RED
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetMessageQueue.itemCount">
+            <summary>
+            Cantidad en la cola
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetMessageQueue.monitor">
+            <summary>
+            El monitor
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetMessageQueue.#ctor">
+            <summary>
+            Constructor vacío
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetMessageQueue.draw">
+            <summary>
+            Obtiene el primer mensaje en la cola, null si esta vacía
+            </summary>
+            <returns>el primer mensaje de la cola o null si está vacía</returns>
+        </member>
+        <member name="M:NetLayer.NetMessageQueue.put(NetLayer.NetMessage)">
+            <summary>
+            Coloca un mensaje en la cola
+            </summary>
+            <param name="m">el mensaje a colocar en la cola</param>
+        </member>
+        <member name="M:NetLayer.NetMessageQueue.size">
+            <summary>
+            Retorna el tamaño de la cola
+            </summary>
+            <returns>el tamaño de la cola</returns>
+        </member>
+        <member name="M:NetLayer.NetMessageQueue.unblok">
+            <summary>
+            Desbloquea forzosamente el bloquedo de draw
+            </summary>
+        </member>
+        <member name="T:NetLayer.CommHandlerI">
+            <summary>
+            Interfaz para eventos de comunicación generados en NetHandler
+            </summary>
+        </member>
+        <member name="M:NetLayer.CommHandlerI.startNetworkingHandler">
+            <summary>
+            Se gatilla cuando debe comenzar la comunicación
+            </summary>
+        </member>
+        <member name="M:NetLayer.CommHandlerI.stopNetworkingHandler">
+            <summary>
+            Se gatilla cuando se debe detener la comunicación 
+            </summary>
+        </member>
+        <member name="M:NetLayer.CommHandlerI.resetNetworkingHandler">
+            <summary>
+            Se gatilla cuando se reseteará la coneción
+            </summary>
+        </member>
+        <member name="M:NetLayer.CommHandlerI.errorNetworkingHandler(System.Exception)">
+            <summary>
+            Se gatilla cuando ocurre un error en la red
+            </summary>
+            <param name="e">La excepción generada</param>
+        </member>
+        <member name="M:NetLayer.CommHandlerI.informationNetworkingHandler(System.String)">
+            <summary>
+            Se gatilla para enviar información del estado de la red.
+            </summary>
+            <param name="message">El mensaje envíado</param>
+        </member>
+        <member name="T:NetLayer.ObjectSerializer">
+            <summary>
+            Clase para serializar objetos y hacerlos eviables por la red
+            </summary>
+        </member>
+        <member name="M:NetLayer.ObjectSerializer.#ctor(System.Type,System.Type[])">
+            <summary>
+            Constructor parametrizado
+            </summary>
+            <param name="type">El tipo de objeto a serializar</param>
+            <param name="extraTypes">tipos adicionales a serializar</param>
+        </member>
+        <member name="M:NetLayer.ObjectSerializer.serialize(System.Object)">
+            <summary>
+            Convierte un objeto en un string
+            </summary>
+            <param name="obj">el objeto a convertir</param>
+            <returns>el string que representa al objeto</returns>
+        </member>
+        <member name="M:NetLayer.ObjectSerializer.unserialize(System.String)">
+            <summary>
+            Convierte un string creado con serialize en un objeto
+            </summary>
+            <param name="obj">el objeto serializado</param>
+            <returns>El objeto construido a partir de la serialización</returns>
+        </member>
+        <member name="T:NetLayer.WifiConnectionState">
+            <summary>
+            Clase que enumera los estados posibles de la conexión inalambrica
+            </summary>
+        </member>
+        <member name="T:NetLayer.WifiHandler">
+            <summary>
+            Clase que maneja la conexión Wifi
+            </summary>
+        </member>
+        <member name="F:NetLayer.WifiHandler.netData">
+            <summary>
+            Datos de configuración
+            </summary>
+        </member>
+        <member name="F:NetLayer.WifiHandler.wakeUpDaemonThread">
+            <summary>
+            Thread principal
+            </summary>
+        </member>
+        <member name="F:NetLayer.WifiHandler.connectionState">
+            <summary>
+            Guarda el estado de la conexión
+            </summary>
+        </member>
+        <member name="F:NetLayer.WifiHandler.wifiInformation">
+            <summary>
+            función que envia información de la red inalambrica
+            </summary>
+        </member>
+        <member name="M:NetLayer.WifiHandler.#ctor(NetLayer.NetData,NetLayer.WifiHandler.WifiInformationDelegate)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="netData">los datos de red</param>
+            <param name="wifiInformation">el manejador de eventos</param>
+        </member>
+        <member name="M:NetLayer.WifiHandler.connect">
+            <summary>
+            Conecta a la red adhoc
+            </summary>
+        </member>
+        <member name="M:NetLayer.WifiHandler.disconnect">
+            <summary>
+            Desconecta de la red adhoc
+            </summary>
+        </member>
+        <member name="M:NetLayer.WifiHandler.openWLanConnection">
+            <summary>
+            Conecta a la red adhoc
+            Si ocurre algun error se informa en informationNetworkingHandler
+            </summary>
+        </member>
+        <member name="M:NetLayer.WifiHandler.checkWLanConnection">
+            <summary>
+            Verifica la conexión de la red ad-hoc
+            </summary>
+        </member>
+        <member name="M:NetLayer.WifiHandler.wakeUpDaemon">
+            <summary>
+            Es ejecutado por un thread para verificar el estado de la conexión con la red inalambrica
+            </summary>
+        </member>
+        <member name="P:NetLayer.WifiHandler.ConnectionState">
+            <summary>
+            Guarda el estado de la conexión
+            </summary>
+        </member>
+        <member name="T:NetLayer.WifiHandler.WifiInformationDelegate">
+            <summary>
+            delegado para enviar información de la wifi
+            </summary>
+        </member>
+        <member name="T:NetLayer.OpSystemType">
+            <summary>
+            Clase que enumero los sistemas operativos soportados y que establece el modo de funcionamiento de la conexión de red inalámbrica
+            </summary>
+        </member>
+        <member name="F:NetLayer.OpSystemType.WINMOBILE5POCKETPC">
+            <summary>
+            Windows Mobile
+            </summary>
+        </member>
+        <member name="F:NetLayer.OpSystemType.WINMOBILE6SMARTPHONE">
+            <summary>
+            Windows Mobile
+            </summary>
+        </member>
+        <member name="F:NetLayer.OpSystemType.SAMSUNGOMNIAII">
+            <summary>
+            Samsung Omnia 2
+            </summary>
+        </member>
+        <member name="F:NetLayer.OpSystemType.WINMOBILE5IPAQ">
+            <summary>
+            Windows Mobile iPaq
+            </summary>
+        </member>
+        <member name="T:NetLayer.NetData">
+            <summary>
+            Clase para los datos de configuraciòn necesarios que involucran una RED
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetData.#ctor">
+            <summary>
+            Constructor, inicializa los valores por omisión de la configuración.
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetData.pickNewIp">
+            <summary>
+            Determina una nueva IP de manera aleatoria, en el rango de mascara de red 255.255.0.0
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NetLayer.NetData.IpTcpListener">
+            <summary>
+            Ip delegada para realizar conexiones TCP
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.TcpPort">
+            <summary>
+            Puerto delegado para levantar servidor TCP
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.IpUdpMulticast">
+            <summary>
+            Ip delegada para enviar y recibir mensajes multicast UDP
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.UdpPort">
+            <summary>
+            Puerto delegado para escuchar y enviar mensajes multicast UDP
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.SubnetMask">
+            <summary>
+            Mascara de Sub Red delegada para realizar conexiones TCP
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.NetworkAdapter">
+            <summary>
+            Adaptador de red seleccionado para conectarse a la red inalámbrica
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.AdhocNetworkName">
+            <summary>
+            El nombre de la red adhoc que se debe crear/unir
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.OpSystem">
+            <summary>
+            El sistema operativo 
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.WaitTimeWiFi">
+            <summary>
+            Tiempo que se espera luego de enviar una llamada de conexion a red inalambrica, para intentar enviar otra
+            en caso de que no haya habido un evento de conexión
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.WaitTimeStart">
+            <summary>
+            Tiempo que se espera para intentar configurar la IP o levantar los servicios TCP en caso de intentos fallidos
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.WaitForStart">
+            <summary>
+            Veces que se intenta configurar la Ip o levantar los servicios TCP, en caso de intentos fallidos
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.WaitForWifi">
+            <summary>
+            Veces que se intenta conectar a Wifi Sin Exito
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.TimeOutWriteTCP">
+            <summary>
+            TimeOut para escribir en un Socket TCP
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.TimeIntervalTimer">
+            <summary>
+            Intervalo de tiempo para el timer
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.WaitForTimerClose">
+            <summary>
+            Veces que se intentará para esperar al cierre del timer
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.WaitForTCPConnection">
+            <summary>
+            Veces que se espera para intentar una conección TCP a un NetUser que cumple los requerimientos
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.WaitForAck">
+            <summary>
+            Veces que se espera para reenviar un mensaje safe no confirmado
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.MaxMessagesProcess">
+            <summary>
+            El numero maximo de mensajes que se procesan por intervalo de tiempo
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.QualityRiseNetUser">
+            <summary>
+            Inncremento a la calidad de señal que se le hace al netUSer al recibir un mensaje i'm alive
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.QualityMaxNetUser">
+            <summary>
+            Calidad de señal maxima de un netuser
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.QualityNormalNetUser">
+            <summary>
+            Calidad de señal normal de un netuser
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.QualityLowNetUser">
+            <summary>
+            Calidad de señal baja de un netuser
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.LolinessTimeOut">
+            <summary>
+            Tiempo de espera para determinar caso de loliness
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.SendFailsToDisconnect">
+            <summary>
+            Fallos para solicitar una desconexión a la maquina remota destino
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.TcpConnectTimeOut">
+            <summary>
+            Tiempo de espera para conexion TCP
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StateCritical">
+            <summary>
+            Valor para el estado critico
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StateOverloaded">
+            <summary>
+            Valor para el estado sobrecargado
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StatePathNN">
+            <summary>
+            Valor de peso para el estado normal normal
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StatePathNL">
+            <summary>
+            Valor de peso para el estado normal low
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StatePathNC">
+            <summary>
+            Valor de peso para el estado normal critical
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StatePathON">
+            <summary>
+            Valor de peso para el estado overloaded normal
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StatePathOL">
+            <summary>
+            Valor de peso para el estado overloaded low
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StatePathOC">
+            <summary>
+            Valor de peso para el estado overloaded critical
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StatePathCN">
+            <summary>
+            Valor de peso para el estado critical normal
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StatePathCL">
+            <summary>
+            Valor de peso para el estado critical low
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StatePathCC">
+            <summary>
+            Valor de peso para estado critical crtical
+            </summary>
+        </member>
+        <member name="P:NetLayer.NetData.StatePathNotFound">
+            <summary>
+            Valor de peso para cuando no se encuentra un camino
+            </summary>
+        </member>
+        <member name="T:NetLayer.NetMessage">
+            <summary>
+            Clase que representa un mensaje recibido o enviado por la RED
+            </summary>
+        </member>
+        <member name="F:NetLayer.NetMessage._body">
+            <summary>
+            El cuerpo del mensaje
+            </summary>
+        </member>
+        <member name="M:NetLayer.NetMessage.#ctor(System.Byte[])">
+            <summary>
+            Constructor
+            </summary>
+            <param name="body">El contenido del mensaje</param>
+        </member>
+        <member name="M:NetLayer.NetMessage.getSize">
+            <summary>
+            El largo de este mensaje, en número de bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NetLayer.NetMessage.Body">
+            <summary>
+            El contenido del mensaje
+            </summary>
+        </member>
+        <member name="T:NetLayer.RemoteMachineList">
+            <summary>
+            Lista de maquinas remotas conectadas directamente por TCP
+            </summary>
+        </member>
+        <member name="M:NetLayer.RemoteMachineList.#ctor">
+            <summary>
+            Constructor vacío
+            </summary>
+        </member>
+        <member name="M:NetLayer.RemoteMachineList.add(System.Net.IPAddress,NetLayer.RemoteMachine)">
+            <summary>
+            Agrega una maquina a la colección, asocia una IP a la maquina como llave de la colección
+            </summary>
+            <param name="ip">la ip de la máquina</param>
+            <param name="newRemoteMachine">la maquina a agregar</param>
+        </member>
+        <member name="M:NetLayer.RemoteMachineList.remove(NetLayer.RemoteMachine)">
+            <summary>
+            Remueve a una maquina de la colección
+            </summary>
+            <param name="remoteMachine">la maquina a remover</param>
+            <returns>true si la maquina existía, false si no</returns>
+        </member>
+        <member name="M:NetLayer.RemoteMachineList.getRemoteMachine(System.Net.IPAddress)">
+            <summary>
+            Obtiene a una maquina de la colección segun la Ip
+            </summary>
+            <param name="ip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NetLayer.RemoteMachineList.toObjectArray">
+            <summary>
+            Crea un array con los objetos de la coleccion
+            </summary>
+            <returns>un array de maquinas remotas</returns>
+        </member>
+        <member name="M:NetLayer.RemoteMachineList.size">
+            <summary>
+            Calcula el tamaño de la colección
+            </summary>
+            <returns>el tamaño de la colección</returns>
+        </member>
+    </members>
+</doc>

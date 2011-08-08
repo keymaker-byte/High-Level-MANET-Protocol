@@ -1,0 +1,2240 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CommLayer</name>
+    </assembly>
+    <members>
+        <member name="T:CommLayer.NetUserList">
+            <summary>
+             Lista de usuarios remotos observados en la RED
+            </summary>
+        </member>
+        <member name="M:CommLayer.NetUserList.#ctor">
+            <summary>
+            Constructor vacío
+            </summary>
+        </member>
+        <member name="M:CommLayer.NetUserList.add(System.Net.IPAddress,CommLayer.NetUser)">
+            <summary>
+            Agrega un usuario a la colección (Asocia una IP a un usuario)
+            </summary>
+            <param name="ip">la ip del usuario</param>
+            <param name="newUser">el usuario</param>
+            <returns>true si efectivamente era un nuevo usuario, false si tuvo que borrar al ya existente</returns>
+        </member>
+        <member name="M:CommLayer.NetUserList.remove(System.Net.IPAddress)">
+            <summary>
+            Remueve a un usuario de la colección
+            </summary>
+            <param name="ip">La ip del usuario a remover</param>
+            <returns>true si existía y false si no</returns>
+        </member>
+        <member name="M:CommLayer.NetUserList.getUser(System.Net.IPAddress)">
+            <summary>
+            Obtiene a un usuario de la colección
+            </summary>
+            <param name="ip">La ip del usuario a obtener</param>
+            <returns>El usuario</returns>
+        </member>
+        <member name="M:CommLayer.NetUserList.userListToArray">
+            <summary>
+            Retorna la colección de usuarios como un array simple de usuarios
+            </summary>
+            <returns>un array de usuarios</returns>
+        </member>
+        <member name="M:CommLayer.NetUserList.size">
+            <summary>
+            Calcula el tamaño de la colección de usuarios
+            </summary>
+            <returns>el tamaño de la colección</returns>
+        </member>
+        <member name="T:CommLayer.MessageList">
+            <summary>
+            Lista de mensajes que asegura busqueda en orden constante
+            </summary>
+        </member>
+        <member name="F:CommLayer.MessageList.messageCollection">
+            <summary>
+            La tabla de hashing de la colección
+            </summary>
+        </member>
+        <member name="F:CommLayer.MessageList.thisLock">
+            <summary>
+            Candado para control de threading
+            </summary>
+        </member>
+        <member name="M:CommLayer.MessageList.#ctor">
+            <summary>
+            Constructor vacío
+            </summary>
+        </member>
+        <member name="M:CommLayer.MessageList.add(CommLayer.Messages.Message)">
+            <summary>
+            Agrega un mensaje a la lista
+            </summary>
+            <param name="message">el mensaje a agregar</param>
+        </member>
+        <member name="M:CommLayer.MessageList.remove(System.Guid)">
+            <summary>
+            Remueve un mensaje de la lista
+            </summary>
+            <param name="id">el fileID del mensaje a remover</param>
+            <returns>true si existia y fue removido, false si no</returns>
+        </member>
+        <member name="M:CommLayer.MessageList.getMessage(System.Guid)">
+            <summary>
+            Obtiene un mensaje de la lista con busqueda en orden constante
+            </summary>
+            <param name="id">el fileID del mensaje</param>
+            <returns>el mensaje de la lista, message null si no existía</returns>
+        </member>
+        <member name="M:CommLayer.MessageList.messageListToArray">
+            <summary>
+            retorna un array con la lista de mensajes
+            </summary>
+            <returns>un array de los mensajes listados</returns>
+        </member>
+        <member name="M:CommLayer.MessageList.size">
+            <summary>
+            calcula el tamaño de la lista
+            </summary>
+            <returns>el tamaño de la lista</returns>
+        </member>
+        <member name="T:CommLayer.NetUserQuality">
+            <summary>
+            Clase para enumeración de posibles calidades de señal de los usuarios remotos
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUserQuality.NORMAL">
+            <summary>
+            Constante para el estado normal
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUserQuality.LOW">
+            <summary>
+            Constante para el estado bajo
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUserQuality.CRITICAL">
+            <summary>
+            Constante para el estado critico
+            </summary>
+        </member>
+        <member name="T:CommLayer.CommunicationQuality">
+            <summary>
+            Clase para enumeración de posibles estados de tráfico de los usuarios remotos
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationQuality.NORMAL">
+            <summary>
+            Constante para el estado normal
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationQuality.OVERLOADED">
+            <summary>
+            Constante para el estado con sobrecargar de trafico
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationQuality.CRITICAL">
+            <summary>
+            Constante para el estado critico
+            </summary>
+        </member>
+        <member name="T:CommLayer.NetUser">
+            <summary>
+            Datos de usuario dentro de la MANET
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUser._id">
+            <summary>
+            Id del usuario, esta variable se serializa
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUser._name">
+            <summary>
+            Nombre del usuario, esta variable se serializa
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUser._ip">
+            <summary>
+            Dirección IP, esta variable se serializa
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUser._neighborhoodIds">
+            <summary>
+            Array con los id's de la vecindad TCP, esta variable se serializa
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUser._signalQuality">
+            <summary>
+            La calidad de la señal, NO se serializa
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUser._timeout">
+            <summary>
+            Valor de señal restante, NO se serializa
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUser._jumpsAway">
+            <summary>
+            Saltos UDP que se encuentra del usuario remoto, NO se serializa
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUser._waitTimeOut">
+            <summary>
+            Tiempo de espera restante para intentar una conexion TCP con este usuario remoto, NO se serializa
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUser._state">
+            <summary>
+            El estado de la señal
+            </summary>
+        </member>
+        <member name="F:CommLayer.NetUser._upLayerData">
+            <summary>
+            El grupo al que pertenece
+            </summary>
+        </member>
+        <member name="M:CommLayer.NetUser.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.NetUser.#ctor(System.Guid,System.String,System.Net.IPAddress,System.Guid[],NetLayer.NetData)">
+            <summary>
+            Constructor parametrizado, para uso interno, no se debe usar directamente
+            </summary>
+            <param name="id">El id del usuario</param>
+            <param name="name">El nombre del usuario</param>
+            <param name="ip">La dirección IP del usuario</param>
+            <param name="neighborhood">Un array con los ids de los nodos vecinos al usuario</param>
+            <param name="netData">Los datos de configuración</param>
+        </member>
+        <member name="M:CommLayer.NetUser.qualityUp(NetLayer.NetData)">
+            <summary>
+            Chequea que el usuario ha sido detectado, incrementando su valor de calidad
+            Método para uso interno
+            </summary>
+            <param name="netData">Los parámetros de configuración de red</param>
+        </member>
+        <member name="M:CommLayer.NetUser.qualityDown(NetLayer.NetData)">
+            <summary>
+            Decrementa la calidad de señal, método para uso interno
+            </summary>
+        </member>
+        <member name="M:CommLayer.NetUser.setTimeOut(System.Int32,NetLayer.NetData)">
+            <summary>
+            Setea el time Out del este usuario para medir calidad de señal
+            </summary>
+            <param name="newTimeOut">El nuevo timeout</param>
+            <param name="netData">Los datos de configuración de red</param>
+        </member>
+        <member name="M:CommLayer.NetUser.pickNewId">
+            <summary>
+            Selecciona un nuevo ID, método para uso interno
+            </summary>
+        </member>
+        <member name="M:CommLayer.NetUser.ToString">
+            <summary>
+            Fabrica una representación del usuario como String
+            </summary>
+            <returns>El nombre del usuario y su numero IP</returns>
+        </member>
+        <member name="P:CommLayer.NetUser.Name">
+            <summary>
+            Nombre a mostrar
+            </summary>
+        </member>
+        <member name="P:CommLayer.NetUser.Ip">
+            <summary>
+            Dirección Ip
+            </summary>
+        </member>
+        <member name="P:CommLayer.NetUser.SignalQuality">
+            <summary>
+            Calidad de la señal
+            </summary>
+        </member>
+        <member name="P:CommLayer.NetUser.Id">
+            <summary>
+            El numero único de indentificación del usuario
+            </summary>
+        </member>
+        <member name="P:CommLayer.NetUser.NeighborhoodIds">
+            <summary>
+            Los nodos vecinos del usuario (array de los ids de los usuarios con conexión directa TCP)
+            </summary>
+        </member>
+        <member name="P:CommLayer.NetUser.Timeout">
+            <summary>
+            Tiempo restante para que la calidad de la señal llegue a 0
+            </summary>
+        </member>
+        <member name="P:CommLayer.NetUser.JumpsAway">
+            <summary>
+            Cantidad de saltos UDP que se encuentra el usuario remoto
+            </summary>
+        </member>
+        <member name="P:CommLayer.NetUser.WaitTimeOut">
+            <summary>
+            Tiempo de espera para intentar conectar por TCP
+            </summary>
+        </member>
+        <member name="P:CommLayer.NetUser.State">
+            <summary>
+            La calidad del estado de comunicación (señal)
+            </summary>
+        </member>
+        <member name="P:CommLayer.NetUser.UpLayerData">
+            <summary>
+            El grupo al que pertenece
+            </summary>
+        </member>
+        <member name="T:CommLayer.Messages.SafeUnicastMessage">
+            <summary>
+            representa un Mensaje Unicast TCP con protocolo de seguridad en la entrega
+            </summary>
+        </member>
+        <member name="T:CommLayer.Messages.Message">
+            <summary>
+            Representa un mensaje de alto nivel que puede ser envíado a la MANET
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.Message._senderNetUser">
+            <summary>
+            El autor de este mensaje
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.Message._id">
+            <summary>
+            El id unico de este mensaje
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.Message._jumps">
+            <summary>
+            Los saltos de host que ha dado este mensaje
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.Message._failReason">
+            <summary>
+            El motivo de fallo en la entrega (un valor de MessageFailReason)
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.Message._metaType">
+            <summary>
+            El tipo de dato abstracto de este mensaje
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.Message._type">
+            <summary>
+            El tipo de este mensaje
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.Message._protocolType">
+            <summary>
+            El tipo de protocolo de este mensaje
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.Message.toByteArray">
+            <summary>
+            Convierte a este mensaje en un paquete de bytes
+            </summary>
+            <returns>un array de bytes con todos los datos del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.Message.byteArrayToProperties(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messageData">un array de bytes con todos los datos del mensaje</param>
+        </member>
+        <member name="P:CommLayer.Messages.Message.SenderNetUser">
+            <summary>
+            El autor de este mensaje
+            </summary>
+        </member>
+        <member name="P:CommLayer.Messages.Message.Id">
+            <summary>
+            El id unico de este mensaje
+            </summary>
+        </member>
+        <member name="P:CommLayer.Messages.Message.Jumps">
+            <summary>
+            Los saltos de host que ha dado este mensaje
+            </summary>
+        </member>
+        <member name="P:CommLayer.Messages.Message.FailReason">
+            <summary>
+            El motivo de fallo en la entrega (un valor de MessageFailReason)
+            </summary>
+        </member>
+        <member name="P:CommLayer.Messages.Message.MetaType">
+            <summary>
+            El tipo de dato abstracto de este mensaje
+            </summary>
+        </member>
+        <member name="P:CommLayer.Messages.Message.Type">
+            <summary>
+            El tipo de este mensaje
+            </summary>
+        </member>
+        <member name="P:CommLayer.Messages.Message.ProtocolType">
+            <summary>
+            El tipo de este mensaje
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.SafeUnicastMessage._targetNetUser">
+            <summary>
+            El usuario receptor de este mensaje
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.SafeUnicastMessage._waitTimeOut">
+            <summary>
+            El tiempo de espera restante para reenvíar este mensaje mientras espera el ACK
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.SafeUnicastMessage.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.SafeUnicastMessage.byteArrayToProperties(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messageData">un array de bytes con todos los datos del mensaje</param>
+        </member>
+        <member name="M:CommLayer.Messages.SafeUnicastMessage.toByteArray">
+            <summary>
+            Convierte a este mensaje en un paquete de bytes
+            </summary>
+            <returns>un array de bytes con todos los datos del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.SafeUnicastMessage.send(NetLayer.NetHandler,System.Net.IPAddress)">
+            <summary>
+            Envía el mensaje a la MANET
+            </summary>
+            <param name="netHandler">El manejador de la red</param>
+            <param name="ip">la ip de la maquina remota destino</param>
+        </member>
+        <member name="M:CommLayer.Messages.SafeUnicastMessage.makeMetaPack">
+            <summary>
+            Convierte la meta data de este mensaje en una estructura de bytes
+            </summary>
+            <returns>el array de bytes con la meta data</returns>
+        </member>
+        <member name="M:CommLayer.Messages.SafeUnicastMessage.metaUnPack(System.Byte[])">
+            <summary>
+            Convierte una estructura de bytes en la meta data de este mensaje
+            </summary>
+            <param name="messageMetaPack">un array de bytes con la meta data</param>
+        </member>
+        <member name="M:CommLayer.Messages.SafeUnicastMessage.makePack">
+            <summary>
+            Convierte las propiedades del mensaje en un paquete de bytes
+            </summary>
+            <returns>un paquete de bytes con las propiedades del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.SafeUnicastMessage.unPack(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messagePack">El paquete de bytes</param>
+        </member>
+        <member name="M:CommLayer.Messages.SafeUnicastMessage.ToString">
+            <summary>
+            Sobreescribe el metodo toString
+            </summary>
+            <returns>El string que representa este objeto</returns>
+        </member>
+        <member name="P:CommLayer.Messages.SafeUnicastMessage.TargetNetUser">
+            <summary>
+            El usuario receptor de este mensaje
+            </summary>
+        </member>
+        <member name="P:CommLayer.Messages.SafeUnicastMessage.WaitTimeOut">
+            <summary>
+            El tiempo de espera restante para reeenvíar este mensaje mientras espera el ACK
+            </summary>
+        </member>
+        <member name="T:CommLayer.Messages.MulticastMessage">
+            <summary>
+            Representa un mensaje multicast
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.MulticastMessage.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.MulticastMessage.byteArrayToProperties(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messageData">un array de bytes con todos los datos del mensaje</param>
+        </member>
+        <member name="M:CommLayer.Messages.MulticastMessage.toByteArray">
+            <summary>
+            Convierte a este mensaje en un paquete de bytes
+            </summary>
+            <returns>un array de bytes con todos los datos del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.MulticastMessage.send(NetLayer.NetHandler)">
+            <summary>
+            Envía el mensaje a la MANET
+            </summary>
+            <param name="netHandler">El manejador de la red</param>
+        </member>
+        <member name="M:CommLayer.Messages.MulticastMessage.makeMetaPack">
+            <summary>
+            Convierte la meta data de este mensaje en una estructura de bytes
+            </summary>
+            <returns>el array de bytes con la meta data</returns>
+        </member>
+        <member name="M:CommLayer.Messages.MulticastMessage.metaUnPack(System.Byte[])">
+            <summary>
+            Convierte una estructura de bytes en la meta data de este mensaje
+            </summary>
+            <param name="messageMetaPack">un array de bytes con la meta data</param>
+        </member>
+        <member name="M:CommLayer.Messages.MulticastMessage.makePack">
+            <summary>
+            Convierte las propiedades del mensaje en un paquete de bytes
+            </summary>
+            <returns>un paquete de bytes con las propiedades del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.MulticastMessage.unPack(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messagePack">El paquete de bytes</param>
+        </member>
+        <member name="M:CommLayer.Messages.MulticastMessage.ToString">
+            <summary>
+            Sobreescribe el metodo toString
+            </summary>
+            <returns>El string que representa este objeto</returns>
+        </member>
+        <member name="T:CommLayer.Messages.UnicastMessage">
+            <summary>
+            Representa un mensaje de tipo Unicast que puede no ser entregado correctamente
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.UnicastMessage._targetNetUser">
+            <summary>
+            El receptor de este mensaje
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.UnicastMessage.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.UnicastMessage.byteArrayToProperties(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messageData">un array de bytes con todos los datos del mensaje</param>
+        </member>
+        <member name="M:CommLayer.Messages.UnicastMessage.toByteArray">
+            <summary>
+            Convierte a este mensaje en un paquete de bytes
+            </summary>
+            <returns>un array de bytes con todos los datos del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.UnicastMessage.send(NetLayer.NetHandler,System.Net.IPAddress)">
+            <summary>
+            Envía el mensaje a la MANET
+            </summary>
+            <param name="netHandler">El manejador de la red</param>
+            <param name="ip">la ip de la maquina remota destino</param>
+        </member>
+        <member name="M:CommLayer.Messages.UnicastMessage.makeMetaPack">
+            <summary>
+            Convierte la meta data de este mensaje en una estructura de bytes
+            </summary>
+            <returns>el array de bytes con la meta data</returns>
+        </member>
+        <member name="M:CommLayer.Messages.UnicastMessage.metaUnPack(System.Byte[])">
+            <summary>
+            Convierte una estructura de bytes en la meta data de este mensaje
+            </summary>
+            <param name="messageMetaPack">un array de bytes con la meta data</param>
+        </member>
+        <member name="M:CommLayer.Messages.UnicastMessage.makePack">
+            <summary>
+            Convierte las propiedades del mensaje en un paquete de bytes
+            </summary>
+            <returns>un paquete de bytes con las propiedades del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.UnicastMessage.unPack(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messagePack">El paquete de bytes</param>
+        </member>
+        <member name="M:CommLayer.Messages.UnicastMessage.ToString">
+            <summary>
+            Sobreescribe el metodo toString
+            </summary>
+            <returns>El string que representa este objeto</returns>
+        </member>
+        <member name="P:CommLayer.Messages.UnicastMessage.TargetNetUser">
+            <summary>
+            El usuario receptor de este mensaje
+            </summary>
+        </member>
+        <member name="T:CommLayer.Messages.MessageFailReason">
+            <summary>
+            Clase que enumera las acciones y errores posibles al tratar de enviar un mensaje
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageFailReason.NOTFAIL">
+            <summary>
+            El mensaje no ha fallado
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageFailReason.TCPFAIL">
+            <summary>
+            El mensaje ha fallado en la entrega al vecino elegido
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageFailReason.NOTROUTETOHOST">
+            <summary>
+            No existe una ruta al destinatario, pero el usuario si se encuentra en la MANET
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageFailReason.DESTROY">
+            <summary>
+            El mensaje debe ser destruido
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageFailReason.NOTROUTEBUTHOSTONNET">
+            <summary>
+            El usuario destino no existe en la red
+            </summary>
+        </member>
+        <member name="T:CommLayer.Messages.MessageMetaType">
+            <summary>
+            Clase que enumera lso tipos de mete mensajes
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageMetaType.NOMETATYPE">
+            <summary>
+            Constante para sin tipo
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageMetaType.MULTICAST">
+            <summary>
+            Constante para el tipo multicast
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageMetaType.UNICAST">
+            <summary>
+            Constante para el tipo unicast
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageMetaType.SAFEMULTICAST">
+            <summary>
+            Constante para el tipo safe multicast
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageMetaType.SAFEUNICAST">
+            <summary>
+            Constante para el tipo safe unicast
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageMetaType.FASTUNICAST">
+            <summary>
+            Constante para el tipo safe unicast
+            </summary>
+        </member>
+        <member name="T:CommLayer.Messages.MessageType">
+            <summary>
+            Clase que enumera los tipos de mensajes derivados conocidos por el sistema
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageType.NOTYPE">
+            <summary>
+            Constante para sin tipo
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageType.IMALIVE">
+            <summary>
+            Constante para el tipo im alive
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageType.ACK">
+            <summary>
+            Constante para ack
+            </summary>
+        </member>
+        <member name="T:CommLayer.Messages.MessageProtocolType">
+            <summary>
+            Clase que enumera los tipos de protocolos a los que pertenecen los mensajes
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageProtocolType.NOTYPE">
+            <summary>
+            Constante para sin tipo
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageProtocolType.HLMP">
+            <summary>
+            Constante para el tipo HLMP
+            </summary>
+        </member>
+        <member name="T:CommLayer.EventQueuePC">
+            <summary>
+            Cola de objetos de eventos
+            </summary>
+        </member>
+        <member name="F:CommLayer.EventQueuePC.queue">
+            <summary>
+            Cola de prioridad FIFO
+            </summary>
+        </member>
+        <member name="F:CommLayer.EventQueuePC.itemCount">
+            <summary>
+            Cantidad en la cola
+            </summary>
+        </member>
+        <member name="F:CommLayer.EventQueuePC.monitor">
+            <summary>
+            El monitor
+            </summary>
+        </member>
+        <member name="M:CommLayer.EventQueuePC.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.EventQueuePC.draw">
+            <summary>
+            Desencola el primer objeto de la lista, se bloquea hasta que alguien inserte un elemento
+            </summary>
+            <returns>El primer objeto de la cola, null si está vacía</returns>
+        </member>
+        <member name="M:CommLayer.EventQueuePC.put(CommLayer.Event)">
+            <summary>
+            Coloca un objeto en la cola
+            </summary>
+            <param name="m">El objeto a colocar en la cola</param>
+        </member>
+        <member name="M:CommLayer.EventQueuePC.unblok">
+            <summary>
+            Desbloquea forzosamente el bloquedo de draw
+            </summary>
+        </member>
+        <member name="T:CommLayer.CommunicationState">
+            <summary>
+            Clase que enumera los estados posibles del Communication
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationState.STARTING">
+            <summary>
+            Constante para el estado conectando
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationState.STARTED">
+            <summary>
+            Constante para el estado conectado
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationState.STOPPING">
+            <summary>
+            Constante para el estado desconectando
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationState.STOPPED">
+            <summary>
+            Constante para el estado desconectado
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationState.INITIATED">
+            <summary>
+            Constante para el estado inicializado
+            </summary>
+        </member>
+        <member name="T:CommLayer.CommunicationEvent">
+            <summary>
+            Clase que enumera los eventos que lanza
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.CONNECT">
+            <summary>
+            Constante para el evento connect
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.CONNECTING">
+            <summary>
+            Constante para el evento connecting
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.DISCONNECTING">
+            <summary>
+            Constante para el evento disconnecting
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.DISCONNECT">
+            <summary>
+            Constante para el evento disconnecting
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.RECONNECTING">
+            <summary>
+            Constante para el evento reconnecting
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.ADDUSER">
+            <summary>
+            Constante para el evento adduser
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.REMOVEUSER">
+            <summary>
+            Constante para el evento removeuser
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.REFRESHUSER">
+            <summary>
+            Constante para el evento refreshuser
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.REFRESHLOCALUSER">
+            <summary>
+            Constante para el evento refreshlocaluser
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.NETINFORMATION">
+            <summary>
+            Constante para el evento net information
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.EXCEPTION">
+            <summary>
+            Constante para el evento exception
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.PROCESSMESSAGE">
+            <summary>
+            Constante para el evento process message
+            </summary>
+        </member>
+        <member name="F:CommLayer.CommunicationEvent.ERRORMESSAGE">
+            <summary>
+            Constante para el evento error message
+            </summary>
+        </member>
+        <member name="T:CommLayer.Communication">
+            <summary>
+            Clase encargada de establecer la comunicación y el protocolo en la MANET
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.timer">
+            <summary>
+            Invoca threads de timer
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.timerThread">
+            <summary>
+            Thread de timer
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.stopPoint">
+            <summary>
+            Punto de sincronización de detención
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.timerPoint">
+            <summary>
+            Punto de sincronización del timer
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.timerWaitPoint">
+            <summary>
+            Punto de sincronización para el timer
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.tcpThread">
+            <summary>
+            Thread de proceso
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.udpThread">
+            <summary>
+            Thread de proceso
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.messageThreads">
+            <summary>
+            Thread de cola de mensajes a enviar
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.bag">
+            <summary>
+            Invoca threads de mochila
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.bagThread">
+            <summary>
+            Thread de mochila
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.bagPoint">
+            <summary>
+            Punto de sincronización de mochila
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.bagWaitPoint">
+            <summary>
+            Punto de sincronización para mochila
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.netHandler">
+            <summary>
+            Manejador de la red
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.netUserList">
+            <summary>
+            Lista de usuarios de la red
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.userListLock">
+            <summary>
+            Lock para lista de usuarios
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.configuration">
+            <summary>
+            Datos de configuración
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.router">
+            <summary>
+            Ruteador de mensajes
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.subProtocols">
+            <summary>
+            SubProtocolos
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.messageTypes">
+            <summary>
+            Tipos extras de mensajes
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.eventQueuePC">
+            <summary>
+            Cola de eventos
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.eventConsumer">
+            <summary>
+            Consumidor de eventos
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.eventConsumerStarted">
+            <summary>
+            Indica si el consumidor esta corriendo
+            </summary>
+        </member>
+        <member name="F:CommLayer.Communication.eventConsumerLock">
+            <summary>
+            Indica si el consumidor esta corriendo
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.#ctor(CommLayer.Configuration,CommLayer.SubProtocolList,CommLayer.MessageTypeList)">
+            <summary>
+            Constructo Parametrizado
+            </summary>
+            <param name="configuration">El objeto con los datos de configuración previamente llenado</param>
+            <param name="subProtocols">Lista de SubProtocolos</param>
+            <param name="extraMessageTypes">Tipos de mensajes no especificados en los sub protocolos</param>
+        </member>
+        <member name="M:CommLayer.Communication.init">
+            <summary>
+            Inicializa las variables locales
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.startEventConsumer">
+            <summary>
+            Inicializa el consumidor de eventos
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.stopEventConsumer">
+            <summary>
+            Detiene el consumidor de eventos
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.consumeEvent">
+            <summary>
+            Consume un evento
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.produceEvent(System.Int32,System.Object)">
+            <summary>
+            Produce un evento
+            </summary>
+            <param name="eventType">el tipo del evento, un valor de CommunicationEvent</param>
+            <param name="param">el parametro del evento</param>
+        </member>
+        <member name="M:CommLayer.Communication.connect">
+            <summary>
+            Inicia el proceso de conección a la MANET
+            Este método no es bloqueante, se ejecuta en un Thread separado
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.disconnect">
+            <summary>
+            Inicia el proceso de desconección a la MANET
+            Este método es bloqueante, el método retorna cuando se haya desconectado completamente de la MANET
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.disconnectAsync">
+            <summary>
+            Inicia el proceso de desconección a la MANET
+            Este método no es bloqueante, se ejecuta en un Thread separado
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.startNetworkingHandler">
+            <summary>
+            Se gatilla cuando se ha formado la red. Da comienzo a la comunicación
+            Este método es para uso interno, no debe ser llamado
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.stopNetworkingHandler">
+            <summary>
+            Se gatilla cuando se ha detenido la red. Da termino a la comunicación.
+            Este método es para uso interno, no debe ser llamado
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.resetNetworkingHandler">
+            <summary>
+            Se gatilla cuando se resetea la conexión
+            Este método es para uso interno, no debe ser llamado
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.errorNetworkingHandler(System.Exception)">
+            <summary>
+            Se gatilla cuando ha ocurrido un error en la red
+            Este método es para uso interno, no debe ser llamado
+            </summary>
+            <param name="e">la excepción generada en la red</param>
+        </member>
+        <member name="M:CommLayer.Communication.informationNetworkingHandler(System.String)">
+            <summary>
+            Se gatilla cuando la red envia algun mensage del estado
+            Este método es para uso interno, no debe ser llamado
+            </summary>
+            <param name="message">el mensaje generado</param>
+        </member>
+        <member name="M:CommLayer.Communication.communicationTimer(System.Object)">
+            <summary>
+            Función invocada cada 1 segundos por el timer, invoca un thread de interación de timer
+            </summary>
+            <param name="objectState">Parámetro</param>
+        </member>
+        <member name="M:CommLayer.Communication.communicationTimerInteration">
+            <summary>
+            Timer: 
+            Actualiza los datos y objetos de comunicación según el estado de la MANET
+            Procesa los mensajes UDP
+            Envía mensaje ImAlive
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.communicationBag(System.Object)">
+            <summary>
+            Función invocada cada 1 segundos por el bag, inicializa un thread de interación de bag
+            </summary>
+            <param name="objectState">Parámetro</param>
+        </member>
+        <member name="M:CommLayer.Communication.communicationBagIteration">
+            <summary>
+            Bag:
+            Procesa los mensajes envíados y administrados por el router
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.updateState">
+            <summary>
+            Actualiza el estado de la comunicación (tráfico)
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.updateRouter">
+            <summary>
+            Actualiza los parámetros del router
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.updateUserList">
+            <summary>
+            Actualiza los datos de la lista de usuarios
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.updateNeighborhood">
+            <summary>
+            Actualiza la vecindad TCP
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.processTCPMessages">
+            <summary>
+            Process:
+            Procesa los mensajes TCP recibidos
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.processRouterMesages">
+            <summary>
+            Procesa los mensajes administrados por el router
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.processUDPMessages">
+            <summary>
+            Process:
+            Procesa los mensajes UDP recibidos
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.processNotSentMessages">
+            <summary>
+            Process:
+            Procesa los mensajes UDP recibidos
+            </summary>
+        </member>
+        <member name="M:CommLayer.Communication.newNetUser(CommLayer.NetUser)">
+            <summary>
+            Agrega un nuevo usuario de la red a la lista
+            </summary>
+            <param name="netUser">El usuario de la red</param>
+        </member>
+        <member name="M:CommLayer.Communication.disconnectNetUser(CommLayer.NetUser)">
+            <summary>
+            Elimina a un usuario de la red de la lista de usuarios
+            </summary>
+            <param name="netUser">El usuario de la red</param>
+        </member>
+        <member name="M:CommLayer.Communication.proccessMessage(CommLayer.Messages.Message)">
+            <summary>
+            Procesa un mensaje recibido
+            </summary>
+            <param name="message">El mensaje recibido</param>
+        </member>
+        <member name="M:CommLayer.Communication.routerMessageErrorHandler(CommLayer.Messages.Message)">
+            <summary>
+            Procesa un mensaje que no ha podido ser envíado correctamente
+            </summary>
+            <param name="message">El mensaje</param>
+        </member>
+        <member name="M:CommLayer.Communication.send(CommLayer.Messages.Message)">
+            <summary>
+            Envía un mensaje a la MANET
+            </summary>
+            <param name="message">el mensaje a enviar</param>
+        </member>
+        <member name="M:CommLayer.Communication.internalSendMessage(CommLayer.Messages.Message)">
+            <summary>
+            Envía un mensaje de forma interna aplicando filtros
+            </summary>
+            <param name="message">el mensaje a enviar</param>
+        </member>
+        <member name="E:CommLayer.Communication.connectEvent">
+            <summary>
+            Se gatilla cuando el sistema se ha conectado a la MANET
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.disconnectEvent">
+            <summary>
+            Se Gatilla cuando el sistema se ha desconectado de la MANET
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.connectingEvent">
+            <summary>
+            Se gatilla cuando el sistema está intentando conectarse a la MANET
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.disconnectingEvent">
+            <summary>
+            Se gatilla cuando el sistema está intentando desconectarse de la MANET
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.reconnectingEvent">
+            <summary>
+            Se gatilla cuando el sistema está intentando reconectarse a la MANET
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.addUserEvent">
+            <summary>
+            Se gatilla cuando se ha conectado un nuevo usuario a la MANET
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.removeUserEvent">
+            <summary>
+            Se gatilla cuando se ha desconectado un usuario de la MANET
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.refreshUserEvent">
+            <summary>
+            Se gatilla cuando se han actualizado los datos de un usuario de la MANET
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.refreshLocalUserEvent">
+            <summary>
+            Se gatilla cuando se han establecido o actualizado los datos del usuario local
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.netInformationEvent">
+            <summary>
+            Se gatilla cuando el sistema emite información relacionada con las funcionalidades (log)
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.exceptionEvent">
+            <summary>
+            Se gatilla cuando ha ocurrido un error en el sistema
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.processMessageEvent">
+            <summary>
+            Se gatilla cuando se ha recibido un mensaje no manejable
+            </summary>
+        </member>
+        <member name="E:CommLayer.Communication.errorMessageEvent">
+            <summary>
+            Se gatilla cuando no se ha podido enviar un mensaje no manejable
+            </summary>
+        </member>
+        <member name="P:CommLayer.Communication.Configuration">
+            <summary>
+            Datos de configuración
+            </summary>
+        </member>
+        <member name="P:CommLayer.Communication.NetUserList">
+            <summary>
+            La lista de usuarios de la red
+            </summary>
+        </member>
+        <member name="T:CommLayer.Communication.VoidEvent">
+            <summary>
+            Declaración de delegados sin tipos
+            </summary>
+        </member>
+        <member name="T:CommLayer.Communication.NetUserEvent">
+            <summary>
+            Declaración de delagados que reciben un netUser
+            </summary>
+            <param name="netUser"></param>
+        </member>
+        <member name="T:CommLayer.Communication.StringEvent">
+            <summary>
+            Declaración de delegados que reciben un String
+            </summary>
+            <param name="aString"></param>
+        </member>
+        <member name="T:CommLayer.Communication.ExceptionEvent">
+            <summary>
+            Declaración de delegados que reciben una excepción
+            </summary>
+            <param name="anException"></param>
+        </member>
+        <member name="T:CommLayer.Communication.MessageEvent">
+            <summary>
+            Declaración de delegados que reciben un mensaje
+            </summary>
+            <param name="anException"></param>
+        </member>
+        <member name="T:CommLayer.MessageMonitoredQueue">
+            <summary>
+            Cola de mensajes
+            </summary>
+        </member>
+        <member name="F:CommLayer.MessageMonitoredQueue.queue">
+            <summary>
+            Cola de prioridad FIFO
+            </summary>
+        </member>
+        <member name="F:CommLayer.MessageMonitoredQueue.itemCount">
+            <summary>
+            Cantidad en la cola
+            </summary>
+        </member>
+        <member name="F:CommLayer.MessageMonitoredQueue.monitor">
+            <summary>
+            El monitor
+            </summary>
+        </member>
+        <member name="M:CommLayer.MessageMonitoredQueue.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.MessageMonitoredQueue.draw">
+            <summary>
+            Obtiene el primer mensaje en la cola, null si esta vacía
+            </summary>
+            <returns>el primer mensaje de la cola o null si está vacía</returns>
+        </member>
+        <member name="M:CommLayer.MessageMonitoredQueue.put(CommLayer.Messages.Message)">
+            <summary>
+            Coloca un mensaje en la cola
+            </summary>
+            <param name="m">el mensaje a colocar en la cola</param>
+        </member>
+        <member name="M:CommLayer.MessageMonitoredQueue.size">
+            <summary>
+            Retorna el tamaño de la cola
+            </summary>
+            <returns>el tamaño de la cola</returns>
+        </member>
+        <member name="M:CommLayer.MessageMonitoredQueue.unblok">
+            <summary>
+            Desbloquea forzosamente el bloquedo de draw
+            </summary>
+        </member>
+        <member name="T:CommLayer.Configuration">
+            <summary>
+            Datos de configuración necesarios para establecer la estructura de comunicación
+            </summary>
+        </member>
+        <member name="F:CommLayer.Configuration._netUser">
+            <summary>
+            Los datos del usuario local
+            </summary>
+        </member>
+        <member name="F:CommLayer.Configuration._netData">
+            <summary>
+            Los datos de la red
+            </summary>
+        </member>
+        <member name="M:CommLayer.Configuration.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.Configuration.#ctor(CommLayer.NetUser,NetLayer.NetData)">
+            <summary>
+            Constructor Parametrizado
+            </summary>
+            <param name="netUser">Datos del usuario</param>
+            <param name="netData">Datos de configuración de red</param>
+        </member>
+        <member name="M:CommLayer.Configuration.save(System.String,CommLayer.Configuration)">
+            <summary>
+            Serializa un objeto de este tipo
+            </summary>
+            <param name="directory">El directorio donde serializarlo debe terminar con el simbolo "/"</param>
+            <param name="configuration">El objeto configuración a serializar</param>
+        </member>
+        <member name="M:CommLayer.Configuration.load(System.String)">
+            <summary>
+            Carga un objeto serializado de este tipo
+            </summary>
+            <param name="directory">El directorio donde se encuentra el archivo serializado debe terminar con el simbolo "/"</param>
+            <returns>Un objeto de tipo Configuration con los datos que estaban serializados</returns>
+        </member>
+        <member name="P:CommLayer.Configuration.NetUser">
+            <summary>
+            El usuario que ejecuta esta estructura de comunicación
+            </summary>
+        </member>
+        <member name="P:CommLayer.Configuration.NetData">
+            <summary>
+            Los datos de red
+            </summary>
+        </member>
+        <member name="T:CommLayer.Router">
+            <summary>
+            Clase que se encarga de la logica de entrega y recepción de mensajes
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.messageIdCollection">
+            <summary>
+            La colección de ids de mensajes
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.messageAverage">
+            <summary>
+            Promedio de mensajes que se reciben en cada iteracion
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.iterations">
+            <summary>
+            Número de iteraciones realizadas para el calculo del promedio
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.duplicationProbability">
+            <summary>
+            Probabilidad de que se duplique un mensaje en la red
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.notSentMessageQueue">
+            <summary>
+            Cola de mensajes para envíar
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.failedMessageQueue">
+            <summary>
+            Cola de mensajes que han fallado en la entrega
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.notConfirmedMessageList">
+            <summary>
+            Cola de mensajes tipo Safe no confirmados con ACK
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.messageError">
+            <summary>
+            Se gatilla cada vez que un mensaje a fallado
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.waitForAck">
+            <summary>
+            Veces que se espera para el reenvio de un mensaje tipo Safe
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.netHandler">
+            <summary>
+            El manejador de la red
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.netUser">
+            <summary>
+            El netUser dueño de este router
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.netUserList">
+            <summary>
+            La lista de usuarios de la MANET
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.nMessagesSent">
+            <summary>
+            Statics para número de mensajes enviados
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.nMessagesConfirmed">
+            <summary>
+            Statics para número de mensajes confirmados
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.nMessagesFailed">
+            <summary>
+            Statics para número de mensajes fallidos
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.nMessagesReplayed">
+            <summary>
+            Statics para número de mensajes reenviados
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.nMessagesDestroyed">
+            <summary>
+            Statics para número de mensajes destruidos
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.nMessagesDroped">
+            <summary>
+            Statics para número de mensajes avisados de no entrega
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.nMessagesReceived">
+            <summary>
+            Statics para numero de mensajes recibidos
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.nMessagesRouted">
+            <summary>
+            Statics para numero de mensajes ruteados
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.nMessagesCounted">
+            <summary>
+            Statics para numero de mensajes recibidos en el ultimo update del router
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.messageFactory">
+            <summary>
+            Fabricador de mensajes
+            </summary>
+        </member>
+        <member name="F:CommLayer.Router.rand">
+            <summary>
+            Generador de numeros aleatorios
+            </summary>
+        </member>
+        <member name="M:CommLayer.Router.#ctor(CommLayer.Router.MessagErrorDelegate,System.Int32,System.Collections.Hashtable)">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.Router.queueMessageToSend(CommLayer.Messages.Message)">
+            <summary>
+            Encola un mensaje a la lista de mensajes para enviar
+            </summary>
+            <param name="message">El mensaje a enviar</param>
+        </member>
+        <member name="M:CommLayer.Router.send(CommLayer.Messages.Message)">
+            <summary>
+            Identifica el tipo de mensaje a enviar y lo envia mediante un netHandler
+            </summary>
+            <param name="message">El mensaje e enviar</param>
+        </member>
+        <member name="M:CommLayer.Router.attendMessage(NetLayer.NetMessage)">
+            <summary>
+            Identifica un mensaje de bajo nivel recibido y lo retorna como mensajede alto nivel, y/o lo rutea segun corresponde
+            </summary>
+            <param name="netMessage">El mensaje recibido de bajo nivel</param>
+            <returns>el mensaje de alto nivel recibido, o null si se ruteó hacia otra parte</returns>
+        </member>
+        <member name="M:CommLayer.Router.proccessAckMessage(CommLayer.Messages.AckMessage)">
+            <summary>
+            Procesa un mensaje de confirmación que se ha recibido
+            </summary>
+            <param name="ackMessage">el mensaje de confirmación</param>
+        </member>
+        <member name="M:CommLayer.Router.proccessNotSentMessage">
+            <summary>
+            Procesa los mensajes de tipo Unicast que no han sido enviados aun
+            </summary>
+        </member>
+        <member name="M:CommLayer.Router.proccessNotConfirmedMessages">
+            <summary>
+            Procesa los mensajes tipo Safe que no han sido confirmados
+            </summary>
+        </member>
+        <member name="M:CommLayer.Router.proccessFailedMessages">
+            <summary>
+            Procesa los mensajes de tipo Unicast que no han sido enviados con exito
+            </summary>
+        </member>
+        <member name="M:CommLayer.Router.updateRouterTable(NetLayer.NetHandler,CommLayer.NetUser,CommLayer.NetUserList)">
+            <summary>
+            Actualiza los parámetros del router
+            </summary>
+            <param name="netHandler">El manejador de la red</param>
+            <param name="netUser">Los datos del usuario local</param>
+            <param name="netUserList">La lista de usuarios de la red</param>
+        </member>
+        <member name="M:CommLayer.Router.pathNextIp(CommLayer.NetUser)">
+            <summary>
+            Encuentra el camino mas corto hacia el destinatario de un mensaje y retorna la ip del vecino que se encuentra en el camino
+            </summary>
+            <param name="receiverNetUser">El usuario destinatario del mensaje</param>
+            <returns>Un string con la IP del remote machine vecino que se encuentra en el camino óptimo</returns>
+        </member>
+        <member name="P:CommLayer.Router.MaxListSize">
+            <summary>
+            Tamaño máximo de la lista de ids de mensajes
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.ListSize">
+            <summary>
+            Tamaño actual de la lista de ids de mensajes
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.MessageAverage">
+            <summary>
+            Promedio de mensajes que se reciben en cada iteracion
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.FailedMessagesSize">
+            <summary>
+            Tamaño de la lista de mensajes fallidos
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.NotConfirmedSize">
+            <summary>
+            Tamaño de la lista de mensajes no confirmados
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.NotSentSize">
+            <summary>
+            Tamaño de la lista de mensajes no confirmados
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.NMessagesSent">
+            <summary>
+            Mensajes TCP SAFE enviados
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.NMessagesConfirmed">
+            <summary>
+            Mensajes TCP SAFE confirmados
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.NMessagesFailed">
+            <summary>
+            Mensajes TCP SAFE fallidos encolados para reenvío
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.NMessagesReplayed">
+            <summary>
+            Mensajes TCP SAFE seleccionados para reenvio por no confirmación
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.NMessagesDestroyed">
+            <summary>
+            Mensajes TCP SAFE destruidos
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.NMessagesReceived">
+            <summary>
+            Mensajes TCP SAFE recepcionados
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.NMessagesRouted">
+            <summary>
+            Mensajes TCP SAFE seleccionados para ruteo
+            </summary>
+        </member>
+        <member name="P:CommLayer.Router.NMessagesDroped">
+            <summary>
+            Mensajes TCP SAFE fallidos avisados al usuario 
+            </summary>
+        </member>
+        <member name="T:CommLayer.Router.MessagErrorDelegate">
+            <summary>
+            Delegado para avisar mensajes fallidos
+            </summary>
+            <param name="message">El mensaje que ha fallado</param>
+        </member>
+        <member name="T:CommLayer.SubProtocolList">
+            <summary>
+            Lista de SubProtocolos
+            </summary>
+        </member>
+        <member name="F:CommLayer.SubProtocolList.Collection">
+            <summary>
+            La tabla de hashing de la colección
+            </summary>
+        </member>
+        <member name="F:CommLayer.SubProtocolList.thisLock">
+            <summary>
+            Candado para control de threading
+            </summary>
+        </member>
+        <member name="M:CommLayer.SubProtocolList.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.SubProtocolList.add(System.Int32,CommLayer.SubProtocolI)">
+            <summary>
+            Agrega un sub protocolo a la lista
+            </summary>
+            <param name="subProtocolType">El tipo del subprotocolo (los numeros entre 0 y 1000 esta reservados para el sistema)</param>
+            <param name="subProtocol">un objeto de sub protocolo inicializado</param>
+        </member>
+        <member name="T:CommLayer.MessageTypeList">
+            <summary>
+            Lista de Tipos de Mensajes
+            </summary>
+        </member>
+        <member name="F:CommLayer.MessageTypeList.Collection">
+            <summary>
+            La tabla de hashing de la colección
+            </summary>
+        </member>
+        <member name="F:CommLayer.MessageTypeList.thisLock">
+            <summary>
+            Candado para control de threading
+            </summary>
+        </member>
+        <member name="M:CommLayer.MessageTypeList.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.MessageTypeList.add(System.Int32,System.Type)">
+            <summary>
+            Agrega un tipo de mensaje a la lista
+            </summary>
+            <param name="messageType">El tipo del mensaje, los tipos entre 0 y 1000 esta reservados para el sistema</param>
+            <param name="messageTypeObject">El tipo del mensaje, como objeto tipo, puede ser obtenido mediante typeof</param>
+        </member>
+        <member name="T:CommLayer.MessageIdCollection">
+            <summary>
+            Colección de fileID's de mensajes. Estructura usada por el Router
+            Los ids son unicos en la colección
+            Si se agrega un fileID cuando el tamaño es igual a MaxSize, se borra el primero en la cola y se agrega el afinal de la cola
+            </summary>
+        </member>
+        <member name="F:CommLayer.MessageIdCollection.messageIdList">
+            <summary>
+            Tabla de hashing para busqueda de orden constante
+            </summary>
+        </member>
+        <member name="F:CommLayer.MessageIdCollection.messageIdqueue">
+            <summary>
+            Cola de prioridad para entrada y salida en orden constante
+            </summary>
+        </member>
+        <member name="F:CommLayer.MessageIdCollection.thisLock">
+            <summary>
+            Control de threeading
+            </summary>
+        </member>
+        <member name="F:CommLayer.MessageIdCollection.maxSize">
+            <summary>
+            El tamaño máximo de la colección
+            </summary>
+        </member>
+        <member name="M:CommLayer.MessageIdCollection.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.MessageIdCollection.add(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:CommLayer.MessageIdCollection.size">
+            <summary>
+            Retorna el tamaño de la cola
+            </summary>
+            <returns>el tamaño de la cola</returns>
+        </member>
+        <member name="M:CommLayer.MessageIdCollection.contains(System.Guid)">
+            <summary>
+            Retorna true si existe el fileID en la colección
+            </summary>
+        </member>
+        <member name="P:CommLayer.MessageIdCollection.MaxSize">
+            <summary>
+            El tamaño máximo de la colección
+            </summary>
+        </member>
+        <member name="T:CommLayer.Messages.MessageFactory">
+            <summary>
+            Fabricador de mensajes provenientes de la red
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.MessageFactory.messageTypes">
+            <summary>
+            Tipos adicionalaes de mensajes
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.MessageFactory.#ctor(System.Collections.Hashtable)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="messageTypes">Tabla de hash con valores y tipos de mensajes adicionales</param>
+        </member>
+        <member name="M:CommLayer.Messages.MessageFactory.makeMessage(System.Byte[])">
+            <summary>
+            Fabrica un mensaje que ha provenido de la red
+            </summary>
+            <param name="messageData">Los datos del mensajes como un conjunto de bytes</param>
+            <returns>Un mensaje de alto nivel</returns>
+        </member>
+        <member name="M:CommLayer.Messages.MessageFactory.getMessageId(System.Byte[])">
+            <summary>
+            Obtiene el id del mensaje
+            </summary>
+            <param name="messageData">Los datos del mensajes como un conjunto de bytes</param>
+            <returns>El id del mensage</returns>
+        </member>
+        <member name="M:CommLayer.Messages.MessageFactory.getTargetNetUser(System.Byte[])">
+            <summary>
+            Obtiene el target user solo si es de tipo unicast
+            </summary>
+            <param name="messageData">Los datos del mensajes como un conjunto de bytes</param>
+            <returns>El destinatario</returns>
+        </member>
+        <member name="M:CommLayer.Messages.MessageFactory.getSenderNetUser(System.Byte[])">
+            <summary>
+            Obtiene el sender user
+            </summary>
+            <param name="messageData">Los datos del mensajes como un conjunto de bytes</param>
+            <returns>El sender</returns>
+        </member>
+        <member name="M:CommLayer.Messages.MessageFactory.getMessageMetaType(System.Byte[])">
+            <summary>
+            Obtiene el metatipo del mensaje
+            </summary>
+            <param name="messageData">Los datos del mensajes como un conjunto de bytes</param>
+            <returns>El metatipo del mensage</returns>
+        </member>
+        <member name="T:CommLayer.MessageQueue">
+            <summary>
+            Clase para la cola de mensajes
+            </summary>
+        </member>
+        <member name="M:CommLayer.MessageQueue.#ctor">
+            <summary>
+            Constructor vacío
+            </summary>
+        </member>
+        <member name="M:CommLayer.MessageQueue.draw">
+            <summary>
+            Obtiene el primer mensaje en la cola, null si esta vacía
+            </summary>
+            <returns>el primer mensaje de la cola message null si está vacía</returns>
+        </member>
+        <member name="M:CommLayer.MessageQueue.put(CommLayer.Messages.Message)">
+            <summary>
+            Coloca un mensaje en la cola
+            </summary>
+            <param name="m">el mensaje a colocar en la cola</param>
+        </member>
+        <member name="M:CommLayer.MessageQueue.size">
+            <summary>
+            Retorna el tamaño de la cola
+            </summary>
+            <returns>el tamaño de la cola</returns>
+        </member>
+        <member name="T:CommLayer.SubProtocolI">
+            <summary>
+            Interfaz que representa las funcionalidades de un sub protocolo
+            </summary>
+        </member>
+        <member name="M:CommLayer.SubProtocolI.proccessMessage(CommLayer.Messages.Message)">
+            <summary>
+            Se gatilla cuando se recibe un mensaje
+            </summary>
+            <param name="message">El mensaje recibido</param>
+        </member>
+        <member name="M:CommLayer.SubProtocolI.errorMessage(CommLayer.Messages.Message)">
+            <summary>
+            Se gatilla cuando no es posible entregar un mensaje
+            </summary>
+            <param name="message">El mensaje no entregado</param>
+        </member>
+        <member name="M:CommLayer.SubProtocolI.getMessageTypes">
+            <summary>
+            Obtiene la lista de tipos de mensajes usados por este protocolo
+            </summary>
+            <returns>Una tabla con valores y tipos de mensajes usados en el protocolo</returns>
+        </member>
+        <member name="E:CommLayer.SubProtocolI.sendMessageEvent">
+            <summary>
+            Evento que se debe gatillar cuando el protocolo quiere enviar un mensaje a la red
+            </summary>
+        </member>
+        <member name="T:CommLayer.Messages.FastUnicastMessage">
+            <summary>
+            representa un Mensaje Unicast TCP con protocolo de seguridad en la entrega
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.FastUnicastMessage._targetNetUser">
+            <summary>
+            El usuario receptor de este mensaje
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.FastUnicastMessage.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.FastUnicastMessage.byteArrayToProperties(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messageData">un array de bytes con todos los datos del mensaje</param>
+        </member>
+        <member name="M:CommLayer.Messages.FastUnicastMessage.toByteArray">
+            <summary>
+            Convierte a este mensaje en un paquete de bytes
+            </summary>
+            <returns>un array de bytes con todos los datos del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.FastUnicastMessage.send(NetLayer.NetHandler,System.Net.IPAddress)">
+            <summary>
+            Envía el mensaje a la MANET
+            </summary>
+            <param name="netHandler">El manejador de la red</param>
+            <param name="ip">la ip de la maquina remota destino</param>
+        </member>
+        <member name="M:CommLayer.Messages.FastUnicastMessage.makeMetaPack">
+            <summary>
+            Convierte la meta data de este mensaje en una estructura de bytes
+            </summary>
+            <returns>el array de bytes con la meta data</returns>
+        </member>
+        <member name="M:CommLayer.Messages.FastUnicastMessage.metaUnPack(System.Byte[])">
+            <summary>
+            Convierte una estructura de bytes en la meta data de este mensaje
+            </summary>
+            <param name="messageMetaPack">un array de bytes con la meta data</param>
+        </member>
+        <member name="M:CommLayer.Messages.FastUnicastMessage.makePack">
+            <summary>
+            Convierte las propiedades del mensaje en un paquete de bytes
+            </summary>
+            <returns>un paquete de bytes con las propiedades del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.FastUnicastMessage.unPack(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messagePack">El paquete de bytes</param>
+        </member>
+        <member name="M:CommLayer.Messages.FastUnicastMessage.ToString">
+            <summary>
+            Sobreescribe el metodo toString
+            </summary>
+            <returns>El string que representa este objeto</returns>
+        </member>
+        <member name="P:CommLayer.Messages.FastUnicastMessage.TargetNetUser">
+            <summary>
+            El usuario receptor de este mensaje
+            </summary>
+        </member>
+        <member name="T:CommLayer.Messages.SafeMulticastMessage">
+            <summary>
+            Representa un Mensaje Multicast TCP con protocolo de seguridad en la entrega
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.SafeMulticastMessage.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.SafeMulticastMessage.byteArrayToProperties(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messageData">un array de bytes con todos los datos del mensaje</param>
+        </member>
+        <member name="M:CommLayer.Messages.SafeMulticastMessage.toByteArray">
+            <summary>
+            Convierte a este mensaje en un paquete de bytes
+            </summary>
+            <returns>un array de bytes con todos los datos del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.SafeMulticastMessage.send(NetLayer.NetHandler)">
+            <summary>
+            Envía el mensaje a la MANET
+            </summary>
+            <param name="netHandler">El manejador de la red</param>
+        </member>
+        <member name="M:CommLayer.Messages.SafeMulticastMessage.makeMetaPack">
+            <summary>
+            Convierte la meta data de este mensaje en una estructura de bytes
+            </summary>
+            <returns>el array de bytes con la meta data</returns>
+        </member>
+        <member name="M:CommLayer.Messages.SafeMulticastMessage.metaUnPack(System.Byte[])">
+            <summary>
+            Convierte una estructura de bytes en la meta data de este mensaje
+            </summary>
+            <param name="messageMetaPack">un array de bytes con la meta data</param>
+        </member>
+        <member name="M:CommLayer.Messages.SafeMulticastMessage.makePack">
+            <summary>
+            Convierte las propiedades del mensaje en un paquete de bytes
+            </summary>
+            <returns>un paquete de bytes con las propiedades del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.SafeMulticastMessage.unPack(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messagePack">El paquete de bytes</param>
+        </member>
+        <member name="M:CommLayer.Messages.SafeMulticastMessage.ToString">
+            <summary>
+            Sobreescribe el metodo toString
+            </summary>
+            <returns>El string que representa este objeto</returns>
+        </member>
+        <member name="T:CommLayer.Messages.ImAliveMessage">
+            <summary>
+            Representa un mensaje para informar a los demas usuarios la existencia y la información de este
+            Protocolo UDP
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.ImAliveMessage.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.ImAliveMessage.makePack">
+            <summary>
+            Convierte las propiedades del mensaje en un paquete de bytes
+            </summary>
+            <returns>un paquete de bytes con las propiedades del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.ImAliveMessage.unPack(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messagePack">El paquete de bytes</param>
+        </member>
+        <member name="M:CommLayer.Messages.ImAliveMessage.ToString">
+            <summary>
+            Sobreescribe el metodo toString
+            </summary>
+            <returns>El string que representa este objeto</returns>
+        </member>
+        <member name="T:CommLayer.Messages.AckMessage">
+            <summary>
+            Representa un mensaje de confirmación para los mensajes de tipo Safe
+            Protocolo TCP
+            </summary>
+        </member>
+        <member name="F:CommLayer.Messages.AckMessage._messageId">
+            <summary>
+            El id del mensaje
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.AckMessage.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:CommLayer.Messages.AckMessage.#ctor(CommLayer.NetUser,System.Guid)">
+            <summary>
+            Constructor Parametrizado
+            </summary>
+            <param name="targetNetUser">El destinatario de este mensaje</param>
+            <param name="messageId">El id del mensaje a confirmar</param>
+        </member>
+        <member name="M:CommLayer.Messages.AckMessage.makePack">
+            <summary>
+            Convierte las propiedades del mensaje en un paquete de bytes
+            </summary>
+            <returns>un paquete de bytes con las propiedades del mensaje</returns>
+        </member>
+        <member name="M:CommLayer.Messages.AckMessage.unPack(System.Byte[])">
+            <summary>
+            Convierte un paquete de bytes en las propiedades del mensaje
+            </summary>
+            <param name="messagePack">El paquete de bytes</param>
+        </member>
+        <member name="M:CommLayer.Messages.AckMessage.ToString">
+            <summary>
+            Sobreescribe el metodo toString
+            </summary>
+            <returns>El string que representa este objeto</returns>
+        </member>
+        <member name="P:CommLayer.Messages.AckMessage.MessageId">
+            <summary>
+            El id del mensaje a confirmar
+            </summary>
+        </member>
+        <member name="T:CommLayer.Dijkstra">
+            <summary> 
+            Implements a generalized Dijkstra's algorithm to calculate 
+            both minimum distance and minimum path. 
+            </summary> 
+            <remarks> 
+            For this algorithm, all nodes should be provided, and handled 
+            in the delegate methods, including the startNetworkingHandler and finish nodes. 
+            </remarks> 
+        </member>
+        <member name="M:CommLayer.Dijkstra.#ctor(System.Int32,CommLayer.Dijkstra.InternodeTraversalCost,CommLayer.Dijkstra.NearbyNodesHint)">
+            <summary> 
+            Creates an instance of the <see cref="T:CommLayer.Dijkstra"/> class. 
+            </summary> 
+            <param name="totalNodeCount"> 
+            The total number of nodes in the graph. 
+            </param> 
+            <param name="traversalCost"> 
+            The delegate that can provide the cost of a transition between 
+            any two nodes. 
+            </param> 
+            <param name="hint"> 
+            An optional delegate that can provide a small subset of nodes 
+            that a given nodeIndex may be connected to. 
+            </param> 
+        </member>
+        <member name="M:CommLayer.Dijkstra.Perform(System.Int32)">
+            <summary> 
+            Performs the Dijkstra algorithm on the data provided when the  
+            <see cref="T:CommLayer.Dijkstra"/> object was instantiated. 
+            </summary> 
+            <param name="start"> 
+            The nodeIndex to use as a connecting location. 
+            </param> 
+            <returns> 
+            A struct containing both the minimum distance and minimum path 
+            to every nodeIndex from the given <paramref name="startNetworkingHandler"/> nodeIndex. 
+            </returns> 
+        </member>
+        <member name="M:CommLayer.Dijkstra.GetMinimumPath(System.Int32,System.Int32)">
+            <summary> 
+            Uses the Dijkstra algorithhm to find the minimum path 
+            from one nodeIndex to another. 
+            </summary> 
+            <param name="start"> 
+            The nodeIndex to use as a connecting location. 
+            </param> 
+            <param name="finish"> 
+            The nodeIndex to use as a finishing location. 
+            </param> 
+            <returns> 
+            A struct containing both the minimum distance and minimum path 
+            to every nodeIndex from the given <paramref name="start"/> nodeIndex. 
+            </returns> 
+        </member>
+        <member name="M:CommLayer.Dijkstra.GetMinimumPath(System.Int32,System.Int32,System.Int32[])">
+            <summary> 
+            Finds an array of nodes that provide the shortest path 
+            from one given nodeIndex to another. 
+            </summary> 
+            <param name="start"> 
+            The connecting nodeIndex. 
+            </param> 
+            <param name="finish"> 
+            The finishing nodeIndex. 
+            </param> 
+            <param name="shortestPath"> 
+            The P array of the completed algorithm. 
+            </param> 
+            <returns> 
+            The list of nodes that provide the one step at a time path  
+            from <paramref name="startNetworkingHandler"/> to <paramref name="finish"/> nodes. 
+            </returns> 
+        </member>
+        <member name="M:CommLayer.Dijkstra.GetStartingBestPath(System.Int32)">
+            <summary> 
+            Initializes the P array for the algorithm. 
+            </summary> 
+            <param name="startingNode"> 
+            The nodeIndex that has been designated the connecting nodeIndex for the entire algorithm. 
+            </param> 
+            <returns> 
+            The new P array. 
+            </returns> 
+            <remarks> 
+            A fresh P array will set every single nodeIndex's source nodeIndex to be  
+            the connecting nodeIndex, including the connecting nodeIndex itself. 
+            </remarks> 
+        </member>
+        <member name="M:CommLayer.Dijkstra.FindMinimizingDinC(System.Int32[],System.Collections.Generic.ICollection{System.Int32})">
+            <summary> 
+            Finds the yet-unconsidered nodeIndex that has the least cost to reach. 
+            </summary> 
+            <param name="d"> 
+            The cost of reaching any nodeIndex. 
+            </param> 
+            <param name="c"> 
+            The nodes that are still available for picking. 
+            </param> 
+            <returns> 
+            The nodeIndex that is closest (has the shortest special path). 
+            </returns> 
+        </member>
+        <member name="M:CommLayer.Dijkstra.GetChoices">
+            <summary> 
+            Initializes an collection of all nodes not yet considered. 
+            </summary> 
+            <returns> 
+            The initialized collection. 
+            </returns> 
+        </member>
+        <member name="M:CommLayer.Dijkstra.GetStartingTraversalCost(System.Int32)">
+            <summary> 
+            Initializes the D array for the startNetworkingHandler of the algorithm. 
+            </summary> 
+            <param name="start"> 
+            The connecting nodeIndex. 
+            </param> 
+            <returns> 
+            The contents of the new D array. 
+            </returns> 
+            <remarks> 
+            The traversal cost for every nodeIndex will be set to impossible 
+            (int.MaxValue) unless a connecting edge is found between the 
+            <paramref name="startNetworkingHandler"/>ing nodeIndex and the nodeIndex in question. 
+            </remarks> 
+        </member>
+        <member name="T:CommLayer.Dijkstra.NearbyNodesHint">
+            <summary> 
+            An optional delegate that can help optimize the algorithm 
+            by showing it a subset of nodes to consider. Very useful 
+            for limited connectivity graphs. (like pixels on a screen!) 
+            </summary> 
+            <param name="startingNode"> 
+            The nodeIndex that is being traveled away FROM. 
+            </param> 
+            <returns> 
+            An array of nodes that might be reached from the  
+            <paramref name="startingNode"/>. 
+            </returns> 
+        </member>
+        <member name="T:CommLayer.Dijkstra.InternodeTraversalCost">
+            <summary> 
+            Determines the cost of moving from a given nodeIndex to another given nodeIndex. 
+            </summary> 
+            <param name="start"> 
+            The nodeIndex being moved away from. 
+            </param> 
+            <param name="finish"> 
+            The nodeIndex that may be moved to. 
+            </param> 
+            <returns> 
+            The cost of the transition from <paramref name="startNetworkingHandler"/> to 
+            <paramref name="finish"/>, or <see cref="F:System.Int32.MaxValue"/> 
+            if the transition is impossible (i.e. there is no edge between  
+            the two nodes). 
+            </returns> 
+        </member>
+        <member name="T:CommLayer.Dijkstra.Results">
+            <summary> 
+            The composite product of a Dijkstra algorithm. 
+            </summary> 
+        </member>
+        <member name="M:CommLayer.Dijkstra.Results.#ctor(System.Int32[],System.Int32[])">
+            <summary> 
+            Prepares a Dijkstra results package. 
+            </summary> 
+            <param name="minimumPath"> 
+            The minimum path array, where each array element index corresponds  
+            to a nodeIndex designation, and the array element value is a pointer to 
+            the nodeIndex that should be used to travel to this one. 
+            </param> 
+            <param name="minimumDistance"> 
+            The minimum distance from the connecting nodeIndex to the given nodeIndex. 
+            </param> 
+        </member>
+        <member name="F:CommLayer.Dijkstra.Results.MinimumPath">
+            <summary> 
+            The minimum path array, where each array element index corresponds  
+            to a nodeIndex designation, and the array element value is a pointer to 
+            the nodeIndex that should be used to travel to this one. 
+            </summary> 
+        </member>
+        <member name="F:CommLayer.Dijkstra.Results.MinimumDistance">
+            <summary> 
+            The minimum distance from the connecting nodeIndex to the given nodeIndex. 
+            </summary> 
+        </member>
+        <member name="T:CommLayer.Event">
+            <summary>
+            Representa un evento
+            </summary>
+        </member>
+        <member name="F:CommLayer.Event._eventHandler">
+            <summary>
+            El evento
+            </summary>
+        </member>
+        <member name="F:CommLayer.Event._param">
+            <summary>
+            El parametro
+            </summary>
+        </member>
+        <member name="M:CommLayer.Event.#ctor(System.Delegate,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="eventHandler">el evento</param>
+            <param name="param">el parametro</param>
+        </member>
+        <member name="M:CommLayer.Event.execute">
+            <summary>
+            Ejecuta el evento
+            </summary>
+        </member>
+        <member name="P:CommLayer.Event.EventHandler">
+            <summary>
+            El evento
+            </summary>
+        </member>
+        <member name="P:CommLayer.Event.Param">
+            <summary>
+            El parametro
+            </summary>
+        </member>
+    </members>
+</doc>
