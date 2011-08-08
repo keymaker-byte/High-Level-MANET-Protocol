@@ -1,9 +1,0 @@
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SubProtocol\bin\Release\licence\Licence.txt
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SubProtocol\bin\Release\SubProtocol.XML
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SubProtocol\bin\Release\SubProtocol.dll
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SubProtocol\bin\Release\SubProtocol.pdb
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SubProtocol\obj\Release\ResolveAssemblyReference.cache
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SubProtocol\obj\Release\SubProtocol.Properties.Resources.resources
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SubProtocol\obj\Release\SubProtocol.csproj.GenerateResource.Cache
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SubProtocol\obj\Release\SubProtocol.dll
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SubProtocol\obj\Release\SubProtocol.pdb

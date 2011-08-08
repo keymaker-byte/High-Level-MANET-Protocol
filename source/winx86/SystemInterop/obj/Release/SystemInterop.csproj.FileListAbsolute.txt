@@ -1,8 +1,0 @@
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SystemInterop\bin\Release\licence\Licence.txt
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SystemInterop\bin\Release\SystemInterop.dll
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SystemInterop\bin\Release\SystemInterop.pdb
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SystemInterop\obj\Release\ResolveAssemblyReference.cache
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SystemInterop\obj\Release\SystemInterop.Properties.Resources.resources
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SystemInterop\obj\Release\SystemInterop.csproj.GenerateResource.Cache
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SystemInterop\obj\Release\SystemInterop.dll
-C:\Users\zenilt\Modificados\Proyectos\HLMP\git\High-Level-MANET-Protocol\source\windowsXP\SystemInterop\obj\Release\SystemInterop.pdb
