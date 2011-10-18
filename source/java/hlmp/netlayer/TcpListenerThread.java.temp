@@ -1,0 +1,62 @@
+package hlmp.netlayer;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class TcpListenerThread extends Thread {
+	
+	ServerSocket tcpListener;
+	NetHandler netHandler;
+	InetSocketAddress inetSocketAddress;
+
+	public TcpListenerThread(NetHandler netHandler, InetAddress addr, int port) {
+		this.netHandler = netHandler;
+		this.inetSocketAddress = new InetSocketAddress(addr, port);
+	}
+	
+	public void bind() throws IOException{
+		this.tcpListener = new ServerSocket();
+		tcpListener.bind(inetSocketAddress);
+	}
+
+	@Override
+	public void run() {
+		try
+        {
+            while (true)
+            {
+                Socket tcpClient= tcpListener.accept();
+                netHandler.informationNetworkingHandler("TCP: new client detected");
+                tcpClient.setSoLinger(false, 0);
+                
+                //tcpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
+                InetAddress ip = tcpClient.getInetAddress();
+                ClientThread clientThread = new ClientThread(netHandler);
+                RemoteMachine remoteMachine = new RemoteMachine(ip, tcpClient, clientThread);
+                clientThread.setRemoteMachine(remoteMachine);
+                clientThread.start();
+                RemoteMachine oldRemoteMachine = netHandler.getRemoteMachine(ip);
+                if (oldRemoteMachine != null)
+                {
+                    oldRemoteMachine.close();
+                    netHandler.remove(oldRemoteMachine);
+                }
+                netHandler.add(ip, remoteMachine);
+                netHandler.informationNetworkingHandler("TCP: new client connected");
+            }
+        }
+//        catch (InterruptedException e)
+//        {
+//            throw e;
+//        }
+        catch (Exception e)
+        {
+            netHandler.informationNetworkingHandler("TCP WARNING: TCP listener has stopped!! " + e.getMessage());
+        }
+		
+	}
+	
+}
