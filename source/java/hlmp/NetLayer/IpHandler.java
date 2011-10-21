@@ -2,6 +2,7 @@ package hlmp.NetLayer;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import hlmp.NetLayer.Constants.*;
+import hlmp.NetLayer.Interfaces.ResetIpHandler;
 
 public class IpHandler{
 
@@ -40,6 +41,10 @@ public class IpHandler{
 	 */
 	//private int lolinessTimeOut;
 	/**
+	 * valor que que cambia si el usuario esta correctamente recibiendo la multidifusión
+	 */
+    private long aliveValue;
+	/**
 	 * valor que cambia cuando el usuario esta correctamente difundiendo mensajes
 	 */
 	//private int lastAliveValue;
@@ -49,12 +54,14 @@ public class IpHandler{
 
 		this.resetIpHandler = resetIpHandler;
 		this.netData = netData;
-		this.checkIpThread = checkIpThread();
+		this.checkIpThread = getCheckIpThread();
+		this.checkIpThread.setName("IpHandler Thread");
 		this.state = IphandlerState.STOPPED;
 		this.stopLock = new Object();
 		this.queueLock = new Object();
 		queue = new ConcurrentLinkedQueue<String>();
 		//this.lolinessTimeOut = 0;
+		this.aliveValue = 0;
 		//this.lastAliveValue = 0;
 
 	}
@@ -86,18 +93,20 @@ public class IpHandler{
 	/**
 	 * Verifica que no exista Ip duplicada en el sistema operativo, si gatilla resetIpDelegate, asegura que el Thread se detendrá
 	 */
-	private Thread checkIpThread(){
+	private Thread getCheckIpThread(){
 		return new Thread(){
+
 			public void run(){
 				//TODO:
 				while(true){
 					try {
-						Thread.sleep(netData.getWaitTimeStart());
+						sleep(netData.getWaitTimeStart());
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 					//Chequea Strong DAD
-					if (state == IphandlerState.STARTEDSTRONG){
+					if (state == IphandlerState.STARTEDSTRONG)
+					{
 						int ipState = SystemHandler.getIpState(netData.getNetworkAdapter(), netData.getIpTcpListener());
 						switch (ipState)
 						{
@@ -112,7 +121,9 @@ public class IpHandler{
 							return;
 						}
 						}
-					}else if (state == IphandlerState.STARTEDWEAK){
+					}
+					else if (state == IphandlerState.STARTEDWEAK)
+					{
 						//Chequea Weak DAD
 						synchronized (queueLock){
 							while (queue.size() > 0){
@@ -143,35 +154,35 @@ public class IpHandler{
 							return;
 						}
 						}
-//						//Chequea loneliness
-//						if (netData.getOpSystem() == OpSystemType.WINVISTA)
-//						{
-//							Int64 nBytes = SystemHandler.getAliveValue(netData.NetworkAdapter);
-//							if (nBytes == lastAliveValue)
-//							{
-//								lolinessTimeOut++;
-//								if (lolinessTimeOut >= netData.LolinessTimeOut)
-//								{
-//									resetIpDelegate();
-//									return;
-//								}
-//							}
-//							else
-//							{
-//								lolinessTimeOut = 0;
-//							}
-//							lastAliveValue = nBytes;
-//						}
-		//
-//						//Chequea operatividad del adaptador
-//						if (netData.OpSystem == OpSystemType.WINVISTA)
-//						{
-//							if (!SystemHandler.isOperative(netData.NetworkAdapter))
-//							{
-//								resetIpDelegate();
-//								return;
-//							}
-//						}
+						//						//Chequea loneliness
+						//						if (netData.getOpSystem() == OpSystemType.WINVISTA)
+						//						{
+						//							Int64 nBytes = SystemHandler.getAliveValue(netData.NetworkAdapter);
+						//							if (nBytes == lastAliveValue)
+						//							{
+						//								lolinessTimeOut++;
+						//								if (lolinessTimeOut >= netData.LolinessTimeOut)
+						//								{
+						//									resetIpDelegate();
+						//									return;
+						//								}
+						//							}
+						//							else
+						//							{
+						//								lolinessTimeOut = 0;
+						//							}
+						//							lastAliveValue = nBytes;
+						//						}
+						//
+						//						//Chequea operatividad del adaptador
+						//						if (netData.OpSystem == OpSystemType.WINVISTA)
+						//						{
+						//							if (!SystemHandler.isOperative(netData.NetworkAdapter))
+						//							{
+						//								resetIpDelegate();
+						//								return;
+						//							}
+						//						}
 
 						//Detiene o duerme segun corresponda
 						synchronized (stopLock){
@@ -196,5 +207,14 @@ public class IpHandler{
 			this.queue.add(outterIp);
 		}
 	}
+	
+	/**
+	 * Agrega Bytes leidos por UDP
+	 * @param bytesNumber la cantidad de bytes a agregar
+	 */
+    public void putReceibedBytes(int bytesNumber)
+    {
+        aliveValue += bytesNumber;
+    }
 
 }

@@ -1,5 +1,7 @@
 package hlmp.NetLayer;
 
+import hlmp.NetLayer.Interfaces.WifiInformationHandler;
+
 public class WifiHandler {
 	/**
 	 * Datos de configuración

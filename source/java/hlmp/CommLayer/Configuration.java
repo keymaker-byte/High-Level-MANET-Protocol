@@ -40,6 +40,10 @@ public class Configuration {
         this.netData = netData;
     }
 
+    /**
+     * 
+     * @return Los datos del usuario local
+     */
     public NetUser getNetUser() {
 		return netUser;
 	}
@@ -48,6 +52,10 @@ public class Configuration {
 		this.netUser = netUser;
 	}
 
+	/**
+	 * 
+	 * @return Los datos de la red
+	 */
 	public NetData getNetData() {
 		return netData;
 	}

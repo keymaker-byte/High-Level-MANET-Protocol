@@ -22,17 +22,18 @@ public class NetMessageQueue {
 	}
 	
 	/**
-	 * Obtiene el primer mensaje en la cola, null si esta vacía
+	 * Obtiene el primer mensaje en la cola
 	 * Si esta vacia espera a que haya un mensaje.
-	 * @return el primer mensaje de la cola o null si está vacía
+	 * @return el primer mensaje de la cola
+	 * @throws InterruptedException 
 	 */
-	public synchronized NetMessage draw(){
+	public synchronized NetMessage draw() throws InterruptedException{
 		while(itemCount == 0){
 			//	continue;
-			try {
+//			try {
 				wait();
-			} catch (InterruptedException e) {
-			}
+//			} catch (InterruptedException e) {
+//			}
 		}
 		
 		NetMessage netMessage = this.queue.poll();

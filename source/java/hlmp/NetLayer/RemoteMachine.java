@@ -22,7 +22,7 @@ public class RemoteMachine{
 	/**
 	 * El thread que escucha los mensajes TCP provenientes de la maquina remota
 	 */
-	private ClientThread clientThread;
+	private ListenTCPMessagesThread clientThread;
 	/**
 	 * El ID unico de esta maquina remota
 	 */
@@ -46,7 +46,7 @@ public class RemoteMachine{
 	 * @param tcpClient el objeto TcpClient asociado
 	 * @param clientThread el thread que maneja lectura de datos de la maquina
 	 */
-	public RemoteMachine(InetAddress ip, Socket tcpClient,	ClientThread clientThread) {
+	public RemoteMachine(InetAddress ip, Socket tcpClient,	ListenTCPMessagesThread clientThread) {
 		this.ip = ip;
 		this.tcpClient = tcpClient;
 		this.clientThread = clientThread;

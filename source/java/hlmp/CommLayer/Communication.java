@@ -309,8 +309,11 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
 //			bag.Elapsed += new ElapsedEventHandler(communicationBag);
 
 			tcpThread = processTCPMessages();
+			tcpThread.setName("TCP Communication Thread");
 			udpThreads = processUDPMessages();
+			udpThreads.setName("UDP Communication Thread");
 			messageThreads = processNotSentMessages();
+			messageThreads.setName("Message Communication Thread");
 
 			userListLock = new Object();
 //		}
@@ -663,39 +666,24 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
                 try
                 {
                     produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: messages off");
-//                    try
-//                    {
-                    System.out.println("asdasd1");
-                        messageThreads.interrupt();
-                        System.out.println("asdasd2");
-//                    }
-//                    catch (InterruptedException e)
-//                    {
-//                    }
+                    messageThreads.interrupt();
                     try
                     {
-                    	System.out.println("asdasd3");
                         router.getNotSentMessageQueue().unblok();
-                        System.out.println("asdasd4");
                     }
                     catch (Exception e)
                     {
-                    	System.out.println("asdasd5");
                     }
                     try
                     {
-                    	System.out.println("asdasd6");
                         messageThreads.join();
-                        System.out.println("asdasd7");
                     }
                     catch (Exception e)
                     {
-                    	System.out.println("asdasd8");
                     }
                 }
                 catch (Exception e)
                 {
-                	System.out.println("asdasd9");
                     produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: messages off error " + e.getMessage());
                 }
                 try
@@ -792,30 +780,30 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
                 try
                 {
                     produceEvent(CommunicationEvent.NETINFORMATION,
-                        "COMMUNICATION: messages stats " +
-                        " send: " + router.getNMessagesSent() +
-                        " confirmed: " + router.getNMessagesConfirmed() +
-                        " destroy: " + router.getNMessagesDestroyed() +
-                        " warnings: " + router.getNMessagesDroped() +
-                        " failed: " + router.getNMessagesFailed() +
-                        " received: " + router.getNMessagesReceived() +
-                        " resent: " + router.getNMessagesReplayed() +
-                        " routed: " + router.getNMessagesRouted() +
+                        "COMMUNICATION: messages stats " + "\n" +
+                        " send: " + router.getNMessagesSent() + "\n" +
+                        " confirmed: " + router.getNMessagesConfirmed() + "\n" +
+                        " destroy: " + router.getNMessagesDestroyed() + "\n" +
+                        " warnings: " + router.getNMessagesDroped() + "\n" +
+                        " failed: " + router.getNMessagesFailed() + "\n" +
+                        " received: " + router.getNMessagesReceived() + "\n" +
+                        " resent: " + router.getNMessagesReplayed() + "\n" +
+                        " routed: " + router.getNMessagesRouted() + "\n" +
                     "");
                 }
                 catch (Exception e)
                 {
                     produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: messages stats error " + e.getMessage());
                 }
-                try
-                {
-                    produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: re init");
-                    init();
-                }
-                catch (Exception e)
-                {
-                    produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: re init error " + e.getMessage());
-                }
+//                try
+//                {
+//                    produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: re init");
+//                    init();
+//                }
+//                catch (Exception e)
+//                {
+//                    produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: re init error " + e.getMessage());
+//                }
                 produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: stop communication... ok!");
                 stopPoint = new AtomicInteger(0);
             }
@@ -868,6 +856,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
 					if (timerPoint.compareAndSet(0, 1))
 		            {
 		                timerThread = getCommunicationTimerInterationThread();
+		                timerThread.setName("Timer Communication Thread");
 		                timerThread.start();
 		                try {
 							timerThread.join();
@@ -990,16 +979,16 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
         			}
         			catch (Exception e)
         			{
-        				disconnect();
+//        				disconnect();
         				produceEvent(CommunicationEvent.EXCEPTION, e);
         			}
         		}
 
-        		@Override
-        		public void interrupt() {
-        			super.interrupt();
-        			disconnect();
-        		}
+//        		@Override
+//        		public void interrupt() {
+//        			super.interrupt();
+//        			disconnect();
+//        		}
 
         	};
         	return t;
@@ -1030,16 +1019,8 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
         				produceEvent(CommunicationEvent.EXCEPTION, e);
         			}
         		}
-
-//        		@Override
-//        		public void interrupt() {
-//        			super.interrupt();
-//        			//disconnect();
-//        		}
-
         	};
         	return t;
-
         }
 
         /**
@@ -1054,6 +1035,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
 					if (bagPoint.compareAndSet(0, 1))
 		            {
 		                bagThread = getCommunicationBagIterationThread();
+		                bagThread.setName("Bag Communication Thread");
 		                bagThread.start();
 		                try {
 							bagThread.join();

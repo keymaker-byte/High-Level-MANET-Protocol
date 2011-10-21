@@ -5,12 +5,12 @@ import hlmp.Tools.BitConverter;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ClientThread extends Thread {
+public class ListenTCPMessagesThread extends Thread {
 
 	RemoteMachine remoteMachine;
 	NetHandler netHandler;
 	
-	public ClientThread(NetHandler netHandler) {
+	public ListenTCPMessagesThread(NetHandler netHandler) {
 		super();
 		this.netHandler = netHandler;
 	}
@@ -42,10 +42,10 @@ public class ClientThread extends Thread {
                 netHandler.addTCPMessages(message);
             }
         }
-        catch (InterruptedException e)
-        {
+//        catch (InterruptedException e)
+//        {
 //            throw e;
-        }
+//        }
         catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

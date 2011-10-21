@@ -232,11 +232,11 @@ public class Router {
 		return nMessagesRouted;
 	}
 
-
-	/// <summary>
-	/// Encola un mensaje a la lista de mensajes para enviar
-	/// </summary>
-	/// <param name="message">El mensaje a enviar</param>
+	/**
+	 * Encola un mensaje a la lista de mensajes para enviar
+	 * @param message El mensaje a enviar
+	 * @throws ArgumentOutOfRangeException
+	 */
 	public void queueMessageToSend(Message message) throws ArgumentOutOfRangeException
 	{
 		if (message.getMetaType() == MessageMetaType.MULTICAST)
@@ -261,10 +261,10 @@ public class Router {
 		}
 	}
 
-	/// <summary>
-	/// Identifica el tipo de mensaje a enviar y lo envia mediante un netHandler
-	/// </summary>
-	/// <param name="message">El mensaje e enviar</param>
+	/**
+	 * Identifica el tipo de mensaje a enviar y lo envia mediante un netHandler
+	 * @param message El mensaje a enviar
+	 */
 	private void send(Message message) throws ArgumentOutOfRangeException
 	{
 		if (message.getMetaType() == MessageMetaType.MULTICAST)
@@ -280,7 +280,9 @@ public class Router {
 		else if (message.getMetaType() == MessageMetaType.UNICAST)
 		{
 			UnicastMessage unicastMessage = (UnicastMessage)message;
+			// IP al que deberia enviar el mensaje
 			InetAddress ip = pathNextIp(unicastMessage.getTargetNetUser());
+			// usuario registrado en la lista con la IP dada
 			NetUser listedNetUser = netUserList.getUser(unicastMessage.getTargetNetUser().getIp());
 			if (ip != null)
 			{
@@ -516,30 +518,42 @@ public class Router {
   	/**
      * Procesa los mensajes de tipo Unicast que no han sido enviados aun
   	 * @throws ArgumentOutOfRangeException 
+  	 * @throws InterruptedException 
      */
-    public void proccessNotSentMessage() throws ArgumentOutOfRangeException
+    public void proccessNotSentMessage() throws ArgumentOutOfRangeException, InterruptedException
     {
         Message message = notSentMessageQueue.draw();
-        if (message.getMetaType() == MessageMetaType.MULTICAST)
+        switch(message.getMetaType())
         {
-            send(message);
+	        case MessageMetaType.MULTICAST:
+	        case MessageMetaType.SAFEMULTICAST:
+	        case MessageMetaType.UNICAST:
+	        case MessageMetaType.SAFEUNICAST:
+	        case MessageMetaType.FASTUNICAST:
+	        	send(message);
+	        	break;
         }
-        else if (message.getMetaType() == MessageMetaType.SAFEMULTICAST)
-        {
-            send(message);
-        }
-        else if (message.getMetaType() == MessageMetaType.UNICAST)
-        {
-            send(message);
-        }
-        else if (message.getMetaType() == MessageMetaType.SAFEUNICAST)
-        {
-            send(message);
-        }
-        else if (message.getMetaType() == MessageMetaType.FASTUNICAST)
-        {
-            send(message);
-        }
+        
+//        if (message.getMetaType() == MessageMetaType.MULTICAST)
+//        {
+//            send(message);
+//        }
+//        else if (message.getMetaType() == MessageMetaType.SAFEMULTICAST)
+//        {
+//            send(message);
+//        }
+//        else if (message.getMetaType() == MessageMetaType.UNICAST)
+//        {
+//            send(message);
+//        }
+//        else if (message.getMetaType() == MessageMetaType.SAFEUNICAST)
+//        {
+//            send(message);
+//        }
+//        else if (message.getMetaType() == MessageMetaType.FASTUNICAST)
+//        {
+//            send(message);
+//        }
     }
 
     /**
@@ -696,7 +710,7 @@ public class Router {
     /**
      * Encuentra el camino mas corto hacia el destinatario de un mensaje y retorna la ip del vecino que se encuentra en el camino
      * @param receiverNetUser El usuario destinatario del mensaje
-     * @return Un string con la IP del remote machine vecino que se encuentra en el camino óptimo
+     * @return Un InetAddress con la IP del remote machine vecino que se encuentra en el camino óptimo
      */
 	private InetAddress pathNextIp(NetUser receiverNetUser) throws ArgumentOutOfRangeException
 	{

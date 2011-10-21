@@ -70,10 +70,11 @@ public abstract class SafeUnicastMessage extends Message {
 		this.waitTimeOut--;
 	}
 
-    /// <summary>
-    /// Convierte a este mensaje en un paquete de bytes
-    /// </summary>
-    /// <returns>un array de bytes con todos los datos del mensaje</returns>
+
+	/**
+	 * Convierte a este mensaje en un paquete de bytes
+	 * @return un array de bytes con todos los datos del mensaje
+	 */
 	@Override
 	public byte[] toByteArray()
     {
@@ -85,26 +86,21 @@ public abstract class SafeUnicastMessage extends Message {
         return messageData;
     }
 
-    /// <summary>
-    /// Envía el mensaje a la MANET
-    /// </summary>
-    /// <param name="netHandler">El manejador de la red</param>
-    /// <param name="ip">la ip de la maquina remota destino</param>
+	/**
+     * Envía el mensaje a la MANET
+     * @param netHandler El manejador de la red
+     * @param ip la ip de la maquina remota destino
+     * @return true si se envio correctamente, false si no
+     */
     public boolean send(NetHandler netHandler, InetAddress ip)
     {
-        try {
-			return netHandler.sendTcpMessage(new NetMessage(toByteArray()), ip);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+        return netHandler.sendTcpMessage(new NetMessage(toByteArray()), ip);
     }
 
-    /// <summary>
-    /// Convierte la meta data de este mensaje en una estructura de bytes
-    /// </summary>
-    /// <returns>el array de bytes con la meta data</returns>
+    /**
+     * Convierte la meta data de este mensaje en una estructura de bytes
+     * @return el array de bytes con la meta data
+     */
     private byte[] makeMetaPack()
     {
     	byte[] messageMetaType = BitConverter.intToByteArray(this.metaType); //4 (0 - 3)

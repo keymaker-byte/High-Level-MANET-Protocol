@@ -66,20 +66,15 @@ public abstract class UnicastMessage extends Message {
 
 	}
 
-	/// <summary>
-	/// Envía el mensaje a la MANET
-	/// </summary>
-	/// <param name="netHandler">El manejador de la red</param>
-	/// <param name="ip">la ip de la maquina remota destino</param>
+	/**
+	 * Envía el mensaje a la MANET
+	 * @param netHandler El manejador de la red
+	 * @param ip la ip de la maquina remota destino
+	 * @return true si se envio correctamente, false si no
+	 */
 	public boolean send(NetHandler netHandler, InetAddress ip)
 	{
-		try {
-			return netHandler.sendTcpMessage(new NetMessage(toByteArray()), ip);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+		return netHandler.sendTcpMessage(new NetMessage(toByteArray()), ip);
 	}
 
 	/// <summary>

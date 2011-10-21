@@ -5,35 +5,33 @@ import hlmp.CommLayer.Messages.Message;
 
 public class MessageMonitoredQueue {
 	
-	/// <summary>
-    /// Cola de prioridad FIFO
-    /// </summary>
+	/**
+     * Cola de prioridad FIFO
+     */
 	private ConcurrentLinkedQueue<Message> queue;
 	
-	/// <summary>
-    /// Cantidad en la cola
-    /// </summary>
+	/**
+     * Cantidad en la cola
+     */
     private int itemCount;
     
-    /// <summary>
-    /// Default Constructor
-    /// </summary>
+    /**
+     * Default Constructor
+     */
     public MessageMonitoredQueue()
     {
         queue = new ConcurrentLinkedQueue<Message>();
         itemCount = 0;
     }
     
-    /// <summary>
-    /// Obtiene el primer mensaje en la cola, null si esta vacía
-    /// </summary>
-    /// <returns>el primer mensaje de la cola o null si está vacía</returns>
-    public synchronized Message draw(){
+    /**
+     * Obtiene el primer mensaje en la cola, o espera uno si esta vacia
+     * @return el primer mensaje de la cola
+     * @throws InterruptedException 
+     */
+    public synchronized Message draw() throws InterruptedException{
     	while (itemCount == 0){
-    		try {
-				wait();
-			} catch (InterruptedException e) {
-			}
+    		wait();
     	}
 
     	Message message = queue.poll();
@@ -42,27 +40,27 @@ public class MessageMonitoredQueue {
     }
     
 
-    /// <summary>
-    /// Coloca un mensaje en la cola
-    /// </summary>
-    /// <param name="m">el mensaje a colocar en la cola</param>
+    /**
+     * Coloca un mensaje en la cola
+     * @param m el mensaje a colocar en la cola
+     */
     public synchronized void put(Message m){
     	this.queue.add(m);
     	this.itemCount++;
     	notify();
     }
 
-    /// <summary>
-    /// Retorna el tamaño de la cola
-    /// </summary>
-    /// <returns>el tamaño de la cola</returns>
+    /**
+     * Retorna el tamaño de la cola
+     * @return el tamaño de la cola
+     */
     public int size(){
         return this.itemCount;
     }
 
-    /// <summary>
-    /// Desbloquea forzosamente el bloquedo de draw
-    /// </summary>
+    /**
+     * Desbloquea forzosamente el bloquedo de draw
+     */
     public synchronized void unblok(){
     	notify();
     }
