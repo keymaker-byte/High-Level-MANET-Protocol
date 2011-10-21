@@ -2,6 +2,11 @@ package hlmp.CommLayer.Exceptions;
 
 public class ArgumentOutOfRangeException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ArgumentOutOfRangeException() {
 		// TODO Auto-generated constructor stub
 	}

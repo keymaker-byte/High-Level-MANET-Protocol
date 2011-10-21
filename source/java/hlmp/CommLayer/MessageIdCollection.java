@@ -1,36 +1,34 @@
 package hlmp.CommLayer;
 
-import hlmp.CommLayer.Messages.Message;
-
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-/// <summary>
-/// Colección de id's de mensajes.
-/// Los ids son unicos en la colección
-/// Si se agrega un id cuando el tamaño es igual a MaxSize, se borra el primero en la cola antes de agregar
-/// </summary>
+/**
+ * Colección de id's de mensajes.
+ * Los ids son unicos en la colección
+ * Si se agrega un id cuando el tamaño es igual a MaxSize, se borra el primero en la cola antes de agregar
+ */
 public class MessageIdCollection {
 
-	/// <summary>
-	/// Tabla de hashing para busqueda de orden constante
-	/// </summary>
+	/**
+	 * Tabla de hashing para busqueda de orden constante
+	 */
 	private HashMap<UUID, UUID> messageIdList;
 
-	/// <summary>
-	/// Cola de prioridad para entrada y salida en orden constante
-	/// </summary>
+	/**
+	 * Cola de prioridad para entrada y salida en orden constante
+	 */
 	private ConcurrentLinkedQueue<UUID> messageIdqueue;
 
-	/// <summary>
-	/// El tamaño máximo de la colección
-	/// </summary>
+	/**
+	 * El tamaño máximo de la colección
+	 */
 	private int maxSize;        
 
-	/// <summary>
-	/// Default Constructor
-	/// </summary>
+	/**
+	 * Default Constructor
+	 */
 	public MessageIdCollection()
 	{
 		messageIdList = new HashMap<UUID, UUID>();
@@ -46,10 +44,10 @@ public class MessageIdCollection {
 		this.maxSize = maxSize;
 	}
 
-	/// <summary>
-	/// Coloca un id en la colección
-	/// </summary>
-	/// <param name="id">El id a agregar a la colección</param>
+	/**
+	 * Coloca un id en la colección
+	 * @param id El id a agregar a la colección
+	 */
 	public synchronized void add(UUID id)
 	{
 		if (!messageIdList.containsKey(id))
@@ -64,20 +62,20 @@ public class MessageIdCollection {
 		}
 	}
 
-	/// <summary>
-	/// Retorna el tamaño de la cola
-	/// </summary>
-	/// <returns>El tamaño de la cola</returns>
+	/**
+	 * Retorna el tamaño de la cola
+	 * @return El tamaño de la cola
+	 */
 	public synchronized int size()
 	{
 		return messageIdqueue.size();
 	}
 
-	/// <summary>
-	/// Verifica si existe un id en la colección
-	/// </summary>
-	/// <param name="id">El id a buscar en la colección</param>
-	/// <returns>true si el id existe en la colección, false si no</returns>
+	/**
+	 * Verifica si existe un id en la colección
+	 * @param id El id a buscar en la colección
+	 * @return true si el id existe en la colección, false si no
+	 */
 	public synchronized boolean contains(UUID id)
 	{
 		return messageIdList.containsKey(id);

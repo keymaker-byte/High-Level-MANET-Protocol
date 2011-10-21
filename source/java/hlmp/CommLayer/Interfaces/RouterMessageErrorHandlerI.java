@@ -2,7 +2,7 @@ package hlmp.CommLayer.Interfaces;
 
 import hlmp.CommLayer.Messages.Message;
 
-public interface RouterMessageErrorDelegateI {
+public interface RouterMessageErrorHandlerI {
 	
 	public void messageError(Message message);
 

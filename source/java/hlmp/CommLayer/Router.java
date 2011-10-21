@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import hlmp.CommLayer.Constants.*;
 import hlmp.CommLayer.Exceptions.ArgumentOutOfRangeException;
-import hlmp.CommLayer.Interfaces.RouterMessageErrorDelegateI;
+import hlmp.CommLayer.Interfaces.RouterMessageErrorHandlerI;
 import hlmp.CommLayer.Messages.*;
 import hlmp.NetLayer.NetHandler;
 import hlmp.NetLayer.NetMessage;
@@ -56,7 +56,7 @@ public class Router {
 	/**
 	 * Se gatilla cada vez que un mensaje a fallado
 	 */
-	private RouterMessageErrorDelegateI messageError;
+	private RouterMessageErrorHandlerI messageError;
 
 	/**
 	 * Veces que se espera para el reenvio de un mensaje tipo Safe
@@ -136,7 +136,7 @@ public class Router {
 	/**
 	 * Default Constructor
 	 */
-	public Router(RouterMessageErrorDelegateI routerInformation, int waitForAck, HashMap<Integer, Message> messageTypes)
+	public Router(RouterMessageErrorHandlerI routerInformation, int waitForAck, HashMap<Integer, Message> messageTypes)
 	{
 		this.messageError = routerInformation;
 		this.waitForAck = waitForAck;
@@ -194,40 +194,79 @@ public class Router {
 	{
 		return notConfirmedMessageList.size();
 	}
+	
+	/**
+	 * Tamaño de la lista de mensajes no confirmados
+	 */
+    public int getNotSentSize()
+    {
+        return notSentMessageQueue.size();
+    }
 
 
 	public MessageMonitoredQueue getNotSentMessageQueue() {
 		return notSentMessageQueue;
 	}
 
+	/**
+	 * Mensajes TCP SAFE enviados
+	 * @return
+	 */
 	public int getNMessagesSent() {
 		return nMessagesSent;
 	}
 
+	/**
+	 * Mensajes TCP SAFE confirmados
+	 * @return
+	 */
 	public int getNMessagesConfirmed() {
 		return nMessagesConfirmed;
 	}
 
+	/**
+	 * Mensajes TCP SAFE fallidos encolados para reenvío
+	 * @return
+	 */
 	public int getNMessagesFailed() {
 		return nMessagesFailed;
 	}
 
+	/**
+	 * Mensajes TCP SAFE seleccionados para reenvio por no confirmación
+	 * @return
+	 */
 	public int getNMessagesReplayed() {
 		return nMessagesReplayed;
 	}
 
+	/**
+	 * Mensajes TCP SAFE destruidos
+	 * @return
+	 */
 	public int getNMessagesDestroyed() {
 		return nMessagesDestroyed;
 	}
 
+	/**
+	 * Mensajes TCP SAFE fallidos avisados al usuario
+	 * @return
+	 */
 	public int getNMessagesDroped() {
 		return nMessagesDroped;
 	}
 
+	/**
+	 * Mensajes TCP SAFE recepcionados
+	 */
 	public int getNMessagesReceived() {
 		return nMessagesReceived;
 	}
 
+	/**
+	 * Mensajes TCP SAFE seleccionados para ruteo
+	 * @return
+	 */
 	public int getNMessagesRouted() {
 		return nMessagesRouted;
 	}
@@ -532,6 +571,7 @@ public class Router {
 	        case MessageMetaType.FASTUNICAST:
 	        	send(message);
 	        	break;
+	        default: return;
         }
         
 //        if (message.getMetaType() == MessageMetaType.MULTICAST)

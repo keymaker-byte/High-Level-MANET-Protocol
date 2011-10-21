@@ -2,7 +2,7 @@ package hlmp.CommLayer;
 
 import hlmp.CommLayer.Constants.*;
 import hlmp.CommLayer.Exceptions.*;
-import hlmp.CommLayer.Interfaces.IDijkstra;
+import hlmp.CommLayer.Interfaces.*;
 import hlmp.NetLayer.NetData;
 
 import java.util.AbstractCollection;
@@ -10,63 +10,74 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Stack;
 
-/// <summary> 
-/// Implements a generalized Dijkstra's algorithm to calculate 
-/// both minimum distance and minimum path. 
-/// </summary> 
-/// <remarks> 
-/// For this algorithm, all nodes should be provided, and handled 
-/// in the delegate methods, including the startNetworkingHandler and finish nodes. 
-/// </remarks> 
-public class Dijkstra implements IDijkstra{
+/**
+ * Implements a generalized Dijkstra's algorithm to calculate 
+ * both minimum distance and minimum path.
+ * 
+ * For this algorithm, all nodes should be provided, and handled
+ * in the delegate methods, including the startNetworkingHandler and finish nodes.
+ */
+public class Dijkstra implements InternodeTraversalCost, NearbyNodesHint{
 
-	protected IDijkstra delegate;
+	protected InternodeTraversalCost traversalCost;
+	protected NearbyNodesHint hint;
 
-	/// <summary> 
-	/// Creates an instance of the <see cref="Dijkstra"/> class. 
-	/// </summary> 
-	/// <param name="totalNodeCount"> 
-	/// The total number of nodes in the graph. 
-	/// </param> 
-	/// <param name="traversalCost"> 
-	/// The delegate that can provide the cost of a transition between 
-	/// any two nodes. 
-	/// </param> 
-	/// <param name="hint"> 
-	/// An optional delegate that can provide a small subset of nodes 
-	/// that a given nodeIndex may be connected to. 
-	/// </param> 
-	public Dijkstra(int totalNodeCount, IDijkstra delegate) throws ArgumentOutOfRangeException, ArgumentNullException
+	/**
+	 * Creates an instance of the Dijkstra class.
+	 * @param totalNodeCount The total number of nodes in the graph.
+	 * @param delegate
+	 * @throws ArgumentOutOfRangeException
+	 * @throws ArgumentNullException
+	 */
+	
+	/**
+	 * Creates an instance of the Dijkstra class.
+	 * @param totalNodeCount The total number of nodes in the graph.
+	 * @param traversalCost The interface that can provide the cost of a transition between any two nodes. 
+	 * @param hint An optional interface that can provide a small subset of nodes that a given nodeIndex may be connected to. 
+	 * @throws ArgumentOutOfRangeException
+	 * @throws ArgumentNullException
+	 */
+	public Dijkstra(int totalNodeCount, InternodeTraversalCost traversalCost, NearbyNodesHint hint) throws ArgumentOutOfRangeException, ArgumentNullException
 	{
 		if (totalNodeCount < 3) throw new ArgumentOutOfRangeException("totalNodeCount: "+totalNodeCount+ ". Expected a minimum of 3.");
-		if (delegate == null) throw new ArgumentNullException("traversalCost");
-		this.delegate = delegate;
-		TotalNodeCount = totalNodeCount;
+		if (traversalCost == null) throw new ArgumentNullException("traversalCost");
+		this.TotalNodeCount = totalNodeCount;
+		this.hint = hint;
+		this.traversalCost = traversalCost;
 	}
 
 
-	/// <summary>
-	/// La lista de usuarios de la red
-	/// </summary>
+	/**
+	 * La lista de usuarios de la red
+	 */
 	private ArrayList<NetUser> netUserList;
 
-	/// <summary>
-	/// Los datos de configuración de la red
-	/// </summary>
+	/**
+	 * Los datos de configuración de la red
+	 */
 	private NetData netData;
 
 	/// <summary>
-	/// Constructor Parametrizado
+	/// 
 	/// </summary>
 	/// <param name="netUserList">La lista de usuarios de la red</param>
 	/// <param name="_netData">Los datos de configuración de red</param>
-	public Dijkstra(ArrayList<NetUser> netUserList, NetData _netData) throws ArgumentOutOfRangeException
+	
+	/**
+	 * Constructor Parametrizado
+	 * @param netUserList La lista de usuarios de la red
+	 * @param netData Los datos de configuración de red
+	 * @throws ArgumentOutOfRangeException
+	 */
+	public Dijkstra(ArrayList<NetUser> netUserList, NetData netData) throws ArgumentOutOfRangeException
 	{
 		if (netUserList.size() < 3) throw new ArgumentOutOfRangeException("totalNodeCount: "+netUserList.size()+". Expected a minimum of 3.");
 		this.netUserList = netUserList;
-		this.delegate = this;
+		this.hint = this;
+		this.traversalCost = this;
 		TotalNodeCount = this.netUserList.size();
-		netData = _netData;
+		this.netData = netData;
 	}
 
 
@@ -222,7 +233,7 @@ public class Dijkstra implements IDijkstra{
 			c.remove(v); // remove v from the list of future solutions 
 			// Consider all unselected nodes and consider their cost from v.
 
-			Collection<Integer> temp = (delegate != null ? delegate.NearbyNodesHint(v) : c); 
+			Collection<Integer> temp = (this.hint != null ? hint.hint(v) : c); 
 
 			for(Integer w : temp)
 			{
@@ -230,7 +241,7 @@ public class Dijkstra implements IDijkstra{
 				// At this point, relative(Index) points to a candidate pixel,  
 				// that has not yet been selected, and lies within our area of interest. 
 				// Consider whether it is now within closer reach. 
-				int cost = delegate.InternodeTraversalCost(v, w);
+				int cost = traversalCost.traversalCost(v, w);
 				if (cost < Integer.MAX_VALUE && d[v] + cost < d[w]) // don't let wrap-around negatives slip by 
 				{
 					// We have found a better way to get at relative 
@@ -293,6 +304,7 @@ public class Dijkstra implements IDijkstra{
 			finish = shortestPath[finish]; // step back one step toward the startNetworkingHandler point 
 		}
 		while (finish != start);
+		
 		Integer[] aux= (Integer[]) path.toArray();
 		int[] aux2 = new int[aux.length];
 		for(int i=0; i< aux.length; i++)
@@ -377,18 +389,18 @@ public class Dijkstra implements IDijkstra{
 		for (int i = 0; i < subset.length; i++)
 			subset[i] = Integer.MAX_VALUE; // all are unreachable 
 		subset[start] = 0; // zero cost from startNetworkingHandler to startNetworkingHandler 
-		for(int nearby : delegate.NearbyNodesHint(start))
-			subset[nearby] = delegate.InternodeTraversalCost(start, nearby);
+		for(int nearby : hint.hint(start))
+			subset[nearby] = traversalCost.traversalCost(start, nearby);
 		return subset;
 	}
 
 
-	public int InternodeTraversalCost(int start, int finish) {
+	public int traversalCost(int start, int finish) {
 		return getCostNetUser(start,finish);
 	}
 
 
-	public AbstractCollection<Integer> NearbyNodesHint(int startingNode) {
+	public AbstractCollection<Integer> hint(int startingNode) {
 		return getConnectedNodesNetUser(startingNode);
 	}
 

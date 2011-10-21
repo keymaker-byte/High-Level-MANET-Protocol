@@ -1,7 +1,5 @@
 package hlmp.CommLayer;
 
-import hlmp.CommLayer.Messages.Message;
-
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -30,7 +28,7 @@ public class EventQueuePC {
 
 	/**
 	 * Desencola el primer objeto de la lista, se bloquea hasta que alguien inserte un elemento
-	 * @return El primer objeto de la cola, null si está vacía
+	 * @return El primer objeto de la cola
 	 */
 	public synchronized Event draw()
 	{
@@ -61,7 +59,7 @@ public class EventQueuePC {
 	/**
 	 * Desbloquea forzosamente el bloquedo de draw
 	 */
-	public synchronized void unblok(){
+	public synchronized void unblock(){
 		notify();
 	}
 }

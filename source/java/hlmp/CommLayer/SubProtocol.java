@@ -23,7 +23,7 @@ public abstract class SubProtocol {
 	 * @param message mensaje a enviar
 	 */
 	public void sendMessageEvent(Message message){
-		this.communication.internalSendMessage(message);
+		this.communication.send(message);
 	}
 
 	/**

@@ -22,7 +22,6 @@ public class GroupChatMessage extends SafeMulticastMessage{
 
     /**
      * Constructor parametrizado
-     * @param targetNetUser El usuario destinatario de este mensaje
      * @param text El texto del mensaje
      */
     public GroupChatMessage(String text)
