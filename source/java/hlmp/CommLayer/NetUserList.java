@@ -110,4 +110,15 @@ public class NetUserList {
     	return usersCollection.size(); 
     }
 
+	@Override
+	public String toString() {
+		NetUser[] us=this.userListToArray();
+		String t="NetUserList:\n";
+		for(NetUser u: us){
+			t+="\t"+u.getName()+"\n";
+		}
+		return t;
+	}
+
+    
 }

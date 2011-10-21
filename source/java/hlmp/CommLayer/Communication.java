@@ -348,6 +348,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
             synchronized (eventConsumerLock) {
             	eventConsumer.start();
                 eventConsumerStarted = true;
+                produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: EventConsumer started");
 			}
         }
 
@@ -520,8 +521,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
 //            }
             catch (Exception e)
             {
-                disconnect();
-                produceEvent(CommunicationEvent.EXCEPTION, e);
+            	e.printStackTrace();
+//                disconnect();
+//                produceEvent(CommunicationEvent.EXCEPTION, e);
             }
         }
 
@@ -663,28 +665,37 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
                     produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: messages off");
 //                    try
 //                    {
+                    System.out.println("asdasd1");
                         messageThreads.interrupt();
+                        System.out.println("asdasd2");
 //                    }
 //                    catch (InterruptedException e)
 //                    {
 //                    }
                     try
                     {
+                    	System.out.println("asdasd3");
                         router.getNotSentMessageQueue().unblok();
+                        System.out.println("asdasd4");
                     }
                     catch (Exception e)
                     {
+                    	System.out.println("asdasd5");
                     }
                     try
                     {
+                    	System.out.println("asdasd6");
                         messageThreads.join();
+                        System.out.println("asdasd7");
                     }
                     catch (Exception e)
                     {
+                    	System.out.println("asdasd8");
                     }
                 }
                 catch (Exception e)
                 {
+                	System.out.println("asdasd9");
                     produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: messages off error " + e.getMessage());
                 }
                 try
@@ -888,6 +899,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
 				public void run() {
 					try
 		            {
+						produceEvent(CommunicationEvent.NETINFORMATION, "*COMMUNICATION: TimerInteraction");
 		                //Se checkea la lista de usuarios
 		                //controlHandler.netInformationHandler("processUdpMesages ... updateUserList");
 		                updateUserList();
@@ -1014,16 +1026,16 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
         			}
         			catch (Exception e)
         			{
-        				disconnect();
+//        				disconnect();
         				produceEvent(CommunicationEvent.EXCEPTION, e);
         			}
         		}
 
-        		@Override
-        		public void interrupt() {
-        			super.interrupt();
-        			disconnect();
-        		}
+//        		@Override
+//        		public void interrupt() {
+//        			super.interrupt();
+//        			//disconnect();
+//        		}
 
         	};
         	return t;
@@ -1068,6 +1080,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
         		public void run() {
         			try
         			{
+        				//produceEvent(CommunicationEvent.NETINFORMATION, "*COMMUNICATION: BagInteraction");
         				processRouterMesages();
         			}
         			catch (Exception ex)
@@ -1093,6 +1106,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
       //LISTO
         private void updateState()
         {
+        	//produceEvent(CommunicationEvent.NETINFORMATION, "*COMMUNICATION: UpdateState");
             if (router.getNotSentMessageQueue().size() > configuration.getNetData().getStateCritical() || router.getFailedMessagesSize() > configuration.getNetData().getStateCritical() || netHandler.getTcpMessageQueue().size() > configuration.getNetData().getStateCritical())
             {
                 configuration.getNetUser().setState(CommunicationQuality.CRITICAL);
@@ -1105,6 +1119,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
             {
                 configuration.getNetUser().setState(CommunicationQuality.NORMAL);
             }
+            //produceEvent(CommunicationEvent.NETINFORMATION, "*COMMUNICATION: UpdateState ok");
         }
 
         /**
@@ -1114,6 +1129,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
         private void updateRouter()
         {
             router.updateRouterTable(netHandler, configuration.getNetUser(), netUserList);
+            //System.out.println(netUserList.toString());
             produceEvent(CommunicationEvent.NETINFORMATION, "ROUTER: max list size: " + router.getMaxListSize() + " used: " + router.getListSize());
         }
 
@@ -1172,7 +1188,11 @@ public class Communication implements CommHandlerI, RouterMessageErrorDelegateI{
                     ids.add(serverNetUser.getId());
                 }
             }
-            configuration.getNetUser().setNeighborhoodIds((UUID[]) ids.toArray());
+            UUID[] temp = new UUID[ids.size()];
+            ids.toArray(temp);
+            
+            //configuration.getNetUser().setNeighborhoodIds((UUID[]) ids.toArray());
+            configuration.getNetUser().setNeighborhoodIds(temp);
             produceEvent(CommunicationEvent.REFRESHLOCALUSER, configuration.getNetUser());
         }
 

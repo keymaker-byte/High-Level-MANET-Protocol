@@ -10,30 +10,30 @@ import hlmp.NetLayer.*;
 
 @XmlRootElement
 public class Configuration {
-	/// <summary>
-    /// Los datos del usuario local
-    /// </summary>
+	/**
+     * Los datos del usuario local
+     */
     private NetUser netUser;
 
-    /// <summary>
-    /// Los datos de la red
-    /// </summary>
+    /**
+     * Los datos de la red
+     */
     private NetData netData;
 
-    /// <summary>
-    /// Default Constructor
-    /// </summary>
+    /**
+     * Default Constructor
+     */
     public Configuration()
     {
         this.netData = new NetData();
         this.netUser = new NetUser();
     }
 
-    /// <summary>
-    /// Constructor Parametrizado
-    /// </summary>
-    /// <param name="netUser">Datos del usuario</param>
-    /// <param name="netData">Datos de configuración de red</param>
+    /**
+     * Constructor Parametrizado
+     * @param netUser Datos del usuario
+     * @param netData Datos de configuración de red
+     */
     public Configuration(NetUser netUser, NetData netData)
     {
         this.netUser = netUser;
@@ -57,12 +57,11 @@ public class Configuration {
 	}
 
 
-    /// <summary>
-    /// Serializa un objeto de este tipo
-    /// </summary>
-    /// <param name="directory">El directorio donde serializarlo debe terminar con el simbolo "/"</param>
-    /// <param name="configuration">El objeto configuración a serializar</param>
-
+    /**
+     * Serializa un objeto de este tipo
+     * @param directory El directorio donde serializarlo debe terminar con el simbolo "/"
+     * @param configuration El objeto configuración a serializar
+     */
 	public static void save(String directory, Configuration configuration)
     {
 		try
@@ -86,11 +85,11 @@ public class Configuration {
 		}
     }
 
-    /// <summary>
-    /// Carga un objeto serializado de este tipo
-    /// </summary>
-    /// <param name="directory">El directorio donde se encuentra el archivo serializado debe terminar con el simbolo "/"</param>
-    /// <returns>Un objeto de tipo Configuration con los datos que estaban serializados</returns>
+    /**
+     * Carga un objeto serializado de este tipo
+     * @param directory El directorio donde se encuentra el archivo serializado debe terminar con el simbolo "/"
+     * @return Un objeto de tipo Configuration con los datos que estaban serializados
+     */
     public static Configuration load(String directory)
     {
         try

@@ -178,21 +178,25 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 				{
 					startThread.interrupt();
 					startThread.join();
+					System.out.println("asd1");
 				}
 				catch (Exception e)
 				{
-					commHandler.informationNetworkingHandler("NETHANDLER: disconnetc aborting start " + e.getMessage());
+					commHandler.informationNetworkingHandler("NETHANDLER: disconnect aborting start " + e.getMessage());
 				}
 				try
 				{
 					resetThread.interrupt();
 					resetThread.join();
+					System.out.println("asd2");
 				}
 				catch (Exception e)
 				{
-					commHandler.informationNetworkingHandler("NETHANDLER: disconnetc aborting reset " + e.getMessage());
+					commHandler.informationNetworkingHandler("NETHANDLER: disconnect aborting reset " + e.getMessage());
 				}
+				System.out.println("asd3");
 				stop();
+				System.out.println("asd4");
 				stopPoint.set(0); 
 			}
 		} 
