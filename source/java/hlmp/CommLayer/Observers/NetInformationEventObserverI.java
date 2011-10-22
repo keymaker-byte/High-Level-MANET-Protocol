@@ -5,6 +5,6 @@ package hlmp.CommLayer.Observers;
  * @author nicolas
  *
  */
-public interface StringEventObserverI {
-	public void update(String s);
+public interface NetInformationEventObserverI {
+	public void netInformationEventUpdate(String s);
 }

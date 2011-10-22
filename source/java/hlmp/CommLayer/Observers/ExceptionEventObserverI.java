@@ -6,5 +6,5 @@ package hlmp.CommLayer.Observers;
  *
  */
 public interface ExceptionEventObserverI {
-	public void update(Exception e);
+	public void exceptionEventUpdate(Exception e);
 }

@@ -7,6 +7,6 @@ import hlmp.CommLayer.Messages.Message;
  * @author nicolas
  *
  */
-public interface MessageEventObserverI {
-	public void update(Message m);
+public interface ProcessMessageEventObserverI {
+	public void processMessageUpdate(Message m);
 }

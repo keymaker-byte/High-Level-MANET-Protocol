@@ -3,7 +3,6 @@ package hlmp.CommLayer.Messages;
 import java.util.UUID;
 
 import hlmp.CommLayer.NetUser;
-import hlmp.NetLayer.NetHandler;
 
 public abstract class Message {
 
@@ -113,10 +112,5 @@ public abstract class Message {
      * @param messageData un array de bytes con todos los datos del mensaje
      */
     public abstract void byteArrayToProperties(byte[] messageData);
-    
-//    /**
-//	 * Envía el mensaje a la MANET
-//	 * @param netHandler El manejador de la red
-//	 */
-//	public abstract void send(NetHandler netHandler);
+
 }

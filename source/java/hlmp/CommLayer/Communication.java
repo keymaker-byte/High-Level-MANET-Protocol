@@ -120,52 +120,52 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
 	/**
 	 * Se gatilla cuando el sistema se ha conectado a la MANET
 	 */
-	private Hashtable<Integer,VoidEventObserverI> connectEventObserverList;
+	private Hashtable<Integer,ConnectEventObserverI> connectEventObserverList;
 
 	/**
 	 * Se Gatilla cuando el sistema se ha desconectado de la MANET
 	 */
-	private Hashtable<Integer,VoidEventObserverI> disconnectEventObserverList;
+	private Hashtable<Integer,DisconnectEventObserverI> disconnectEventObserverList;
 
 	/**
 	 * Se gatilla cuando el sistema está intentando conectarse a la MANET
 	 */
-	private Hashtable<Integer,VoidEventObserverI> connectingEventObserverList;
+	private Hashtable<Integer,ConnectingEventObserverI> connectingEventObserverList;
 
 	/**
 	 * Se gatilla cuando el sistema está intentando desconectarse de la MANET
 	 */
-	private Hashtable<Integer,VoidEventObserverI> disconnectingEventObserverList;
+	private Hashtable<Integer,DisconnectingEventObserverI> disconnectingEventObserverList;
 
 	/**
 	 * Se gatilla cuando el sistema está intentando reconectarse a la MANET
 	 */
-	private Hashtable<Integer,VoidEventObserverI> reconnectingEventObserverList;
+	private Hashtable<Integer,ReconnectingEventObserverI> reconnectingEventObserverList;
 
 	/**
 	 * Se gatilla cuando se ha conectado un nuevo usuario a la MANET
 	 */
-	private Hashtable<Integer,NetUserEventObserverI> addUserEventObserverList;
+	private Hashtable<Integer,AddUserEventObserverI> addUserEventObserverList;
 
 	/**
 	 * Se gatilla cuando se ha desconectado un usuario de la MANET
 	 */
-	private Hashtable<Integer,NetUserEventObserverI> removeUserEventObserverList;
+	private Hashtable<Integer,RemoveUserEventObserverI> removeUserEventObserverList;
 
 	/**
 	 * Se gatilla cuando se han actualizado los datos de un usuario de la MANET
 	 */
-	private Hashtable<Integer,NetUserEventObserverI> refreshUserEventObserverList;
+	private Hashtable<Integer,RefreshUserEventObserverI> refreshUserEventObserverList;
 
 	/**
 	 * Se gatilla cuando se han establecido o actualizado los datos del usuario local
 	 */
-	private Hashtable<Integer,NetUserEventObserverI> refreshLocalUserEventObserverList;
+	private Hashtable<Integer,RefreshLocalUserEventObserverI> refreshLocalUserEventObserverList;
 
 	/**
 	 * Se gatilla cuando el sistema emite información relacionada con las funcionalidades (log)
 	 */
-	private Hashtable<Integer,StringEventObserverI> netInformationEventObserverList;
+	private Hashtable<Integer,NetInformationEventObserverI> netInformationEventObserverList;
 
 	/**
 	 * Se gatilla cuando ha ocurrido un error en el sistema
@@ -175,12 +175,12 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
 	/**
 	 * Se gatilla cuando se ha recibido un mensaje no manejable
 	 */
-	private Hashtable<Integer,MessageEventObserverI> processMessageEventObserverList;
+	private Hashtable<Integer,ProcessMessageEventObserverI> processMessageEventObserverList;
 
 	/**
 	 * Se gatilla cuando no se ha podido enviar un mensaje no manejable
 	 */
-	private Hashtable<Integer,MessageEventObserverI> errorMessageEventObserverList;
+	private Hashtable<Integer,ErrorMessageEventObserverI> errorMessageEventObserverList;
 
 	/**
 	 * Cola de eventos
@@ -270,22 +270,22 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
 	private void init()
 	{
 		// listas de observers
-		this.connectEventObserverList = new Hashtable<Integer, VoidEventObserverI>();
-		this.disconnectEventObserverList = new Hashtable<Integer, VoidEventObserverI>();
-		this.connectingEventObserverList = new Hashtable<Integer, VoidEventObserverI>();
-		this.disconnectingEventObserverList = new Hashtable<Integer, VoidEventObserverI>();
-		this.reconnectingEventObserverList = new Hashtable<Integer, VoidEventObserverI>();
+		this.connectEventObserverList = new Hashtable<Integer, ConnectEventObserverI>();
+		this.disconnectEventObserverList = new Hashtable<Integer, DisconnectEventObserverI>();
+		this.connectingEventObserverList = new Hashtable<Integer, ConnectingEventObserverI>();
+		this.disconnectingEventObserverList = new Hashtable<Integer, DisconnectingEventObserverI>();
+		this.reconnectingEventObserverList = new Hashtable<Integer, ReconnectingEventObserverI>();
 
-		this.addUserEventObserverList = new Hashtable<Integer,NetUserEventObserverI>();
-		this.removeUserEventObserverList = new Hashtable<Integer,NetUserEventObserverI>();
-		this.refreshUserEventObserverList = new Hashtable<Integer,NetUserEventObserverI>();
-		this.refreshLocalUserEventObserverList = new Hashtable<Integer,NetUserEventObserverI>();
+		this.addUserEventObserverList = new Hashtable<Integer, AddUserEventObserverI>();
+		this.removeUserEventObserverList = new Hashtable<Integer, RemoveUserEventObserverI>();
+		this.refreshUserEventObserverList = new Hashtable<Integer, RefreshUserEventObserverI>();
+		this.refreshLocalUserEventObserverList = new Hashtable<Integer, RefreshLocalUserEventObserverI>();
 
-		this.netInformationEventObserverList = new Hashtable<Integer, StringEventObserverI>();
+		this.netInformationEventObserverList = new Hashtable<Integer, NetInformationEventObserverI>();
 		this.exceptionEventObserverList = new Hashtable<Integer, ExceptionEventObserverI>();
 
-		this.processMessageEventObserverList = new Hashtable<Integer, MessageEventObserverI>();
-		this.errorMessageEventObserverList = new Hashtable<Integer, MessageEventObserverI>();
+		this.processMessageEventObserverList = new Hashtable<Integer, ProcessMessageEventObserverI>();
+		this.errorMessageEventObserverList = new Hashtable<Integer, ErrorMessageEventObserverI>();
 
 
 //		try
@@ -1395,7 +1395,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeConnectEvent(VoidEventObserverI o){
+    	public int subscribeConnectEvent(ConnectEventObserverI o){
     		int hash = o.hashCode();
     		this.connectEventObserverList.put(hash, o);
     		return hash;
@@ -1404,18 +1404,18 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento ConnectEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeConnectEvent(VoidEventObserverI o){
+    	public void unsubscribeConnectEvent(ConnectEventObserverI o){
     		int hash = o.hashCode();
-    		VoidEventObserverI val = this.connectEventObserverList.remove(hash);
+    		ConnectEventObserverI val = this.connectEventObserverList.remove(hash);
     	}
 
     	/**
     	 * Avisa a todos los Observer del ConnectEvent que se activo el evento
     	 */
     	private void notifyConnectEventObservers(){
-    		Collection<VoidEventObserverI> list = this.connectEventObserverList.values();
-    		for(VoidEventObserverI o: list){
-    			o.update();
+    		Collection<ConnectEventObserverI> list = this.connectEventObserverList.values();
+    		for(ConnectEventObserverI o: list){
+    			o.connectEventUpdate();
     		}
     	}
 
@@ -1425,7 +1425,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeDisconnectEvent(VoidEventObserverI o){
+    	public int subscribeDisconnectEvent(DisconnectEventObserverI o){
     		int hash = o.hashCode();
     		this.disconnectEventObserverList.put(hash, o);
     		return hash;
@@ -1434,18 +1434,18 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento DisconnectEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeDisconnectEvent(VoidEventObserverI o){
+    	public void unsubscribeDisconnectEvent(DisconnectEventObserverI o){
     		int hash = o.hashCode();
-    		VoidEventObserverI val = this.disconnectEventObserverList.remove(hash);
+    		DisconnectEventObserverI val = this.disconnectEventObserverList.remove(hash);
     	}
 
     	/**
     	 * Avisa a todos los Observer del DisconnectEvent que se activo el evento
     	 */
     	private void notifyDisconnectEventObservers(){
-    		Collection<VoidEventObserverI> list = this.disconnectEventObserverList.values();
-    		for(VoidEventObserverI o: list){
-    			o.update();
+    		Collection<DisconnectEventObserverI> list = this.disconnectEventObserverList.values();
+    		for(DisconnectEventObserverI o: list){
+    			o.disconnectEventUpdate();
     		}
     	}
 
@@ -1455,7 +1455,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeConnectingEvent(VoidEventObserverI o){
+    	public int subscribeConnectingEvent(ConnectingEventObserverI o){
     		int hash = o.hashCode();
     		this.connectingEventObserverList.put(hash, o);
     		return hash;
@@ -1464,18 +1464,18 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento ConnectingEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeConnectingEvent(VoidEventObserverI o){
+    	public void unsubscribeConnectingEvent(ConnectingEventObserverI o){
     		int hash = o.hashCode();
-    		VoidEventObserverI val = this.connectingEventObserverList.remove(hash);
+    		ConnectingEventObserverI val = this.connectingEventObserverList.remove(hash);
     	}
 
     	/**
     	 * Avisa a todos los Observer del ConnectingEvent que se activo el evento
     	 */
     	private void notifyConnectingEventObservers(){
-    		Collection<VoidEventObserverI> list = this.connectingEventObserverList.values();
-    		for(VoidEventObserverI o: list){
-    			o.update();
+    		Collection<ConnectingEventObserverI> list = this.connectingEventObserverList.values();
+    		for(ConnectingEventObserverI o: list){
+    			o.connectingEventUpdate();
     		}
     	}
 
@@ -1485,7 +1485,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeDisconnectingEvent(VoidEventObserverI o){
+    	public int subscribeDisconnectingEvent(DisconnectingEventObserverI o){
     		int hash = o.hashCode();
     		this.disconnectingEventObserverList.put(hash, o);
     		return hash;
@@ -1494,18 +1494,18 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento DisconnectingEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeDisconnectingEvent(VoidEventObserverI o){
+    	public void unsubscribeDisconnectingEvent(DisconnectingEventObserverI o){
     		int hash = o.hashCode();
-    		VoidEventObserverI val = this.disconnectingEventObserverList.remove(hash);
+    		DisconnectingEventObserverI val = this.disconnectingEventObserverList.remove(hash);
     	}
 
     	/**
     	 * Avisa a todos los Observer del DisconnectingEvent que se activo el evento
     	 */
     	private void notifyDisconnectingEventObservers(){
-    		Collection<VoidEventObserverI> list = this.disconnectingEventObserverList.values();
-    		for(VoidEventObserverI o: list){
-    			o.update();
+    		Collection<DisconnectingEventObserverI> list = this.disconnectingEventObserverList.values();
+    		for(DisconnectingEventObserverI o: list){
+    			o.disconnectingEventUpdate();
     		}
     	}
 
@@ -1515,7 +1515,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeReconnectingEvent(VoidEventObserverI o){
+    	public int subscribeReconnectingEvent(ReconnectingEventObserverI o){
     		int hash = o.hashCode();
     		this.reconnectingEventObserverList.put(hash, o);
     		return hash;
@@ -1524,18 +1524,18 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento ReconnectingEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeReconnectingEvent(VoidEventObserverI o){
+    	public void unsubscribeReconnectingEvent(ReconnectingEventObserverI o){
     		int hash = o.hashCode();
-    		VoidEventObserverI val = this.reconnectingEventObserverList.remove(hash);
+    		ReconnectingEventObserverI val = this.reconnectingEventObserverList.remove(hash);
     	}
 
     	/**
     	 * Avisa a todos los Observer del ReconnectingEvent que se activo el evento
     	 */
     	private void notifyReconnectingEventObservers(){
-    		Collection<VoidEventObserverI> list = this.reconnectingEventObserverList.values();
-    		for(VoidEventObserverI o: list){
-    			o.update();
+    		Collection<ReconnectingEventObserverI> list = this.reconnectingEventObserverList.values();
+    		for(ReconnectingEventObserverI o: list){
+    			o.reconnectingEventUpdate();
     		}
     	}
 
@@ -1545,7 +1545,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeAddUserEvent(NetUserEventObserverI o){
+    	public int subscribeAddUserEvent(AddUserEventObserverI o){
     		int hash = o.hashCode();
     		this.addUserEventObserverList.put(hash, o);
     		return hash;
@@ -1554,9 +1554,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento AddUserEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeAddUserEvent(NetUserEventObserverI o){
+    	public void unsubscribeAddUserEvent(AddUserEventObserverI o){
     		int hash = o.hashCode();
-    		NetUserEventObserverI val = this.addUserEventObserverList.remove(hash);
+    		AddUserEventObserverI val = this.addUserEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1564,9 +1564,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param user NetUser que cambio
     	 */
     	private void notifyAddUserEventObservers(NetUser user){
-    		Collection<NetUserEventObserverI> list = this.addUserEventObserverList.values();
-    		for(NetUserEventObserverI o: list){
-    			o.update(user);
+    		Collection<AddUserEventObserverI> list = this.addUserEventObserverList.values();
+    		for(AddUserEventObserverI o: list){
+    			o.addUserEventUpdate(user);
     		}
     	}
 
@@ -1576,7 +1576,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeRemoveUserEvent(NetUserEventObserverI o){
+    	public int subscribeRemoveUserEvent(RemoveUserEventObserverI o){
     		int hash = o.hashCode();
     		this.removeUserEventObserverList.put(hash, o);
     		return hash;
@@ -1585,9 +1585,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento RemoveUserEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeRemoveUserEvent(NetUserEventObserverI o){
+    	public void unsubscribeRemoveUserEvent(RemoveUserEventObserverI o){
     		int hash = o.hashCode();
-    		NetUserEventObserverI val = this.removeUserEventObserverList.remove(hash);
+    		RemoveUserEventObserverI val = this.removeUserEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1595,9 +1595,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param user NetUser que cambio
     	 */
     	private void notifyRemoveUserEventObservers(NetUser user){
-    		Collection<NetUserEventObserverI> list = this.removeUserEventObserverList.values();
-    		for(NetUserEventObserverI o: list){
-    			o.update(user);
+    		Collection<RemoveUserEventObserverI> list = this.removeUserEventObserverList.values();
+    		for(RemoveUserEventObserverI o: list){
+    			o.removeUserEventUpdate(user);
     		}
     	}
 
@@ -1607,7 +1607,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeRefreshUserEvent(NetUserEventObserverI o){
+    	public int subscribeRefreshUserEvent(RefreshUserEventObserverI o){
     		int hash = o.hashCode();
     		this.refreshUserEventObserverList.put(hash, o);
     		return hash;
@@ -1616,9 +1616,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento RefreshUserEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeRefreshUserEvent(NetUserEventObserverI o){
+    	public void unsubscribeRefreshUserEvent(RefreshUserEventObserverI o){
     		int hash = o.hashCode();
-    		NetUserEventObserverI val = this.refreshUserEventObserverList.remove(hash);
+    		RefreshUserEventObserverI val = this.refreshUserEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1626,9 +1626,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param user NetUser que cambio
     	 */
     	private void notifyRefreshUserEventObservers(NetUser user){
-    		Collection<NetUserEventObserverI> list = this.refreshUserEventObserverList.values();
-    		for(NetUserEventObserverI o: list){
-    			o.update(user);
+    		Collection<RefreshUserEventObserverI> list = this.refreshUserEventObserverList.values();
+    		for(RefreshUserEventObserverI o: list){
+    			o.refreshUserEventUpdate(user);
     		}
     	}
 
@@ -1638,7 +1638,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeRefreshLocalUserEvent(NetUserEventObserverI o){
+    	public int subscribeRefreshLocalUserEvent(RefreshLocalUserEventObserverI o){
     		int hash = o.hashCode();
     		this.refreshLocalUserEventObserverList.put(hash, o);
     		return hash;
@@ -1647,9 +1647,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento RefreshLocalUserEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeRefreshLocalUserEvent(NetUserEventObserverI o){
+    	public void unsubscribeRefreshLocalUserEvent(RefreshLocalUserEventObserverI o){
     		int hash = o.hashCode();
-    		NetUserEventObserverI val = this.refreshLocalUserEventObserverList.remove(hash);
+    		RefreshLocalUserEventObserverI val = this.refreshLocalUserEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1657,9 +1657,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param user NetUser que cambio
     	 */
     	private void notifyRefreshLocalUserEventObservers(NetUser user){
-    		Collection<NetUserEventObserverI> list = this.refreshLocalUserEventObserverList.values();
-    		for(NetUserEventObserverI o: list){
-    			o.update(user);
+    		Collection<RefreshLocalUserEventObserverI> list = this.refreshLocalUserEventObserverList.values();
+    		for(RefreshLocalUserEventObserverI o: list){
+    			o.refreshLocalUserEventUpdate(user);
     		}
     	}
 
@@ -1669,7 +1669,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeNetInformationEvent(StringEventObserverI o){
+    	public int subscribeNetInformationEvent(NetInformationEventObserverI o){
     		int hash = o.hashCode();
     		this.netInformationEventObserverList.put(hash, o);
     		return hash;
@@ -1678,9 +1678,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento NetInformationEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeNetInformationEvent(StringEventObserverI o){
+    	public void unsubscribeNetInformationEvent(NetInformationEventObserverI o){
     		int hash = o.hashCode();
-    		StringEventObserverI val = this.netInformationEventObserverList.remove(hash);
+    		NetInformationEventObserverI val = this.netInformationEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1688,9 +1688,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param s String enviado
     	 */
     	private void notifyNetInformationEventObservers(String s){
-    		Collection<StringEventObserverI> list = this.netInformationEventObserverList.values();
-    		for(StringEventObserverI o: list){
-    			o.update(s);
+    		Collection<NetInformationEventObserverI> list = this.netInformationEventObserverList.values();
+    		for(NetInformationEventObserverI o: list){
+    			o.netInformationEventUpdate(s);
     		}
     	}
 
@@ -1721,7 +1721,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	private void notifyExceptionEventObservers(Exception e){
     		Collection<ExceptionEventObserverI> list = this.exceptionEventObserverList.values();
     		for(ExceptionEventObserverI o: list){
-    			o.update(e);
+    			o.exceptionEventUpdate(e);
     		}
     	}
 
@@ -1731,7 +1731,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeProcessMessageEvent(MessageEventObserverI o){
+    	public int subscribeProcessMessageEvent(ProcessMessageEventObserverI o){
     		int hash = o.hashCode();
     		this.processMessageEventObserverList.put(hash, o);
     		return hash;
@@ -1740,9 +1740,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento ProcessMessageEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeProcessMessageEvent(MessageEventObserverI o){
+    	public void unsubscribeProcessMessageEvent(ProcessMessageEventObserverI o){
     		int hash = o.hashCode();
-    		MessageEventObserverI val = this.processMessageEventObserverList.remove(hash);
+    		ProcessMessageEventObserverI val = this.processMessageEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1750,9 +1750,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param m Message en cuestion
     	 */
     	private void notifyProcessMessageEventObservers(Message m){
-    		Collection<MessageEventObserverI> list = this.processMessageEventObserverList.values();
-    		for(MessageEventObserverI o: list){
-    			o.update(m);
+    		Collection<ProcessMessageEventObserverI> list = this.processMessageEventObserverList.values();
+    		for(ProcessMessageEventObserverI o: list){
+    			o.processMessageUpdate(m);
     		}
     	}
 
@@ -1762,7 +1762,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param o el observer que se subscribe
     	 * @return el entero usado como hash que se usa para almacenarlo
     	 */
-    	public int subscribeErrorMessageEvent(MessageEventObserverI o){
+    	public int subscribeErrorMessageEvent(ErrorMessageEventObserverI o){
     		int hash = o.hashCode();
     		this.errorMessageEventObserverList.put(hash, o);
     		return hash;
@@ -1771,9 +1771,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * Deja de escuchar al evento ErrorMessageEvent
     	 * @param o Observer que deja de escuchar
     	 */
-    	public void unsubscribeErrorMessageEvent(MessageEventObserverI o){
+    	public void unsubscribeErrorMessageEvent(ErrorMessageEventObserverI o){
     		int hash = o.hashCode();
-    		MessageEventObserverI val = this.errorMessageEventObserverList.remove(hash);
+    		ErrorMessageEventObserverI val = this.errorMessageEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1781,9 +1781,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 * @param m Message en cuestion
     	 */
     	private void notifyErrorMessageEventObservers(Message m){
-    		Collection<MessageEventObserverI> list = this.errorMessageEventObserverList.values();
-    		for(MessageEventObserverI o: list){
-    			o.update(m);
+    		Collection<ErrorMessageEventObserverI> list = this.errorMessageEventObserverList.values();
+    		for(ErrorMessageEventObserverI o: list){
+    			o.errorMessageEventUpdate(m);
     		}
     	}
 
