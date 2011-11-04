@@ -780,15 +780,16 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
                 {
                     produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: messages stats error " + e.getMessage());
                 }
-//                try
-//                {
-//                    produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: init vars");
-//                    init();
-//                }
-//                catch (Exception e)
-//                {
-//                    produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: init vars error " + e.getMessage());
-//                }
+                try
+                {
+                    produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: init vars");
+                    //TODO: reiniciar bien las variables
+                    init();
+                }
+                catch (Exception e)
+                {
+                    produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: init vars error " + e.getMessage());
+                }
                 produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: stop communication... ok!");
                 stopPoint.set(0);
             }
@@ -871,7 +872,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
 				public void run() {
 					try
 		            {
-						produceEvent(CommunicationEvent.NETINFORMATION, "*COMMUNICATION: TimerInteraction");
+						//produceEvent(CommunicationEvent.NETINFORMATION, "*COMMUNICATION: TimerInteraction");
 		                //Se checkea la lista de usuarios
 		                //controlHandler.netInformationHandler("processUdpMesages ... updateUserList");
 		                updateUserList();
@@ -1108,6 +1109,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
                 }
                 else
                 {
+                	// Si esta critico no hago nada
                     if (netUsers[i].getSignalQuality() == NetUserQuality.LOW || netUsers[i].getSignalQuality() == NetUserQuality.NORMAL)
                     {
                         RemoteMachine remoteMachine = netHandler.getTcpServerList().getRemoteMachine(netUsers[i].getIp());
@@ -1170,6 +1172,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
         {
             synchronized (userListLock)
             {
+            	// Verifica que no sea este mismo usuario
                 if (!netUser.getId().equals(configuration.getNetUser().getId()))
                 {
                     NetUser newNetUser = new NetUser(netUser.getId(), netUser.getName(), netUser.getIp(), netUser.getNeighborhoodIds(), configuration.getNetData());
@@ -1225,14 +1228,17 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
                 //ImAliveMessage
                 if (message.getType() == MessageType.IMALIVE)
                 {
+                	// Nuevo usuario o este mismo
                     if (listedNetUser == null)
                     {
                         newNetUser(message.getSenderNetUser());
                     }
+                    // Usurio con id distinto, pero registrado con la misma ip
                     else if (!listedNetUser.getId().equals(message.getSenderNetUser().getId()))
                     {
                         disconnectNetUser(listedNetUser);
                     }
+                    // Usuario conocido y registrado => actualizar
                     else
                     {
                         listedNetUser.qualityUp(configuration.getNetData());

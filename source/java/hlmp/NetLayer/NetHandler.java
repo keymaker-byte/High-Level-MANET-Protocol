@@ -632,7 +632,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 //				}
 				catch (Exception e)
 				{
-					commHandler.informationNetworkingHandler("TCP WARINING: send failed " + e.getMessage());
+					commHandler.informationNetworkingHandler("TCP WARNING 1: send failed " + e.getMessage());
 					if (remoteMachine.getFails() >= netData.getSendFailsToDisconnect())
 					{
 						disconnectFrom(remoteMachine);
@@ -643,7 +643,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 			}
 			else
 			{
-				throw new Exception("there is no TCP link with that remote machine");
+				throw new Exception("There is no TCP link with that remote machine");
 			}
 		}
 //		catch (InterruptedException e)
@@ -652,7 +652,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 //		}
 		catch (Exception e)
 		{
-			commHandler.informationNetworkingHandler("TCP WARNING: send failed " + e.getMessage());
+			commHandler.informationNetworkingHandler("TCP WARNING 2: send failed " + e.getMessage());
 			return false;
 		}
 	}
@@ -1011,10 +1011,12 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		                
 		                //tcpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
 		                InetAddress ip = tcpClient.getInetAddress();
+		                
 		                ListenTCPMessagesThread clientThread = new ListenTCPMessagesThread(myself);
 		                RemoteMachine remoteMachine = new RemoteMachine(ip, tcpClient, clientThread);
 		                clientThread.setRemoteMachine(remoteMachine);
 		                clientThread.start();
+		                
 		                RemoteMachine oldRemoteMachine = tcpServerList.getRemoteMachine(ip);
 		                if (oldRemoteMachine != null)
 		                {

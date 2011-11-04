@@ -23,6 +23,7 @@ public class ListenTCPMessagesThread extends Thread {
 	public void run() {
 		try
         {
+			
             while (true)
             {
                 InputStream nStream = remoteMachine.getTcpClient().getInputStream();
@@ -46,10 +47,10 @@ public class ListenTCPMessagesThread extends Thread {
 //        {
 //            throw e;
 //        }
-        catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
         catch (Exception e)
         {
             netHandler.informationNetworkingHandler("TCP WARNING: header reading failed " + e.getMessage());

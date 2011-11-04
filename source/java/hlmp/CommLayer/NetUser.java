@@ -166,7 +166,7 @@ public class NetUser {
     @Override
     public String toString()
     {
-        return this.name;
+        return this.name + " ("+this.ip.getHostAddress()+")";
     }
 
 	public UUID getId() {
@@ -213,6 +213,9 @@ public class NetUser {
 		this.signalQuality = signalQuality;
 	}
 
+	/**
+	 * @return Valor de señal restante
+	 */
 	public int getTimeout() {
 		return timeout;
 	}
@@ -229,6 +232,9 @@ public class NetUser {
 		this.jumpsAway = jumpsAway;
 	}
 
+	/**
+	 * @return Tiempo de espera restante para intentar una conexion TCP con este usuario remoto
+	 */
 	public int getWaitTimeOut() {
 		return waitTimeOut;
 	}

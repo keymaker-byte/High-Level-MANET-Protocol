@@ -111,7 +111,7 @@ public class NetUserList {
     }
 
 	@Override
-	public String toString() {
+	public synchronized String toString() {
 		NetUser[] us=this.userListToArray();
 		String t="NetUserList:\n";
 		for(NetUser u: us){

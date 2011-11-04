@@ -430,6 +430,7 @@ public class Router {
 		}
 		else if (messageMetaType == MessageMetaType.SAFEMULTICAST)
 		{
+			this.netHandler.informationNetworkingHandler("ROUTER: attending SafeMulticast Message");
 			UUID messageId = messageFactory.getMessageId(netMessage.getBody());
 			if (!messageIdCollection.contains(messageId))
 			{
@@ -562,13 +563,19 @@ public class Router {
     public void proccessNotSentMessage() throws ArgumentOutOfRangeException, InterruptedException
     {
         Message message = notSentMessageQueue.draw();
+        System.out.println("processNotSentMessage");
         switch(message.getMetaType())
         {
 	        case MessageMetaType.MULTICAST:
+//	        	System.out.println("multicast");
 	        case MessageMetaType.SAFEMULTICAST:
+//	        	System.out.println("safe multi");
 	        case MessageMetaType.UNICAST:
+//	        	System.out.println("uni");
 	        case MessageMetaType.SAFEUNICAST:
+//	        	System.out.println("safe multi");
 	        case MessageMetaType.FASTUNICAST:
+//	        	System.out.println("fast uni");
 	        	send(message);
 	        	break;
 	        default: return;

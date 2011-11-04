@@ -1,19 +1,19 @@
 package hlmp.CommLayer.Constants;
 
 public final class NetUserQuality {
-	/// <summary>
-    /// Constante para el estado normal
-    /// </summary>
+	/**
+	 * Constante para el estado normal
+	 */
     public static final int NORMAL = 1;
 
-    /// <summary>
-    /// Constante para el estado bajo
-    /// </summary>
+    /**
+     * Constante para el estado bajo
+     */
     public static final int LOW = 2;
 
-    /// <summary>
-    /// Constante para el estado critico
-    /// </summary>
+    /**
+     * Constante para el estado critico
+     */
     public static final int CRITICAL = 3;
 
 }
