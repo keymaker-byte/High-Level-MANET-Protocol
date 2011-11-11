@@ -23,10 +23,9 @@ public class ListenTCPMessagesThread extends Thread {
 	public void run() {
 		try
         {
-			
+			InputStream nStream = remoteMachine.getTcpClient().getInputStream();
             while (true)
             {
-                InputStream nStream = remoteMachine.getTcpClient().getInputStream();
                 byte[] length = new byte[4];
                 int m = nStream.read(length, 0, 4);
                 while (m < 4)

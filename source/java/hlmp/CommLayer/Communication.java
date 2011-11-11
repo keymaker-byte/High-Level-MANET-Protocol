@@ -1188,6 +1188,8 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
                         produceEvent(CommunicationEvent.REFRESHUSER, newNetUser);
                     }
                     produceEvent(CommunicationEvent.NETINFORMATION, "COMMUNICATION: [" + netUser.getName() + "] connected");
+                    // Agregado por NM
+                    netHandler.connectTo(netUser.getIp().getHostAddress());
                 }
             }
         }

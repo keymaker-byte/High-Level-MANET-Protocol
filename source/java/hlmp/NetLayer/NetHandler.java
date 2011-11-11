@@ -782,10 +782,10 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 
 			//tcpClient.EndConnect(result);
 			ListenTCPMessagesThread clientThread = new ListenTCPMessagesThread(this);
-
 			RemoteMachine remoteMachine = new RemoteMachine(serverIp, tcpClient, clientThread);
 			clientThread.setRemoteMachine(remoteMachine);
 			clientThread.start();
+			
 			RemoteMachine oldRemoteMachine = tcpServerList.getRemoteMachine(serverIp);
 			if (oldRemoteMachine != null)
 			{

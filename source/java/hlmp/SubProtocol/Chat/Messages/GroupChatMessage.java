@@ -1,9 +1,9 @@
 package hlmp.SubProtocol.Chat.Messages;
 
-import hlmp.CommLayer.Messages.MulticastMessage;
+import hlmp.CommLayer.Messages.SafeMulticastMessage;
 import hlmp.Tools.BitConverter;
 
-public class GroupChatMessage extends MulticastMessage{
+public class GroupChatMessage extends SafeMulticastMessage{
 	
 	/**
      * El texto de este mensaje
