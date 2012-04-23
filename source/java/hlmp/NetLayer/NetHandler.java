@@ -180,6 +180,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		{
 			synchronized(connectLock)
 			{
+				commHandler.informationNetworkingHandler("NETHANDLER: despues");
 				try
 				{
 					startThread.interrupt();
@@ -188,15 +189,6 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 				catch (Exception e)
 				{
 					commHandler.informationNetworkingHandler("NETHANDLER: disconnect aborting start " + e.getMessage());
-				}
-				try
-				{
-					resetThread.interrupt();
-					resetThread.join();
-				}
-				catch (Exception e)
-				{
-					commHandler.informationNetworkingHandler("NETHANDLER: disconnect aborting reset " + e.getMessage());
 				}
 				stop(false);
 				stopPoint.set(0); 

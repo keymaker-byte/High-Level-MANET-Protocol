@@ -378,6 +378,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
                 {
                 }
                 eventQueuePC = new EventQueuePC();
+                eventConsumer = getConsumeEventThread();
             }
         }
 
@@ -392,6 +393,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
         			while (true)
         			{
         				Event event = eventQueuePC.draw();
+                        if (event == null) {
+                            return;   
+                        }
         				switch (event.getEventType())
         				{
 	        				case CommunicationEvent.ADDUSER:
@@ -922,6 +926,8 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
         					proccessMessage(router.attendMessage(netMessage));
         				}
         			}
+        			catch (InterruptedException e) {
+        			}
         			catch (Exception e)
         			{
         				disconnect();
@@ -959,6 +965,8 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
         					proccessMessage(router.attendMessage(netMessage));
         				}
         			}
+        			catch (InterruptedException e) {
+        			}
         			catch (Exception e)
         			{
         				disconnect();
@@ -993,6 +1001,8 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
         				{
         					router.proccessNotSentMessage();
         				}
+        			}
+        			catch (InterruptedException e) {
         			}
         			catch (Exception e)
         			{

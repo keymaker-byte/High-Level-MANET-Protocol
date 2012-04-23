@@ -32,16 +32,20 @@ public class EventQueuePC {
 	 */
 	public synchronized Event draw()
 	{
-		while (itemCount == 0)
+		while (this.itemCount == 0)
 		{
 			try {
 				wait();
 			} catch (InterruptedException e) {
+				return null;
 			}
 		}
 
-		Event eventHandler = queue.poll();
-		this.itemCount--;
+		Event eventHandler = null;
+        if (this.itemCount != -1) {
+            eventHandler = queue.poll();
+    		this.itemCount--;
+        }
 		return eventHandler;
 	}
 
@@ -60,6 +64,7 @@ public class EventQueuePC {
 	 * Desbloquea forzosamente el bloquedo de draw
 	 */
 	public synchronized void unblock(){
+        this.itemCount = -1;
 		notify();
 	}
 }
