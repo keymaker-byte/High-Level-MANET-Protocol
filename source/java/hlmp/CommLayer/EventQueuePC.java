@@ -30,15 +30,11 @@ public class EventQueuePC {
 	 * Desencola el primer objeto de la lista, se bloquea hasta que alguien inserte un elemento
 	 * @return El primer objeto de la cola
 	 */
-	public synchronized Event draw()
+	public synchronized Event draw()  throws InterruptedException
 	{
 		while (this.itemCount == 0)
 		{
-			try {
-				wait();
-			} catch (InterruptedException e) {
-				return null;
-			}
+			wait();
 		}
 
 		Event eventHandler = null;

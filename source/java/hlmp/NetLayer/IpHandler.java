@@ -85,8 +85,15 @@ public class IpHandler{
 	 * Detiene la verificación
 	 */
 	public void stop(){
+		
 		synchronized (stopLock){
 			this.state = IphandlerState.STOPPED;
+		}
+		try {
+			checkIpThread.interrupt();
+			checkIpThread.join();
+		} catch (InterruptedException e) {
+			return;
 		}
 	}
 	
@@ -102,7 +109,7 @@ public class IpHandler{
 					try {
 						sleep(netData.getWaitTimeStart());
 					} catch (InterruptedException e) {
-						e.printStackTrace();
+						return;
 					}
 					//Chequea Strong DAD
 					if (state == IphandlerState.STARTEDSTRONG)

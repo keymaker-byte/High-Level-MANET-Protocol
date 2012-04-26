@@ -1,10 +1,5 @@
 package hlmp.NetLayer;
 
-import hlmp.NetLayer.Constants.NetHandlerState;
-import hlmp.NetLayer.Interfaces.ResetIpHandler;
-import hlmp.NetLayer.Interfaces.WifiInformationHandler;
-import hlmp.Tools.BitConverter;
-
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -13,7 +8,14 @@ import java.net.DatagramPacket;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.net.SocketException;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import hlmp.NetLayer.Constants.NetHandlerState;
+import hlmp.NetLayer.Interfaces.ResetIpHandler;
+import hlmp.NetLayer.Interfaces.WifiInformationHandler;
+import hlmp.Tools.BitConverter;
+
 
 public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 
@@ -104,6 +106,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	 * lock para reset
 	 */
 	private Object resetLock;
+	
 	/**
 	 * Constructor
 	 * @param netData Los parámetros de configuración
@@ -176,11 +179,12 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	 */
 	public void disconnect()
 	{
+//		TODO: parametrizar los valores 0 y 1 por CONECTADO y DESCONECTADO
+		debug("NETHANDLER: disconnect...");
 		if(stopPoint.compareAndSet(0, 1))
 		{
 			synchronized(connectLock)
 			{
-				commHandler.informationNetworkingHandler("NETHANDLER: despues");
 				try
 				{
 					startThread.interrupt();
@@ -188,13 +192,20 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 				}
 				catch (Exception e)
 				{
-					commHandler.informationNetworkingHandler("NETHANDLER: disconnect aborting start " + e.getMessage());
+					debug("NETHANDLER: disconnect aborting start " + e.getMessage());
 				}
 				stop(false);
 				stopPoint.set(0); 
 			}
 		} 
+		debug("NETHANDLER: disconnect... OK");
 	}
+
+	private void debug(String text) {
+		commHandler.informationNetworkingHandler(text);
+//		System.out.println(text);
+	}
+	
 
 	/**
 	 * Resetea la red
@@ -204,7 +215,8 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	{
 		return new Thread(){
 			public void run(){
-				commHandler.informationNetworkingHandler("NETHANDLER: reset IP...");
+				debug("NETHANDLER: reset IP...");
+				debug("NETHANDLER: ANTES de synchronized(resetLock)");
 				synchronized(resetLock)
 				{
 					commHandler.resetNetworkingHandler();
@@ -215,18 +227,19 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 						startThread.interrupt();
 						startThread.join();
 					}
-					//            catch (ThreadAbortException e)
-					//            {
-						//                throw e;
-					//            }
+					catch (InterruptedException e)
+					{
+					}
 					catch (Exception e)
 					{
+						debug("NETHANDLER: error on  restart startThread");
 					}
 
 					myself.stop(true);
 					connect();
 				}
-				commHandler.informationNetworkingHandler("NETHANDLER: reset IP... ok!");
+				debug("NETHANDLER: DESPUES de synchronized(resetLock)");
+				debug("NETHANDLER: reset IP... ok!");
 			}
 		};
 		
@@ -245,28 +258,24 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 			public void run() {
 				try
 	            {
-	                commHandler.informationNetworkingHandler("NETHANDLER: start netHandler...");
+	                debug("NETHANDLER: start netHandler...");
 	                netHandlerState = NetHandlerState.STARTING;
 	                ////intenta poner la ip en modo estatico
 	                try
 	                {
-	                    commHandler.informationNetworkingHandler("NETHANDLER: disable adapter...");
+	                    debug("NETHANDLER: disable adapter...");
 	                    SystemHandler.disableIpAdapter(netData.getNetworkAdapter());
-	                    commHandler.informationNetworkingHandler("NETHANDLER: disable adapter... ok!");
+	                    debug("NETHANDLER: disable adapter... ok!");
 	                }
-//	                catch (ThreadAbortException e)
-//	                {
-//	                    throw e;
-//	                }
 	                catch (Exception e)
 	                {
-	                    commHandler.informationNetworkingHandler("NETHANDLER: disable adapter... failed! " + e.getMessage());
+	                    debug("NETHANDLER: disable adapter... failed! " + e.getMessage());
 	                }
 	                try
 	                {
-	                    commHandler.informationNetworkingHandler("NETHANDLER: set IP... " + netData.getIpTcpListener().getHostAddress());
+	                    debug("NETHANDLER: set IP... " + netData.getIpTcpListener().getHostAddress());
 	                    SystemHandler.setStaticIP(netData.getNetworkAdapter(), netData.getIpTcpListener().getHostAddress(), netData.getSubnetMask());
-	                    commHandler.informationNetworkingHandler("NETHANDLER: set IP... ok!");
+	                    debug("NETHANDLER: set IP... ok!");
 	                }
 //	                catch (ThreadAbortException e)
 //	                {
@@ -274,13 +283,13 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 //	                }
 	                catch (Exception e)
 	                {
-	                    commHandler.informationNetworkingHandler("NETHANDLER: set IP... failed! " + e.getMessage());
+	                    debug("NETHANDLER: set IP... failed! " + e.getMessage());
 	                }
 	                try
 	                {
-	                    commHandler.informationNetworkingHandler("NETHANDLER: enable adapter...");
+	                    debug("NETHANDLER: enable adapter...");
 	                    SystemHandler.enableIpAdapter(netData.getNetworkAdapter());
-	                    commHandler.informationNetworkingHandler("NETHANDLER: enable adapter... ok!");
+	                    debug("NETHANDLER: enable adapter... ok!");
 	                }
 //	                catch (ThreadAbortException e)
 //	                {
@@ -288,19 +297,19 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 //	                }
 	                catch (Exception e)
 	                {
-	                    commHandler.informationNetworkingHandler("NETHANDLER: enable adapter... failed! " + e.getMessage());
+	                    debug("NETHANDLER: enable adapter... failed! " + e.getMessage());
 	                }
 
 	                //hecha a andar wifiHandler
-	                commHandler.informationNetworkingHandler("NETHANDLER: start wifi...");
+	                debug("NETHANDLER: start wifi...");
 	                wifiHandler.connect();
 	                //espera por primera conexión
 	                while (wifiHandler.getConnectionState() == hlmp.NetLayer.Constants.WifiConnectionState.DISCONNECTED)
 	                {
-	                    commHandler.informationNetworkingHandler("NETHANDLER: waiting for other devices");
+	                    debug("NETHANDLER: waiting for other devices");
 	                    Thread.sleep(netData.getWaitTimeStart());
 	                }
-	                commHandler.informationNetworkingHandler("NETHANDLER: start wifi... ok!");
+	                debug("NETHANDLER: start wifi... ok!");
 	                //Setea la IP en el sistema operativo
 	                Boolean ipChange = false;
 	                int timeOutIpChange = 0;
@@ -308,10 +317,10 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                {
 	                    try
 	                    {
-	                        commHandler.informationNetworkingHandler("NETHANDLER: set IP... " + netData.getIpTcpListener().getHostAddress());
+	                        debug("NETHANDLER: set IP... " + netData.getIpTcpListener().getHostAddress());
 	                        SystemHandler.setStaticIP(netData.getNetworkAdapter(), netData.getIpTcpListener().getHostAddress(), netData.getSubnetMask());
 	                        ipChange = true;
-	                        commHandler.informationNetworkingHandler("NETHANDLER: set IP... ok!");
+	                        debug("NETHANDLER: set IP... ok!");
 	                    }
 //	                    catch (ThreadAbortException e)
 //	                    {
@@ -319,7 +328,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 //	                    }
 	                    catch (Exception e)
 	                    {
-	                        commHandler.informationNetworkingHandler("NETHANDLER: set IP... failed! " + e.getMessage());
+	                        debug("NETHANDLER: set IP... failed! " + e.getMessage());
 	                        timeOutIpChange++;
 	                        if (timeOutIpChange > netData.getWaitForStart())
 	                        {
@@ -329,10 +338,10 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                    }
 	                }
 	                //chequeo de ip
-	                commHandler.informationNetworkingHandler("NETHANDLER: start strong DAD");
+	                debug("NETHANDLER: start strong DAD");
 	                ipHandler.startStrongDAD();
 	                //Servicios TCP
-	                commHandler.informationNetworkingHandler("NETHANDLER: start TCP...");
+	                debug("NETHANDLER: start TCP...");
 	                //tcpListener.setReuseAddress(true);
 	                Boolean tcpChange = false;
 	                int timeOutTcpChange = 0;
@@ -340,12 +349,12 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                {
 	                    try
 	                    {
-	                        commHandler.informationNetworkingHandler("NETHANDLER: start TCP listener... " + netData.getIpTcpListener().getHostAddress() + ":" + netData.getTcpPort());
+	                        debug("NETHANDLER: start TCP listener... " + netData.getIpTcpListener().getHostAddress() + ":" + netData.getTcpPort());
 	                        //tcpListener.start();
 	                        tcpListener = new ServerSocket(netData.getTcpPort());
 	                        //tcpListener.bind(new InetSocketAddress(netData.getIpTcpListener(),netData.getTcpPort()));
 	                        tcpChange = true;
-	                        commHandler.informationNetworkingHandler("NETHANDLER: start TCP listener... ok!");
+	                        debug("NETHANDLER: start TCP listener... ok!");
 	                    }
 //	                    catch (ThreadAbortException e)
 //	                    {
@@ -354,7 +363,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                    catch (Exception e)
 	                    {
 	                    	e.printStackTrace();
-	                    	commHandler.informationNetworkingHandler("NETHANDLER: start TCP listener... failed! " + e.getMessage());
+	                    	debug("NETHANDLER: start TCP listener... failed! " + e.getMessage());
 	                        timeOutTcpChange++;
 	                        if (timeOutTcpChange > netData.getWaitForStart())
 	                        {
@@ -367,9 +376,9 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                    }
 	                }
 	                tcpListenerThread.start();
-	                commHandler.informationNetworkingHandler("NETHANDLER: start TCP... ok!");
+	                debug("NETHANDLER: start TCP... ok!");
 	                //conecta a UDP
-	                commHandler.informationNetworkingHandler("NETHANDLER: start UDP... " + netData.getIpUdpMulticast() + ":" + netData.getUdpPort());
+	                debug("NETHANDLER: start UDP... " + netData.getIpUdpMulticast() + ":" + netData.getUdpPort());
 	                
 	                udpServer = new MulticastSocket(netData.getUdpPort());
 	                udpClient = new DatagramSocket();
@@ -379,24 +388,24 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                udpServer.joinGroup(udpMulticastAdress);
 
 	                udpClientThread.start();
-	                commHandler.informationNetworkingHandler("NETHANDLER: start UDP... ok!");
+	                debug("NETHANDLER: start UDP... ok!");
 	                //cambio a cheque de ip debil
-	                commHandler.informationNetworkingHandler("NETHANDLER: start weak DAD");
+	                debug("NETHANDLER: start weak DAD");
 	                ipHandler.chageToWeakDAD();
 	                //Avisa que empiece la comunicacion
 	                commHandler.startNetworkingHandler();
 	                netHandlerState = NetHandlerState.STARTED;
-	                commHandler.informationNetworkingHandler("NETHANDLER: start netHandler... ok!");
-	                commHandler.informationNetworkingHandler("NETHANDLER: we are so connected!!! welcome to HLMP");
+	                debug("NETHANDLER: start netHandler... ok!");
+	                debug("NETHANDLER: we are so connected!!! welcome to HLMP");
 	            }
 	            catch (InterruptedException e)
 	            {
-	                commHandler.informationNetworkingHandler("NETHANDLER: start netHandler... failed! " + e.getMessage());
+	                debug("NETHANDLER: start netHandler... failed! " + e.getMessage());
 	            }
 	            catch (Exception e)
 	            {
 	                //disconnect();
-	                commHandler.informationNetworkingHandler("NETHANDLER: start netHandler... failed! " + e.getMessage());
+	                debug("NETHANDLER: start netHandler... failed! " + e.getMessage());
 	                commHandler.errorNetworkingHandler(e);
 	            }
 			}
@@ -409,154 +418,144 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
      * Si ocurre algun error se informa en informationNetworkingHandler, no se detiene ejecución
      */
     private void stop(boolean reset){
-    	commHandler.informationNetworkingHandler("NETHANDLER: stop netHandler...");
+    	debug("NETHANDLER: stop netHandler...");
         netHandlerState = NetHandlerState.STOPPING;
         try
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop DAD...");
-            ipHandler.stop();
-            commHandler.informationNetworkingHandler("NETHANDLER: stop DAD... ok!");
+            debug("NETHANDLER: stop DAD...");
+        	ipHandler.stop();
+            debug("NETHANDLER: stop DAD... OK");
         }
         catch (Exception e)
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop DAD... failed! " + e.getMessage());
+        	debug("NETHANDLER: stop DAD... failed! " + e.getMessage());
         }
         try
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop communication...");
-            commHandler.stopNetworkingHandler();
-            commHandler.informationNetworkingHandler("NETHANDLER: stop communication... ok!");
+            debug("NETHANDLER: stop communication...");
+        	commHandler.stopNetworkingHandler();
+            debug("NETHANDLER: stop communication... OK");
         }
         catch (Exception e)
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop communication... failed! " + e.getMessage());
+        	debug("NETHANDLER: stop communication... failed! " + e.getMessage());
         }
-        //Cerrado de threads y canales de red UDP  
+        
+        // Close UDP  
         try
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: drop multicast suscription...");
+            debug("NETHANDLER: drop multicast suscription...");
             udpServer.leaveGroup(udpMulticastAdress);
-            commHandler.informationNetworkingHandler("NETHANDLER: drop multicast suscription... ok!");
+            debug("NETHANDLER: drop multicast suscription... OK");
         }
         catch (Exception e)
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: drop multicast suscription... failed! " + e.getMessage());
+            debug("NETHANDLER: drop multicast suscription... failed! " + e.getMessage());
         }
         try
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: shutdown UDP client...");
+        	debug("NETHANDLER: shutdown UDP client...");
             udpClient.close();
-            //udpClient.Client.Shutdown(SocketShutdown.Both);
-            commHandler.informationNetworkingHandler("NETHANDLER: shutdown UDP client... ok!");
+            debug("NETHANDLER: shutdown UDP client... OK");
         }
         catch (Exception e)
         {
-            commHandler.informationNetworkingHandler(e.getMessage());
-            commHandler.informationNetworkingHandler("NETHANDLER: shutdown UDP client... failed! " + e.getMessage());
+        	debug("NETHANDLER: shutdown UDP client... failed! " + e.getMessage());
         }
         try
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: close UDP socket...");
-            udpServer.close();
-            commHandler.informationNetworkingHandler("NETHANDLER: close UDP socket... ok!");
-        }
-        catch (Exception e)
-        {
-            commHandler.informationNetworkingHandler("NETHANDLER: close UDP socket... failed! " + e.getMessage());
-        }
-//        try
-//        {
-//            commHandler.informationNetworkingHandler("NETHANDLER: close UDP client...");
-//            udpClient.Close();
-//            commHandler.informationNetworkingHandler("NETHANDLER: close UDP client... ok!");
-//        }
-//        catch (Exception e)
-//        {
-//            commHandler.informationNetworkingHandler("NETHANDLER: close UDP client... failed! " + e.Message);
-//        }
-        try
-        {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop UDP thread...");
+
+        	debug("NETHANDLER: stop UDP thread...");
             udpClientThread.interrupt();
+            try
+        	{
+            	debug("NETHANDLER: close UDP socket...");
+				udpServer.close();
+				debug("NETHANDLER: close UDP socket... OK");
+	        }
+	        catch (Exception e)
+	        {
+	        	debug("NETHANDLER: stop UDP thread... failed! " + e.getMessage());
+	        }
             udpClientThread.join();
-            commHandler.informationNetworkingHandler("NETHANDLER: stop UDP thread... ok!");
+            debug("NETHANDLER: stop UDP thread... OK");
+            
         }
         catch (Exception e)
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop UDP thread... failed! " + e.getMessage());
+        	debug("NETHANDLER: stop UDP thread... failed! " + e.getMessage());
         }
-        //Cerrado de threads y canales de red TCP
+
+        // Close TCP
         try
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop TCP listener...");
+        	debug("NETHANDLER: stop TCP listener...");
             tcpListener.close();
-            commHandler.informationNetworkingHandler("NETHANDLER: stop TCP listener... ok!");
+            debug("NETHANDLER: stop TCP listener... ok!");
         }
         catch (Exception e)
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop TCP listener... failed! " + e.getMessage());
+        	debug("NETHANDLER: stop TCP listener... failed! " + e.getMessage());
         }
         try
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop TCP thread...");
+        	debug("NETHANDLER: stop TCP thread...");
             tcpListenerThread.interrupt();
             tcpListenerThread.join();
-            commHandler.informationNetworkingHandler("NETHANDLER: stop TCP thread... ok!");
+            debug("NETHANDLER: stop TCP thread... OK");
         }
         catch (Exception e)
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop TCP thread... failed! " + e.getMessage());
+        	debug("NETHANDLER: stop TCP thread... failed! " + e.getMessage());
         }
-      
-        //se cierran las conexiones aun existentes TCP
         try
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: kill TCP links...");
+        	debug("NETHANDLER: kill TCP links...");
             RemoteMachine[] serverRemoteMachines = tcpServerList.toObjectArray();
             for (int i = 0; i < serverRemoteMachines.length; i++)
             {
                 try
                 {
-                    commHandler.informationNetworkingHandler("NETHANDLER: kill TCP link... " + serverRemoteMachines[i].getIp().getHostAddress());
+                	debug("NETHANDLER: kill TCP link... " + serverRemoteMachines[i].getIp().getHostAddress());
                     killRemoteMachine(serverRemoteMachines[i]);
-                    commHandler.informationNetworkingHandler("NETHANDLER: kill TCP link... ok!");
+                    debug("NETHANDLER: kill TCP link... ok!");
                 }
                 catch (Exception e)
                 {
-                    commHandler.informationNetworkingHandler("NETHANDLER: kill TCP link... failed! " + e.getMessage());
+                	debug("NETHANDLER: kill TCP link... failed! " + e.getMessage());
                 }
             }
-            commHandler.informationNetworkingHandler("NETHANDLER: kill TCP links... ok!");
+            debug("NETHANDLER: kill TCP links... OK");
         }
         catch (Exception e)
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: kill TCP links... failed! " + e.getMessage());
+        	debug("NETHANDLER: kill TCP links... failed! " + e.getMessage());
         }
         
-        //detiene wifiHandler
+        // Stop wifiHandler
         try
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop wifi...");
+        	debug("NETHANDLER: stop wifi...");
             wifiHandler.disconnect();
-            commHandler.informationNetworkingHandler("NETHANDLER: stop wifi... ok!");
+            debug("NETHANDLER: stop wifi... OK");
         }
         catch (Exception e)
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: stop wifi... failed! " + e.getMessage());
+        	debug("NETHANDLER: stop wifi... failed! " + e.getMessage());
         }
         
         if(!reset)
         {
-        	//se deja la IP en el sistema operativo como por defecto (DHCP)
+        	// Deja la IP en el sistema operativo como por defecto (DHCP)
         	try
         	{
-        		commHandler.informationNetworkingHandler("NETHANDLER: dhcp on...");
+        		debug("NETHANDLER: dhcp on...");
         		SystemHandler.setDinamicIP(netData.getNetworkAdapter());
-        		commHandler.informationNetworkingHandler("NETHANDLER: dhcp on... ok!");
+        		debug("NETHANDLER: dhcp on... OK");
         	}
         	catch (Exception e)
         	{
-        		commHandler.informationNetworkingHandler("NETHANDLER: dhcp on... failed!" + e.getMessage());
+        		debug("NETHANDLER: dhcp on... failed!" + e.getMessage());
         	}
         }
         
@@ -564,42 +563,42 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
         //se cierran las viejas conexiones TCP
         try
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: kill TCP links..." + "(TCP is hard to kill)");
+        	debug("NETHANDLER: kill TCP links..." + "(TCP is hard to kill)");
             RemoteMachine[] serverRemoteMachines = oldServerList.toObjectArray();
             for (int i = 0; i < serverRemoteMachines.length; i++)
             {
                 try
                 {
-                    commHandler.informationNetworkingHandler("NETHANDLER: kill TCP link... " + serverRemoteMachines[i].getIp().getHostAddress());
+                	debug("NETHANDLER: kill TCP link... " + serverRemoteMachines[i].getIp().getHostAddress());
                     killRemoteMachine(serverRemoteMachines[i]);
-                    commHandler.informationNetworkingHandler("NETHANDLER: kill TCP link... ok!");
+                    debug("NETHANDLER: kill TCP link... OK");
                 }
                 catch (Exception e)
                 {
-                    commHandler.informationNetworkingHandler("NETHANDLER: kill TCP link... failed! " + e.getMessage());
+                	debug("NETHANDLER: kill TCP link... failed! " + e.getMessage());
                 }
             }
-            commHandler.informationNetworkingHandler("NETHANDLER: kill TCP links... ok!");
+            debug("NETHANDLER: kill TCP links... OK");
         }
         catch (Exception e)
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: kill TCP links... failed! " + e.getMessage());
+        	debug("NETHANDLER: kill TCP links... failed! " + e.getMessage());
         }
         
-        //reinicializacion de todos los objetos
+        // Restart Objects
         try
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: initialation of objects...");
+        	debug("NETHANDLER: restart objects...");
             init();
-            commHandler.informationNetworkingHandler("NETHANDLER: initialation of objects... ok!");
+            debug("NETHANDLER: restart... OK");
         }
         catch (Exception e)
         {
-            commHandler.informationNetworkingHandler("NETHANDLER: initialation of objects... failed! " + e.getMessage());
+        	debug("NETHANDLER: initialation of objects... failed! " + e.getMessage());
         }
         netHandlerState = NetHandlerState.STOPPED;
-        commHandler.informationNetworkingHandler("NETHANDLER: stop netHandler... ok!");
-        commHandler.informationNetworkingHandler("NETHANDLER: bye bye!");
+        debug("NETHANDLER: stop netHandler... ok!");
+        debug("NETHANDLER: bye bye!");
     }
 
     /**
@@ -624,7 +623,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 //				}
 				catch (Exception e)
 				{
-					commHandler.informationNetworkingHandler("TCP WARNING 1: send failed " + e.getMessage());
+					debug("TCP WARNING 1: send failed " + e.getMessage());
 					if (remoteMachine.getFails() >= netData.getSendFailsToDisconnect())
 					{
 						disconnectFrom(remoteMachine);
@@ -644,7 +643,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 //		}
 		catch (Exception e)
 		{
-			commHandler.informationNetworkingHandler("TCP WARNING 2: send failed " + e.getMessage());
+			debug("TCP WARNING 2: send failed " + e.getMessage());
 			return false;
 		}
 	}
@@ -685,7 +684,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		//        }
 		catch (Exception e)
 		{
-			commHandler.informationNetworkingHandler("UDP WARNING: send failed " + e.getMessage());
+			debug("UDP WARNING: send failed " + e.getMessage());
 			return false;
 		}
 	}
@@ -715,12 +714,12 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		//        }
 		//        catch (SocketException e)
 		//        {
-		//            commHandler.informationNetworkingHandler("UDP WARNING: send failed ErrorCode=" + e.ErrorCode);
+		//            debug("UDP WARNING: send failed ErrorCode=" + e.ErrorCode);
 		//            return false;
 		//        }
 		catch (Exception e)
 		{
-			commHandler.informationNetworkingHandler("UDP WARNING: send failed " + e.getMessage());
+			debug("UDP WARNING: send failed " + e.getMessage());
 			return false;
 		}
 	}
@@ -744,7 +743,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	{
 		try
 		{
-			commHandler.informationNetworkingHandler("TCP: connection...");
+			debug("TCP: connection...");
 			InetAddress serverIp = null;
 			if (o.getClass().equals(InetAddress.class)){
 				serverIp = (InetAddress) o;
@@ -764,7 +763,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 				tcpClient.connect(new InetSocketAddress(serverIp, netData.getTcpPort()), netData.getTcpConnectTimeOut());
 			}
 			catch(SocketTimeoutException x){
-				commHandler.informationNetworkingHandler("TCP: connection... time out!");
+				debug("TCP: connection... time out!");
 				return;
 			}
 
@@ -785,7 +784,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 				tcpServerList.remove(oldRemoteMachine);
 			}
 			tcpServerList.add(serverIp, remoteMachine);
-			commHandler.informationNetworkingHandler("TCP: connection... ok!");
+			debug("TCP: connection... ok!");
 
 		}
 		//		catch (InterruptedException e)
@@ -794,8 +793,8 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		//		}
 		catch (Exception e)
 		{
-			commHandler.informationNetworkingHandler("TCP: connection... failed! " + e.getMessage());
-			commHandler.informationNetworkingHandler(e.getStackTrace().toString());
+			debug("TCP: connection... failed! " + e.getMessage());
+			debug(e.getStackTrace().toString());
 		}
 	}
 
@@ -827,23 +826,23 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	{
 		try
 		{
-			commHandler.informationNetworkingHandler("TCP: disconnection...");
+			debug("TCP: disconnection...");
 			if(o.getClass().equals(InetAddress.class))
 			{
 				InetAddress machineIp = (InetAddress)o;
 				RemoteMachine machine = tcpServerList.getRemoteMachine(machineIp);
-				commHandler.informationNetworkingHandler("TCP: old list queue");
+				debug("TCP: old list queue");
 				tcpServerList.remove(machine);
 				oldServerList.add(machine.getIp(), machine);
 			}
 			else if (o.getClass().equals(RemoteMachine.class))
 			{
 				RemoteMachine machine = (RemoteMachine)o;
-				commHandler.informationNetworkingHandler("TCP: old list queue");
+				debug("TCP: old list queue");
 				tcpServerList.remove(machine);
 				oldServerList.add(machine.getIp(), machine);
 			}
-			commHandler.informationNetworkingHandler("TCP: disconnection... ok!");
+			debug("TCP: disconnection... ok!");
 		}
 //		catch (InterruptedException e)
 //		{
@@ -851,7 +850,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 //		}
 		catch (Exception e)
 		{
-			commHandler.informationNetworkingHandler("TCP: disconnection... failed! " + e.getMessage());
+			debug("TCP: disconnection... failed! " + e.getMessage());
 		}
 	}
 	
@@ -863,25 +862,25 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	{
 		try
 		{
-			commHandler.informationNetworkingHandler("TCP: kill...");
+			debug("TCP: kill...");
 			if(o.getClass().equals(InetAddress.class))
 			{
 				InetAddress machineIp = (InetAddress)o;
 				RemoteMachine machine = tcpServerList.getRemoteMachine(machineIp);
-				commHandler.informationNetworkingHandler("TCP: close machine");
+				debug("TCP: close machine");
 				machine.close();
-				commHandler.informationNetworkingHandler("TCP: drop from queue");
+				debug("TCP: drop from queue");
 				tcpServerList.remove(machine);
 			}
 			else if (o.getClass().equals(RemoteMachine.class))
 			{
 				RemoteMachine machine = (RemoteMachine)o;
-				commHandler.informationNetworkingHandler("TCP: close machine");
+				debug("TCP: close machine");
 				machine.close();
-				commHandler.informationNetworkingHandler("TCP: drop from queue");
+				debug("TCP: drop from queue");
 				tcpServerList.remove(machine);
 			}
-			commHandler.informationNetworkingHandler("TCP: kill... ok!");
+			debug("TCP: kill... ok!");
 		}
 //		catch (InterruptedException e)
 //		{
@@ -889,7 +888,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 //		}
 		catch (Exception e)
 		{
-			commHandler.informationNetworkingHandler("TCP: kill... failed! " + e.getMessage());
+			debug("TCP: kill... failed! " + e.getMessage());
 		}
 	}
 
@@ -908,7 +907,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 			}
 			else
 			{
-				commHandler.informationNetworkingHandler("TCP WARNING: TCP message dropped");
+				debug("TCP WARNING: TCP message dropped");
 			}
 //		}finally{
 //			
@@ -964,7 +963,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 
 	@Override
 	public void wifiInformation(String message) {
-		commHandler.informationNetworkingHandler("WIFI: " + message);
+		debug("WIFI: " + message);
 
 	}
 
@@ -976,10 +975,6 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 			{
 				resetThread.start();
 			}
-//			catch (ThreadAbortException e)
-//			{
-//				throw e;
-//			}
 			catch (Exception e)
 			{
 			}
@@ -996,9 +991,9 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		        {
 		            while (true)
 		            {
-		            	commHandler.informationNetworkingHandler("TCP: accepting client ...");
+		            	debug("TCP: accepting client ...");
 		                Socket tcpClient = tcpListener.accept();
-		                commHandler.informationNetworkingHandler("TCP: new client detected");
+		                debug("TCP: new client detected");
 		                tcpClient.setSoLinger(false, 0);
 		                
 		                //tcpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
@@ -1016,16 +1011,16 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		                    tcpServerList.remove(oldRemoteMachine);
 		                }
 		                tcpServerList.add(ip, remoteMachine);
-		                commHandler.informationNetworkingHandler("TCP: new client connected");
+		                debug("TCP: new client connected");
 		            }
 		        }
-//		        catch (InterruptedException e)
-//		        {
-//		            throw e;
-//		        }
+		        catch (SocketException e)
+		        {
+		            return;
+		        }
 		        catch (Exception e)
 		        {
-		            commHandler.informationNetworkingHandler("TCP WARNING: TCP listener has stopped!! " + e.getMessage());
+		        	debug("TCP WARNING: TCP listener has stopped!! " + e.getMessage());
 		        }
 				
 			}
@@ -1059,21 +1054,19 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                            udpMessageQueue.put(message);
 	                        }else{
 	                        	// agregado por NM
-		                    	commHandler.informationNetworkingHandler("UDP WARNING: upd receive wrong message, bad length");
+		                    	debug("UDP WARNING: upd receive wrong message, bad length");
 	                        }
 	                    }else{
 	                    	// agregado por NM
-	                    	commHandler.informationNetworkingHandler("UDP WARNING: upd receive wrong message, lenght less than 4");
+	                    	debug("UDP WARNING: upd receive wrong message, lenght less than 4");
 	                    }
 	                }
 	            }
-//	            catch (InterruptedException e)
-//	            {
-//	                throw e;
-//	            }
 	            catch (Exception e)
 	            {
-	                commHandler.informationNetworkingHandler("UDP WARNING: udp client has stopped!!! " + e.getMessage());
+	            	if (!this.isInterrupted()) {
+	            		debug("UDP WARNING: udp client has stopped!!! " + e.getMessage());
+	            	}
 	            }
 			}
 	
@@ -1081,6 +1074,6 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	}
 
 	public void informationNetworkingHandler(String message){
-		commHandler.informationNetworkingHandler("WIFI: " + message);
+		debug("WIFI: " + message);
 	}
 }
