@@ -822,6 +822,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	 * Desconecta los servicios TCP asociados a una maquina remota
 	 * @param o La ip de la maquina remota a desconectar en formato de String o la maquina remota
 	 */
+	@SuppressWarnings("unused")
 	private void disconnectFromAsync(Object o)
 	{
 		try

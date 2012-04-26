@@ -43,7 +43,8 @@ public class IpHandler{
 	/**
 	 * valor que que cambia si el usuario esta correctamente recibiendo la multidifusión
 	 */
-    private long aliveValue;
+    @SuppressWarnings("unused")
+	private long aliveValue;
 	/**
 	 * valor que cambia cuando el usuario esta correctamente difundiendo mensajes
 	 */

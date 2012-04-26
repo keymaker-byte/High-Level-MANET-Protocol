@@ -1428,7 +1428,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeConnectEvent(ConnectEventObserverI o){
     		int hash = o.hashCode();
-    		ConnectEventObserverI val = this.connectEventObserverList.remove(hash);
+    		this.connectEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1458,7 +1458,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeDisconnectEvent(DisconnectEventObserverI o){
     		int hash = o.hashCode();
-    		DisconnectEventObserverI val = this.disconnectEventObserverList.remove(hash);
+    		this.disconnectEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1488,7 +1488,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeConnectingEvent(ConnectingEventObserverI o){
     		int hash = o.hashCode();
-    		ConnectingEventObserverI val = this.connectingEventObserverList.remove(hash);
+    		this.connectingEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1518,7 +1518,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeDisconnectingEvent(DisconnectingEventObserverI o){
     		int hash = o.hashCode();
-    		DisconnectingEventObserverI val = this.disconnectingEventObserverList.remove(hash);
+    		this.disconnectingEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1548,7 +1548,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeReconnectingEvent(ReconnectingEventObserverI o){
     		int hash = o.hashCode();
-    		ReconnectingEventObserverI val = this.reconnectingEventObserverList.remove(hash);
+    		this.reconnectingEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1578,7 +1578,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeAddUserEvent(AddUserEventObserverI o){
     		int hash = o.hashCode();
-    		AddUserEventObserverI val = this.addUserEventObserverList.remove(hash);
+    		this.addUserEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1609,7 +1609,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeRemoveUserEvent(RemoveUserEventObserverI o){
     		int hash = o.hashCode();
-    		RemoveUserEventObserverI val = this.removeUserEventObserverList.remove(hash);
+    		this.removeUserEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1640,7 +1640,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeRefreshUserEvent(RefreshUserEventObserverI o){
     		int hash = o.hashCode();
-    		RefreshUserEventObserverI val = this.refreshUserEventObserverList.remove(hash);
+    		this.refreshUserEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1671,7 +1671,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeRefreshLocalUserEvent(RefreshLocalUserEventObserverI o){
     		int hash = o.hashCode();
-    		RefreshLocalUserEventObserverI val = this.refreshLocalUserEventObserverList.remove(hash);
+    		this.refreshLocalUserEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1702,7 +1702,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeNetInformationEvent(NetInformationEventObserverI o){
     		int hash = o.hashCode();
-    		NetInformationEventObserverI val = this.netInformationEventObserverList.remove(hash);
+    		this.netInformationEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1733,7 +1733,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeExceptionEvent(ExceptionEventObserverI o){
     		int hash = o.hashCode();
-    		ExceptionEventObserverI val = this.exceptionEventObserverList.remove(hash);
+    		this.exceptionEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1764,7 +1764,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeProcessMessageEvent(ProcessMessageEventObserverI o){
     		int hash = o.hashCode();
-    		ProcessMessageEventObserverI val = this.processMessageEventObserverList.remove(hash);
+    		this.processMessageEventObserverList.remove(hash);
     	}
 
     	/**
@@ -1795,7 +1795,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     	 */
     	public void unsubscribeErrorMessageEvent(ErrorMessageEventObserverI o){
     		int hash = o.hashCode();
-    		ErrorMessageEventObserverI val = this.errorMessageEventObserverList.remove(hash);
+    		this.errorMessageEventObserverList.remove(hash);
     	}
 
     	/**

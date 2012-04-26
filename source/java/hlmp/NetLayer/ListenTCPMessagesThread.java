@@ -2,7 +2,6 @@ package hlmp.NetLayer;
 
 import hlmp.Tools.BitConverter;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 public class ListenTCPMessagesThread extends Thread {
