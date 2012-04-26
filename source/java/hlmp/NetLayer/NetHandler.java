@@ -202,8 +202,8 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	}
 
 	private void debug(String text) {
-		commHandler.informationNetworkingHandler(text);
-//		System.out.println(text);
+//		commHandler.informationNetworkingHandler(text);
+		System.out.println(text);
 	}
 	
 
@@ -239,7 +239,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 					connect();
 				}
 				debug("NETHANDLER: DESPUES de synchronized(resetLock)");
-				debug("NETHANDLER: reset IP... ok!");
+				debug("NETHANDLER: reset IP... OK");
 			}
 		};
 		
@@ -265,7 +265,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                {
 	                    debug("NETHANDLER: disable adapter...");
 	                    SystemHandler.disableIpAdapter(netData.getNetworkAdapter());
-	                    debug("NETHANDLER: disable adapter... ok!");
+	                    debug("NETHANDLER: disable adapter... OK");
 	                }
 	                catch (Exception e)
 	                {
@@ -275,7 +275,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                {
 	                    debug("NETHANDLER: set IP... " + netData.getIpTcpListener().getHostAddress());
 	                    SystemHandler.setStaticIP(netData.getNetworkAdapter(), netData.getIpTcpListener().getHostAddress(), netData.getSubnetMask());
-	                    debug("NETHANDLER: set IP... ok!");
+	                    debug("NETHANDLER: set IP... OK");
 	                }
 //	                catch (ThreadAbortException e)
 //	                {
@@ -289,7 +289,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                {
 	                    debug("NETHANDLER: enable adapter...");
 	                    SystemHandler.enableIpAdapter(netData.getNetworkAdapter());
-	                    debug("NETHANDLER: enable adapter... ok!");
+	                    debug("NETHANDLER: enable adapter... OK");
 	                }
 //	                catch (ThreadAbortException e)
 //	                {
@@ -309,7 +309,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                    debug("NETHANDLER: waiting for other devices");
 	                    Thread.sleep(netData.getWaitTimeStart());
 	                }
-	                debug("NETHANDLER: start wifi... ok!");
+	                debug("NETHANDLER: start wifi... OK");
 	                //Setea la IP en el sistema operativo
 	                Boolean ipChange = false;
 	                int timeOutIpChange = 0;
@@ -320,7 +320,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                        debug("NETHANDLER: set IP... " + netData.getIpTcpListener().getHostAddress());
 	                        SystemHandler.setStaticIP(netData.getNetworkAdapter(), netData.getIpTcpListener().getHostAddress(), netData.getSubnetMask());
 	                        ipChange = true;
-	                        debug("NETHANDLER: set IP... ok!");
+	                        debug("NETHANDLER: set IP... OK");
 	                    }
 //	                    catch (ThreadAbortException e)
 //	                    {
@@ -337,10 +337,11 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                        Thread.sleep(netData.getWaitTimeStart());
 	                    }
 	                }
-	                //chequeo de ip
+	                // Check IP
 	                debug("NETHANDLER: start strong DAD");
 	                ipHandler.startStrongDAD();
-	                //Servicios TCP
+	                
+	                // Start TCP
 	                debug("NETHANDLER: start TCP...");
 	                //tcpListener.setReuseAddress(true);
 	                Boolean tcpChange = false;
@@ -354,7 +355,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                        tcpListener = new ServerSocket(netData.getTcpPort());
 	                        //tcpListener.bind(new InetSocketAddress(netData.getIpTcpListener(),netData.getTcpPort()));
 	                        tcpChange = true;
-	                        debug("NETHANDLER: start TCP listener... ok!");
+	                        debug("NETHANDLER: start TCP listener... OK");
 	                    }
 //	                    catch (ThreadAbortException e)
 //	                    {
@@ -376,36 +377,44 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                    }
 	                }
 	                tcpListenerThread.start();
-	                debug("NETHANDLER: start TCP... ok!");
-	                //conecta a UDP
+	                debug("NETHANDLER: start TCP... OK");
+	                
+	                // Start UDP
+	                debug("NETHANDLER: start UDP...");
 	                debug("NETHANDLER: start UDP... " + netData.getIpUdpMulticast() + ":" + netData.getUdpPort());
-	                
 	                udpServer = new MulticastSocket(netData.getUdpPort());
+	                debug("NETHANDLER: start UDP... MulticastSocket OK");
 	                udpClient = new DatagramSocket();
+	                udpClient.setBroadcast(true);
+	                debug("NETHANDLER: start UDP... DatagramSocket OK");
 	                //udpClient.setReuseAddress(true);
-	                
 	                udpMulticastAdress = InetAddress.getByName(netData.getIpUdpMulticast());
+	                debug("NETHANDLER: start UDP... InetAddress OK");
+	                debug("NETHANDLER: start UDP... joinGroup "+ netData.getIpUdpMulticast());
 	                udpServer.joinGroup(udpMulticastAdress);
-
+	                debug("NETHANDLER: start UDP... joinGroup OK");
 	                udpClientThread.start();
-	                debug("NETHANDLER: start UDP... ok!");
-	                //cambio a cheque de ip debil
+	                debug("NETHANDLER: start UDP... OK");
+	                
+	                // Week IP Check
 	                debug("NETHANDLER: start weak DAD");
 	                ipHandler.chageToWeakDAD();
-	                //Avisa que empiece la comunicacion
+	                
+	                // Start Comminication
 	                commHandler.startNetworkingHandler();
 	                netHandlerState = NetHandlerState.STARTED;
-	                debug("NETHANDLER: start netHandler... ok!");
-	                debug("NETHANDLER: we are so connected!!! welcome to HLMP");
+	                debug("NETHANDLER: start netHandler... OK");
+	                debug("NETHANDLER: We are so connected, welcome to HLMP !!!");
 	            }
 	            catch (InterruptedException e)
 	            {
+	            	System.out.println(e.getStackTrace());
 	                debug("NETHANDLER: start netHandler... failed! " + e.getMessage());
 	            }
 	            catch (Exception e)
 	            {
-	                //disconnect();
-	                debug("NETHANDLER: start netHandler... failed! " + e.getMessage());
+//	                disconnect();
+	            	debug("NETHANDLER: start netHandler... failed! " + e.getMessage());
 	                commHandler.errorNetworkingHandler(e);
 	            }
 			}
@@ -491,7 +500,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
         {
         	debug("NETHANDLER: stop TCP listener...");
             tcpListener.close();
-            debug("NETHANDLER: stop TCP listener... ok!");
+            debug("NETHANDLER: stop TCP listener... OK");
         }
         catch (Exception e)
         {
@@ -518,7 +527,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
                 {
                 	debug("NETHANDLER: kill TCP link... " + serverRemoteMachines[i].getIp().getHostAddress());
                     killRemoteMachine(serverRemoteMachines[i]);
-                    debug("NETHANDLER: kill TCP link... ok!");
+                    debug("NETHANDLER: kill TCP link... OK");
                 }
                 catch (Exception e)
                 {
@@ -597,7 +606,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
         	debug("NETHANDLER: initialation of objects... failed! " + e.getMessage());
         }
         netHandlerState = NetHandlerState.STOPPED;
-        debug("NETHANDLER: stop netHandler... ok!");
+        debug("NETHANDLER: stop netHandler... OK");
         debug("NETHANDLER: bye bye!");
     }
 
@@ -784,7 +793,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 				tcpServerList.remove(oldRemoteMachine);
 			}
 			tcpServerList.add(serverIp, remoteMachine);
-			debug("TCP: connection... ok!");
+			debug("TCP: connection... OK");
 
 		}
 		//		catch (InterruptedException e)
@@ -843,7 +852,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 				tcpServerList.remove(machine);
 				oldServerList.add(machine.getIp(), machine);
 			}
-			debug("TCP: disconnection... ok!");
+			debug("TCP: disconnection... OK");
 		}
 //		catch (InterruptedException e)
 //		{
@@ -881,7 +890,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 				debug("TCP: drop from queue");
 				tcpServerList.remove(machine);
 			}
-			debug("TCP: kill... ok!");
+			debug("TCP: kill... OK");
 		}
 //		catch (InterruptedException e)
 //		{
