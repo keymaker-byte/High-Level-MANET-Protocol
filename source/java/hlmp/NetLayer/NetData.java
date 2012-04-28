@@ -55,8 +55,8 @@ public class NetData {
     public NetData()
     {
         pickNewIp();
-//      ipUdpMulticast = "224.0.0.2"; // original
-        ipUdpMulticast = "224.2.2.4";
+        ipUdpMulticast = "224.0.0.2"; // original
+//        ipUdpMulticast = "224.2.2.4";
         tcpPort = 30001;
         udpPort = 30002;
         subnetMask = "255.255.0.0";

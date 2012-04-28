@@ -383,16 +383,11 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                debug("NETHANDLER: start UDP...");
 	                debug("NETHANDLER: start UDP... " + netData.getIpUdpMulticast() + ":" + netData.getUdpPort());
 	                udpServer = new MulticastSocket(netData.getUdpPort());
-	                debug("NETHANDLER: start UDP... MulticastSocket OK");
 	                udpClient = new DatagramSocket();
 	                udpClient.setBroadcast(true);
-	                debug("NETHANDLER: start UDP... DatagramSocket OK");
-	                //udpClient.setReuseAddress(true);
+	                udpClient.setReuseAddress(true);
 	                udpMulticastAdress = InetAddress.getByName(netData.getIpUdpMulticast());
-	                debug("NETHANDLER: start UDP... InetAddress OK");
-	                debug("NETHANDLER: start UDP... joinGroup "+ netData.getIpUdpMulticast());
 	                udpServer.joinGroup(udpMulticastAdress);
-	                debug("NETHANDLER: start UDP... joinGroup OK");
 	                udpClientThread.start();
 	                debug("NETHANDLER: start UDP... OK");
 	                
@@ -413,7 +408,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	            }
 	            catch (Exception e)
 	            {
-//	                disconnect();
+	                disconnect();
 	            	debug("NETHANDLER: start netHandler... failed! " + e.getMessage());
 	                commHandler.errorNetworkingHandler(e);
 	            }
