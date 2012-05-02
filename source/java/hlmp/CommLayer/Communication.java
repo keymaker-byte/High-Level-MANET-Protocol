@@ -546,7 +546,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
 
 	private void debug(String text) {
 //		produceEvent(CommunicationEvent.NETINFORMATION, text);
-    		System.out.println(text);
+    	System.out.println(text);
 	}
 
 	/**
@@ -841,7 +841,8 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
      */
     public void informationNetworkingHandler(String message)
     {
-        produceEvent(CommunicationEvent.NETINFORMATION, message);
+//        produceEvent(CommunicationEvent.NETINFORMATION, message);
+    	this.debug(message);
     }
 
     /**

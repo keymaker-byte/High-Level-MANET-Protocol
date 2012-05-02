@@ -1,11 +1,12 @@
 package hlmp.NetLayer;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import org.simpleframework.xml.Default;
 
-@XmlRootElement
+
 /**
  * Clase que representa un mensaje recibido o enviado por la RED
  */
+@Default
 public class NetMessage {
 	
 	/**

@@ -1,51 +1,41 @@
 package hlmp.NetLayer;
 
-import java.io.ByteArrayInputStream;
+import java.io.StringReader;
 import java.io.StringWriter;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
+
+
+/**
+ * Modificado para Android 2.3 por felipe.valverde.campos@gmail.com
+ *
+ */
 
 public class ObjectSerializer {
 	
-	private JAXBContext context;
-	private Marshaller m;
-	private Unmarshaller um;
-
-	public ObjectSerializer(Object tipo) {
-		try {
-			context = JAXBContext.newInstance(tipo.getClass());
-			m = context.createMarshaller();
-			um = context.createUnmarshaller();
-			//m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
 	public String serialize(Object obj){
 		StringWriter sw = new StringWriter();
-		String s="";
+		String serialized_object = "";
+		Serializer serial = new Persister();
 		try {
-			m.marshal(obj, sw);
-			s = sw.toString();
-		} catch (JAXBException e) {
+			serial.write(obj, sw);
+			serialized_object = sw.toString();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return s;
+		return serialized_object ;
 	}
 	
-	public Object unserialize(String obj){
-		ByteArrayInputStream bs = new ByteArrayInputStream(obj.getBytes());
-		Object o = null;
+	public Object unserialize(String serialized_object, Class<?> cls){
+		Serializer serializer = new Persister();
+		StringReader sr = new StringReader(serialized_object);
+		Object object = null;
 		try {
-			o = (Object) um.unmarshal(bs);
-		} catch (JAXBException e) {
+			object = serializer.read(cls, sr);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return o;
+		return object;
 	}
-
 }

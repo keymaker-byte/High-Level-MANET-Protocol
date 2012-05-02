@@ -1,4 +1,5 @@
 package hlmp.CommLayer;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -7,6 +8,7 @@ import java.io.PrintWriter;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import hlmp.NetLayer.*;
+
 
 @XmlRootElement
 public class Configuration {
@@ -76,7 +78,7 @@ public class Configuration {
 		{
 			if (configuration != null)
 			{
-				ObjectSerializer mySerializer = new ObjectSerializer(configuration);
+				ObjectSerializer mySerializer = new ObjectSerializer();
 				String serialized = mySerializer.serialize(configuration);
 				PrintWriter pw = new PrintWriter(new FileWriter(directory + "CommLayer.conf"));
 				pw.print(serialized);
@@ -102,10 +104,10 @@ public class Configuration {
     {
         try
         {
-        	ObjectSerializer mySerializer = new ObjectSerializer(new Configuration());
+        	ObjectSerializer mySerializer = new ObjectSerializer();
         	BufferedReader bf = new BufferedReader(new FileReader(directory + "CommLayer.conf"));
         	String line = bf.readLine();
-            Configuration conf = (Configuration)mySerializer.unserialize(line);
+            Configuration conf = (Configuration)mySerializer.unserialize(line, Configuration.class);
             bf.close();
             return conf;
         }
