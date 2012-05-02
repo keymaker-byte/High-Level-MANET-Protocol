@@ -966,13 +966,11 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		ipHandler.put(ip);
 	}
 
-	@Override
 	public void wifiInformation(String message) {
 		debug("WIFI: " + message);
 
 	}
 
-	@Override
 	public void resetIp() {
 		if(iphandlerPoint.compareAndSet(0, 1))
 		{

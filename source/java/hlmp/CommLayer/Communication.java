@@ -1810,7 +1810,6 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
 		}
 	}
 
-	@Override
 	public void messageError(Message message) {
 		routerMessageErrorHandler(message);
 	}

@@ -5,12 +5,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import org.simpleframework.xml.Default;
 
 import hlmp.NetLayer.*;
 
 
-@XmlRootElement
+@Default
 public class Configuration {
 	/**
      * Los datos del usuario local
