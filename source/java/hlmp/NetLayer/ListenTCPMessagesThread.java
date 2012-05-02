@@ -51,6 +51,10 @@ public class ListenTCPMessagesThread extends Thread {
 //		}
         catch (Exception e)
         {
+        	if (this.isInterrupted())
+        	{
+        		return;
+        	}
             netHandler.informationNetworkingHandler("TCP WARNING: header reading failed " + e.getMessage());
             netHandler.disconnectFrom(remoteMachine);
         }

@@ -996,6 +996,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		            {
 		            	debug("TCP: accepting client ...");
 		                Socket tcpClient = tcpListener.accept();
+		                tcpClient.setSoTimeout(0);
 		                debug("TCP: new client detected");
 		                tcpClient.setSoLinger(false, 0);
 		                
@@ -1048,7 +1049,6 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                    	byte[] arraySize = new byte[4];
 	                    	System.arraycopy(buffer, 0, arraySize, 0, 4);
 	                    	int size = BitConverter.byteArrayToInt(arraySize);
-	                    	
 	                        if (buffer.length >= 4 + size)
 	                        {
 	                            byte[] body = new byte[size];
@@ -1077,6 +1077,6 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	}
 
 	public void informationNetworkingHandler(String message){
-		debug("WIFI: " + message);
+		debug("NETHANDLER: " + message);
 	}
 }
