@@ -65,10 +65,10 @@ public class BitConverter {
  	}
 	
 	public static final byte[] stringToByte(String s) {
-		return s.getBytes(Charset.forName("UTF-8"));
+		return s.getBytes(Charset.forName("UTF-16LE"));
 	}
 	
 	public static final String byteToString(byte[] b) {
-		return new String(b, Charset.forName("UTF-8"));
+		return new String(b, Charset.forName("UTF-16LE"));
 	}
 }
