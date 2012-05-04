@@ -235,6 +235,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
 			netHandler = new NetHandler(configuration.getNetData(), this);
 			eventQueuePC = new EventQueuePC();
 			eventConsumer = getConsumeEventThread();
+			eventConsumer.setName("Consumer Event Thread");
 			eventConsumerStarted = false;
 			eventConsumerLock = new Object();
 
@@ -380,6 +381,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
             }
             eventQueuePC = new EventQueuePC();
             eventConsumer = getConsumeEventThread();
+            eventConsumer.setName("Consumer Event Thread");
         }
     }
 
@@ -937,14 +939,6 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     				disconnect();
     			}
     		}
-
-//        		@Override
-//        		public void interrupt() {
-//        			super.interrupt();
-//        			disconnect();
-//        		}
-
-
     	};
     	return t;
 
@@ -977,13 +971,6 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     				disconnect();
     			}
     		}
-
-//        		@Override
-//        		public void interrupt() {
-//        			super.interrupt();
-//        			disconnect();
-//        		}
-
     	};
     	return t;
 

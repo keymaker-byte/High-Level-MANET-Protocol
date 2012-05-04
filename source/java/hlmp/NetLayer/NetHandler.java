@@ -147,9 +147,11 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		netHandlerState = NetHandlerState.INITIATED;
 		wifiHandler = new WifiHandler(netData, this);
 		startThread = getStartThread();
+		startThread.setName("NetHandler Start Thread");
 		stopPoint = new AtomicInteger(0);
 		ipHandler = new IpHandler(netData, this);
 		resetThread = getResetThread();
+		resetThread.setName("NetHandler Reset Thread");
 	}
 
 	/**
@@ -251,7 +253,6 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	 * @return un thread que levanta los servicios
 	 */
     private Thread getStartThread(){
-    	//TODO:
     	return new Thread(){
 
 			@Override
@@ -621,10 +622,6 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 				{
 					remoteMachine.sendNetMessage(netMessage, netData.getTimeOutWriteTCP());
 				}
-//				catch (IOException e)
-//				{
-//					throw e;
-//				}
 				catch (Exception e)
 				{
 					debug("TCP WARNING 1: send failed " + e.getMessage());
@@ -749,34 +746,30 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		{
 			debug("TCP: connection...");
 			InetAddress serverIp = null;
-			if (o.getClass().equals(InetAddress.class)){
+			if (o.getClass().equals(InetAddress.class))
+			{
 				serverIp = (InetAddress) o;
-			}else{
+			}
+			else
+			{
 				serverIp = InetAddress.getByName((String) o);
 			}
 
-			//IPAddress serverIp = (IPAddress)o;
-			Socket tcpClient = new Socket(/*tcpAddress, 0*/);
-			tcpClient.setSoLinger(false, 0);
+			Socket tcpClient = new Socket();
+			tcpClient.setSoTimeout(0);
 
-			//tcpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
-
-
-			//Conexion asincrona con time out
-			try{
+			try
+			{
 				tcpClient.connect(new InetSocketAddress(serverIp, netData.getTcpPort()), netData.getTcpConnectTimeOut());
 			}
-			catch(SocketTimeoutException x){
+			catch(SocketTimeoutException x)
+			{
 				debug("TCP: connection... time out!");
 				return;
 			}
 
-
-			//IAsyncResult result = tcpClient.BeginConnect(serverIp, netData.TcpPort, null, null);
-			//bool success = result.AsyncWaitHandle.WaitOne(netData.TcpConnectTimeOut, true);
-
-			//tcpClient.EndConnect(result);
 			ListenTCPMessagesThread clientThread = new ListenTCPMessagesThread(this);
+			clientThread.setName("ListenTCPMessagesThread_" + serverIp.getHostAddress());
 			RemoteMachine remoteMachine = new RemoteMachine(serverIp, tcpClient, clientThread);
 			clientThread.setRemoteMachine(remoteMachine);
 			clientThread.start();
@@ -784,17 +777,11 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 			RemoteMachine oldRemoteMachine = tcpServerList.getRemoteMachine(serverIp);
 			if (oldRemoteMachine != null)
 			{
-				oldRemoteMachine.close();
 				tcpServerList.remove(oldRemoteMachine);
 			}
 			tcpServerList.add(serverIp, remoteMachine);
 			debug("TCP: connection... OK");
-
 		}
-		//		catch (InterruptedException e)
-		//		{
-		//			throw e;
-		//		}
 		catch (Exception e)
 		{
 			debug("TCP: connection... failed! " + e.getMessage());
@@ -998,12 +985,11 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		                Socket tcpClient = tcpListener.accept();
 		                tcpClient.setSoTimeout(0);
 		                debug("TCP: new client detected");
-		                tcpClient.setSoLinger(false, 0);
 		                
-		                //tcpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
 		                InetAddress ip = tcpClient.getInetAddress();
 		                
 		                ListenTCPMessagesThread clientThread = new ListenTCPMessagesThread(myself);
+		                clientThread.setName("ListenTCPMessages_" + ip.getHostAddress());
 		                RemoteMachine remoteMachine = new RemoteMachine(ip, tcpClient, clientThread);
 		                clientThread.setRemoteMachine(remoteMachine);
 		                clientThread.start();
@@ -1011,7 +997,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		                RemoteMachine oldRemoteMachine = tcpServerList.getRemoteMachine(ip);
 		                if (oldRemoteMachine != null)
 		                {
-		                    oldRemoteMachine.close();
+		                	oldRemoteMachine.close();
 		                    tcpServerList.remove(oldRemoteMachine);
 		                }
 		                tcpServerList.add(ip, remoteMachine);

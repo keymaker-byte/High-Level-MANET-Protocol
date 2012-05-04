@@ -25,38 +25,35 @@ public class ListenTCPMessagesThread extends Thread {
 			InputStream nStream = remoteMachine.getTcpClient().getInputStream();
             while (true)
             {
-                byte[] length = new byte[4];
-                int m = nStream.read(length, 0, 4);
-                while (m < 4)
+                byte[] sizeLikeByte = new byte[4];
+                int totalReadBytes = nStream.read(sizeLikeByte, 0, 4);
+                if (totalReadBytes == -1) this.interrupt();
+                while (totalReadBytes < 4)
                 {
-                    m += nStream.read(length, m, 4 - m);
+                	int currentReadBytes = nStream.read(sizeLikeByte, totalReadBytes, 4 - totalReadBytes); 
+                	if (currentReadBytes == -1) this.interrupt();
+                    totalReadBytes += currentReadBytes;
                 }
-                byte[] data = new byte[BitConverter.byteArrayToInt(length)];
-                int n = nStream.read(data, 0, data.length);
-                while (n < data.length)
+                int size = BitConverter.byteArrayToInt(sizeLikeByte);
+                byte[] data = new byte[size];
+                totalReadBytes = nStream.read(data, 0, data.length);
+                while (totalReadBytes < data.length)
                 {
-                    n += nStream.read(data, n, data.length - n);
+                	int currentReadBytes = nStream.read(sizeLikeByte, totalReadBytes, 4 - totalReadBytes); 
+                	if (currentReadBytes == -1) this.interrupt();
+                    totalReadBytes += currentReadBytes;
                 }
                 NetMessage message = new NetMessage(data);
                 netHandler.addTCPMessages(message);
             }
         }
-//        catch (InterruptedException e)
-//        {
-//            throw e;
-//        }
-//        catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-        catch (Exception e)
+		catch (Exception e)
         {
-        	if (this.isInterrupted())
+        	if (!this.isInterrupted())
         	{
-        		return;
+        		netHandler.informationNetworkingHandler("TCP WARNING: header reading failed " + e.getMessage());
         	}
-            netHandler.informationNetworkingHandler("TCP WARNING: header reading failed " + e.getMessage());
-            netHandler.disconnectFrom(remoteMachine);
+        	netHandler.disconnectFrom(remoteMachine);
         }
 	}
 

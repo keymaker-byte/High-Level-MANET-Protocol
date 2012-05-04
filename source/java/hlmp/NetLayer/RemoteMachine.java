@@ -69,7 +69,8 @@ public class RemoteMachine{
 			senderStream = tcpClient.getOutputStream(); 
 			try
 			{
-				tcpClient.setSoTimeout(timeOutWriteTCP);
+				tcpClient.setSoLinger(timeOutWriteTCP!=0, timeOutWriteTCP);
+				
 				byte[] lenght = BitConverter.intToByteArray(netMessage.getSize());
 				//byte[] netByteMessage = new byte[4 + netMessage.getSize()];
 				senderStream.write(lenght, 0, 4);
