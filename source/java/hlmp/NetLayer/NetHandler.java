@@ -997,7 +997,6 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		                RemoteMachine oldRemoteMachine = tcpServerList.getRemoteMachine(ip);
 		                if (oldRemoteMachine != null)
 		                {
-		                	oldRemoteMachine.close();
 		                    tcpServerList.remove(oldRemoteMachine);
 		                }
 		                tcpServerList.add(ip, remoteMachine);
