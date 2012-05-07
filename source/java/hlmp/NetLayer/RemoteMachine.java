@@ -145,6 +145,8 @@ public class RemoteMachine{
             }
             try
             {
+            	tcpClient.setSoLinger(false, 0);
+            	tcpClient.setSoTimeout(1000);
                 tcpClient.close();
             }
 //            catch (InterruptedException e)
