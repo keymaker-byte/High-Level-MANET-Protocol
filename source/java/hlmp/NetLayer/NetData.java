@@ -1,9 +1,14 @@
 package hlmp.NetLayer;
 
 import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 //import java.net.UnknownHostException;
 //import java.util.Random;
-import hlmp.NetLayer.Constants.*;
+
+import hlmp.NetLayer.Constants.OpSystemType;
+
 
 /**
  * Clase para los datos de configuraciòn necesarios que involucran una RED
@@ -109,7 +114,21 @@ public class NetData {
 //			System.out.println("La ip "+ip+" no fue reconocida.");
 //			e.printStackTrace();
 //		}
-//    	//TODO ipTcpListener = ip;
+    	
+//    	TODO: Cambiar esto cuando se automatize el crear la red adhoc	
+		try {
+	        for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+	            NetworkInterface intf = en.nextElement();
+	            for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+	                InetAddress inetAddress = enumIpAddr.nextElement();
+	                if (!inetAddress.isLoopbackAddress()) {
+	                	ipTcpListener = inetAddress;
+	                }
+	            }
+	        }
+	    } catch (SocketException e) {
+	    	e.printStackTrace();
+	    }
     }
 
 	/**
