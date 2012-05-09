@@ -1,6 +1,23 @@
 package app_ubuntu;
 
-import hlmp.CommLayer.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.UnknownHostException;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import hlmp.CommLayer.Communication;
+import hlmp.CommLayer.Configuration;
+import hlmp.CommLayer.NetUser;
+import hlmp.CommLayer.SubProtocolList;
 import hlmp.CommLayer.Messages.Message;
 import hlmp.CommLayer.Observers.AddUserEventObserverI;
 import hlmp.CommLayer.Observers.ExceptionEventObserverI;
@@ -10,21 +27,12 @@ import hlmp.CommLayer.Observers.ProcessMessageEventObserverI;
 import hlmp.CommLayer.Observers.RefreshLocalUserEventObserverI;
 import hlmp.CommLayer.Observers.RefreshUserEventObserverI;
 import hlmp.CommLayer.Observers.RemoveUserEventObserverI;
-import hlmp.SubProtocol.Chat.*;
+import hlmp.SubProtocol.Chat.ChatProtocol;
 import hlmp.SubProtocol.Chat.ControlI.ChatHandlerI;
 import hlmp.SubProtocol.Chat.Messages.GroupChatMessage;
-import hlmp.SubProtocol.Ping.*;
+import hlmp.SubProtocol.Ping.PingProtocol;
 import hlmp.SubProtocol.Ping.ControlI.PingHandlerI;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
-import javax.swing.*;
 
 public class Chat extends JFrame implements ActionListener, PingHandlerI, ChatHandlerI, 
 	NetInformationEventObserverI, ProcessMessageEventObserverI,
@@ -42,8 +50,7 @@ public class Chat extends JFrame implements ActionListener, PingHandlerI, ChatHa
 	 * @throws UnknownHostException 
 	 */
 	public static void main(String[] args) throws UnknownHostException {
-		String ip = args[0];
-		new Chat(ip).setVisible(true);
+		new Chat().setVisible(true);
 	}
 
 	private JTextArea chat = new JTextArea("", 15, 50);
@@ -62,10 +69,9 @@ public class Chat extends JFrame implements ActionListener, PingHandlerI, ChatHa
 	private PingProtocol pingProtocol;
 	private ChatProtocol chatProtocol;
 	private Communication communication;
-	private String ip;
 	
 	
-	public Chat(String ip) throws UnknownHostException{
+	public Chat() throws UnknownHostException{
 		
 		setTitle("HLMP Chat");
 		setLayout(new GridLayout(2,1));
@@ -77,7 +83,7 @@ public class Chat extends JFrame implements ActionListener, PingHandlerI, ChatHa
 		
 		JPanel top = new JPanel();
 		top.setLayout(new BorderLayout());
-		top.add(new JLabel("Chat HLMP IP: "+ ip), BorderLayout.NORTH);
+		top.add(new JLabel("Chat HLMP "), BorderLayout.NORTH);
 		
 		JPanel topMid = new JPanel();
 		topMid.setLayout(new FlowLayout());
@@ -119,11 +125,8 @@ public class Chat extends JFrame implements ActionListener, PingHandlerI, ChatHa
 		this.mensaje.addActionListener(this);
 		
 		
-		this.ip = ip;
-		
 		this.configuration= new Configuration();
 		this.configuration.getNetData().setOpSystem(hlmp.NetLayer.Constants.OpSystemType.UBUNTU1104);
-		this.configuration.getNetData().setIpTcpListener(InetAddress.getByName(this.ip));
 
 		SubProtocolList subProtocols = new SubProtocolList();
 		this.pingProtocol = new PingProtocol(this);
@@ -153,13 +156,7 @@ public class Chat extends JFrame implements ActionListener, PingHandlerI, ChatHa
 		}
 		else if(e.getSource().equals(this.conectar))
 		{
-			try {
-			    this.configuration.getNetData().setOpSystem(hlmp.NetLayer.Constants.OpSystemType.UBUNTU1104);
-			    this.configuration.getNetData().setIpTcpListener(InetAddress.getByName(this.ip));
-			}
-			catch(UnknownHostException ex) {
-
-			}
+			this.configuration.getNetData().setOpSystem(hlmp.NetLayer.Constants.OpSystemType.UBUNTU1104);
 			this.communication.startEventConsumer();
 			this.communication.connect();
 		}
