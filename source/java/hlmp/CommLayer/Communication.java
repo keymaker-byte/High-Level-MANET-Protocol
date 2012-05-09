@@ -559,7 +559,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     {
         try
         {
-            //TODO posible threaed fuera de control
+            // TODO: posible threaed fuera de control
             Thread disThread = new Thread(){
             	public void run(){
             		disconnect();

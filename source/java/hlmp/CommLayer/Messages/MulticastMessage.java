@@ -63,9 +63,6 @@ public abstract class MulticastMessage extends Message {
 	 * @return el array de bytes con la meta data
 	 */
 	private byte[] makeMetaPack(){
-		/**
-		 * TODO:
-		 */
 		byte[] messageMetaType = BitConverter.intToByteArray(this.metaType); //4 (0 - 3)
 		byte[] messageType = BitConverter.intToByteArray(this.type); //4 (4 - 7)
 		byte[] messageProtocolType = BitConverter.intToByteArray(this.protocolType); //4 (8 - 11)
@@ -91,9 +88,6 @@ public abstract class MulticastMessage extends Message {
 	 */
 	private void metaUnPack(byte[] messageMetaPack)
 	{
-		/**
-		 * TODO:
-		 */
 		this.metaType = BitConverter.readInt(messageMetaPack, 0);
 		this.type = BitConverter.readInt(messageMetaPack, 4);
 		this.protocolType = BitConverter.readInt(messageMetaPack, 8);
@@ -106,7 +100,6 @@ public abstract class MulticastMessage extends Message {
 		try {
 			this.senderNetUser.setIp(InetAddress.getByAddress(userIP));
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		byte[] messageId = new byte[16];

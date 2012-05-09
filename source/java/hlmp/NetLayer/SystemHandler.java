@@ -13,7 +13,7 @@ public class SystemHandler {
 	 * @param networkAdapter
 	 */
 	public static void setDinamicIP(NetworkAdapter networkAdapter){
-		//TODO:
+		//TODO: fvalverd implementar setDinamicIP
 	}
 	
 	/**
@@ -24,7 +24,7 @@ public class SystemHandler {
 	 * @param subnetMask
 	 */
 	public static void setStaticIP(NetworkAdapter networkAdapter, String ip, String subnetMask){
-		//TODO:
+		//TODO: fvalverd implementar setStaticIP
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class SystemHandler {
 	 * @return un estado de la clase IpState
 	 */
 	public static int getIpState(NetworkAdapter networkAdapter, InetAddress ipAdress){
-		//TODO:
+		//TODO: fvalverd implementart getIpState 
 		return hlmp.NetLayer.Constants.IpState.VALID;
 	}
 	
@@ -62,12 +62,10 @@ public class SystemHandler {
 	 * @return el numero de bytes enviados
 	 */
 //	private static int getAliveValue(NetworkAdapter networkAdapter){
-//		//TODO: 
 //		return 0;
 //	}
 	
 //	private static boolean isOperative(NetworkAdapter networkAdapter){
-//		//TODO:
 //		return true;
 //	}
 	
@@ -90,7 +88,6 @@ public class SystemHandler {
 	 * @return El texto con la descripción del error
 	 */
 //	private static String getManagementMessage(int index){
-//		//TODO:
 //		return "Management Message";
 //	}
 	

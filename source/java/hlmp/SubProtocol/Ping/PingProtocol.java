@@ -52,8 +52,7 @@ public class PingProtocol extends SubProtocol{
 
 	@Override
 	protected void errorMessage(Message message) {
-		// TODO Auto-generated method stub
-		
+				
 	}
 
 	@Override

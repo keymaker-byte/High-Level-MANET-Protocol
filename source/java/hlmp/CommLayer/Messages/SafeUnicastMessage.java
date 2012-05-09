@@ -144,7 +144,6 @@ public abstract class SafeUnicastMessage extends Message {
         try {
 			senderNetUser.setIp(InetAddress.getByAddress(userIP));
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         byte[] messageId = new byte[16];
@@ -160,7 +159,6 @@ public abstract class SafeUnicastMessage extends Message {
         try {
 			targetNetUser.setIp(InetAddress.getByAddress(targetIP));
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }

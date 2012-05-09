@@ -105,7 +105,7 @@ public class IpHandler{
 		return new Thread(){
 
 			public void run(){
-				//TODO:
+				// TODO: fvalverd corroborar que getCheckIpThread funciona
 				while(true){
 					try {
 						sleep(netData.getWaitTimeStart());

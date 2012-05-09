@@ -183,7 +183,6 @@ public class Chat extends JFrame implements ActionListener, PingHandlerI, ChatHa
 
 	@Override
 	public void processMessageUpdate(Message m) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -218,7 +217,6 @@ public class Chat extends JFrame implements ActionListener, PingHandlerI, ChatHa
 
 	@Override
 	public void pingResponseMessageReceived(NetUser netUser, long milliseconds) {
-		// TODO Auto-generated method stub
 		
 	}
 

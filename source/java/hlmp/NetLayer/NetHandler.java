@@ -181,7 +181,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	 */
 	public void disconnect()
 	{
-//		TODO: parametrizar los valores 0 y 1 por CONECTADO y DESCONECTADO
+//		TODO: fvalverd parametrizar los valores 0 y 1 por CONECTADO y DESCONECTADO
 		debug("NETHANDLER: disconnect...");
 		if(stopPoint.compareAndSet(0, 1))
 		{
@@ -261,158 +261,131 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	            {
 	                debug("NETHANDLER: start netHandler...");
 	                netHandlerState = NetHandlerState.STARTING;
-	                ////intenta poner la ip en modo estatico
-	                try
-	                {
+	                
+	                // Disable IP Adapter
+	                try {
 	                    debug("NETHANDLER: disable adapter...");
 	                    SystemHandler.disableIpAdapter(netData.getNetworkAdapter());
 	                    debug("NETHANDLER: disable adapter... OK");
 	                }
-	                catch (Exception e)
-	                {
+	                catch (Exception e) {
 	                    debug("NETHANDLER: disable adapter... failed! " + e.getMessage());
 	                }
-	                try
-	                {
+	                
+	                try {
 	                    debug("NETHANDLER: set IP... " + netData.getIpTcpListener().getHostAddress());
 	                    SystemHandler.setStaticIP(netData.getNetworkAdapter(), netData.getIpTcpListener().getHostAddress(), netData.getSubnetMask());
 	                    debug("NETHANDLER: set IP... OK");
 	                }
-//	                catch (ThreadAbortException e)
-//	                {
-//	                    throw e;
-//	                }
-	                catch (Exception e)
-	                {
+	                catch (Exception e) {
 	                    debug("NETHANDLER: set IP... failed! " + e.getMessage());
 	                }
-	                try
-	                {
+	                
+	                try {
 	                    debug("NETHANDLER: enable adapter...");
 	                    SystemHandler.enableIpAdapter(netData.getNetworkAdapter());
 	                    debug("NETHANDLER: enable adapter... OK");
 	                }
-//	                catch (ThreadAbortException e)
-//	                {
-//	                    throw e;
-//	                }
-	                catch (Exception e)
-	                {
+	                catch (Exception e) {
 	                    debug("NETHANDLER: enable adapter... failed! " + e.getMessage());
 	                }
 
-	                //hecha a andar wifiHandler
 	                debug("NETHANDLER: start wifi...");
 	                wifiHandler.connect();
-	                //espera por primera conexión
-	                while (wifiHandler.getConnectionState() == hlmp.NetLayer.Constants.WifiConnectionState.DISCONNECTED)
-	                {
+	                
+	                // Wait for the first connection
+	                while (wifiHandler.getConnectionState() == hlmp.NetLayer.Constants.WifiConnectionState.DISCONNECTED) {
 	                    debug("NETHANDLER: waiting for other devices");
 	                    Thread.sleep(netData.getWaitTimeStart());
 	                }
 	                debug("NETHANDLER: start wifi... OK");
-	                //Setea la IP en el sistema operativo
+	                
+	                // Set Static IP
 	                Boolean ipChange = false;
 	                int timeOutIpChange = 0;
-	                while (!ipChange)
-	                {
-	                    try
-	                    {
+	                while (!ipChange) {
+	                    try {
 	                        debug("NETHANDLER: set IP... " + netData.getIpTcpListener().getHostAddress());
 	                        SystemHandler.setStaticIP(netData.getNetworkAdapter(), netData.getIpTcpListener().getHostAddress(), netData.getSubnetMask());
 	                        ipChange = true;
 	                        debug("NETHANDLER: set IP... OK");
 	                    }
-//	                    catch (ThreadAbortException e)
-//	                    {
-//	                        throw e;
-//	                    }
-	                    catch (Exception e)
-	                    {
+	                    catch (Exception e) {
 	                        debug("NETHANDLER: set IP... failed! " + e.getMessage());
 	                        timeOutIpChange++;
-	                        if (timeOutIpChange > netData.getWaitForStart())
-	                        {
+	                        if (timeOutIpChange > netData.getWaitForStart()) {
 	                            throw new Exception("timeout, para configurar IP");
 	                        }
 	                        Thread.sleep(netData.getWaitTimeStart());
 	                    }
 	                }
-	                // Check IP
+	                
+	                
 	                debug("NETHANDLER: start strong DAD");
 	                ipHandler.startStrongDAD();
 	                
-	                // Start TCP
-	                debug("NETHANDLER: start TCP...");
-	                //tcpListener.setReuseAddress(true);
-	                Boolean tcpChange = false;
-	                int timeOutTcpChange = 0;
-	                while (!tcpChange)
-	                {
-	                    try
-	                    {
-	                        debug("NETHANDLER: start TCP listener... " + netData.getIpTcpListener().getHostAddress() + ":" + netData.getTcpPort());
-	                        //tcpListener.start();
-	                        tcpListener = new ServerSocket(netData.getTcpPort());
-	                        //tcpListener.bind(new InetSocketAddress(netData.getIpTcpListener(),netData.getTcpPort()));
-	                        tcpChange = true;
-	                        debug("NETHANDLER: start TCP listener... OK");
-	                    }
-//	                    catch (ThreadAbortException e)
-//	                    {
-//	                        throw e;
-//	                    }
-	                    catch (Exception e)
-	                    {
-	                    	e.printStackTrace();
-	                    	debug("NETHANDLER: start TCP listener... failed! " + e.getMessage());
-	                        timeOutTcpChange++;
-	                        if (timeOutTcpChange > netData.getWaitForStart())
-	                        {
-	                            throw new Exception("timeout, para levantar servicio TCP");
-	                        }
-	                        else
-	                        {
-	                            Thread.sleep(netData.getWaitTimeStart());
-	                        }
-	                    }
-	                }
-	                tcpListenerThread.start();
-	                debug("NETHANDLER: start TCP... OK");
+	                this.startTCP();
+	                this.startUDP();                
 	                
-	                // Start UDP
-	                debug("NETHANDLER: start UDP...");
-	                debug("NETHANDLER: start UDP... " + netData.getIpUdpMulticast() + ":" + netData.getUdpPort());
-	                udpServer = new MulticastSocket(netData.getUdpPort());
-	                udpClient = new DatagramSocket();
-	                udpClient.setBroadcast(true);
-	                udpClient.setReuseAddress(true);
-	                udpMulticastAdress = InetAddress.getByName(netData.getIpUdpMulticast());
-	                udpServer.joinGroup(udpMulticastAdress);
-	                udpClientThread.start();
-	                debug("NETHANDLER: start UDP... OK");
-	                
-	                // Week IP Check
 	                debug("NETHANDLER: start weak DAD");
 	                ipHandler.chageToWeakDAD();
 	                
-	                // Start Comminication
 	                commHandler.startNetworkingHandler();
 	                netHandlerState = NetHandlerState.STARTED;
 	                debug("NETHANDLER: start netHandler... OK");
 	                debug("NETHANDLER: We are so connected, welcome to HLMP !!!");
 	            }
-	            catch (InterruptedException e)
-	            {
-	            	System.out.println(e.getStackTrace());
-	                debug("NETHANDLER: start netHandler... failed! " + e.getMessage());
+	            catch (InterruptedException e) {
+	            	return;
 	            }
-	            catch (Exception e)
-	            {
+	            catch (Exception e) {
 	                disconnect();
 	            	debug("NETHANDLER: start netHandler... failed! " + e.getMessage());
 	                commHandler.errorNetworkingHandler(e);
 	            }
+			}
+
+			private void startTCP() throws Exception {
+				debug("NETHANDLER: start TCP...");
+                Boolean tcpChange = false;
+                int timeOutTcpChange = 0;
+                while (!tcpChange) {
+                    try {
+                        debug("NETHANDLER: start TCP listener... " + netData.getIpTcpListener().getHostAddress() + ":" + netData.getTcpPort());
+                        tcpListener = new ServerSocket();
+                        tcpListener.setReuseAddress(true);
+                        tcpListener.bind(new InetSocketAddress(netData.getIpTcpListener(),netData.getTcpPort()));
+                        tcpChange = true;
+                        debug("NETHANDLER: start TCP listener... OK");
+                    }
+                    catch (Exception e) {
+                    	// TODO: fvalverd change e.printStackTrace() to Exception Event
+                    	e.printStackTrace();
+                    	debug("NETHANDLER: start TCP listener... failed! " + e.getMessage());
+                        timeOutTcpChange++;
+                        if (timeOutTcpChange > netData.getWaitForStart()) {
+                            throw new Exception("timeout, para levantar servicio TCP");
+                        }
+                        else {
+                            Thread.sleep(netData.getWaitTimeStart());
+                        }
+                    }
+                }
+                tcpListenerThread.start();
+                debug("NETHANDLER: start TCP... OK");				
+			}
+			
+			private void startUDP() throws Exception {
+				debug("NETHANDLER: start UDP...");
+                debug("NETHANDLER: start UDP... " + netData.getIpUdpMulticast() + ":" + netData.getUdpPort());
+                udpServer = new MulticastSocket(netData.getUdpPort());
+                udpClient = new DatagramSocket();
+                udpClient.setBroadcast(true);
+                udpClient.setReuseAddress(true);
+                udpMulticastAdress = InetAddress.getByName(netData.getIpUdpMulticast());
+                udpServer.joinGroup(udpMulticastAdress);
+                udpClientThread.start();
+                debug("NETHANDLER: start UDP... OK");				
 			}
     		
     	};
@@ -959,28 +932,22 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	}
 
 	public void resetIp() {
-		if(iphandlerPoint.compareAndSet(0, 1))
-		{
-			try
-			{
+		if (iphandlerPoint.compareAndSet(0, 1)) {
+			try {
 				resetThread.start();
 			}
-			catch (Exception e)
-			{
+			catch (Exception e) {
 			}
 			iphandlerPoint.set(0);
 		}
-
 	}
 	
 	private Thread getListenTcpClientsThread(){
 		return new Thread(){
 			@Override
 			public void run() {
-				try
-		        {
-		            while (true)
-		            {
+				try {
+		            while (true) {
 		            	debug("TCP: accepting client ...");
 		                Socket tcpClient = tcpListener.accept();
 		                tcpClient.setSoTimeout(0);
@@ -1003,12 +970,10 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 		                debug("TCP: new client connected");
 		            }
 		        }
-		        catch (SocketException e)
-		        {
+		        catch (SocketException e) {
 		            return;
 		        }
-		        catch (Exception e)
-		        {
+		        catch (Exception e) {
 		        	debug("TCP WARNING: TCP listener has stopped!! " + e.getMessage());
 		        }
 				

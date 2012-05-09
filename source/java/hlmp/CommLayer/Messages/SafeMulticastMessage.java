@@ -62,7 +62,6 @@ public abstract class SafeMulticastMessage extends Message {
         try {
 			netHandler.sendTcpMessage(new NetMessage(toByteArray()));
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -110,7 +109,6 @@ public abstract class SafeMulticastMessage extends Message {
         try {
         	this.senderNetUser.setIp(InetAddress.getByAddress(userIP));
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         byte[] messageId = new byte[16];

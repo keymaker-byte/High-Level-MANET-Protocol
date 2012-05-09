@@ -60,8 +60,7 @@ public class NetData {
     public NetData()
     {
         pickNewIp();
-        ipUdpMulticast = "224.0.0.2"; // original
-//        ipUdpMulticast = "224.2.2.4";
+        ipUdpMulticast = "224.0.0.2";
         tcpPort = 30001;
         udpPort = 30002;
         subnetMask = "255.255.0.0";
@@ -115,7 +114,7 @@ public class NetData {
 //			e.printStackTrace();
 //		}
     	
-//    	TODO: Cambiar esto cuando se automatize el crear la red adhoc	
+//    	TODO: fvalverd Cambiar esto cuando se automatize el crear la red adhoc	
 		try {
 	        for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
 	            NetworkInterface intf = en.nextElement();

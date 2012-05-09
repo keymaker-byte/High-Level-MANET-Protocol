@@ -119,7 +119,6 @@ public abstract class FastUnicastMessage extends Message {
         try {
         	this.senderNetUser.setIp(InetAddress.getByAddress(userIP));
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         byte[] messageId = new byte[16];
@@ -135,7 +134,6 @@ public abstract class FastUnicastMessage extends Message {
         try {
         	this.targetNetUser.setIp(InetAddress.getByAddress(targetIP));
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
