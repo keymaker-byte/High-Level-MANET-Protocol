@@ -53,7 +53,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	/**
 	 * IpAddress UDP
 	 */
-	private InetAddress udpMulticastAdress;
+	private InetAddress udpMulticastAddress;
 	/**
 	 * Cola de mensajes UDP Multicast leidos
 	 */
@@ -181,7 +181,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	 */
 	public void disconnect()
 	{
-//		TODO: fvalverd parametrizar los valores 0 y 1 por CONECTADO y DESCONECTADO
+//		TODO: fvalverd parametrizar los valores 0 y 1 por CONECTADO y DESCONECTADO para stopPoint
 		debug("NETHANDLER: disconnect...");
 		if(stopPoint.compareAndSet(0, 1))
 		{
@@ -271,7 +271,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                catch (Exception e) {
 	                    debug("NETHANDLER: disable adapter... failed! " + e.getMessage());
 	                }
-	                
+	                // Set Static IP
 	                try {
 	                    debug("NETHANDLER: set IP... " + netData.getIpTcpListener().getHostAddress());
 	                    SystemHandler.setStaticIP(netData.getNetworkAdapter(), netData.getIpTcpListener().getHostAddress(), netData.getSubnetMask());
@@ -280,7 +280,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	                catch (Exception e) {
 	                    debug("NETHANDLER: set IP... failed! " + e.getMessage());
 	                }
-	                
+	                // Enable IP Adapter
 	                try {
 	                    debug("NETHANDLER: enable adapter...");
 	                    SystemHandler.enableIpAdapter(netData.getNetworkAdapter());
@@ -339,7 +339,6 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 	            	return;
 	            }
 	            catch (Exception e) {
-	                disconnect();
 	            	debug("NETHANDLER: start netHandler... failed! " + e.getMessage());
 	                commHandler.errorNetworkingHandler(e);
 	            }
@@ -359,7 +358,6 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
                         debug("NETHANDLER: start TCP listener... OK");
                     }
                     catch (Exception e) {
-                    	// TODO: fvalverd change e.printStackTrace() to Exception Event
                     	e.printStackTrace();
                     	debug("NETHANDLER: start TCP listener... failed! " + e.getMessage());
                         timeOutTcpChange++;
@@ -378,12 +376,14 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 			private void startUDP() throws Exception {
 				debug("NETHANDLER: start UDP...");
                 debug("NETHANDLER: start UDP... " + netData.getIpUdpMulticast() + ":" + netData.getUdpPort());
+                udpMulticastAddress = InetAddress.getByName(netData.getIpUdpMulticast());
                 udpServer = new MulticastSocket(netData.getUdpPort());
+                udpServer.setBroadcast(true);
+                udpServer.setReuseAddress(true);
                 udpClient = new DatagramSocket();
                 udpClient.setBroadcast(true);
                 udpClient.setReuseAddress(true);
-                udpMulticastAdress = InetAddress.getByName(netData.getIpUdpMulticast());
-                udpServer.joinGroup(udpMulticastAdress);
+                udpServer.joinGroup(udpMulticastAddress);
                 udpClientThread.start();
                 debug("NETHANDLER: start UDP... OK");				
 			}
@@ -423,7 +423,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
         try
         {
             debug("NETHANDLER: drop multicast suscription...");
-            udpServer.leaveGroup(udpMulticastAdress);
+            udpServer.leaveGroup(udpMulticastAddress);
             debug("NETHANDLER: drop multicast suscription... OK");
         }
         catch (Exception e)
@@ -647,7 +647,7 @@ public class NetHandler implements WifiInformationHandler, ResetIpHandler{
 			byte[] netByteMessage = new byte[4 + message.getSize()];
 			System.arraycopy(lenght, 0, netByteMessage, 0, 4);
 			System.arraycopy(message.getBody(), 0, netByteMessage, 4, message.getSize());
-			DatagramPacket packet = new DatagramPacket(netByteMessage, netByteMessage.length, udpMulticastAdress, netData.getUdpPort());
+			DatagramPacket packet = new DatagramPacket(netByteMessage, netByteMessage.length, udpMulticastAddress, netData.getUdpPort());
 			packet.setLength(netByteMessage.length);
 			udpClient.send(packet);
 			return true;

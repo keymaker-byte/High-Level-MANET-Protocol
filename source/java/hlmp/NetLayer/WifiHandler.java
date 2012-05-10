@@ -54,6 +54,7 @@ public class WifiHandler {
     }
     
     public void connect(){
+    	// TODO: implementar un thread que verifica la conexión adhoc
     	connectionState = hlmp.NetLayer.Constants.WifiConnectionState.CONNECTED;
     }
     
