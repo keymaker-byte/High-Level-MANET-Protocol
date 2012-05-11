@@ -1385,12 +1385,9 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
                 }
             }
         }
-//            catch (InterrruptedException e)
-//            {
-//                throw e;
-//            }
         catch (Exception e)
         {
+        	e.printStackTrace();
             debug("COMMUNICATION: impossible to send this message " + e.getMessage());
         }
     }

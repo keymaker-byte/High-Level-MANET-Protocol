@@ -305,7 +305,7 @@ public class Dijkstra implements InternodeTraversalCost, NearbyNodesHint{
 		}
 		while (finish != start);
 		
-		Integer[] aux= (Integer[]) path.toArray();
+		Integer[] aux= path.toArray(new Integer[path.size()]);
 		int[] aux2 = new int[aux.length];
 		for(int i=0; i< aux.length; i++)
 			aux2[i] = aux[i].intValue();
