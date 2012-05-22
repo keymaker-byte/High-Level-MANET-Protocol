@@ -1,0 +1,3 @@
+[submodule "source/java/hlmp"]
+	path = source/java/hlmp
+	url = git@github.com:fvalverd/HLMP-Java.git
