@@ -5,7 +5,12 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Enumeration;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +32,9 @@ import hlmp.CommLayer.Observers.ProcessMessageEventObserverI;
 import hlmp.CommLayer.Observers.RefreshLocalUserEventObserverI;
 import hlmp.CommLayer.Observers.RefreshUserEventObserverI;
 import hlmp.CommLayer.Observers.RemoveUserEventObserverI;
+import hlmp.NetLayer.Constants.IpState;
+import hlmp.NetLayer.Constants.WifiConnectionState;
+import hlmp.NetLayer.Interfaces.WifiHandler;
 import hlmp.SubProtocol.Chat.ChatProtocol;
 import hlmp.SubProtocol.Chat.ControlI.ChatHandlerI;
 import hlmp.SubProtocol.Chat.Messages.GroupChatMessage;
@@ -37,7 +45,7 @@ import hlmp.SubProtocol.Ping.ControlI.PingHandlerI;
 public class Chat extends JFrame implements ActionListener, PingHandlerI, ChatHandlerI, 
 	NetInformationEventObserverI, ProcessMessageEventObserverI,
 	AddUserEventObserverI, RemoveUserEventObserverI, RefreshLocalUserEventObserverI, RefreshUserEventObserverI,
-	ExceptionEventObserverI, ErrorMessageEventObserverI {
+	ExceptionEventObserverI, ErrorMessageEventObserverI, WifiHandler {
 
 	/**
 	 * 
@@ -134,7 +142,7 @@ public class Chat extends JFrame implements ActionListener, PingHandlerI, ChatHa
 		
 		subProtocols.add(hlmp.SubProtocol.Ping.Types.PINGPROTOCOL, pingProtocol);
 		subProtocols.add(hlmp.SubProtocol.Chat.Types.CHATPROTOCOL, chatProtocol);
-		this.communication = new Communication(configuration, subProtocols, null);
+		this.communication = new Communication(configuration, subProtocols, null, this);
 
 		this.communication.subscribeNetInformationEvent(this);
 		this.communication.subscribeExceptionEvent(this);
@@ -271,5 +279,59 @@ public class Chat extends JFrame implements ActionListener, PingHandlerI, ChatHa
 	
 	public void p(Object o){
 		System.out.println(o);
+	}
+
+
+	
+	
+	
+	// HLMP WifiHandler
+	
+	@Override
+	public void connect() {		
+	}
+	
+
+
+	@Override
+	public void disconnect() {
+	}
+	
+
+
+	@Override
+	public int getConnectionState() {
+		return WifiConnectionState.CONNECTED;
+	}
+	
+
+
+	@Override
+	public int getIpState() {
+		return IpState.VALID;
+	}
+	
+
+
+	@Override
+	public InetAddress getInetAddress() {	
+		try {
+			for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+				NetworkInterface intf = en.nextElement();
+				for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+					InetAddress inetAddress = enumIpAddr.nextElement();
+					if (!inetAddress.isLoopbackAddress()) {
+						inetAddress = enumIpAddr.nextElement();
+						p(inetAddress.getCanonicalHostName());
+						p(inetAddress.getHostAddress());
+						p(inetAddress.getHostName());
+						return inetAddress;
+					}
+				}
+			}
+		} catch (SocketException e) {
+			e.printStackTrace();	
+		}
+		return null;
 	}
 }
