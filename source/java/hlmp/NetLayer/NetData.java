@@ -1,11 +1,6 @@
 package hlmp.NetLayer;
 
 import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
-//import java.net.UnknownHostException;
-//import java.util.Random;
 
 import hlmp.NetLayer.Constants.OpSystemType;
 
@@ -23,7 +18,6 @@ public class NetData {
     private int tcpPort;
     private int udpPort;
     private String subnetMask;
-    private NetworkAdapter networkAdapter;
     private String adhocNetworkName;
     private int opSystem;
     private int waitTimeWiFi;
@@ -59,12 +53,11 @@ public class NetData {
     
     public NetData()
     {
-        pickNewIp();
+//        pickNewIp();
         ipUdpMulticast = "224.0.0.2";
         tcpPort = 30001;
         udpPort = 30002;
         subnetMask = "255.255.0.0";
-        networkAdapter = SystemHandler.getWifiAdapter();
         adhocNetworkName = "HLMP-MANET";
         opSystem = OpSystemType.UBUNTU1104;
         waitTimeWiFi = 15000;
@@ -102,7 +95,7 @@ public class NetData {
     /**
      * Determina una nueva IP de manera aleatoria, en el rango de mascara de red 255.255.0.0
      */
-    public void pickNewIp(){
+//    public void pickNewIp(){
     	//Random r = new Random();
     	//String ip = "170.160" + "." + (r.nextInt(255)+1) + "." + (r.nextInt(255)+1);
 //    	String ip = "6.6.6.6";
@@ -115,20 +108,20 @@ public class NetData {
 //		}
     	
 //    	TODO: fvalverd Cambiar esto cuando se automatize el crear la red adhoc	
-		try {
-	        for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
-	            NetworkInterface intf = en.nextElement();
-	            for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
-	                InetAddress inetAddress = enumIpAddr.nextElement();
-	                if (!inetAddress.isLoopbackAddress()) {
-	                	ipTcpListener = inetAddress;
-	                }
-	            }
-	        }
-	    } catch (SocketException e) {
-	    	e.printStackTrace();
-	    }
-    }
+//		try {
+//	        for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+//	            NetworkInterface intf = en.nextElement();
+//	            for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+//	                InetAddress inetAddress = enumIpAddr.nextElement();
+//	                if (!inetAddress.isLoopbackAddress()) {
+//	                	ipTcpListener = inetAddress;
+//	                }
+//	            }
+//	        }
+//	    } catch (SocketException e) {
+//	    	e.printStackTrace();
+//	    }
+//    }
 
 	/**
 	 * @return Ip delegada para realizar conexiones TCP
@@ -198,20 +191,6 @@ public class NetData {
 	 */
 	public void setSubnetMask(String subnetMask) {
 		this.subnetMask = subnetMask;
-	}
-
-	/**
-	 * @return Adaptador de red seleccionado para conectarse a la red inalámbrica
-	 */
-	public NetworkAdapter getNetworkAdapter() {
-		return networkAdapter;
-	}
-
-	/**
-	 * @param networkAdapter Adaptador de red seleccionado para conectarse a la red inalámbrica
-	 */
-	public void setNetworkAdapter(NetworkAdapter networkAdapter) {
-		this.networkAdapter = networkAdapter;
 	}
 
 	/**

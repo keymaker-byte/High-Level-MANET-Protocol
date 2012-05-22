@@ -9,18 +9,40 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import hlmp.CommLayer.NetUser;
-import hlmp.CommLayer.Constants.*;
+import hlmp.CommLayer.Constants.CommunicationEvent;
+import hlmp.CommLayer.Constants.CommunicationQuality;
+import hlmp.CommLayer.Constants.MessageType;
+import hlmp.CommLayer.Constants.NetUserQuality;
 import hlmp.CommLayer.Exceptions.ArgumentOutOfRangeException;
 import hlmp.CommLayer.Interfaces.RouterMessageErrorHandlerI;
-import hlmp.CommLayer.Messages.*;
-import hlmp.CommLayer.Observers.*;
-import hlmp.NetLayer.*;
+import hlmp.CommLayer.Messages.AckMessage;
+import hlmp.CommLayer.Messages.ImAliveMessage;
+import hlmp.CommLayer.Messages.Message;
+import hlmp.CommLayer.NetUser;
+import hlmp.CommLayer.Observers.AddUserEventObserverI;
+import hlmp.CommLayer.Observers.ConnectEventObserverI;
+import hlmp.CommLayer.Observers.ConnectingEventObserverI;
+import hlmp.CommLayer.Observers.DisconnectEventObserverI;
+import hlmp.CommLayer.Observers.DisconnectingEventObserverI;
+import hlmp.CommLayer.Observers.ErrorMessageEventObserverI;
+import hlmp.CommLayer.Observers.ExceptionEventObserverI;
+import hlmp.CommLayer.Observers.NetInformationEventObserverI;
+import hlmp.CommLayer.Observers.ProcessMessageEventObserverI;
+import hlmp.CommLayer.Observers.ReconnectingEventObserverI;
+import hlmp.CommLayer.Observers.RefreshLocalUserEventObserverI;
+import hlmp.CommLayer.Observers.RefreshUserEventObserverI;
+import hlmp.CommLayer.Observers.RemoveUserEventObserverI;
+import hlmp.NetLayer.CommHandlerI;
+import hlmp.NetLayer.NetHandler;
+import hlmp.NetLayer.NetMessage;
+import hlmp.NetLayer.RemoteMachine;
+import hlmp.NetLayer.Interfaces.WifiHandler;
+
 
 /**
  * Clase encargada de establecer la comunicación y el protocolo en la MANET
  */
-public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
+public class Communication implements CommHandlerI, RouterMessageErrorHandlerI {
 
 	/**
 	 * Invoca threads de timer
@@ -209,7 +231,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
 	 * @param subProtocols Lista de SubProtocolos
 	 * @param extraMessageTypes Tipos de mensajes no especificados en los sub protocolos
 	 */
-	public Communication(Configuration configuration, SubProtocolList subProtocols, MessageTypeList extraMessageTypes)
+	public Communication(Configuration configuration, SubProtocolList subProtocols, MessageTypeList extraMessageTypes, WifiHandler wifiHandler)
 	{
 //		try
 //		{
@@ -232,7 +254,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
 				}
 				this.subProtocols = subProtocols;
 			}
-			netHandler = new NetHandler(configuration.getNetData(), this);
+			netHandler = new NetHandler(configuration.getNetData(), this, wifiHandler);
 			eventQueuePC = new EventQueuePC();
 			eventConsumer = getConsumeEventThread();
 			eventConsumer.setName("Consumer Event Thread");
@@ -988,6 +1010,7 @@ public class Communication implements CommHandlerI, RouterMessageErrorHandlerI{
     		public void run() {
     			try
     			{
+    				// TODO: FVALVERDE modificar a un mejor sistema para no ocupar 100% CPU
     				while (true)
     				{
     					router.proccessNotSentMessage();
